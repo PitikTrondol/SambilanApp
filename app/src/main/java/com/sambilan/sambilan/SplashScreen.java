@@ -2,14 +2,16 @@ package com.sambilan.sambilan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
-import java.util.logging.Handler;
-
 /**
  * Created by Andhika Putranto on 1/14/2018.
+=======
+/**
+ * Created by Andhika Putranto on 1/13/2018.
  */
 
 public class SplashScreen extends AppCompatActivity {
@@ -19,13 +21,13 @@ public class SplashScreen extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.splash_screen);
 
-        final android.os.Handler handler =new android.os.Handler();
+        final Handler handler =new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(),LandingPageActivity.class));
+                finish();
             }
         },3000);
-
     }
 }

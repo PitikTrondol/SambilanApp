@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_splashscreen"
         android:layout_centerVertical="true"
-        android:src="@drawable/logo_splash_screen"/>
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
