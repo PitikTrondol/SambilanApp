@@ -20,12 +20,4 @@
         app:showAsAction="ifRoom">
     </item>
 
-    <item
-        android:id="@+id/menu_search"
-        android:title="Search"
-        android:orderInCategory="100"
-        android:icon="@mipmap/ic_search"
-        app:showAsAction="ifRoom">
-    </item>
-
 </menu>

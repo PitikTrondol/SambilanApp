@@ -5,21 +5,42 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class LandingPageActivity extends AppCompatActivity {
 
-    Toolbar topToolBar;
+    Toolbar topBarMenu;
+    SearchView topBarSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+/**
+ * Implementasi untuk topbar, menu dan search button
+ */
+        topBarMenu = (Toolbar) findViewById(R.id.topBar);
+        setSupportActionBar(topBarMenu);
 
-        topToolBar = (Toolbar) findViewById(R.id.topBar);
-        setSupportActionBar(topToolBar);
+        topBarSearch = (SearchView) findViewById(R.id.sv_pencarian);
+        topBarSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(LandingPageActivity.this, "Kamu mencari "+query, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
+/**
+ Implementation override for top bar menus (filter and notification)
+ **/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_top_bar, menu);
@@ -31,15 +52,11 @@ public class LandingPageActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.menu_notif){
-            Toast.makeText(LandingPageActivity.this, "Menu notifikasi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LandingPageActivity.this, "Login dulu lah", Toast.LENGTH_SHORT).show();
             return true;
         }
         else if (id == R.id.menu_filter){
             Toast.makeText(LandingPageActivity.this, "Menu Filter", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(id == R.id.menu_search){
-            Toast.makeText(LandingPageActivity.this, "Menu Search", Toast.LENGTH_SHORT).show();
             return true;
         }
         return true;
