@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 public class LandingPageActivity extends AppCompatActivity {
 
     Toolbar topBarMenu;
-    SearchView topBarSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +19,6 @@ public class LandingPageActivity extends AppCompatActivity {
  * Implementasi untuk topbar, menu dan search button
  */
         topBarMenu = (Toolbar) findViewById(R.id.topBar);
-        setSupportActionBar(topBarMenu);
-
-        topBarSearch = (SearchView) findViewById(R.id.sv_pencarian);
-        topBarSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(LandingPageActivity.this, "Kamu mencari "+query, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
     }
 
 /**
