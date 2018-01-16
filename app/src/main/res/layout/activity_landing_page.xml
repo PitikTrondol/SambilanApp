@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.sambilan.sambilan.LandingPageActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--
+    [Afriandi]
+    Top Bar Layout
+    Yang tampil disini cuman search view,
+    layout untuk menu ada di res/menu
+    -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/topBar"
+        app:titleTextColor="@color/colorCommonOrange"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/AppTheme">
+        <!--<SearchView-->
+            <!--android:id="@+id/sv_pencarian"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+        <!--</SearchView>-->
+    </android.support.v7.widget.Toolbar>
 
 </android.support.constraint.ConstraintLayout>
