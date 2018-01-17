@@ -6,21 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.sambilan.sambilan.LandingPageActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <!--
-    [Afriandi]
-    Top Bar Layout
-    Yang tampil disini cuman search view,
-    layout untuk menu ada di res/menu
-    -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/topBar"
+        app:title="Sambilan"
         app:titleTextColor="@color/colorCommonOrange"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:theme="@style/AppTheme">
         <!--<SearchView-->
             <!--android:id="@+id/sv_pencarian"-->
@@ -28,6 +20,32 @@
             <!--android:layout_height="wrap_content">-->
         <!--</SearchView>-->
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/ll_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/topBar"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/iv_carousel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/img_shopee"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_jobList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_carousel"
+        android:layout_above="@id/bottom_navigation"
+        android:background="@color/colorLightGrey">
+
+
+    </android.support.v7.widget.RecyclerView>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
