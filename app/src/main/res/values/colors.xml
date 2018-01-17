@@ -3,6 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="White">#ffffff</color>
+    <color name="Grey">#898989</color>
+    <color name="Orange">#eb8a42</color>
     <color name="colorCommonGrey">#898989</color>
     <color name="colorCommonOrange">#EB8A42</color>
     <color name="colorSearchBg">#E6E5E5</color>

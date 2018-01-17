@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sambilan</string>
+    <string name="Home">Beranda</string>
+    <string name="Add">Tambah</string>
+    <string name="Category">Kategori</string>
+    <string name="Me">Saya</string>
 </resources>
