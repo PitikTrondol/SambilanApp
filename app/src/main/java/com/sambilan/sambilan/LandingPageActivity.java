@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,6 +16,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Toolbar topBarMenu;
     SearchView topBarSearch;
+    RecyclerView recyclerViewJobOffer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
