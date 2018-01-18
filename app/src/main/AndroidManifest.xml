@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +18,12 @@
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
+=======
         <activity
             android:name=".LandingPageActivity">
         </activity>
+>>>>>>> b6804ec23cb4024f067462317d95546d1af7deb6
     </application>
 
 </manifest>

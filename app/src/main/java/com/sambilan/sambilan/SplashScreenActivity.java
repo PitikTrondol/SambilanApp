@@ -14,7 +14,7 @@ import android.view.Window;
  * Created by Andhika Putranto on 1/13/2018.
  */
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
