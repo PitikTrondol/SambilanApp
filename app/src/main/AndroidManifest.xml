@@ -17,8 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LandingPageActivity"/>
 
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".LandingPageActivity">
+        </activity>
+>>>>>>> b6804ec23cb4024f067462317d95546d1af7deb6
     </application>
 
 </manifest>

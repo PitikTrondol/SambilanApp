@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 /**
+ * Created by Andhika Putranto on 1/14/2018.
+=======
+/**
  * Created by Andhika Putranto on 1/13/2018.
  */
 
