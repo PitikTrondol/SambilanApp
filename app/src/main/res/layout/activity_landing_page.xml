@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
+        android:layout_margin="1dp"
         android:theme="@style/AppTheme">
         <!--<SearchView-->
             <!--android:id="@+id/sv_pencarian"-->
@@ -26,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@id/topBar"
+        android:layout_margin="1dp"
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv_carousel"
@@ -36,11 +38,13 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_jobList"
+        android:id="@+id/recycler_jobList"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ll_carousel"
         android:layout_above="@id/bottom_navigation"
+        android:layout_margin="1dp"
         android:background="@color/colorLightGrey">
 
 
@@ -55,6 +59,7 @@
         app:itemBackground="@color/White"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
+        android:layout_margin="1dp"
         app:menu="@menu/bottom_nav">
 
     </android.support.design.widget.BottomNavigationView>
