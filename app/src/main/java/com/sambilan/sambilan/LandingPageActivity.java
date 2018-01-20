@@ -18,8 +18,6 @@ import com.sambilan.sambilan.item.JobItemAdapter;
 public class LandingPageActivity extends AppCompatActivity implements JobItemAdapter.JobItemListener {
 
     Toolbar topBarMenu;
-    SearchView topBarSearch;
-
     RecyclerView recyclerViewJobOffer;
     JobItemAdapter jobItemAdapter;
 
@@ -27,8 +25,6 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         /**
         * Implementasi untuk topbar, menu dan search button
@@ -40,13 +36,20 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
          * Implementasi untuk recyclerview
          * create adapter
          * create recycler
-         * setLayout buat menetukan dia type recycler mana (linear vertikal / linear horizontal / grid)
+         * setLayoutManager buat menetukan dia type recycler mana
+         * (linear vertikal / linear horizontal / grid)
          * setAdapter
          */
         jobItemAdapter = new JobItemAdapter(LandingPageActivity.this, this);
         recyclerViewJobOffer = findViewById(R.id.recycler_jobList);
         recyclerViewJobOffer.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         recyclerViewJobOffer.setAdapter(jobItemAdapter);
+
+        /**
+         * Implementasi bottom nav bar
+         */
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     /**
