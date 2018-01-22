@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sambilan.sambilan">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".SambilanApplication"
         android:allowBackup="true"
@@ -10,20 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-<<<<<<< HEAD
-=======
+        
         <activity
-            android:name=".LandingPageActivity">
+            android:name=".view.LandingPageActivity">
         </activity>
->>>>>>> b6804ec23cb4024f067462317d95546d1af7deb6
     </application>
 
 </manifest>
