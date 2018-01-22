@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.SliderPager;
+package com.sambilan.sambilan.view.SliderPager;
 
 /**
  * Created by Andhika Putranto on 1/18/2018.

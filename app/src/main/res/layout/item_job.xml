@@ -80,6 +80,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/iv_jobImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center_vertical"
