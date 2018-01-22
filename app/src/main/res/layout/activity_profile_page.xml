@@ -6,124 +6,41 @@
     <LinearLayout
         android:id="@+id/ll_buttons"
         android:layout_width="match_parent"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
         android:orientation="horizontal">
-=======
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:clickable="true">
->>>>>>> [Afriandi]add new screen
-=======
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:clickable="true">
->>>>>>> [Afriandi]add new screen
-=======
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:orientation="horizontal">
->>>>>>> [Afriandi] create dummy screen for some screen
 
         <Button
             android:id="@+id/btn_permintaan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Permintaan"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:layout_weight="1"
-            android:textSize="10dp"/>
->>>>>>> [Afriandi] create dummy screen for some screen
 
         <Button
             android:id="@+id/btn_menunggu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Menunggu"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:layout_weight="1"
-            android:textSize="10dp"/>
->>>>>>> [Afriandi] create dummy screen for some screen
 
         <Button
             android:id="@+id/btn_diterima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Diterima"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
->>>>>>> [Afriandi]add new screen
-=======
-            android:layout_weight="1"
-            android:textSize="10dp"/>
->>>>>>> [Afriandi] create dummy screen for some screen
 
         <Button
             android:id="@+id/btn_selesai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Selesai"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
     </LinearLayout>
 
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
-    </LinearLayout>
->>>>>>> [Afriandi]add new screen
-=======
-            android:textSize="10dp"
-            android:layout_weight="1"/>
-    </LinearLayout>
->>>>>>> [Afriandi]add new screen
-=======
-            android:layout_weight="1"
-            android:textSize="10dp"/>
-
-    </LinearLayout>
-
->>>>>>> [Afriandi] create dummy screen for some screen
 </android.support.constraint.ConstraintLayout>

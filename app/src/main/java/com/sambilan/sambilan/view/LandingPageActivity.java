@@ -13,29 +13,15 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
-<<<<<<< HEAD
-import com.sambilan.sambilan.BottomNavigationViewHelper;
-=======
 import android.widget.LinearLayout;
 
->>>>>>> [Afriandi] create dummy screen for some screen
 import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
-<<<<<<< HEAD
-=======
-
 import com.sambilan.sambilan.view.adapter.JobItemAdapter;
-<<<<<<< HEAD
->>>>>>> [Afriandi] create dummy screen for some screen
-import android.widget.LinearLayout;
-
-=======
->>>>>>> [Afriandi] create dummy screen for some screen
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
-import com.sambilan.sambilan.view.adapter.JobItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,23 +165,8 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                     Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_me:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profileIntent);
-=======
-                    Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
-                    startActivity(profile);
->>>>>>> [Afriandi]add new screen
-=======
-                    Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
-                    startActivity(profile);
->>>>>>> [Afriandi]add new screen
-=======
-                    Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
-                    startActivity(profileIntent);
->>>>>>> [Afriandi] create dummy screen for some screen
                     return true;
             }
             return false;

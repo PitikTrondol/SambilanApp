@@ -11,9 +11,6 @@ import com.sambilan.sambilan.R;
 
 /**
  * Created by Andhika Putranto on 1/14/2018.
-=======
-/**
- * Created by Andhika Putranto on 1/13/2018.
  */
 
 public class SplashScreenActivity extends AppCompatActivity {
