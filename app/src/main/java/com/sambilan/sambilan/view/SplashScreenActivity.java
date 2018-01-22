@@ -1,4 +1,4 @@
-package com.sambilan.sambilan;
+package com.sambilan.sambilan.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+
+import com.sambilan.sambilan.R;
 
 /**
  * Created by Andhika Putranto on 1/14/2018.

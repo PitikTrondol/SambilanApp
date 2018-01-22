@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.SliderPager;
+package com.sambilan.sambilan.view.SliderPager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

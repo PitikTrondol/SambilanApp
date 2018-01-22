@@ -1,4 +1,4 @@
-package com.sambilan.sambilan;
+package com.sambilan.sambilan.view;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,17 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.sambilan.sambilan.item.JobItemAdapter;
+import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.presenter.JobPresenter;
+import com.sambilan.sambilan.view.item.JobItemAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LandingPageActivity extends AppCompatActivity implements JobItemAdapter.JobItemListener {
 
-    Toolbar topBarMenu;
-    RecyclerView recyclerViewJobOffer;
-    JobItemAdapter jobItemAdapter;
+    private Toolbar topBarMenu;
+    private RecyclerView recyclerViewJobOffer;
+    private JobItemAdapter jobItemAdapter;
+    private List<Job> jobs;
+    private JobPresenter jobPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +40,18 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
 
         /**
          * Implementasi untuk recyclerview
-         * create adapter
-         * create recycler
+         * createJobApi adapter
+         * createJobApi recycler
          * setLayoutManager buat menetukan dia type recycler mana
          * (linear vertikal / linear horizontal / grid)
          * setAdapter
          */
-        jobItemAdapter = new JobItemAdapter(LandingPageActivity.this, this);
+
+        jobs = new ArrayList<>(); //biar gak null pointer
+        jobPresenter = new JobPresenter();
+        jobPresenter.getJobList(jobCallback);
+
+        jobItemAdapter = new JobItemAdapter(LandingPageActivity.this, jobs, this);
         recyclerViewJobOffer = findViewById(R.id.recycler_jobList);
         recyclerViewJobOffer.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         recyclerViewJobOffer.setAdapter(jobItemAdapter);
@@ -52,8 +63,9 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    /**
+    /** ---------------------------------------------------------------------
      * Implementation override for top bar menus (filter and notification)
+     * ----------------------------------------------------------------------
      **/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,17 +87,34 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         return true;
     }
 
-    /**
+    /** ------------------------------------------
      *  Implementasi untuk job list
+     *  ------------------------------------------
      */
     @Override
     public void onClickJobItem(int position) {
         Toast.makeText(this, "Item number "+(position+1)+" has been clicked", Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Implementasi untuk bottom navigation
-     * */
+    // create callback buat presenter
+    private JobPresenter.JobResultCallback jobCallback = new JobPresenter.JobResultCallback() {
+        @Override
+        public void OnSuccessResult(List<Job> jobs) {
+            LandingPageActivity.this.jobs.addAll(jobs);
+            LandingPageActivity.this.jobItemAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void OnFailureResult(String errorMessage) {
+            Toast.makeText(LandingPageActivity.this, ""+errorMessage, Toast.LENGTH_LONG)
+                    .show();
+        }
+    };
+
+    /** ------------------------------------------
+     *  Implementasi untuk bottom navigation
+     *  ------------------------------------------
+     **/
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
