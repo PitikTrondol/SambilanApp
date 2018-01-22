@@ -32,6 +32,10 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         /**
         * Implementasi untuk topbar, menu dan search button
         */
