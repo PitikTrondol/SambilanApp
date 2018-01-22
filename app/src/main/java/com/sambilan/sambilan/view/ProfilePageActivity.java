@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.LinearLayout;
+=======
+>>>>>>> [Afriandi] create dummy screen for some screen
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
@@ -12,6 +15,9 @@ import com.sambilan.sambilan.R;
 /**
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [Afriandi] create dummy screen for some screen
  * Created by Afriandi Haryanto on 1/22/2018.
  */
 
@@ -53,6 +59,7 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
             break;
         }
     }
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> [Afriandi]add new screen
@@ -108,4 +115,6 @@ public class ProfilePageActivity extends AppCompatActivity {
 >>>>>>> [Afriandi]add new screen
 =======
 >>>>>>> [Afriandi]add new screen
+=======
+>>>>>>> [Afriandi] create dummy screen for some screen
 }

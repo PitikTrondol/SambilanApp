@@ -34,10 +34,17 @@
             android:name=".view.ProfilePageActivity">
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> [Afriandi]add new screen
 =======
 
 >>>>>>> [Afriandi]add new screen
+=======
+
+        <activity
+            android:name=".view.ProfilePageActivity">
+        </activity>
+>>>>>>> [Afriandi] create dummy screen for some screen
     </application>
 
 </manifest>

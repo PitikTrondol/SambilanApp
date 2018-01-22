@@ -18,6 +18,11 @@ import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
+<<<<<<< HEAD
+=======
+
+import com.sambilan.sambilan.view.adapter.JobItemAdapter;
+>>>>>>> [Afriandi] create dummy screen for some screen
 import android.widget.LinearLayout;
 
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
@@ -168,6 +173,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                 case R.id.navigation_me:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profileIntent);
 =======
@@ -178,6 +184,10 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                     Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profile);
 >>>>>>> [Afriandi]add new screen
+=======
+                    Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
+                    startActivity(profileIntent);
+>>>>>>> [Afriandi] create dummy screen for some screen
                     return true;
             }
             return false;
