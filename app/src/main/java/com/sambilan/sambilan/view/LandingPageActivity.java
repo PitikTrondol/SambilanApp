@@ -52,7 +52,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         jobPresenter.getJobList(jobCallback);
 
         jobItemAdapter = new JobItemAdapter(LandingPageActivity.this, jobs, this);
-        recyclerViewJobOffer = findViewById(R.id.recycler_jobList);
+        recyclerViewJobOffer = findViewById(R.id.rv_joblist);
         recyclerViewJobOffer.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         recyclerViewJobOffer.setAdapter(jobItemAdapter);
 
