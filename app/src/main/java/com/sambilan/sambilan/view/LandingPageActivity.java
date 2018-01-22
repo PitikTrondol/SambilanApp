@@ -13,7 +13,12 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
+<<<<<<< HEAD
 import com.sambilan.sambilan.BottomNavigationViewHelper;
+=======
+import android.widget.LinearLayout;
+
+>>>>>>> [Afriandi] create dummy screen for some screen
 import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
@@ -22,9 +27,12 @@ import com.sambilan.sambilan.presenter.JobPresenter;
 =======
 
 import com.sambilan.sambilan.view.adapter.JobItemAdapter;
+<<<<<<< HEAD
 >>>>>>> [Afriandi] create dummy screen for some screen
 import android.widget.LinearLayout;
 
+=======
+>>>>>>> [Afriandi] create dummy screen for some screen
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
 import com.sambilan.sambilan.view.adapter.JobItemAdapter;
