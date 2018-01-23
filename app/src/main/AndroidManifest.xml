@@ -33,6 +33,10 @@
         <activity
             android:name=".view.ProfilePageActivity">
         </activity>
+<<<<<<< HEAD
+>>>>>>> [Afriandi]add new screen
+=======
+
 >>>>>>> [Afriandi]add new screen
     </application>
 
