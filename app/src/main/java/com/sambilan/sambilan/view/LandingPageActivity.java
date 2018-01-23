@@ -128,7 +128,7 @@ public class LandingPageActivity extends AppCompatActivity {
         if (id == R.id.menu_notif) {
             Toast.makeText(LandingPageActivity.this, "Login dulu lah", Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.menu_filter) {h
+        } else if (id == R.id.menu_filter) {
             Toast.makeText(LandingPageActivity.this, "Menu Filter", Toast.LENGTH_SHORT).show();
             return true;
         }
