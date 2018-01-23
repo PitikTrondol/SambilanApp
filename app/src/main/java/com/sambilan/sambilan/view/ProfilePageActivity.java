@@ -11,6 +11,7 @@ import com.sambilan.sambilan.R;
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Created by Afriandi Haryanto on 1/22/2018.
  */
 
@@ -53,6 +54,8 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
         }
     }
 =======
+=======
+>>>>>>> [Afriandi]add new screen
  * Created by Afriandi Haryanto on 1/23/2018.
  */
 
@@ -101,5 +104,8 @@ public class ProfilePageActivity extends AppCompatActivity {
             }
         }
     };
+<<<<<<< HEAD
+>>>>>>> [Afriandi]add new screen
+=======
 >>>>>>> [Afriandi]add new screen
 }

@@ -7,9 +7,15 @@
         android:id="@+id/ll_buttons"
         android:layout_width="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
         android:orientation="horizontal">
+=======
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:clickable="true">
+>>>>>>> [Afriandi]add new screen
 =======
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -22,8 +28,13 @@
             android:layout_height="wrap_content"
             android:text="Permintaan"
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
+=======
+            android:textSize="10dp"
+            android:layout_weight="1"/>
+>>>>>>> [Afriandi]add new screen
 =======
             android:textSize="10dp"
             android:layout_weight="1"/>
@@ -35,8 +46,13 @@
             android:layout_height="wrap_content"
             android:text="Menunggu"
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
+=======
+            android:textSize="10dp"
+            android:layout_weight="1"/>
+>>>>>>> [Afriandi]add new screen
 =======
             android:textSize="10dp"
             android:layout_weight="1"/>
@@ -48,8 +64,13 @@
             android:layout_height="wrap_content"
             android:text="Diterima"
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
+=======
+            android:textSize="10dp"
+            android:layout_weight="1"/>
+>>>>>>> [Afriandi]add new screen
 =======
             android:textSize="10dp"
             android:layout_weight="1"/>
@@ -61,10 +82,16 @@
             android:layout_height="wrap_content"
             android:text="Selesai"
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:layout_weight="1"
             android:textSize="10dp"/>
     </LinearLayout>
 
+=======
+            android:textSize="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+>>>>>>> [Afriandi]add new screen
 =======
             android:textSize="10dp"
             android:layout_weight="1"/>

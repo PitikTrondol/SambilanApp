@@ -20,9 +20,12 @@
         </activity>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".view.LandingPageActivity"></activity>
         <activity android:name=".detail_job"></activity>
 =======
+=======
+>>>>>>> [Afriandi]add new screen
         <!--<activity-->
             <!--android:name=".view.LandingPageActivity">-->
         <!--</activity>-->

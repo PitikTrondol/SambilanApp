@@ -167,8 +167,13 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                     return true;
                 case R.id.navigation_me:
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profileIntent);
+=======
+                    Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
+                    startActivity(profile);
+>>>>>>> [Afriandi]add new screen
 =======
                     Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profile);
