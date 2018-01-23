@@ -166,8 +166,13 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                     Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_me:
+<<<<<<< HEAD
                     Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profileIntent);
+=======
+                    Intent profile = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
+                    startActivity(profile);
+>>>>>>> [Afriandi]add new screen
                     return true;
             }
             return false;
