@@ -41,7 +41,6 @@
             android:text="Selesai"
             android:layout_weight="1"
             android:textSize="10dp"/>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
