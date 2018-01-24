@@ -20,10 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        
-=======
->>>>>>> [Andhika Putranto]Create Carousel
         <activity
             android:name=".view.LandingPageActivity">
         </activity>

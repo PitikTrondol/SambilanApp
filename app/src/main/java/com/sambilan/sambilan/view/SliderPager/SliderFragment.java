@@ -33,7 +33,7 @@ public class SliderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         imageURL = getArguments().getString(LABEL_KEY);
         rootView = inflater.inflate(R.layout.fragment_image, container, false);
-        ImageView img = (ImageView) rootView.findViewById(R.id.img_carousel);
+        ImageView img = (ImageView) rootView.findViewById(R.id.iv_carousel);
         Glide.with(getActivity()).load(imageURL).into(img);
         return rootView;
     }

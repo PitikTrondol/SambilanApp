@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.Model;
+package com.sambilan.sambilan.model;
 
 /**
  * Created by Andhika Putranto on 1/21/2018.
