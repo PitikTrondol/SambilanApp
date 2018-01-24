@@ -8,46 +8,57 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/topBar"
-        app:title="Sambilan"
-        app:titleTextColor="@color/colorCommonOrange"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:layout_margin="1dp"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        app:title="Sambilan"
+        app:titleTextColor="@color/colorCommonOrange">
+
         <!--<SearchView-->
-            <!--android:id="@+id/sv_pencarian"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
+        <!--android:id="@+id/sv_pencarian"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
         <!--</SearchView>-->
+
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/ll_carousel"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/topBar"
-        android:layout_margin="1dp"
-        android:orientation="vertical">
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:id="@+id/pagesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pager"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_carousel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:src="@drawable/img_shopee"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pager"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_joblist"
-        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_carousel"
-        android:layout_above="@id/bottom_navigation"
+        android:overScrollMode="never"
         android:layout_margin="1dp"
+        android:layout_below="@id/pagesContainer"
+        android:layout_above="@id/btn_bottomnav"
         android:background="@color/colorLightGrey">
-
-
     </android.support.v7.widget.RecyclerView>
 
 
@@ -56,10 +67,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
         app:itemBackground="@color/White"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        android:layout_margin="1dp"
         app:menu="@menu/bottom_nav">
 
     </android.support.design.widget.BottomNavigationView>

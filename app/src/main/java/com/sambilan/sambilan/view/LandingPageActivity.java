@@ -2,6 +2,8 @@ package com.sambilan.sambilan.view;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
 import com.sambilan.sambilan.view.item.JobItemAdapter;
+import android.widget.LinearLayout;
+
+import com.sambilan.sambilan.view.adapter.SliderAdapter;
+import com.sambilan.sambilan.view.fragment.SliderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +34,29 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
     private List<Job> jobs;
     private JobPresenter jobPresenter;
 
+    ViewPager pager;
+    LinearLayout linearLayout;
+    SliderAdapter adapter;
+    PageIndicator Indicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+        BottomNavigationView navigation = findViewById(R.id.btn_bottomnav);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        pager = findViewById(R.id.pager);
+        linearLayout = findViewById(R.id.pages_container);
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
+        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
+        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
+        adapter = new SliderAdapter(getSupportFragmentManager(), fragments);
+        pager.setAdapter(adapter);
+        Indicator = new PageIndicator(this, linearLayout, pager, R.drawable.indicator_circle);
+        Indicator.setPageCount(fragments.size());
+        Indicator.show();
 
         /**
         * Implementasi untuk topbar, menu dan search button
@@ -59,11 +85,18 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         /**
          * Implementasi bottom nav bar
          */
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.btn_bottomnav);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView nav = (BottomNavigationView) findViewById(R.id.btn_bottomnav);
+        nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    /** ---------------------------------------------------------------------
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Indicator.cleanup();
+    }
+
+    /**
      * Implementation override for top bar menus (filter and notification)
      * ----------------------------------------------------------------------
      **/
@@ -137,5 +170,4 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
             return false;
         }
     };
-
 }
