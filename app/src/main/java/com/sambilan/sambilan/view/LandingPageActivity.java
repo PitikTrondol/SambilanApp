@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.sambilan.sambilan.BottomNavigationViewHelper;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
@@ -32,9 +33,6 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        BottomNavigationViewHelper.disableShiftMode(navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         /**
         * Implementasi untuk topbar, menu dan search button
@@ -64,7 +62,9 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
          * Implementasi bottom nav bar
          */
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.btn_bottomnav);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
     /** ---------------------------------------------------------------------

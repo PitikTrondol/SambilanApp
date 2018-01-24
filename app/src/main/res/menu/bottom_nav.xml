@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_beranda"
         android:title="@string/Home" />
     <item
         android:id="@+id/navigation_add"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_tambah"
         android:title="@string/Add"/>
     <item
         android:id="@+id/navigation_category"
-        android:icon="@drawable/ic_category"
+        android:icon="@drawable/ic_kategori"
         android:title="@string/Category" />
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_me"
+        android:icon="@drawable/ic_saya"
         android:title="@string/Me"/>
 
 </menu>
