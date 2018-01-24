@@ -19,11 +19,9 @@ import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
 import com.sambilan.sambilan.view.item.JobItemAdapter;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.sambilan.sambilan.Adapter.SliderAdapter;
-import com.sambilan.sambilan.Fragment.SliderFragment;
+import com.sambilan.sambilan.view.adapter.SliderAdapter;
+import com.sambilan.sambilan.view.fragment.SliderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +34,9 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
     private List<Job> jobs;
     private JobPresenter jobPresenter;
 
-    ViewPager Pager;
-    LinearLayout LinearLayout;
-    SliderAdapter Adapter;
+    ViewPager pager;
+    LinearLayout linearLayout;
+    SliderAdapter adapter;
     PageIndicator Indicator;
 
     @Override
@@ -48,15 +46,15 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         BottomNavigationView navigation = findViewById(R.id.btn_bottomnav);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Pager = findViewById(R.id.pager);
-        LinearLayout = findViewById(R.id.pages_container);
+        pager = findViewById(R.id.pager);
+        linearLayout = findViewById(R.id.pages_container);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
-        Adapter = new SliderAdapter(getSupportFragmentManager(), fragments);
-        Pager.setAdapter(Adapter);
-        Indicator = new PageIndicator(this, LinearLayout, Pager, R.drawable.indicator_circle);
+        adapter = new SliderAdapter(getSupportFragmentManager(), fragments);
+        pager.setAdapter(adapter);
+        Indicator = new PageIndicator(this, linearLayout, pager, R.drawable.indicator_circle);
         Indicator.setPageCount(fragments.size());
         Indicator.show();
 
@@ -91,8 +89,6 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    /** ---------------------------------------------------------------------
-=======
 
     @Override
     protected void onDestroy() {
@@ -101,7 +97,6 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
     }
 
     /**
->>>>>>> [Andhika Putranto]Create Carousel:app/src/main/java/com/sambilan/sambilan/LandingPageActivity.java
      * Implementation override for top bar menus (filter and notification)
      * ----------------------------------------------------------------------
      **/

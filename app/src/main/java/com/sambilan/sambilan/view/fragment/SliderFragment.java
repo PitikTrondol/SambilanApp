@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.Fragment;
+package com.sambilan.sambilan.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
