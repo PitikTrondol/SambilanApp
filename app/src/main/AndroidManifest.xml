@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".view.LandingPageActivity">
+        <activity android:name=".view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,32 +19,9 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         <activity android:name=".view.LandingPageActivity"></activity>
         <activity android:name=".detail_job"></activity>
-=======
-=======
->>>>>>> [Afriandi]add new screen
-        <!--<activity-->
-            <!--android:name=".view.LandingPageActivity">-->
-        <!--</activity>-->
-
-        <activity
-            android:name=".view.ProfilePageActivity">
-        </activity>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> [Afriandi]add new screen
-=======
-
->>>>>>> [Afriandi]add new screen
-=======
-
-        <activity
-            android:name=".view.ProfilePageActivity">
-        </activity>
->>>>>>> [Afriandi] create dummy screen for some screen
+        <activity android:name=".view.ProfilePageActivity"/>
     </application>
 
 </manifest>
