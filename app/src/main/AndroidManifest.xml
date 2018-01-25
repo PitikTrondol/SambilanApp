@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.LandingPageActivity"></activity>
-        <activity android:name=".view.DetailJobActivity"></activity>
+        <activity android:name=".view.LandingPageActivity"/>
+        <activity android:name=".view.DetailJobActivity"/>
         <activity android:name=".view.ProfilePageActivity"/>
+        <activity android:name=".view.PermintaanActivity"/>
     </application>
 
 </manifest>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sambilan.sambilan.view.PermintaanActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/title_bar"
@@ -10,14 +14,16 @@
         android:layout_alignParentTop="true"
         android:layout_margin="1dp"
         android:theme="@style/AppTheme"
-        android:title="Permintaan"
-        android:titleTextColor="@color/colorCommonOrange">
+        app:title="Permintaan"
+        app:titleTextColor="@color/colorCommonOrange">
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_permintaan"
+        android:id="@+id/rv_page_permintaan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:layout_margin="1dp"
         android:layout_below="@id/title_bar"
         android:background="@color/colorLightGrey">
     </android.support.v7.widget.RecyclerView>

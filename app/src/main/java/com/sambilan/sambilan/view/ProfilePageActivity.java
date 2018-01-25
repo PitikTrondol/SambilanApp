@@ -1,5 +1,7 @@
 package com.sambilan.sambilan.view;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,10 +27,6 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
         BottomNavigationView nav =  findViewById(R.id.btn_bottomnav_profile);
         BottomNavigationViewHelper.disableShiftMode(nav);
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
-
     }
 
     @Override

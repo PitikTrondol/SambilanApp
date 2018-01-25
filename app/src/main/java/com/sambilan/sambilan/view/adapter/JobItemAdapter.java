@@ -44,10 +44,9 @@ public class JobItemAdapter extends RecyclerView.Adapter<JobItemAdapter.JobItemV
     public void onBindViewHolder(JobItemViewHolder holder, int position) {
 
         /** lakukan pengisian view disini*/
-        holder.tv_title.setText(jobs.get(position).getJob_desc());
+        holder.tv_title.setText(jobs.get(position).getJob_title());
         holder.tv_lokasi.setText(jobs.get(position).getCompany_address());
         holder.tv_fee.setText(jobs.get(position).getJob_salary());
-//        Glide.with(context).load(jobs.get(position).)
     }
 
     @Override
