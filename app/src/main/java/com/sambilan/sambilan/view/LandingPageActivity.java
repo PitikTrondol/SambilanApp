@@ -83,6 +83,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
          * Implementasi bottom nav bar
          */
         BottomNavigationView nav =  findViewById(R.id.btn_bottomnav);
+        BottomNavigationViewHelper.disableShiftMode(nav);
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
