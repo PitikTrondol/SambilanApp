@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
-
+import com.sambilan.sambilan.BottomNavigationViewHelper;
 import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
@@ -57,6 +57,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         Indicator = new PageIndicator(this, linearLayout, pager, R.drawable.indicator_circle);
         Indicator.setPageCount(fragments.size());
         Indicator.show();
+
 
         /**
         * Implementasi untuk topbar, menu dan search button
