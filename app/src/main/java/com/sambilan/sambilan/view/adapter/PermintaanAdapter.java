@@ -46,9 +46,9 @@ public class PermintaanAdapter extends RecyclerView.Adapter<PermintaanAdapter.Pe
 
     @Override
     public void onBindViewHolder(PermintaanViewHolder holder, int position) {
-        holder.tv_title.setText("Title");
-        holder.tv_lokasi.setText("Alamat");
-        holder.tv_fee.setText("Gaji");
+        holder.tv_title.setText("Title "+position);
+        holder.tv_lokasi.setText("Alamat "+position);
+        holder.tv_fee.setText("Gaji "+position);
     }
 
     @Override

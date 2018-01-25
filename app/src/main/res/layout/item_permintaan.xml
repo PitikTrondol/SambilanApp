@@ -21,6 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="@color/colorCommonOrange"
+
             android:text="Terima" />
 
         <Button
@@ -28,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-
+            android:background="@color/colorCommonGrey"
             android:text="Tolak" />
     </LinearLayout>
 </RelativeLayout>
