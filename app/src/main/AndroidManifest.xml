@@ -18,8 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.LandingPageActivity"></activity>
-        <activity android:name=".detail_job"></activity>
+        <activity android:name=".view.DetailJobActivity"></activity>
+        <activity android:name=".view.ProfilePageActivity"/>
     </application>
 
 </manifest>

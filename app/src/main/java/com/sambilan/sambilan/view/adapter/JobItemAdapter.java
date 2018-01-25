@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.item;
+package com.sambilan.sambilan.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

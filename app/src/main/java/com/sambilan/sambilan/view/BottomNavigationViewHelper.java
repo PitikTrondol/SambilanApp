@@ -1,4 +1,4 @@
-package com.sambilan.sambilan;
+package com.sambilan.sambilan.view;
 
 /**
  * Created by febrian on 22/01/18.

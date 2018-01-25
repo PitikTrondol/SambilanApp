@@ -1,9 +1,11 @@
-package com.sambilan.sambilan;
+package com.sambilan.sambilan.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class detail_job extends AppCompatActivity {
+import com.sambilan.sambilan.R;
+
+public class DetailJobActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

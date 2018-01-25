@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.view;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -12,14 +13,12 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
-import com.sambilan.sambilan.BottomNavigationViewHelper;
-import com.sambilan.sambilan.PageIndicator;
+import android.widget.LinearLayout;
+
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
-import com.sambilan.sambilan.view.item.JobItemAdapter;
-import android.widget.LinearLayout;
-
+import com.sambilan.sambilan.view.adapter.JobItemAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
 
@@ -47,7 +46,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         pager = findViewById(R.id.pager);
-        linearLayout = findViewById(R.id.pages_container);
+        linearLayout = findViewById(R.id.pagesContainer);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
@@ -165,7 +164,8 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
                     Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_me:
-                    Toast.makeText(getApplicationContext(), "Saya", Toast.LENGTH_SHORT).show();
+                    Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
+                    startActivity(profileIntent);
                     return true;
             }
             return false;

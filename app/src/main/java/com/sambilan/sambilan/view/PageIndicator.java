@@ -1,4 +1,4 @@
-package com.sambilan.sambilan;
+package com.sambilan.sambilan.view;
 
 import android.content.Context;
 import android.content.res.Resources;

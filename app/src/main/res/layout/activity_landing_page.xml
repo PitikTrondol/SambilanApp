@@ -27,7 +27,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:layout_below="@id/topBar"/>
 
     <LinearLayout
         android:id="@+id/pagesContainer"
@@ -54,12 +55,10 @@
         android:id="@+id/rv_joblist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/lv_carousel"
+        android:layout_below="@id/pagesContainer"
         android:layout_above="@id/btn_bottomnav"
         android:overScrollMode="never"
         android:layout_margin="1dp"
-        android:layout_below="@id/pagesContainer"
-        android:layout_above="@id/btn_bottomnav"
         android:background="@color/colorLightGrey">
     </android.support.v7.widget.RecyclerView>
 
