@@ -19,10 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".view.LandingPageActivity">
-        </activity>
+        <activity android:name=".view.LandingPageActivity"></activity>
+        <activity android:name=".detail_job"></activity>
     </application>
 
 </manifest>
