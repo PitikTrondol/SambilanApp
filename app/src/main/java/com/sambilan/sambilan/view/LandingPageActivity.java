@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 
-import com.sambilan.sambilan.PageIndicator;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
