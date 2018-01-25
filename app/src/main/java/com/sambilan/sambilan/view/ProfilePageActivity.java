@@ -23,6 +23,7 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
         BottomNavigationView nav =  findViewById(R.id.btn_bottomnav_profile);
+        BottomNavigationViewHelper.disableShiftMode(nav);
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
