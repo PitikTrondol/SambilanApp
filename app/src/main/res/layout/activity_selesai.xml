@@ -8,23 +8,23 @@
     tools:context="com.sambilan.sambilan.view.JobPermintaanActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/title_bar_permintaan"
+        android:id="@+id/title_bar_selesai"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:layout_margin="1dp"
         android:theme="@style/AppTheme"
-        app:title="Permintaan"
+        app:title="Selesai"
         app:titleTextColor="@color/colorCommonOrange">
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_page_permintaan"
+        android:id="@+id/rv_page_selesai"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:layout_margin="1dp"
-        android:layout_below="@id/title_bar_permintaan"
+        android:layout_below="@id/title_bar_selesai"
         android:background="@color/colorLightGrey">
     </android.support.v7.widget.RecyclerView>
 

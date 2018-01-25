@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/White"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="4dp"
+    android:orientation="vertical"
+    android:layout_marginRight="4dp">
+
+    <include
+        android:id="@+id/cv_job_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        layout="@layout/item_job" />
+
+    <LinearLayout
+        android:id="@+id/ll_tanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_job_list"
+        android:background="@color/White"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_tl_mulai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Tanggal Mulai"/>
+
+        <TextView
+            android:id="@+id/tv_tl_selesai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Tanggal Selesai"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_selesai_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Beri Penilaian"
+        android:layout_below="@id/ll_tanggal"/>
+</LinearLayout>

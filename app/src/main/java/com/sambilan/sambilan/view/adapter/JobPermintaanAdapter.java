@@ -19,17 +19,17 @@ import java.util.List;
  * Created by Afriandi Haryanto on 1/25/2018.
  */
 
-public class PermintaanAdapter extends RecyclerView.Adapter<PermintaanAdapter.PermintaanViewHolder> {
+public class JobPermintaanAdapter extends RecyclerView.Adapter<JobPermintaanAdapter.PermintaanViewHolder> {
 
     /**
-     *  Maap gaaaan, janji dah besok dibuatin yang generic
+     *  Maap gaaaan, janji dah besok dibuatin yang generic kalo sempet
      */
 
     private Context context;
     private PermintaanListener permintaanListener;
     private List<Job> jobs;
 
-    public PermintaanAdapter(Context context, List<Job> jobs, PermintaanListener permintaanListener) {
+    public JobPermintaanAdapter(Context context, List<Job> jobs, PermintaanListener permintaanListener) {
         this.context = context;
         this.permintaanListener = permintaanListener;
         this.jobs = jobs;
