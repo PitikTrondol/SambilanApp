@@ -42,9 +42,6 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-        BottomNavigationView navigation = findViewById(R.id.btn_bottomnav);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         pager = findViewById(R.id.pager);
         linearLayout = findViewById(R.id.pagesContainer);
         List<Fragment> fragments = new ArrayList<>();
@@ -85,7 +82,7 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         /**
          * Implementasi bottom nav bar
          */
-        BottomNavigationView nav = (BottomNavigationView) findViewById(R.id.btn_bottomnav);
+        BottomNavigationView nav =  findViewById(R.id.btn_bottomnav);
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -154,16 +151,17 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Toast.makeText(getApplicationContext(), "Beranda", Toast.LENGTH_SHORT).show();
+                case R.id.btn_home:
+                    Intent intentHome = new Intent(LandingPageActivity.this,LandingPageActivity.class);
+                    startActivity(intentHome);
                     return true;
-                case R.id.navigation_add:
+                case R.id.btn_add:
                     Toast.makeText(getApplicationContext(), "Tambah", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.navigation_category:
+                case R.id.btn_category:
                     Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.navigation_me:
+                case R.id.btn_me:
                     Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
                     startActivity(profileIntent);
                     return true;

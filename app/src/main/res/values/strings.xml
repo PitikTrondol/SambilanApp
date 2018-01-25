@@ -4,4 +4,8 @@
     <string name="Add">Tambah</string>
     <string name="Category">Kategori</string>
     <string name="Me">Saya</string>
+    <string name="text_demand">Permintaan</string>
+    <string name="text_wait">Menunggu</string>
+    <string name="text_accept">Accept</string>
+    <string name="text_done">Selesai</string>
 </resources>
