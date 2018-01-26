@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,50 +13,66 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.view.adapter.JobSelesaiAdapter;
 
 /**
  * Created by Afriandi Haryanto on 1/22/2018.
  */
 
 public class ProfilePageActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private LinearLayout ll_profileFungsi;
+//    private ImageView iv_permintaan;
+//    private ImageView iv_menunggu;
+//    private ImageView iv_diterima;
+//    private ImageView iv_selesai;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
+
+        ll_profileFungsi = findViewById(R.id.ll_profile_fungsi);
+        for(int i = 0; i < ll_profileFungsi.getChildCount(); i++) {
+            ll_profileFungsi.getChildAt(i).setOnClickListener(ProfilePageActivity.this);
+        }
+
         BottomNavigationView nav =  findViewById(R.id.btn_bottomnav_profile);
         BottomNavigationViewHelper.disableShiftMode(nav);
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
-
     }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.btn_permintaan:{
-                Toast.makeText(this, "Permintaan", Toast.LENGTH_SHORT).show();
+            case R.id.iv_permintaan:{
+                GoToNextScreen(ProfilePageActivity.this, JobPermintaanActivity.class);
             }
             break;
 
-            case R.id.btn_menunggu:{
+            case R.id.iv_menunggu:{
                 Toast.makeText(this, "Menunggu", Toast.LENGTH_SHORT).show();
             }
             break;
 
-            case R.id.btn_diterima:{
+            case R.id.iv_diterima:{
                 Toast.makeText(this, "Diterima", Toast.LENGTH_SHORT).show();
             }
             break;
 
-            case R.id.btn_selesai:{
-                Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
+            case R.id.iv_selesai:{
+                GoToNextScreen(ProfilePageActivity.this, JobSelesaiActivity.class);
             }
             break;
         }
     }
+
+    private void GoToNextScreen(Context packageContext, Class<?> cls) {
+        Intent intent = new Intent(packageContext, cls);
+        startActivity(intent);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

@@ -153,8 +153,9 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.btn_home:
-                    Intent intentHome = new Intent(LandingPageActivity.this,LandingPageActivity.class);
-                    startActivity(intentHome);
+//                    bikin crash kalo dipencet pas di landing page
+//                    Intent intentHome = new Intent(LandingPageActivity.this,LandingPageActivity.class);
+//                    startActivity(intentHome);
                     return true;
                 case R.id.btn_add:
                     Toast.makeText(getApplicationContext(), "Tambah", Toast.LENGTH_SHORT).show();

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/darker_gray">
 
     <RelativeLayout
@@ -119,12 +119,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_toRightOf="@id/layout_identitas"
+            android:id="@+id/layout_titikdua"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/layout_titikdua"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/layout_identitas"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,9 +177,9 @@
 
         <LinearLayout
             android:id="@+id/layout_datadiri"
-            android:layout_toRightOf="@id/layout_titikdua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/layout_titikdua"
             android:orientation="vertical">
 
             <TextView
@@ -234,106 +234,60 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/rl_fungsi"
+        android:id="@+id/ll_profile_fungsi"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/detil_profile"
         android:background="@color/White"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <ImageView
+            android:id="@+id/iv_permintaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_demand"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"/>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="4dp"
-                android:id="@+id/btn_permintaan"
-                android:src="@drawable/ic_demand" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="4dp"
-                android:id="@+id/btn_menunggu"
-                android:src="@drawable/ic_waiting" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="4dp"
-                android:id="@+id/btn_diterima"
-                android:src="@drawable/ic_accept" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="4dp"
-                android:id="@+id/btn_selesai"
-                android:src="@drawable/ic_done" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <ImageView
+            android:id="@+id/iv_menunggu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_waiting"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/text_demand"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/iv_diterima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_accept"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/text_wait"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/text_accept"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/text_done"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
-        </LinearLayout>
-
+        <ImageView
+            android:id="@+id/iv_selesai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_done"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/group_icon"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_below="@+id/rl_fungsi"
+        android:layout_below="@+id/ll_profile_fungsi"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
@@ -445,6 +399,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/btn_bottomnav_profile"
         android:layout_width="match_parent"

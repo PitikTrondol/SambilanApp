@@ -1,17 +1,28 @@
 package com.sambilan.sambilan.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Afriandi Haryanto on 1/20/2018.
  */
 
 public class Job {
+    @SerializedName("job_id")
     private int job_id;
+    @SerializedName("job_desc")
     private String job_desc;
+    @SerializedName("job_title")
+    private String job_title;
+    @SerializedName("job_salary")
     private String job_salary;
 
+    @SerializedName("company_name")
     private String company_name;
+    @SerializedName("company_address")
     private String company_address;
+    @SerializedName("job_created_at")
     private String job_created_at;
+    @SerializedName("company_id")
     private int id_employer;
 
     public int getJob_id() {
@@ -20,6 +31,14 @@ public class Job {
 
     public void setJob_id(int job_id) {
         this.job_id = job_id;
+    }
+
+    public String getJob_title() {
+        return job_title;
+    }
+
+    public void setJob_title(String job_title) {
+        this.job_title = job_title;
     }
 
     public String getJob_desc() {
