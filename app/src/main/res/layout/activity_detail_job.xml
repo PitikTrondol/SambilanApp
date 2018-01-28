@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey"
     android:orientation="vertical"
-    tools:context="com.sambilan.sambilan.view.DetailJobActivity"
-    android:background="@color/Grey">
+    tools:context="com.sambilan.sambilan.view.DetailJobActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/view_a"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="#ffede971"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_starbuck"/>
+                    android:src="@drawable/ic_starbuck" />
 
             </RelativeLayout>
 
@@ -32,84 +35,95 @@
                 android:id="@+id/view_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:text="Detail Perusahaan"
-                        android:textStyle="bold"
+                        android:paddingLeft="16dp"
                         android:paddingTop="11dp"
-                        android:paddingLeft="16dp"/>
+                        android:text="Detail Perusahaan"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
                     <View
                         android:id="@+id/view_lowongan"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginTop="10dp"
-                        android:background="@color/Grey">
-                    </View>
+                        android:background="@color/Grey"></View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:paddingLeft="11dp">
+                        android:paddingLeft="11dp"
+                        android:weightSum="2">
+
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:layout_margin="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:layout_margin="5dp">
+                            android:layout_weight="1">
+
                             <ImageView
                                 android:id="@+id/img_dilihat"
                                 android:layout_width="35dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_dilihat"/>
+                                android:src="@drawable/ic_dilihat" />
+
                             <TextView
                                 android:id="@+id/text_dilihat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dilihat : "
-                                android:paddingLeft="10dp"
                                 android:layout_marginTop="15dp"
-                                android:layout_toRightOf="@id/img_dilihat"/>
+                                android:layout_toRightOf="@id/img_dilihat"
+                                android:paddingLeft="10dp"
+                                android:text="Dilihat : " />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="123"
                                 android:layout_marginTop="15dp"
-                                android:layout_toRightOf="@id/text_dilihat"/>
+                                android:layout_toRightOf="@id/text_dilihat"
+                                android:text="123" />
 
                         </RelativeLayout>
+
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:layout_margin="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:layout_margin="5dp">
+                            android:layout_weight="1">
+
                             <ImageView
                                 android:id="@+id/img_dilamar"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_marginTop="10dp"
-                                android:src="@drawable/ic_dilamar"/>
+                                android:src="@drawable/ic_dilamar" />
+
                             <TextView
                                 android:id="@+id/text_dilamar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dilamar : "
-                                android:paddingLeft="10dp"
                                 android:layout_marginTop="15dp"
-                                android:layout_toRightOf="@id/img_dilamar"/>
+                                android:layout_toRightOf="@id/img_dilamar"
+                                android:paddingLeft="10dp"
+                                android:text="Dilamar : " />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="123"
                                 android:layout_marginTop="15dp"
-                                android:layout_toRightOf="@id/text_dilamar"/>
+                                android:layout_toRightOf="@id/text_dilamar"
+                                android:text="123" />
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -117,14 +131,15 @@
 
             </android.support.v7.widget.CardView>
         </LinearLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:src="@drawable/ic_favorite"
             app:backgroundTint="@color/White"
-            android:layout_marginRight="20dp"
             app:layout_anchor="@id/view_a"
-            app:layout_anchorGravity="bottom|right|end"/>
+            app:layout_anchorGravity="bottom|right|end" />
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -132,47 +147,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
                 android:text="Detail Pekerjan"
-                android:textStyle="bold"/>
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Blablabla"/>
+                android:text="Blablabla" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -180,101 +203,114 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="Detail Perusahaan"
-                android:textStyle="bold"
-                android:paddingTop="11dp"
-                android:paddingLeft="16dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:text="Blablabla"
-                android:paddingLeft="16dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
                 android:paddingLeft="16dp"
-                android:text="Blablabla"/>
+                android:paddingTop="11dp"
+                android:text="Detail Perusahaan"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="5dp"
+                android:text="Blablabla" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="5dp"
+                android:text="Blablabla" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="10dp"
-                android:background="@color/Grey">
-            </View>
+                android:background="@color/Grey"></View>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:paddingLeft="11dp">
+                android:paddingLeft="11dp"
+                android:weightSum="2">
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_margin="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp">
+                    android:layout_weight="1">
+
                     <ImageView
                         android:id="@+id/img_lowongan"
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_lowongan"/>
+                        android:src="@drawable/ic_lowongan" />
+
                     <TextView
                         android:id="@+id/text_lowongan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lowongan"
+                        android:layout_toRightOf="@id/img_lowongan"
                         android:paddingLeft="10dp"
-                        android:layout_toRightOf="@id/img_lowongan"/>
+                        android:text="Lowongan" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="32"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/Orange"
                         android:layout_below="@id/text_lowongan"
-                        android:layout_toRightOf="@id/img_lowongan"/>
+                        android:layout_toRightOf="@id/img_lowongan"
+                        android:paddingLeft="10dp"
+                        android:text="32"
+                        android:textColor="@color/Orange"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_margin="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp">
+                    android:layout_weight="1">
+
                     <ImageView
                         android:id="@+id/img_rating"
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_rating"/>
+                        android:src="@drawable/ic_rating" />
+
                     <TextView
                         android:id="@+id/text_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rating"
+                        android:layout_toRightOf="@id/img_rating"
                         android:paddingLeft="10dp"
-                        android:layout_toRightOf="@id/img_rating"/>
+                        android:text="Rating" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.7"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/Orange"
                         android:layout_below="@id/text_rating"
-                        android:layout_toRightOf="@id/img_rating"/>
+                        android:layout_toRightOf="@id/img_rating"
+                        android:paddingLeft="10dp"
+                        android:text="4.7"
+                        android:textColor="@color/Orange"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -286,16 +322,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/Orange"
             android:paddingTop="15dp"
             android:text="Lamar Pekerjaan"
-            android:background="@color/Orange"
-            android:textColor="@color/White"
             android:textAlignment="center"
-            android:textStyle="bold"/>
+            android:textColor="@color/White"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </LinearLayout>

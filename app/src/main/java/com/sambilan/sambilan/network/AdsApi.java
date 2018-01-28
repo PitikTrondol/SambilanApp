@@ -1,8 +1,6 @@
 package com.sambilan.sambilan.network;
 
-import com.sambilan.sambilan.model.Ads;
-import com.sambilan.sambilan.model.Employers;
-import com.sambilan.sambilan.model.Jobs;
+import com.sambilan.sambilan.model.AdResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,5 +12,5 @@ import retrofit2.http.GET;
 public interface AdsApi {
 
     @GET("/ads")
-    Call<Ads> getAllAds();
+    Call<AdResponse> getAllAds();
 }

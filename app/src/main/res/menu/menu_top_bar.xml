@@ -6,18 +6,15 @@
 
     <item
         android:id="@+id/menu_filter"
-        android:title="Filter"
-        android:orderInCategory="300"
         android:icon="@mipmap/ic_filter_list"
-        app:showAsAction="ifRoom">
-    </item>
+        android:orderInCategory="300"
+        android:title="Filter"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_notif"
-        android:title="Notif"
-        android:orderInCategory="200"
         android:icon="@mipmap/ic_notifications"
-        app:showAsAction="ifRoom">
-    </item>
-
+        android:orderInCategory="200"
+        android:title="Notif"
+        app:showAsAction="ifRoom" />
 </menu>

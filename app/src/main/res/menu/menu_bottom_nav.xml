@@ -9,7 +9,7 @@
     <item
         android:id="@+id/btn_add"
         android:icon="@drawable/ic_tambah"
-        android:title="@string/Add"/>
+        android:title="@string/Add" />
     <item
         android:id="@+id/btn_category"
         android:icon="@drawable/ic_kategori"
@@ -17,6 +17,6 @@
     <item
         android:id="@+id/btn_me"
         android:icon="@drawable/ic_saya"
-        android:title="@string/Me"/>
+        android:title="@string/Me" />
 
 </menu>

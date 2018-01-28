@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Afriandi Haryanto on 1/21/2018.
  */
 
-public class Jobs {
+public class JobResponse {
 
     @SerializedName("success")
     private boolean success;

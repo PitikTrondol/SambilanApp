@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Afriandi Haryanto on 1/21/2018.
  */
 
-public class Employers {
+public class EmployerResponse {
 
     List<Employer> data;
 

@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view;
+package com.sambilan.sambilan.view.helper;
 
 /**
  * Created by febrian on 22/01/18.
@@ -11,7 +11,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import java.lang.reflect.Field;
 
-public class BottomNavigationViewHelper {
+public class BottomNavigationHelper {
     @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);

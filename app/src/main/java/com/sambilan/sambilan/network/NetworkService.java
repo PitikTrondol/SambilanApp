@@ -12,45 +12,52 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
 
-    private static String baseURL = "http://private-a2125f-afriandi.apiary-mock.com";
+    private static final String BASE_URL = "http://private-a2125f-afriandi.apiary-mock.com";
+    private static Retrofit retrofitInstance;
+
 
     /**
-     *  createJobApi instance Retrofit.Builder
-     *  add base url
-     *  converter (Gson kalo disini)
-     *  add client
-     *  eksekusi dengan build
+     * ===================================
+     * Create singleton of reftrofit instance
+     * ===================================
+     * starts with                  Retrofit.Builder
+     * add base url                 .baseUrl()
+     * converter (Gson kalo disini) .addConverterFactory()
+     * add client                   .client()
+     * eksekusi dengan build        .build()
      */
-    public static JobApi createJobApi(){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client())
-                .build();
+    public static Retrofit getRetrofit() {
 
-        return retrofit.create(JobApi.class);
+        if (null == retrofitInstance) {
+            retrofitInstance = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client())
+                    .build();
+        }
+
+        return retrofitInstance;
     }
 
-    public static EmployerApi createEmpApi(){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client())
-                .build();
-
-        return retrofit.create(EmployerApi.class);
+    public static LandingPageApi createLandingPageApi() {
+        return getRetrofit().create(LandingPageApi.class);
     }
 
-    public static OkHttpClient client(){
+    public static EmployerApi createEmpApi() {
+        return getRetrofit().create(EmployerApi.class);
+    }
 
-        /**
-         * createJobApi instance OkHttpClient.Builder
-         * determine timeout (read, connect, write)
-         * add interceptor
-         * execute with build
-         */
+    /**
+     * ===================================
+     * Create OkHttpClient instance
+     * ===================================
+     * start with               OkHttpClient.Builder()
+     * determine timeout        .readTimeout().connectTimeout().writeTimeout()
+     * add interceptor          .addInterceptor()
+     * execute with             .build()
+     */
+    public static OkHttpClient client() {
 
 //        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
 //                .setLevel(HttpLoggingInterceptor.Level.BODY);

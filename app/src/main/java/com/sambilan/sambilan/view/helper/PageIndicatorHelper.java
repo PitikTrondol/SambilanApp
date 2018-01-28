@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view;
+package com.sambilan.sambilan.view.helper;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,7 +14,7 @@ import android.widget.Toast;
  * Created by Andhika Putranto on 1/19/2018.
  */
 
-public class PageIndicator implements ViewPager.OnPageChangeListener {
+public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
     private Context context;
     private LinearLayout container;
     private int drawable;
@@ -24,16 +24,15 @@ public class PageIndicator implements ViewPager.OnPageChangeListener {
     private int pageCount;
     private int initialPage = 0;
 
-
     private int defaultSizeInDp = 12;
     private int defaultSpacingInDp = 12;
 
-    public PageIndicator(@NonNull Context context, @NonNull LinearLayout containerView, @NonNull ViewPager viewPager, @DrawableRes int drawableRes) {
+    public PageIndicatorHelper(@NonNull Context context, @NonNull LinearLayout containerView, @NonNull ViewPager viewPager, @DrawableRes int drawableRes) {
 
-        context = context;
-        container = containerView;
-        drawable = drawableRes;
-        viewPager = viewPager;
+        this.context = context;
+        this.container = containerView;
+        this.drawable = drawableRes;
+        this.viewPager = viewPager;
 
     }
 
