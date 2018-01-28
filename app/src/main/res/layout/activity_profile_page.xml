@@ -247,40 +247,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:src="@drawable/ic_demand"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:background="?attr/selectableItemBackground"/>
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_demand" />
 
         <ImageView
             android:id="@+id/iv_menunggu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:src="@drawable/ic_waiting"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:background="?attr/selectableItemBackground"/>
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_waiting" />
 
         <ImageView
             android:id="@+id/iv_diterima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:src="@drawable/ic_accept"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:background="?attr/selectableItemBackground"/>
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_accept" />
 
         <ImageView
             android:id="@+id/iv_selesai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:src="@drawable/ic_done"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:background="?attr/selectableItemBackground"/>
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_done" />
     </LinearLayout>
 
     <LinearLayout
@@ -409,7 +409,7 @@
         app:itemBackground="@color/White"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_nav">
+        app:menu="@menu/menu_bottom_nav">
 
     </android.support.design.widget.BottomNavigationView>
 

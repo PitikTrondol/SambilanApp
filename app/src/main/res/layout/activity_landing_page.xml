@@ -28,7 +28,7 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@id/topBar"/>
+        android:layout_below="@id/topBar" />
 
     <LinearLayout
         android:id="@+id/pagesContainer"
@@ -55,13 +55,11 @@
         android:id="@+id/rv_joblist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pagesContainer"
         android:layout_above="@id/btn_bottomnav"
-        android:overScrollMode="never"
+        android:layout_below="@id/pagesContainer"
         android:layout_margin="1dp"
-        android:background="@color/colorLightGrey">
-    </android.support.v7.widget.RecyclerView>
-
+        android:background="@color/colorLightGrey"
+        android:overScrollMode="never" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/btn_bottomnav"
@@ -72,8 +70,5 @@
         app:itemBackground="@color/White"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_nav">
-
-    </android.support.design.widget.BottomNavigationView>
-
+        app:menu="@menu/menu_bottom_nav" />
 </RelativeLayout>

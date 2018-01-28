@@ -20,11 +20,11 @@ public class NetworkService {
      * ===================================
      * Create singleton of reftrofit instance
      * ===================================
-     * createLandingPageApi instance Retrofit.Builder
-     * add base url
-     * converter (Gson kalo disini)
-     * add client
-     * eksekusi dengan build
+     * starts with                  Retrofit.Builder
+     * add base url                 .baseUrl()
+     * converter (Gson kalo disini) .addConverterFactory()
+     * add client                   .client()
+     * eksekusi dengan build        .build()
      */
 
     public static Retrofit getRetrofit() {
@@ -48,14 +48,16 @@ public class NetworkService {
         return getRetrofit().create(EmployerApi.class);
     }
 
+    /**
+     * ===================================
+     * Create OkHttpClient instance
+     * ===================================
+     * start with               OkHttpClient.Builder()
+     * determine timeout        .readTimeout().connectTimeout().writeTimeout()
+     * add interceptor          .addInterceptor()
+     * execute with             .build()
+     */
     public static OkHttpClient client() {
-
-        /**
-         * createLandingPageApi instance OkHttpClient.Builder
-         * determine timeout (read, connect, write)
-         * add interceptor
-         * execute with build
-         */
 
 //        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
 //                .setLevel(HttpLoggingInterceptor.Level.BODY);

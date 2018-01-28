@@ -2,47 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@color/White"
     android:layout_marginBottom="4dp"
     android:layout_marginLeft="4dp"
-    android:orientation="vertical"
-    android:layout_marginRight="4dp">
+    android:layout_marginRight="4dp"
+    android:background="@color/White"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/cv_job_list"
+        layout="@layout/item_job"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        layout="@layout/item_job" />
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/ll_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cv_job_list"
-        android:background="@color/White"
         android:layout_weight="2"
+        android:background="@color/White"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_tl_mulai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Tanggal Mulai"/>
+            android:text="Tanggal Mulai"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/tv_tl_selesai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Tanggal Selesai"/>
+            android:text="Tanggal Selesai"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_selesai_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Beri Penilaian"
-        android:layout_below="@id/ll_tanggal"/>
+        android:layout_below="@id/ll_tanggal"
+        android:text="Beri Penilaian" />
 </LinearLayout>

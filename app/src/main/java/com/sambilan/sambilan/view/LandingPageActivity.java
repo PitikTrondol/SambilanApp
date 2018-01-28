@@ -22,81 +22,88 @@ import com.sambilan.sambilan.view.adapter.ListJobAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
+import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
+import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LandingPageActivity extends AppCompatActivity {
 
-    private Toolbar topBarMenu;
-    private RecyclerView recyclerViewJobOffer;
-    private LandingPagePresenter jobPresenter;
-    private ListJobAdapter jobAdapter;
+    private Toolbar topToolbar;
+    private RecyclerView listJobRecyclerView;
+    private LandingPagePresenter listJobPresenter;
+    private ListJobAdapter listJobAdapter;
 
-    ViewPager pager;
-    LinearLayout linearLayout;
-    SliderAdapter adapter;
-    PageIndicator Indicator;
+    private ViewPager carouselViewPager;
+    private LinearLayout carouselLinearLayout;
+    private SliderAdapter carouselSliderAdapter;
+    private PageIndicatorHelper carouselPageIndicator;
+
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-        pager = findViewById(R.id.pager);
-        linearLayout = findViewById(R.id.pagesContainer);
+
+        /**
+         * Implementasi untuk topbar, menu dan search button
+         */
+        topToolbar = (Toolbar) findViewById(R.id.topBar);
+        setSupportActionBar(topToolbar);
+
+        /**
+         * Implementasi carousel
+         */
+        carouselViewPager = findViewById(R.id.pager);
+        carouselLinearLayout = findViewById(R.id.pagesContainer);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
         fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
-        adapter = new SliderAdapter(getSupportFragmentManager(), fragments);
-        pager.setAdapter(adapter);
-        Indicator = new PageIndicator(this, linearLayout, pager, R.drawable.indicator_circle);
-        Indicator.setPageCount(fragments.size());
-        Indicator.show();
-
-
-        /**
-        * Implementasi untuk topbar, menu dan search button
-        */
-        topBarMenu = (Toolbar) findViewById(R.id.topBar);
-        setSupportActionBar(topBarMenu);
+        carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), fragments);
+        carouselViewPager.setAdapter(carouselSliderAdapter);
+        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout, carouselViewPager, R.drawable.indicator_circle);
+        carouselPageIndicator.setPageCount(fragments.size());
+        carouselPageIndicator.show();
 
         /**
          * Implementasi untuk recyclerview
-         * createLandingPageApi adapter
+         * createLandingPageApi carouselSliderAdapter
          * createLandingPageApi recycler
          * setLayoutManager buat menetukan dia type recycler mana
          * (linear vertikal / linear horizontal / grid)
          * setAdapter
          */
+        listJobPresenter = new LandingPagePresenter();
+        listJobPresenter.getJobList(jobCallback);
+        listJobAdapter = new ListJobAdapter(LandingPageActivity.this);
+        listJobAdapter.setListener(jobListener);
 
-        jobPresenter = new LandingPagePresenter();
-        jobPresenter.getJobList(jobCallback);
-        jobAdapter = new ListJobAdapter(LandingPageActivity.this);
-        jobAdapter.setListener(jobListener);
-
-        recyclerViewJobOffer = findViewById(R.id.rv_joblist);
-        recyclerViewJobOffer.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
-        recyclerViewJobOffer.setAdapter(jobAdapter);
+        listJobRecyclerView = findViewById(R.id.rv_joblist);
+        listJobRecyclerView.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
+        listJobRecyclerView.setAdapter(listJobAdapter);
 
         /**
          * Implementasi bottom nav bar
          */
-        BottomNavigationView nav =  findViewById(R.id.btn_bottomnav);
-        BottomNavigationViewHelper.disableShiftMode(nav);
-        nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavigationView = findViewById(R.id.btn_bottomnav);
+        BottomNavigationHelper.disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Indicator.cleanup();
+        carouselPageIndicator.cleanup();
     }
 
     /**
+     * -------------------------------------------------------------------
      * Implementation override for top bar menus (filter and notification)
-     * ----------------------------------------------------------------------
+     * -------------------------------------------------------------------
      **/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,21 +113,22 @@ public class LandingPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.menu_notif:
+                Toast.makeText(LandingPageActivity.this, "Login dulu lah", Toast.LENGTH_SHORT).show();
+                return true;
 
-        if (id == R.id.menu_notif) {
-            Toast.makeText(LandingPageActivity.this, "Login dulu lah", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.menu_filter) {
-            Toast.makeText(LandingPageActivity.this, "Menu Filter", Toast.LENGTH_SHORT).show();
-            return true;
+            case R.id.menu_filter:
+                Toast.makeText(LandingPageActivity.this, "Menu Filter", Toast.LENGTH_SHORT).show();
+                return true;
         }
         return true;
     }
 
-    /** ------------------------------------------
-     *  Implementasi untuk job list
-     *  ------------------------------------------
+    /**
+     * ---------------------------
+     * Implementasi untuk job list
+     * ---------------------------
      */
     private ListJobListener jobListener = new ListJobListener() {
         @Override
@@ -133,19 +141,20 @@ public class LandingPageActivity extends AppCompatActivity {
     private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
-            jobAdapter.updateModel(jobs);
+            listJobAdapter.updateModel(jobs);
         }
 
         @Override
         public void OnFailureResult(String errorMessage) {
-            Toast.makeText(LandingPageActivity.this, ""+errorMessage, Toast.LENGTH_LONG)
+            Toast.makeText(LandingPageActivity.this, "" + errorMessage, Toast.LENGTH_LONG)
                     .show();
         }
     };
 
-    /** ------------------------------------------
-     *  Implementasi untuk bottom navigation
-     *  ------------------------------------------
+    /**
+     * ------------------------------------
+     * Implementasi untuk bottom navigation
+     * ------------------------------------
      **/
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -154,9 +163,6 @@ public class LandingPageActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.btn_home:
-//                    bikin crash kalo dipencet pas di landing page
-//                    Intent intentHome = new Intent(LandingPageActivity.this,LandingPageActivity.class);
-//                    startActivity(intentHome);
                     return true;
                 case R.id.btn_add:
                     Toast.makeText(getApplicationContext(), "Tambah", Toast.LENGTH_SHORT).show();
