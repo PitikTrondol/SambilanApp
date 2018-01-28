@@ -58,23 +58,15 @@ public class LandingPageActivity extends AppCompatActivity {
          */
         carouselViewPager = findViewById(R.id.pager);
         carouselLinearLayout = findViewById(R.id.pagesContainer);
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
-        carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), fragments);
+
+        carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
         carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout, carouselViewPager, R.drawable.indicator_circle);
-        carouselPageIndicator.setPageCount(fragments.size());
+        carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
         /**
          * Implementasi untuk recyclerview
-         * createLandingPageApi carouselSliderAdapter
-         * createLandingPageApi recycler
-         * setLayoutManager buat menetukan dia type recycler mana
-         * (linear vertikal / linear horizontal / grid)
-         * setAdapter
          */
         listJobPresenter = new LandingPagePresenter();
         listJobPresenter.getJobList(jobCallback);
@@ -127,13 +119,31 @@ public class LandingPageActivity extends AppCompatActivity {
 
     /**
      * ---------------------------
+     * Implementasi untuk carousel
+     * ---------------------------
+     */
+
+    private List<Fragment> getCarouselFragment() {
+        List<Fragment> fragments = new ArrayList<>();
+        String baseUrl = "https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/";
+
+        fragments.add(SliderFragment.newInstance(baseUrl + "9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
+
+        return fragments;
+    }
+
+    /**
+     * ---------------------------
      * Implementasi untuk job list
      * ---------------------------
      */
     private ListJobListener jobListener = new ListJobListener() {
         @Override
         public void onClickJob() {
-            Toast.makeText(LandingPageActivity.this, "KEPENCEEEET", Toast.LENGTH_SHORT).show();
+            Intent profileIntent = new Intent(LandingPageActivity.this, DetailJobActivity.class);
+            startActivity(profileIntent);
         }
     };
 
