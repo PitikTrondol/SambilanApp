@@ -20,7 +20,7 @@ public class NetworkService {
      * ===================================
      * Create singleton of reftrofit instance
      * ===================================
-     * createJobApi instance Retrofit.Builder
+     * createLandingPageApi instance Retrofit.Builder
      * add base url
      * converter (Gson kalo disini)
      * add client
@@ -40,8 +40,8 @@ public class NetworkService {
         return retrofitInstance;
     }
 
-    public static JobApi createJobApi() {
-        return getRetrofit().create(JobApi.class);
+    public static LandingPageApi createLandingPageApi() {
+        return getRetrofit().create(LandingPageApi.class);
     }
 
     public static EmployerApi createEmpApi() {
@@ -51,7 +51,7 @@ public class NetworkService {
     public static OkHttpClient client() {
 
         /**
-         * createJobApi instance OkHttpClient.Builder
+         * createLandingPageApi instance OkHttpClient.Builder
          * determine timeout (read, connect, write)
          * add interceptor
          * execute with build

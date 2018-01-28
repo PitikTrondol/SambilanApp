@@ -1,10 +1,9 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.Employer;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.network.NetworkService;
-import com.sambilan.sambilan.network.JobApi;
+import com.sambilan.sambilan.network.LandingPageApi;
 
 import java.util.List;
 
@@ -18,10 +17,10 @@ import retrofit2.Response;
 
 public class LandingPagePresenter {
 
-    JobApi api;
+    LandingPageApi api;
 
     public LandingPagePresenter() {
-        this.api = NetworkService.createJobApi();
+        this.api = NetworkService.createLandingPageApi();
     }
 
     public void getJobList(final JobResultCallback jobResultCallbackcallback){

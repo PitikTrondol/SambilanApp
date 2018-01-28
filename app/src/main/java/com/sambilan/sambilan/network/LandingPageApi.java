@@ -11,8 +11,8 @@ import retrofit2.http.Path;
  * Created by Afriandi Haryanto on 1/20/2018.
  */
 
-public interface JobApi {
+public interface LandingPageApi {
 
-    @GET("/landingpage")
+    @GET("/jobs")
     Call<JobResponse> getAllJobs();
 }

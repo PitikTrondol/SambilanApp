@@ -63,8 +63,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
         /**
          * Implementasi untuk recyclerview
-         * createJobApi adapter
-         * createJobApi recycler
+         * createLandingPageApi adapter
+         * createLandingPageApi recycler
          * setLayoutManager buat menetukan dia type recycler mana
          * (linear vertikal / linear horizontal / grid)
          * setAdapter
