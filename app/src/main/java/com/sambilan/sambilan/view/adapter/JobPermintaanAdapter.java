@@ -40,6 +40,8 @@ public class JobPermintaanAdapter extends RecyclerView.Adapter<JobPermintaanAdap
 
         View viewHolder = LayoutInflater.from(context).inflate(R.layout.item_permintaan, parent,
                 false);
+        CardView cv = viewHolder.findViewById(R.id.cv_job_list);
+        cv.setBackgroundResource(0);
 
         return new PermintaanViewHolder(viewHolder, permintaanListener);
     }

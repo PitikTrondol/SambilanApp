@@ -1,6 +1,7 @@
 package com.sambilan.sambilan.view.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,8 @@ public class JobSelesaiAdapter extends RecyclerView.Adapter<JobSelesaiAdapter.Se
 
         View viewHolder = LayoutInflater.from(context).inflate(R.layout.item_selesai, parent,
                 false);
+        CardView cv = viewHolder.findViewById(R.id.cv_job_list);
+        cv.setBackgroundResource(0);
 
         return new SelesaiViewHolder(viewHolder, selesaiListener);
     }

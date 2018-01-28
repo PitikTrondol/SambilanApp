@@ -5,7 +5,7 @@
     android:layout_marginBottom="4dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
-    android:background="@color/colorLightOrange">
+    android:background="@color/White">
 
     <include
         android:id="@+id/cv_job_list"
@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/colorCommonOrange"
             android:text="Terima" />
 
         <Button
@@ -34,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/colorLightOrange"
             android:text="Tolak" />
     </LinearLayout>
 </RelativeLayout>
