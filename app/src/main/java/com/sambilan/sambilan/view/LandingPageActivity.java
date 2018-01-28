@@ -18,20 +18,20 @@ import android.widget.LinearLayout;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.JobPresenter;
-import com.sambilan.sambilan.view.adapter.JobItemAdapter;
+import com.sambilan.sambilan.view.adapter.ListJobAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
+import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LandingPageActivity extends AppCompatActivity implements JobItemAdapter.JobItemListener {
+public class LandingPageActivity extends AppCompatActivity {
 
     private Toolbar topBarMenu;
     private RecyclerView recyclerViewJobOffer;
-    private JobItemAdapter jobItemAdapter;
-    private List<Job> jobs;
     private JobPresenter jobPresenter;
+    private ListJobAdapter jobAdapter;
 
     ViewPager pager;
     LinearLayout linearLayout;
@@ -70,14 +70,14 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
          * setAdapter
          */
 
-        jobs = new ArrayList<>(); //biar gak null pointer
         jobPresenter = new JobPresenter();
         jobPresenter.getJobList(jobCallback);
+        jobAdapter = new ListJobAdapter(LandingPageActivity.this);
+        jobAdapter.setListener(jobListener);
 
-        jobItemAdapter = new JobItemAdapter(LandingPageActivity.this, jobs, this);
         recyclerViewJobOffer = findViewById(R.id.rv_joblist);
         recyclerViewJobOffer.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
-        recyclerViewJobOffer.setAdapter(jobItemAdapter);
+        recyclerViewJobOffer.setAdapter(jobAdapter);
 
         /**
          * Implementasi bottom nav bar
@@ -122,17 +122,18 @@ public class LandingPageActivity extends AppCompatActivity implements JobItemAda
      *  Implementasi untuk job list
      *  ------------------------------------------
      */
-    @Override
-    public void onClickJobItem(int position) {
-        Toast.makeText(this, "Item number "+(position+1)+" has been clicked", Toast.LENGTH_SHORT).show();
-    }
+    private ListJobListener jobListener = new ListJobListener() {
+        @Override
+        public void onClickJob() {
+            Toast.makeText(LandingPageActivity.this, "KEPENCEEEET", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     // create callback buat presenter
     private JobPresenter.JobResultCallback jobCallback = new JobPresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
-            LandingPageActivity.this.jobs.addAll(jobs);
-            LandingPageActivity.this.jobItemAdapter.notifyDataSetChanged();
+            jobAdapter.updateModel(jobs);
         }
 
         @Override
