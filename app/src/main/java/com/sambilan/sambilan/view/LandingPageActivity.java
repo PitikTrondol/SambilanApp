@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 
@@ -41,6 +43,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private PageIndicatorHelper carouselPageIndicator;
 
     private BottomNavigationView bottomNavigationView;
+    private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,9 @@ public class LandingPageActivity extends AppCompatActivity {
         listJobRecyclerView.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         listJobRecyclerView.setAdapter(listJobAdapter);
 
+        loading = findViewById(R.id.progress_bar);
+        loading.setVisibility(View.VISIBLE);
+
         /**
          * Implementasi bottom nav bar
          */
@@ -84,7 +90,6 @@ public class LandingPageActivity extends AppCompatActivity {
         BottomNavigationHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -151,6 +156,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
+            LandingPageActivity.this.loading.setVisibility(View.INVISIBLE);
             listJobAdapter.updateModel(jobs);
         }
 
