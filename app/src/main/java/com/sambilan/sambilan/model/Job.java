@@ -25,6 +25,10 @@ public class Job {
     @SerializedName("company_id")
     private int id_employer;
 
+    public Job() {
+        //let it be empty..like your heart
+    }
+
     public int getJob_id() {
         return job_id;
     }

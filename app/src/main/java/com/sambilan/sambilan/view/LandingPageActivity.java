@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.presenter.JobPresenter;
+import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListJobAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
@@ -30,7 +30,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     private Toolbar topBarMenu;
     private RecyclerView recyclerViewJobOffer;
-    private JobPresenter jobPresenter;
+    private LandingPagePresenter jobPresenter;
     private ListJobAdapter jobAdapter;
 
     ViewPager pager;
@@ -70,7 +70,7 @@ public class LandingPageActivity extends AppCompatActivity {
          * setAdapter
          */
 
-        jobPresenter = new JobPresenter();
+        jobPresenter = new LandingPagePresenter();
         jobPresenter.getJobList(jobCallback);
         jobAdapter = new ListJobAdapter(LandingPageActivity.this);
         jobAdapter.setListener(jobListener);
@@ -130,7 +130,7 @@ public class LandingPageActivity extends AppCompatActivity {
     };
 
     // create callback buat presenter
-    private JobPresenter.JobResultCallback jobCallback = new JobPresenter.JobResultCallback() {
+    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
             jobAdapter.updateModel(jobs);

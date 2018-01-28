@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.presenter.JobPresenter;
+import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.JobSelesaiAdapter;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class JobSelesaiActivity extends AppCompatActivity implements JobSelesaiA
     private RecyclerView recyclerSelesai;
     private JobSelesaiAdapter jobSelesaiAdapter;
     private List<Job> jobs;
-    private JobPresenter jobPresenter;
+    private LandingPagePresenter jobPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class JobSelesaiActivity extends AppCompatActivity implements JobSelesaiA
         setContentView(R.layout.activity_permintaan);
 
         jobs = new ArrayList<>(); //biar gak null pointer
-        jobPresenter = new JobPresenter();
+        jobPresenter = new LandingPagePresenter();
         jobPresenter.getJobList(jobCallback);
 
         jobSelesaiAdapter = new JobSelesaiAdapter(JobSelesaiActivity.this, jobs, this);
@@ -42,7 +42,7 @@ public class JobSelesaiActivity extends AppCompatActivity implements JobSelesaiA
     }
 
     // create callback buat presenter
-    private JobPresenter.JobResultCallback jobCallback = new JobPresenter.JobResultCallback() {
+    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
             JobSelesaiActivity.this.jobs.addAll(jobs);
