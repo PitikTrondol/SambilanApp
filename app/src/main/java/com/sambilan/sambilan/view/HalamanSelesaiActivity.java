@@ -12,12 +12,15 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.HttpException;
 
 /**
  * Created by Afriandi Haryanto on 1/26/2018.
@@ -51,18 +54,27 @@ public class HalamanSelesaiActivity extends AppCompatActivity{
     }
 
     // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
+    private LandingPagePresenter.JobResultCallback<JobResponse, Throwable>
+            jobCallback = new LandingPagePresenter.JobResultCallback<JobResponse, Throwable>() {
+
         @Override
-        public void OnSuccessResult(List<Job> jobs) {
-            selesaiAdapter.updateModel(jobs);
+        public void OnSuccessResult(JobResponse first) {
+            selesaiAdapter.updateModel(first.getData());
             progressBar.setVisibility(View.GONE);
             refreshLayout.setRefreshing(false);
         }
 
         @Override
-        public void OnFailureResult(String errorMessage) {
-            Toast.makeText(HalamanSelesaiActivity.this, ""+errorMessage, Toast.LENGTH_LONG)
-                    .show();
+        public void OnFailureResult(Throwable second) {
+            if (second instanceof HttpException) {
+                Toast.makeText(HalamanSelesaiActivity.this,
+                        "" + ((HttpException) second).code(),
+                        Toast.LENGTH_SHORT).show();
+            } else if (second instanceof NullPointerException) {
+                Toast.makeText(HalamanSelesaiActivity.this,
+                        "" + ((NullPointerException) second).getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     };
 

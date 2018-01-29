@@ -23,22 +23,22 @@ public class LandingPagePresenter {
         this.api = NetworkService.createLandingPageApi();
     }
 
-    public void getJobList(final JobResultCallback jobResultCallbackcallback){
+    public void getJobList(final JobResultCallback<JobResponse, Throwable> jobResultCallbackcallback){
         this.api.getAllJobs().enqueue(new Callback<JobResponse>() {
             @Override
             public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
-                jobResultCallbackcallback.OnSuccessResult(response.body().getData());
+                jobResultCallbackcallback.OnSuccessResult(response.body());
             }
 
             @Override
             public void onFailure(Call<JobResponse> call, Throwable t) {
-                jobResultCallbackcallback.OnFailureResult(t.getMessage());
+                jobResultCallbackcallback.OnFailureResult(t);
             }
         });
     }
 
-    public interface JobResultCallback {
-        void OnSuccessResult(List<Job> jobs);
-        void OnFailureResult(String errorMessage);
+    public interface JobResultCallback<A, B> {
+        void OnSuccessResult(A first);
+        void OnFailureResult(B second);
     }
 }
