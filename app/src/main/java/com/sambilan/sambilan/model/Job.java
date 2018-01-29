@@ -3,30 +3,36 @@ package com.sambilan.sambilan.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Afriandi Haryanto on 1/20/2018.
+ * Created by Afriandi Haryanto on 1/30/2018.
  */
 
 public class Job {
-    @SerializedName("job_id")
+
+    @SerializedName("id")
     private int job_id;
-    @SerializedName("job_desc")
-    private String job_desc;
-    @SerializedName("job_title")
-    private String job_title;
-    @SerializedName("job_salary")
-    private String job_salary;
+
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("salary")
+    private String salary;
 
     @SerializedName("company_name")
     private String company_name;
+
     @SerializedName("company_address")
     private String company_address;
-    @SerializedName("job_created_at")
-    private String job_created_at;
+
+    @SerializedName("created_at")
+    private String created_at;
+
+    @SerializedName("logo_url")
+    private String logo_url;
+
     @SerializedName("company_id")
-    private int id_employer;
+    private int company_id;
 
     public Job() {
-        //let it be empty..like your heart
     }
 
     public int getJob_id() {
@@ -37,28 +43,20 @@ public class Job {
         this.job_id = job_id;
     }
 
-    public String getJob_title() {
-        return job_title;
+    public String getTitle() {
+        return title;
     }
 
-    public void setJob_title(String job_title) {
-        this.job_title = job_title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getJob_desc() {
-        return job_desc;
+    public String getSalary() {
+        return salary;
     }
 
-    public void setJob_desc(String job_desc) {
-        this.job_desc = job_desc;
-    }
-
-    public String getJob_salary() {
-        return job_salary;
-    }
-
-    public void setJob_salary(String job_salary) {
-        this.job_salary = job_salary;
+    public void setSalary(String salary) {
+        this.salary = salary;
     }
 
     public String getCompany_name() {
@@ -77,19 +75,27 @@ public class Job {
         this.company_address = company_address;
     }
 
-    public String getJob_created_at() {
-        return job_created_at;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setJob_created_at(String job_created_at) {
-        this.job_created_at = job_created_at;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public int getId_employer() {
-        return id_employer;
+    public String getLogo_url() {
+        return logo_url;
     }
 
-    public void setId_employer(int id_employer) {
-        this.id_employer = id_employer;
+    public void setLogo_url(String logo_url) {
+        this.logo_url = logo_url;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
 }

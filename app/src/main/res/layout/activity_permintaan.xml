@@ -4,24 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sambilan.sambilan.view.JobPermintaanActivity">
+    tools:context="com.sambilan.sambilan.view.HalamanPermintaanActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/title_bar_permintaan"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:layout_margin="1dp"
         android:theme="@style/AppTheme"
         app:title="Permintaan"
         app:titleTextColor="@color/colorCommonOrange" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_page_permintaan"
+    <include
+        android:id="@+id/reusable_main_menu"
+        layout="@layout/layout_reusable_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_bar_permintaan"
-        android:layout_margin="1dp"
-        android:background="@color/colorLightGrey"
-        android:overScrollMode="never" />
+        android:layout_below="@id/title_bar_permintaan"/>
 </RelativeLayout>

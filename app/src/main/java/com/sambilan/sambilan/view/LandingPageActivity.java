@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,13 +13,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
-import com.sambilan.sambilan.view.adapter.ListJobAdapter;
+import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
@@ -28,12 +31,14 @@ import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.HttpException;
+
 public class LandingPageActivity extends AppCompatActivity {
 
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
     private LandingPagePresenter listJobPresenter;
-    private ListJobAdapter listJobAdapter;
+    private ListPekerjaanAdapter listJobAdapter;
 
     private ViewPager carouselViewPager;
     private LinearLayout carouselLinearLayout;
@@ -41,58 +46,50 @@ public class LandingPageActivity extends AppCompatActivity {
     private PageIndicatorHelper carouselPageIndicator;
 
     private BottomNavigationView bottomNavigationView;
+    private ProgressBar progressBar;
+    private SwipeRefreshLayout recyclerRefresher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-        /**
-         * Implementasi untuk topbar, menu dan search button
-         */
-        topToolbar = (Toolbar) findViewById(R.id.topBar);
+        // Implementasi untuk topbar, menu dan search button
+        topToolbar = findViewById(R.id.topBar);
         setSupportActionBar(topToolbar);
 
-        /**
-         * Implementasi carousel
-         */
-        carouselViewPager = findViewById(R.id.pager);
+        // Implementasi carousel
+        carouselViewPager = findViewById(R.id.carousel_pager);
         carouselLinearLayout = findViewById(R.id.pagesContainer);
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/848ff359644146c6f24e797601c437ed/couresel2.png"));
-        fragments.add(SliderFragment.newInstance("https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
-        carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), fragments);
+
+        carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
-        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout, carouselViewPager, R.drawable.indicator_circle);
-        carouselPageIndicator.setPageCount(fragments.size());
+        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout,
+                carouselViewPager, R.drawable.indicator_circle);
+        carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
-        /**
-         * Implementasi untuk recyclerview
-         * createLandingPageApi carouselSliderAdapter
-         * createLandingPageApi recycler
-         * setLayoutManager buat menetukan dia type recycler mana
-         * (linear vertikal / linear horizontal / grid)
-         * setAdapter
-         */
+        // Implementasi untuk recyclerview
         listJobPresenter = new LandingPagePresenter();
-        listJobPresenter.getJobList(jobCallback);
-        listJobAdapter = new ListJobAdapter(LandingPageActivity.this);
+        listJobPresenter.getAllResources(jobCallback);
+
+        listJobAdapter = new ListPekerjaanAdapter(LandingPageActivity.this);
         listJobAdapter.setListener(jobListener);
 
-        listJobRecyclerView = findViewById(R.id.rv_joblist);
+        listJobRecyclerView = findViewById(R.id.common_recycler_view);
         listJobRecyclerView.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         listJobRecyclerView.setAdapter(listJobAdapter);
 
-        /**
-         * Implementasi bottom nav bar
-         */
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerRefresher = findViewById(R.id.swipe_refresh_layout);
+        recyclerRefresher.setOnRefreshListener(refreshListener);
+
+        // Implementasi bottom nav bar
         bottomNavigationView = findViewById(R.id.btn_bottomnav);
         BottomNavigationHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -127,27 +124,73 @@ public class LandingPageActivity extends AppCompatActivity {
 
     /**
      * ---------------------------
+     * Implementasi untuk carousel
+     * ---------------------------
+     */
+
+    private List<Fragment> getCarouselFragment() {
+        List<Fragment> fragments = new ArrayList<>();
+        String baseUrl = "https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/";
+
+        fragments.add(SliderFragment.newInstance(baseUrl + "9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
+
+        return fragments;
+    }
+
+    /**
+     * ---------------------------
      * Implementasi untuk job list
      * ---------------------------
      */
     private ListJobListener jobListener = new ListJobListener() {
         @Override
         public void onClickJob() {
-            Toast.makeText(LandingPageActivity.this, "KEPENCEEEET", Toast.LENGTH_SHORT).show();
+            Intent profileIntent = new Intent(LandingPageActivity.this, DetailJobActivity.class);
+            startActivity(profileIntent);
         }
     };
 
     // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
+    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
+            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
+
         @Override
-        public void OnSuccessResult(List<Job> jobs) {
-            listJobAdapter.updateModel(jobs);
+        public void OnSuccessResult(LandingPageResponse first) {
+            listJobAdapter.updateModel(first.getData());
+            LandingPageActivity.this.progressBar.setVisibility(View.GONE);
+            LandingPageActivity.this.recyclerRefresher.setRefreshing(false);
         }
 
         @Override
-        public void OnFailureResult(String errorMessage) {
-            Toast.makeText(LandingPageActivity.this, "" + errorMessage, Toast.LENGTH_LONG)
-                    .show();
+        public void OnFailureResult(Throwable second) {
+
+            if (second instanceof HttpException) {
+                Toast.makeText(LandingPageActivity.this,
+                        "JEMBUT " + ((HttpException) second).code(),
+                        Toast.LENGTH_SHORT).show();
+            } else if (second instanceof NullPointerException) {
+                Toast.makeText(LandingPageActivity.this,
+                        "TELEK " + ((NullPointerException) second).getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LandingPageActivity.this,
+                        "TELEK " + second.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                System.out.println("TELEK "+second.getMessage());
+            }
+
+            LandingPageActivity.this.progressBar.setVisibility(View.GONE);
+            LandingPageActivity.this.recyclerRefresher.setRefreshing(false);
+        }
+    };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            listJobPresenter.getAllResources(jobCallback);
         }
     };
 

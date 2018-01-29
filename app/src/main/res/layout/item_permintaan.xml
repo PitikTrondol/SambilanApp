@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:background="@color/colorLightOrange">
+    android:layout_marginBottom="@dimen/cardview_margin_mid"
+    android:layout_marginLeft="@dimen/cardview_margin_narrow"
+    android:layout_marginRight="@dimen/cardview_margin_narrow"
+    android:background="@color/White">
 
     <include
-        android:id="@+id/cv_job_list"
+        android:id="@+id/cv_permintaan"
         layout="@layout/item_job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:id="@+id/ll_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cv_job_list"
+        android:layout_below="@id/cv_permintaan"
         android:orientation="horizontal">
 
         <Button
@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/colorCommonOrange"
             android:text="Terima" />
 
         <Button
@@ -34,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/colorLightOrange"
             android:text="Tolak" />
     </LinearLayout>
 </RelativeLayout>

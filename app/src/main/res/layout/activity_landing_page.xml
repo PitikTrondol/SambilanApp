@@ -13,6 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_margin="1dp"
         android:theme="@style/AppTheme"
+        android:background="@color/White"
         app:title="Sambilan"
         app:titleTextColor="@color/colorCommonOrange">
 
@@ -25,16 +26,17 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/carousel_pager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/topBar" />
+        android:layout_height="@dimen/layout_carousel_height"
+        android:layout_below="@id/topBar"
+        android:overScrollMode="never" />
 
     <LinearLayout
         android:id="@+id/pagesContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pager"
+        android:layout_below="@+id/carousel_pager"
         android:layout_gravity="bottom"
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
@@ -44,22 +46,21 @@
             android:id="@+id/iv_carousel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pager"
+            android:layout_below="@+id/carousel_pager"
             android:layout_gravity="bottom"
             android:layout_marginBottom="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_joblist"
+    <include
+        layout="@layout/layout_reusable_recycler"
+        android:id="@+id/reusable_main_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btn_bottomnav"
+        android:layout_marginBottom="@dimen/cardview_margin_narrow"
         android:layout_below="@id/pagesContainer"
-        android:layout_margin="1dp"
-        android:background="@color/colorLightGrey"
-        android:overScrollMode="never" />
+        android:layout_above="@id/btn_bottomnav"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/btn_bottomnav"

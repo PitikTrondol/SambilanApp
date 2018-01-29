@@ -1,11 +1,8 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.network.NetworkService;
 import com.sambilan.sambilan.network.LandingPageApi;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,22 +20,22 @@ public class LandingPagePresenter {
         this.api = NetworkService.createLandingPageApi();
     }
 
-    public void getJobList(final JobResultCallback jobResultCallbackcallback){
-        this.api.getAllJobs().enqueue(new Callback<JobResponse>() {
+    public void getAllResources(final JobResultCallback<LandingPageResponse, Throwable> resourceCallback) {
+        this.api.getResources().enqueue(new Callback<LandingPageResponse>() {
             @Override
-            public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
-                jobResultCallbackcallback.OnSuccessResult(response.body().getData());
+            public void onResponse(Call<LandingPageResponse> call, Response<LandingPageResponse> response) {
+                resourceCallback.OnSuccessResult(response.body());
             }
 
             @Override
-            public void onFailure(Call<JobResponse> call, Throwable t) {
-                jobResultCallbackcallback.OnFailureResult(t.getMessage());
+            public void onFailure(Call<LandingPageResponse> call, Throwable t) {
+                resourceCallback.OnFailureResult(t);
             }
         });
     }
 
-    public interface JobResultCallback {
-        void OnSuccessResult(List<Job> jobs);
-        void OnFailureResult(String errorMessage);
+    public interface JobResultCallback<A, B> {
+        void OnSuccessResult(A first);
+        void OnFailureResult(B second);
     }
 }
