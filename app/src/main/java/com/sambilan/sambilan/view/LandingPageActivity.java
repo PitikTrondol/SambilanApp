@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
@@ -154,11 +155,11 @@ public class LandingPageActivity extends AppCompatActivity {
     };
 
     // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback<JobResponse, Throwable>
-            jobCallback = new LandingPagePresenter.JobResultCallback<JobResponse, Throwable>() {
+    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
+            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
 
         @Override
-        public void OnSuccessResult(JobResponse first) {
+        public void OnSuccessResult(LandingPageResponse first) {
             listJobAdapter.updateModel(first.getData());
             LandingPageActivity.this.progressBar.setVisibility(View.GONE);
             LandingPageActivity.this.recyclerRefresher.setRefreshing(false);

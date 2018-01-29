@@ -7,13 +7,14 @@ import android.widget.TextView;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 
 /**
  * Created by Afriandi Haryanto on 1/28/2018.
  */
 
-public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
+public class ListJobHolder extends BaseViewHolder<JobList, ListJobListener> {
 
     public TextView tv_title;
     public TextView tv_lokasi;
@@ -29,10 +30,10 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListJobListener listener) {
-        tv_title.setText(data.getJob_title());
+    public void onBind(JobList data, @Nullable final ListJobListener listener) {
+        tv_title.setText(data.getTitle());
         tv_lokasi.setText(data.getCompany_address());
-        tv_fee.setText(data.getJob_salary());
+        tv_fee.setText(data.getSalary());
 
         if (null != listener)
             itemView.setOnClickListener(new View.OnClickListener() {

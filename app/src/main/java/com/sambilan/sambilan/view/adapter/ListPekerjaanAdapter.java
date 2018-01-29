@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.adapter.viewholder.ListJobHolder;
 
@@ -12,7 +12,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListJobHolder;
  * Created by Afriandi Haryanto on 1/28/2018.
  */
 
-public class ListPekerjaanAdapter extends BaseRecyclerAdapter<Job, ListJobListener, ListJobHolder> {
+public class ListPekerjaanAdapter extends BaseRecyclerAdapter<JobList, ListJobListener, ListJobHolder> {
 
     public ListPekerjaanAdapter(Context context) {
         super(context);

@@ -12,9 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
 
-    private static final String BASE_URL = "http://private-a2125f-afriandi.apiary-mock.com";
     private static Retrofit retrofitInstance;
-
+    private static final String BASE_URL = "http://private-c66260-sambilan.apiary-mock.com";
 
     /**
      * ===================================
