@@ -12,9 +12,9 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListJobHolder;
  * Created by Afriandi Haryanto on 1/28/2018.
  */
 
-public class ListJobAdapter extends BaseRecyclerAdapter<Job, ListJobListener, ListJobHolder> {
+public class ListPekerjaanAdapter extends BaseRecyclerAdapter<Job, ListJobListener, ListJobHolder> {
 
-    public ListJobAdapter(Context context) {
+    public ListPekerjaanAdapter(Context context) {
         super(context);
     }
 

@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
-import com.sambilan.sambilan.view.adapter.ListJobAdapter;
+import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
@@ -35,7 +35,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
     private LandingPagePresenter listJobPresenter;
-    private ListJobAdapter listJobAdapter;
+    private ListPekerjaanAdapter listJobAdapter;
 
     private ViewPager carouselViewPager;
     private LinearLayout carouselLinearLayout;
@@ -73,7 +73,7 @@ public class LandingPageActivity extends AppCompatActivity {
          */
         listJobPresenter = new LandingPagePresenter();
         listJobPresenter.getJobList(jobCallback);
-        listJobAdapter = new ListJobAdapter(LandingPageActivity.this);
+        listJobAdapter = new ListPekerjaanAdapter(LandingPageActivity.this);
         listJobAdapter.setListener(jobListener);
 
         listJobRecyclerView = findViewById(R.id.rv_joblist);
