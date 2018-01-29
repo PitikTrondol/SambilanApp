@@ -9,14 +9,13 @@ import android.widget.TextView;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 
 /**
  * Created by Afriandi Haryanto on 1/29/2018.
  */
 
-public class ListPermintaanHolder extends BaseViewHolder<JobList, ListPermintaanListener> {
+public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanListener> {
 
     public TextView tv_title;
     public TextView tv_lokasi;
@@ -39,7 +38,7 @@ public class ListPermintaanHolder extends BaseViewHolder<JobList, ListPermintaan
     }
 
     @Override
-    public void onBind(JobList data, @Nullable final ListPermintaanListener listener) {
+    public void onBind(Job data, @Nullable final ListPermintaanListener listener) {
         tv_title.setText(data.getTitle());
         tv_lokasi.setText(data.getCompany_address());
         tv_fee.setText(data.getSalary());

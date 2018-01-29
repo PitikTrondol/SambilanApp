@@ -11,14 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
-
-import java.util.List;
 
 import retrofit2.HttpException;
 
