@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 import com.sambilan.sambilan.view.adapter.viewholder.ListPermintaanHolder;
 
@@ -14,7 +14,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListPermintaanHolder;
  * Created by Afriandi Haryanto on 1/29/2018.
  */
 
-public class ListPermintaanAdapter extends BaseRecyclerAdapter<Job, ListPermintaanListener, ListPermintaanHolder> {
+public class ListPermintaanAdapter extends BaseRecyclerAdapter<JobList, ListPermintaanListener, ListPermintaanHolder> {
 
     public ListPermintaanAdapter(Context context) {
         super(context);
