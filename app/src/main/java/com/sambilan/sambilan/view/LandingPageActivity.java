@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
@@ -30,6 +31,8 @@ import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.HttpException;
 
 public class LandingPageActivity extends AppCompatActivity {
 
@@ -151,18 +154,37 @@ public class LandingPageActivity extends AppCompatActivity {
     };
 
     // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
+    private LandingPagePresenter.JobResultCallback<JobResponse, Throwable>
+            jobCallback = new LandingPagePresenter.JobResultCallback<JobResponse, Throwable>() {
+
         @Override
-        public void OnSuccessResult(List<Job> jobs) {
-            listJobAdapter.updateModel(jobs);
+        public void OnSuccessResult(JobResponse first) {
+            listJobAdapter.updateModel(first.getData());
             LandingPageActivity.this.progressBar.setVisibility(View.GONE);
             LandingPageActivity.this.recyclerRefresher.setRefreshing(false);
         }
 
         @Override
-        public void OnFailureResult(String errorMessage) {
-            Toast.makeText(LandingPageActivity.this, "" + errorMessage, Toast.LENGTH_LONG)
-                    .show();
+        public void OnFailureResult(Throwable second) {
+
+            if (second instanceof HttpException) {
+                Toast.makeText(LandingPageActivity.this,
+                        "JEMBUT " + ((HttpException) second).code(),
+                        Toast.LENGTH_SHORT).show();
+            } else if (second instanceof NullPointerException) {
+                Toast.makeText(LandingPageActivity.this,
+                        "TELEK " + ((NullPointerException) second).getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LandingPageActivity.this,
+                        "TELEK " + second.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                System.out.println("TELEK "+second.getMessage());
+            }
+
+            LandingPageActivity.this.progressBar.setVisibility(View.GONE);
+            LandingPageActivity.this.recyclerRefresher.setRefreshing(false);
         }
     };
 

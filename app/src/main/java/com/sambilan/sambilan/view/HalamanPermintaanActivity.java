@@ -12,11 +12,14 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 
 import java.util.List;
+
+import retrofit2.HttpException;
 
 /**
  * Created by Afriandi Haryanto on 1/25/2018.
@@ -51,19 +54,27 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
     }
 
     // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
-        @Override
-        public void OnSuccessResult(List<Job> jobs) {
+    private LandingPagePresenter.JobResultCallback<JobResponse, Throwable>
+            jobCallback = new LandingPagePresenter.JobResultCallback<JobResponse, Throwable>() {
 
-            permintaanAdapter.updateModel(jobs);
+        @Override
+        public void OnSuccessResult(JobResponse first) {
+            permintaanAdapter.updateModel(first.getData());
             HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
             HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
         }
 
         @Override
-        public void OnFailureResult(String errorMessage) {
-            Toast.makeText(HalamanPermintaanActivity.this, ""+errorMessage, Toast.LENGTH_LONG)
-                    .show();
+        public void OnFailureResult(Throwable second) {
+            if (second instanceof HttpException) {
+                Toast.makeText(HalamanPermintaanActivity.this,
+                        "" + ((HttpException) second).code(),
+                        Toast.LENGTH_SHORT).show();
+            } else if (second instanceof NullPointerException) {
+                Toast.makeText(HalamanPermintaanActivity.this,
+                        "" + ((NullPointerException) second).getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
