@@ -2,15 +2,19 @@ package com.sambilan.sambilan.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
-import com.sambilan.sambilan.view.adapter.JobSelesaiAdapter;
+import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
+import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,34 +23,40 @@ import java.util.List;
  * Created by Afriandi Haryanto on 1/26/2018.
  */
 
-public class HalamanSelesaiActivity extends AppCompatActivity implements JobSelesaiAdapter.SelesaiListener{
+public class HalamanSelesaiActivity extends AppCompatActivity{
 
+    private ProgressBar progressBar;
     private RecyclerView recyclerSelesai;
-    private JobSelesaiAdapter jobSelesaiAdapter;
-    private List<Job> jobs;
+    private SwipeRefreshLayout refreshLayout;
     private LandingPagePresenter jobPresenter;
+    private ListSelesaiAdapter selesaiAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
 
-        jobs = new ArrayList<>(); //biar gak null pointer
         jobPresenter = new LandingPagePresenter();
         jobPresenter.getJobList(jobCallback);
 
-        jobSelesaiAdapter = new JobSelesaiAdapter(HalamanSelesaiActivity.this, jobs, this);
-        recyclerSelesai = findViewById(R.id.rv_page_permintaan);
+        selesaiAdapter = new ListSelesaiAdapter(HalamanSelesaiActivity.this);
+        selesaiAdapter.setListener(listener);
+        recyclerSelesai = findViewById(R.id.common_recycler_view);
         recyclerSelesai.setLayoutManager(new LinearLayoutManager(HalamanSelesaiActivity.this));
-        recyclerSelesai.setAdapter(jobSelesaiAdapter);
+        recyclerSelesai.setAdapter(selesaiAdapter);
+
+        progressBar = findViewById(R.id.progress_bar);
+        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+        refreshLayout.setOnRefreshListener(refreshListener);
     }
 
     // create callback buat presenter
     private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
-            HalamanSelesaiActivity.this.jobs.addAll(jobs);
-            HalamanSelesaiActivity.this.jobSelesaiAdapter.notifyDataSetChanged();
+            selesaiAdapter.updateModel(jobs);
+            progressBar.setVisibility(View.GONE);
+            refreshLayout.setRefreshing(false);
         }
 
         @Override
@@ -56,8 +66,17 @@ public class HalamanSelesaiActivity extends AppCompatActivity implements JobSele
         }
     };
 
-    @Override
-    public void onClickBeriPenilaian() {
-        Toast.makeText(this, "LEMPAR BATA..!!", Toast.LENGTH_SHORT).show();
-    }
+    private ListSelesaiListener listener = new ListSelesaiListener() {
+        @Override
+        public void onClickBeriPenilaian() {
+            Toast.makeText(HalamanSelesaiActivity.this, "LEMPAR BATA..!!", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            jobPresenter.getJobList(jobCallback);
+        }
+    };
 }

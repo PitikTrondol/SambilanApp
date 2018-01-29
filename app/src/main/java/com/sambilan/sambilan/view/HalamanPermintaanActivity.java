@@ -2,9 +2,12 @@ package com.sambilan.sambilan.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
@@ -13,7 +16,6 @@ import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,30 +26,38 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
 
     private RecyclerView recyclerPermintaan;
     private ListPermintaanAdapter permintaanAdapter;
-    private List<Job> jobs;
     private LandingPagePresenter jobPresenter;
+    private ProgressBar progressBar;
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
 
-        jobs = new ArrayList<>(); //biar gak null pointer
         jobPresenter = new LandingPagePresenter();
         jobPresenter.getJobList(jobCallback);
 
         permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
         permintaanAdapter.setListener(permintaanListener);
-        recyclerPermintaan = findViewById(R.id.rv_page_permintaan);
+
+        recyclerPermintaan = findViewById(R.id.common_recycler_view);
         recyclerPermintaan.setLayoutManager(new LinearLayoutManager(HalamanPermintaanActivity.this));
         recyclerPermintaan.setAdapter(permintaanAdapter);
+
+        progressBar = findViewById(R.id.progress_bar);
+        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+        refreshLayout.setOnRefreshListener(refreshListener);
     }
 
     // create callback buat presenter
     private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
+
             permintaanAdapter.updateModel(jobs);
+            HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
+            HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
         }
 
         @Override
@@ -71,6 +81,13 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
         @Override
         public void onClickListPermintaan() {
             Toast.makeText(HalamanPermintaanActivity.this, "KE DATAIL JOB", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            jobPresenter.getJobList(jobCallback);
         }
     };
 }

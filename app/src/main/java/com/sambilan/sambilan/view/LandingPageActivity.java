@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,49 +44,46 @@ public class LandingPageActivity extends AppCompatActivity {
     private PageIndicatorHelper carouselPageIndicator;
 
     private BottomNavigationView bottomNavigationView;
-    private ProgressBar loading;
+    private ProgressBar progressBar;
+    private SwipeRefreshLayout recyclerRefresher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-        /**
-         * Implementasi untuk topbar, menu dan search button
-         */
-        topToolbar = (Toolbar) findViewById(R.id.topBar);
+        // Implementasi untuk topbar, menu dan search button
+        topToolbar = findViewById(R.id.topBar);
         setSupportActionBar(topToolbar);
 
-        /**
-         * Implementasi carousel
-         */
+        // Implementasi carousel
         carouselViewPager = findViewById(R.id.carousel_pager);
         carouselLinearLayout = findViewById(R.id.pagesContainer);
 
         carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
-        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout, carouselViewPager, R.drawable.indicator_circle);
+        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout,
+                carouselViewPager, R.drawable.indicator_circle);
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
-        /**
-         * Implementasi untuk recyclerview
-         */
+        // Implementasi untuk recyclerview
         listJobPresenter = new LandingPagePresenter();
         listJobPresenter.getJobList(jobCallback);
+
         listJobAdapter = new ListPekerjaanAdapter(LandingPageActivity.this);
         listJobAdapter.setListener(jobListener);
 
-        listJobRecyclerView = findViewById(R.id.rv_joblist);
+        listJobRecyclerView = findViewById(R.id.common_recycler_view);
         listJobRecyclerView.setLayoutManager(new LinearLayoutManager(LandingPageActivity.this));
         listJobRecyclerView.setAdapter(listJobAdapter);
 
-        loading = findViewById(R.id.progress_bar);
-        loading.setVisibility(View.VISIBLE);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerRefresher = findViewById(R.id.swipe_refresh_layout);
+        recyclerRefresher.setOnRefreshListener(refreshListener);
 
-        /**
-         * Implementasi bottom nav bar
-         */
+        // Implementasi bottom nav bar
         bottomNavigationView = findViewById(R.id.btn_bottomnav);
         BottomNavigationHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -134,8 +132,6 @@ public class LandingPageActivity extends AppCompatActivity {
 
         fragments.add(SliderFragment.newInstance(baseUrl + "9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
         fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
-        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
-        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
         fragments.add(SliderFragment.newInstance(baseUrl + "fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
 
         return fragments;
@@ -158,14 +154,22 @@ public class LandingPageActivity extends AppCompatActivity {
     private LandingPagePresenter.JobResultCallback jobCallback = new LandingPagePresenter.JobResultCallback() {
         @Override
         public void OnSuccessResult(List<Job> jobs) {
-            LandingPageActivity.this.loading.setVisibility(View.INVISIBLE);
             listJobAdapter.updateModel(jobs);
+            LandingPageActivity.this.progressBar.setVisibility(View.GONE);
+            LandingPageActivity.this.recyclerRefresher.setRefreshing(false);
         }
 
         @Override
         public void OnFailureResult(String errorMessage) {
             Toast.makeText(LandingPageActivity.this, "" + errorMessage, Toast.LENGTH_LONG)
                     .show();
+        }
+    };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            listJobPresenter.getJobList(jobCallback);
         }
     };
 
