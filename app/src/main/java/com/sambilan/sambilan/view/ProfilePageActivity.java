@@ -47,7 +47,7 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.iv_permintaan: {
-                GoToNextScreen(ProfilePageActivity.this, JobPermintaanActivity.class);
+                GoToNextScreen(ProfilePageActivity.this, HalamanPermintaanActivity.class);
             }
             break;
 
@@ -62,7 +62,7 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
             break;
 
             case R.id.iv_selesai: {
-                GoToNextScreen(ProfilePageActivity.this, JobSelesaiActivity.class);
+                GoToNextScreen(ProfilePageActivity.this, HalamanSelesaiActivity.class);
             }
             break;
         }

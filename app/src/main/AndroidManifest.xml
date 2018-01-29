@@ -3,6 +3,7 @@
     package="com.sambilan.sambilan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".SambilanApplication"
@@ -23,8 +24,8 @@
         <activity android:name=".view.LandingPageActivity" />
         <activity android:name=".view.DetailJobActivity" />
         <activity android:name=".view.ProfilePageActivity" />
-        <activity android:name=".view.JobPermintaanActivity" />
-        <activity android:name=".view.JobSelesaiActivity" />
+        <activity android:name=".view.HalamanPermintaanActivity" />
+        <activity android:name=".view.HalamanSelesaiActivity" />
     </application>
 
 </manifest>

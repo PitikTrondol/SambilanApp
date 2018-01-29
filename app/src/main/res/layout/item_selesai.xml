@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/cv_job_list"
+        android:id="@+id/cv_permintaan_list"
         layout="@layout/item_job"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +19,7 @@
         android:id="@+id/ll_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cv_job_list"
+        android:layout_below="@id/cv_permintaan_list"
         android:background="@color/White"
         android:orientation="horizontal">
 
