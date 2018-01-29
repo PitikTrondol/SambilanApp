@@ -75,6 +75,7 @@ public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
             int margin = spacing != 0 ? res.getDimensionPixelSize(spacing) : ((int) res.getDisplayMetrics().density * defaultSpacingInDp);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dimen, dimen);
             lp.setMargins(i == 0 ? 0 : margin, 0, 0, 0);
+
             view.setLayoutParams(lp);
             view.setBackgroundResource(drawable);
             view.setSelected(i == 0);

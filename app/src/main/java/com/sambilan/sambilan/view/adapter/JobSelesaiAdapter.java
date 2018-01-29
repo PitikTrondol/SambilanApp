@@ -40,7 +40,7 @@ public class JobSelesaiAdapter extends RecyclerView.Adapter<JobSelesaiAdapter.Se
 
         View viewHolder = LayoutInflater.from(context).inflate(R.layout.item_selesai, parent,
                 false);
-        CardView cv = viewHolder.findViewById(R.id.cv_permintaan_list);
+        CardView cv = viewHolder.findViewById(R.id.cv_permintaan);
         cv.setBackgroundResource(0);
 
         return new SelesaiViewHolder(viewHolder, selesaiListener);

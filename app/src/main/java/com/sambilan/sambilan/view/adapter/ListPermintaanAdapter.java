@@ -15,6 +15,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListPermintaanHolder;
  */
 
 public class ListPermintaanAdapter extends BaseRecyclerAdapter<Job, ListPermintaanListener, ListPermintaanHolder> {
+
     public ListPermintaanAdapter(Context context) {
         super(context);
     }
@@ -23,7 +24,7 @@ public class ListPermintaanAdapter extends BaseRecyclerAdapter<Job, ListPerminta
     public ListPermintaanHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflate(R.layout.item_permintaan, parent, false);
-        CardView cv = view.findViewById(R.id.cv_permintaan_list);
+        CardView cv = view.findViewById(R.id.cv_permintaan);
         cv.setBackgroundResource(0);
 
         return new ListPermintaanHolder(view);

@@ -34,7 +34,7 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
 
         btn_diterima = itemView.findViewById(R.id.btn_permintaan_diterima);
         btn_ditolak = itemView.findViewById(R.id.btn_permintaan_ditolak);
-        cv_job = itemView.findViewById(R.id.cv_permintaan_list);
+        cv_job = itemView.findViewById(R.id.cv_permintaan);
     }
 
     @Override
