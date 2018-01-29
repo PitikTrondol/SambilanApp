@@ -58,7 +58,7 @@
         android:id="@+id/reusable_main_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/cardview_margin"
+        android:layout_marginBottom="@dimen/cardview_margin_narrow"
         android:layout_below="@id/pagesContainer"
         android:layout_above="@id/btn_bottomnav"/>
 

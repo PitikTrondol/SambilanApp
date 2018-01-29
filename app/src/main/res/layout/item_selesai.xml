@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/cardview_margin"
-    android:layout_marginLeft="@dimen/cardview_margin"
-    android:layout_marginRight="@dimen/cardview_margin"
+    android:layout_marginBottom="@dimen/cardview_margin_narrow"
+    android:layout_marginLeft="@dimen/cardview_margin_narrow"
+    android:layout_marginRight="@dimen/cardview_margin_narrow"
     android:background="@color/White"
     android:orientation="vertical">
 
