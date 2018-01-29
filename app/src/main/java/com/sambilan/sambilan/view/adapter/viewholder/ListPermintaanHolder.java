@@ -7,9 +7,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
+import com.sambilan.sambilan.view.helper.ImgurHelper;
 
 /**
  * Created by Afriandi Haryanto on 1/29/2018.
@@ -17,21 +19,26 @@ import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 
 public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanListener> {
 
-    public TextView tv_title;
-    public TextView tv_lokasi;
-    public TextView tv_fee;
+    private TextView tv_title;
+    private TextView tv_company;
+    private TextView tv_lokasi;
+    private TextView tv_fee;
 
     private Button btn_diterima;
     private Button btn_ditolak;
 
     private CardView cv_job;
-    public ImageView iv_image;
+    private ImageView iv_image;
+    private ImgurHelper helper;
+
     public ListPermintaanHolder(View itemView) {
         super(itemView);
         tv_title = itemView.findViewById(R.id.tv_jobTitle);
         tv_lokasi = itemView.findViewById(R.id.tv_alamat);
         tv_fee = itemView.findViewById(R.id.tv_bayaran);
+        tv_company = itemView.findViewById(R.id.tv_company);
 
+        iv_image = itemView.findViewById(R.id.iv_item_image);
         btn_diterima = itemView.findViewById(R.id.btn_permintaan_diterima);
         btn_ditolak = itemView.findViewById(R.id.btn_permintaan_ditolak);
         cv_job = itemView.findViewById(R.id.cv_permintaan);
@@ -40,8 +47,11 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
     @Override
     public void onBind(Job data, @Nullable final ListPermintaanListener listener) {
         tv_title.setText(data.getTitle());
+        tv_company.setText(data.getCompany_name());
         tv_lokasi.setText(data.getCompany_address());
         tv_fee.setText(data.getSalary());
+        helper = new ImgurHelper(data.getLogo_url().trim());
+        Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
 
         btn_diterima.setOnClickListener(new View.OnClickListener() {
             @Override

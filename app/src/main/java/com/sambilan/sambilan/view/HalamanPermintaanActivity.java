@@ -36,7 +36,7 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_permintaan);
 
         jobPresenter = new LandingPagePresenter();
-        jobPresenter.getJobList(jobCallback);
+        jobPresenter.getAllResources(jobCallback);
 
         permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
         permintaanAdapter.setListener(permintaanListener);
@@ -95,7 +95,7 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            jobPresenter.getJobList(jobCallback);
+            jobPresenter.getAllResources(jobCallback);
         }
     };
 }

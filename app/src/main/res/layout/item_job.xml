@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/cardview_margin"
-    android:layout_marginRight="@dimen/cardview_margin"
-    android:layout_marginBottom="@dimen/cardview_margin"
+    android:layout_marginLeft="@dimen/cardview_margin_narrow"
+    android:layout_marginRight="@dimen/cardview_margin_narrow"
+    android:layout_marginBottom="@dimen/cardview_margin_mid"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="@dimen/cardview_custom_radius"
     app:cardPreventCornerOverlap="false">
@@ -46,7 +46,7 @@
                     android:src="@drawable/ic_loc" />
 
                 <TextView
-                    android:id="@+id/tv_alamat"
+                    android:id="@+id/tv_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
@@ -54,8 +54,17 @@
                     android:scrollbars="horizontal"
                     android:textSize="15dp"
                     android:textStyle="bold"
-                    tools:text="Alamat" />
+                    tools:text="Company" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:text="Alamat"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,12 +90,12 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iv_jobImage"
+            android:id="@+id/iv_item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
             android:layout_margin="1dp"
-            android:layout_weight="7"
-            android:src="@drawable/ic_starbuck" />
+            android:layout_weight="6"
+            tools:src="@drawable/ic_starbuck" />
     </LinearLayout>
 </android.support.v7.widget.CardView>
