@@ -59,7 +59,7 @@ public class LandingPageActivity extends AppCompatActivity {
         /**
          * Implementasi carousel
          */
-        carouselViewPager = findViewById(R.id.pager);
+        carouselViewPager = findViewById(R.id.carousel_pager);
         carouselLinearLayout = findViewById(R.id.pagesContainer);
 
         carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
@@ -133,6 +133,8 @@ public class LandingPageActivity extends AppCompatActivity {
         String baseUrl = "https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/";
 
         fragments.add(SliderFragment.newInstance(baseUrl + "9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
+        fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
         fragments.add(SliderFragment.newInstance(baseUrl + "848ff359644146c6f24e797601c437ed/couresel2.png"));
         fragments.add(SliderFragment.newInstance(baseUrl + "fdad02c8caf4ba33379169bfd74eee45/couresel3.png"));
 
