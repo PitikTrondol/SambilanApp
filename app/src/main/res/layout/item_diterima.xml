@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</android.support.constraint.ConstraintLayout>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:background="@color/White">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <include
+        android:id="@+id/cv_job_list_diterima"
+        layout="@layout/item_job_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="3">
+    </include>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/cv_job_list_diterima"
+        android:src="@drawable/ic_date"
+        android:background="@color/White"
+        android:id="@+id/iv_date_sebelum"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_job_list_diterima"
+        android:text="Tanggal sebelum"
+        android:gravity="center"
+        android:layout_margin="1dp"
+        android:paddingTop="3dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/iv_date_sebelum"
+        android:id="@+id/tv_sebelum"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/iv_date_sebelum"
+        android:src="@drawable/ic_date"
+        android:background="@color/White"
+        android:id="@+id/iv_date_sesudah"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_sebelum"
+        android:text="Tanggal sesudah"
+        android:id="@+id/tv_sesudah"
+        android:gravity="center"
+        android:layout_margin="1dp"
+        android:paddingTop="5dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/iv_date_sesudah"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
