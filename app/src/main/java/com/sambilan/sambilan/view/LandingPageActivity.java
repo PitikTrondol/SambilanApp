@@ -64,8 +64,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
-        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout,
-                carouselViewPager, R.drawable.indicator_circle);
+        carouselPageIndicator = new PageIndicatorHelper(this,carouselLinearLayout,R.drawable.indicator_circle,carouselViewPager);
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
