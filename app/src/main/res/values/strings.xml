@@ -8,4 +8,12 @@
     <string name="text_wait">Menunggu</string>
     <string name="text_accept">Accept</string>
     <string name="text_done">Selesai</string>
+    <string name="detail_perusahaan">Detail Perusahaan</string>
+    <string name="dilihat">Dilihat :</string>
+    <string name="dilamar">Dilamar :</string>
+    <string name="detail_pekerjan">Detail Pekerjan</string>
+    <string name="blablabla">Blablabla</string>
+    <string name="lowongan">Lowongan</string>
+    <string name="rating">Rating</string>
+    <string name="lamar_pekerjaan">Lamar Pekerjaan</string>
 </resources>
