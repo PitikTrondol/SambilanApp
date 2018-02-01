@@ -241,7 +241,6 @@
         android:background="@color/White"
         android:orientation="horizontal"
         android:weightSum="4">
-
         <ImageView
             android:id="@+id/iv_permintaan"
             android:layout_width="wrap_content"

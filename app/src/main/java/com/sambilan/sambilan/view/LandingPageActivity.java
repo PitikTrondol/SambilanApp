@@ -70,7 +70,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         // Implementasi untuk recyclerview
         listJobPresenter = new LandingPagePresenter();
-        listJobPresenter.getAllResources(jobCallback);
+        listJobPresenter.getAllResources(jobCallback,"employer");
 
         listJobAdapter = new ListPekerjaanAdapter(LandingPageActivity.this);
         listJobAdapter.setListener(jobListener);
@@ -189,7 +189,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            listJobPresenter.getAllResources(jobCallback);
+            listJobPresenter.getAllResources(jobCallback,"employer");
         }
     };
 
