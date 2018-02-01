@@ -43,6 +43,10 @@ public class NetworkService {
         return getRetrofit().create(LandingPageApi.class);
     }
 
+    public static WaitingPageApi createWaitingPageApi(){
+        return getRetrofit().create(WaitingPageApi.class);
+    }
+
     public static EmployerApi createEmpApi() {
         return getRetrofit().create(EmployerApi.class);
     }
