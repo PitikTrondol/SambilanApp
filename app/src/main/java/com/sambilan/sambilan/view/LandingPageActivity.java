@@ -64,14 +64,13 @@ public class LandingPageActivity extends AppCompatActivity {
 
         carouselSliderAdapter = new SliderAdapter(getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
-        carouselPageIndicator = new PageIndicatorHelper(this, carouselLinearLayout,
-                carouselViewPager, R.drawable.indicator_circle);
+        carouselPageIndicator = new PageIndicatorHelper(this,carouselLinearLayout,R.drawable.indicator_circle,carouselViewPager);
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
         // Implementasi untuk recyclerview
         listJobPresenter = new LandingPagePresenter();
-        listJobPresenter.getAllResources(jobCallback);
+        listJobPresenter.getAllResources(jobCallback,"employer");
 
         listJobAdapter = new ListPekerjaanAdapter(LandingPageActivity.this);
         listJobAdapter.setListener(jobListener);
@@ -190,7 +189,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            listJobPresenter.getAllResources(jobCallback);
+            listJobPresenter.getAllResources(jobCallback,"employer");
         }
     };
 

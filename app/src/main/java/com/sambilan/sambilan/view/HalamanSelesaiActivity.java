@@ -36,7 +36,7 @@ public class HalamanSelesaiActivity extends AppCompatActivity{
         setContentView(R.layout.activity_permintaan);
 
         jobPresenter = new LandingPagePresenter();
-        jobPresenter.getAllResources(jobCallback);
+        jobPresenter.getAllResources(jobCallback, "employer");
 
         selesaiAdapter = new ListSelesaiAdapter(HalamanSelesaiActivity.this);
         selesaiAdapter.setListener(listener);
@@ -84,7 +84,7 @@ public class HalamanSelesaiActivity extends AppCompatActivity{
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            jobPresenter.getAllResources(jobCallback);
+            jobPresenter.getAllResources(jobCallback,"employer");
         }
     };
 }

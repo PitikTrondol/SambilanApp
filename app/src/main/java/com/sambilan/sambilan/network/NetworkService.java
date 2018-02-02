@@ -3,6 +3,7 @@ package com.sambilan.sambilan.network;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -43,8 +44,11 @@ public class NetworkService {
         return getRetrofit().create(LandingPageApi.class);
     }
 
-    public static WaitingPageApi createWaitingPageApi(){
+    public static WaitingPageApi createWaitingPageApi() {
         return getRetrofit().create(WaitingPageApi.class);
+    }
+    public static ListJobAPI createListJobApi() {
+        return getRetrofit().create(ListJobAPI.class);
     }
 
     public static EmployerApi createEmpApi() {
@@ -62,14 +66,14 @@ public class NetworkService {
      */
     public static OkHttpClient client() {
 
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
-//                .setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY);
 
         return new OkHttpClient.Builder()
                 .readTimeout(15, TimeUnit.SECONDS)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
-//                .addInterceptor(interceptor)
+                .addInterceptor(interceptor)
                 .build();
     }
 }

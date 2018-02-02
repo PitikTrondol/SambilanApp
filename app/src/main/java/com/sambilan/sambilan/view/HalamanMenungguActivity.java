@@ -30,7 +30,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menunggu);
 
         jobPresenter = new LandingPagePresenter();
-        jobPresenter.getAllResources(jobCallback);
+        jobPresenter.getAllResources(jobCallback,"employer");
 
         menungguAdapter = new ListMenungguAdapter(HalamanMenungguActivity.this);
         menungguAdapter.setListener(menungguListener);
@@ -69,7 +69,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            jobPresenter.getAllResources(jobCallback);
+            jobPresenter.getAllResources(jobCallback, "employer");
         }
     };
 }
