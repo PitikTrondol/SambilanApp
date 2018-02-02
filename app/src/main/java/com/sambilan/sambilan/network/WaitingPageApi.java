@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 
 public interface WaitingPageApi {
 
-    @GET("/waitingpage")
+    @GET("/api/v1/waitingjob/")
     Call<WaitingPageResponse> getResources();
 }
