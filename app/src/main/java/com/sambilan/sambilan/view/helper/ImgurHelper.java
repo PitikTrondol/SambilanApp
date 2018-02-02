@@ -15,8 +15,8 @@ public class ImgurHelper {
     public String getDirectLink() {
         String https = "https://";
         String direct = this.imgurUrl.substring(0, (https.length()));
-        direct+="i."+(this.imgurUrl.substring(https.length()))+".jpg";
+        direct+=(this.imgurUrl.substring(https.length()));
 
-        return  direct;
+        return  this.imgurUrl;
     }
 }

@@ -26,6 +26,7 @@
         <activity android:name=".view.ProfilePageActivity" />
         <activity android:name=".view.HalamanPermintaanActivity" />
         <activity android:name=".view.HalamanSelesaiActivity" />
+        <activity android:name=".view.HalamanMenungguActivity"/>
         <activity android:name=".view.HalamanDiterimaActivity" />
     </application>
 

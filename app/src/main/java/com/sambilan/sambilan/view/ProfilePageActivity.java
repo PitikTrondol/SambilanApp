@@ -53,7 +53,7 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
             break;
 
             case R.id.iv_menunggu: {
-                Toast.makeText(this, "Menunggu", Toast.LENGTH_SHORT).show();
+                GoToNextScreen(ProfilePageActivity.this, HalamanMenungguActivity.class);
             }
             break;
 
