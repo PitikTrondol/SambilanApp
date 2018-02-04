@@ -16,7 +16,7 @@ public class LoginPagePresenter {
     LoginPageAPI api;
 
     public LoginPagePresenter() {
-        this.api = NetworkService.createLoginPageAPI();
+        this.api = NetworkService.createLoginAPI();
     }
     public void getAll(final LoginPagePresenter.LoginResultCallback<Login,Throwable> loginCallback){
         this.api.getData().enqueue(new Callback<Login>() {

@@ -11,4 +11,6 @@
     <color name="colorLightOrange">#EBB242</color>
     <color name="colorLightGrey">#E6E5E5</color>
     <color name="orangeCircle">#b5b1b1</color>
+    <color name="dark_gray">#636363</color>
+    <color name="black">#000000</color>
 </resources>
