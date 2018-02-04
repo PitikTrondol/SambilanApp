@@ -1,11 +1,7 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.model.JobListResponse;
-import com.sambilan.sambilan.model.LandingPageResponse;
-import com.sambilan.sambilan.network.LandingPageApi;
-import com.sambilan.sambilan.network.ListJobAPI;
+import com.sambilan.sambilan.network.DiterimaPageAPI;
 import com.sambilan.sambilan.network.NetworkService;
 
 import retrofit2.Call;
@@ -18,7 +14,7 @@ import retrofit2.Response;
 
 public class ListJobPresenter {
 
-    ListJobAPI api;
+    DiterimaPageAPI api;
 
     public ListJobPresenter() {
         this.api = NetworkService.createListJobApi();

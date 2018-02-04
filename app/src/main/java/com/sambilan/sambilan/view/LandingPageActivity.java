@@ -24,6 +24,7 @@ import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
+import com.sambilan.sambilan.view.fragment.LandingPageFragment;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
 import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
 import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
@@ -33,7 +34,7 @@ import java.util.List;
 
 import retrofit2.HttpException;
 
-public class LandingPageActivity extends AppCompatActivity {
+public class LandingPageActivity extends AppCompatActivity{
 
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;

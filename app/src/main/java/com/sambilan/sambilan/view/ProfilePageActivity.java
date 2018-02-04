@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,16 +30,13 @@ public class ProfilePageActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);
+        setContentView(R.layout.fragment_profile);
 
         ll_profileFungsi = findViewById(R.id.ll_profile_fungsi);
         for (int i = 0; i < ll_profileFungsi.getChildCount(); i++) {
             ll_profileFungsi.getChildAt(i).setOnClickListener(ProfilePageActivity.this);
         }
 
-        BottomNavigationView nav = findViewById(R.id.btn_bottomnav_profile);
-        BottomNavigationHelper.disableShiftMode(nav);
-        nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override
