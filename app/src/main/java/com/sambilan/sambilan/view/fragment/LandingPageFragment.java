@@ -12,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -36,7 +38,7 @@ import retrofit2.HttpException;
  * Created by Andhika Putranto on 2/3/2018.
  */
 
-public class LandingPageFragment extends Fragment {
+public class LandingPageFragment extends Fragment implements TopBar {
 
 
     private Toolbar topToolbar;
@@ -59,7 +61,7 @@ public class LandingPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_landing_page, container, false);
-        topToolbar = view.findViewById(R.id.topBar);
+
         // Implementasi untuk topbar, menu dan search button
         topToolbar = view.findViewById(R.id.topBar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
@@ -95,6 +97,7 @@ public class LandingPageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
     }
 
@@ -154,5 +157,20 @@ public class LandingPageFragment extends Fragment {
             startActivity(profileIntent);
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_notif:
+                Toast.makeText(getActivity(), "Login dulu lah", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.menu_filter:
+                Toast.makeText(getActivity(), "Menu Filter", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return true;
+    }
+
 
 }
