@@ -54,7 +54,6 @@ public class LandingPageFragment extends Fragment {
     private SwipeRefreshLayout recyclerRefresher;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -108,10 +107,11 @@ public class LandingPageFragment extends Fragment {
 
         return fragments;
     }
+
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            listJobPresenter.getAllResources(jobCallback,"employer");
+            listJobPresenter.getAllResources(jobCallback, "employer");
         }
     };
 
@@ -127,21 +127,10 @@ public class LandingPageFragment extends Fragment {
 
         @Override
         public void OnFailureResult(Throwable second) {
-            if (second instanceof HttpException) {
-                Toast.makeText(getActivity(),
-                        "JEMBUT " + ((HttpException) second).code(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (second instanceof NullPointerException) {
-                Toast.makeText(getActivity(),
-                        "TELEK " + ((NullPointerException) second).getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getActivity(),
-                        "TELEK " + second.getMessage(),
-                        Toast.LENGTH_SHORT).show();
 
-                System.out.println("TELEK "+second.getMessage());
-            }
+            Toast.makeText(getActivity(),
+                    "TELEK " + second.getMessage(),
+                    Toast.LENGTH_SHORT).show();
 
             progressBar.setVisibility(View.GONE);
             recyclerRefresher.setRefreshing(false);

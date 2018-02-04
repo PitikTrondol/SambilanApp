@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.view.fragment.AddPageFragment;
+import com.sambilan.sambilan.view.fragment.CategoryPageFragment;
 import com.sambilan.sambilan.view.fragment.LandingPageFragment;
 import com.sambilan.sambilan.view.fragment.ProfilePageFragment;
 import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
@@ -26,7 +28,6 @@ public class SambilanActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class SambilanActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -48,14 +50,12 @@ public class SambilanActivity extends AppCompatActivity {
                     loadFragment(fragment);
                     return true;
                 case R.id.btn_add:
-//                    fragment = new AddPageFragment();
-//                    loadFragment(fragment);
-                    Toast.makeText(getApplicationContext(), "Tambah", Toast.LENGTH_SHORT).show();
+                    fragment = new AddPageFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.btn_category:
-//                    fragment = new CategoryPageFragment();
-//                    loadFragment(fragment);
-                    Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
+                    fragment = new CategoryPageFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.btn_me:
                     fragment = new ProfilePageFragment();
@@ -65,10 +65,11 @@ public class SambilanActivity extends AppCompatActivity {
             return false;
         }
     };
+
     private void loadFragment(android.support.v4.app.Fragment fragment){
-        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_container,fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fl_container,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
