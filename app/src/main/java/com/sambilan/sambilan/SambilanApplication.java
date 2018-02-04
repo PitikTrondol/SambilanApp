@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 public class SambilanApplication extends Application {
 
     private static ConnectivityManager cm;
+    private String role = "";
     public SambilanApplication() {
 
     }
@@ -25,5 +26,13 @@ public class SambilanApplication extends Application {
     public boolean isConnected() {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnected();
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
