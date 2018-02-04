@@ -15,4 +15,5 @@
     <color name="calmBlue">#0776A0</color>
     <color name="calmGreen">#98ED00</color>
     <color name="calmOrange">#FF8500</color>
+    <color name="offlineBackground">#FFD073</color>
 </resources>

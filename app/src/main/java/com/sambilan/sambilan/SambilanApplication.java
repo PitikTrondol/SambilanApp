@@ -1,9 +1,8 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
+import com.sambilan.sambilan.utils.ConnectionReceiver;
 
 /**
  * Created by Afriandi Haryanto on 1/13/2018.
@@ -11,8 +10,8 @@ import android.net.NetworkInfo;
 
 public class SambilanApplication extends Application {
 
-    private static ConnectivityManager cm;
     private String role = "";
+    private ConnectionReceiver connectionReceiver;
     public SambilanApplication() {
 
     }
@@ -20,12 +19,11 @@ public class SambilanApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        connectionReceiver = new ConnectionReceiver(this);
     }
 
     public boolean isConnected() {
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnected();
+        return connectionReceiver.isConnected();
     }
 
     public String getRole() {

@@ -20,6 +20,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6xlAU4XcS0NRk7yRCHZ_NjEyUgq7Vfjc"/>
 
+        <receiver android:name=".utils.ConnectionReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
