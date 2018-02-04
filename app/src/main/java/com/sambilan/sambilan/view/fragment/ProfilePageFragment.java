@@ -16,7 +16,6 @@ import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanPermintaanActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
-import com.sambilan.sambilan.view.ProfilePageActivity;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.

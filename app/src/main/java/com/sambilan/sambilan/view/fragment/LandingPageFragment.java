@@ -59,6 +59,7 @@ public class LandingPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_landing_page, container, false);
+        topToolbar = view.findViewById(R.id.topBar);
         // Implementasi untuk topbar, menu dan search button
         topToolbar = view.findViewById(R.id.topBar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
@@ -94,6 +95,7 @@ public class LandingPageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     private List<Fragment> getCarouselFragment() {
