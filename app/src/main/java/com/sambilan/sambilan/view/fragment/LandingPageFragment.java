@@ -87,7 +87,7 @@ public class LandingPageFragment extends Fragment {
         listJobPresenter.getAllResources(jobCallback, 3,5);
 
         listJobAdapter = new ListPekerjaanAdapter(getActivity());
-        listJobAdapter.setListener(jobListener);
+        listJobAdapter.setListener(onClickJobListListener);
 
         layoutManager = new LinearLayoutManager(getContext());
         currentPage = 1;
@@ -201,7 +201,7 @@ public class LandingPageFragment extends Fragment {
                 }
             };
 
-    private ListJobListener jobListener =
+    private ListJobListener onClickJobListListener =
             new ListJobListener() {
                 @Override
                 public void onClickJob() {
@@ -219,13 +219,13 @@ public class LandingPageFragment extends Fragment {
                     firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
                     childCount = layoutManager.getChildCount();
                     itemCount = layoutManager.getItemCount();
-                    Log.d("ASU", "itemCount: "+itemCount);
-                    Log.d("ASU", "TOTAL: "+(totalPage*DISPLAY_COUNT));
+                    Log.d("TEST", "itemCount: "+itemCount);
+                    Log.d("TEST", "TOTAL: "+(totalPage*DISPLAY_COUNT));
 
                     if(!isLoading &&
                             (itemCount - (firstVisibleItem + DISPLAY_COUNT)) <= 2
                             && itemCount < (DISPLAY_COUNT*totalPage)) {
-                        Log.d("ASU", "onScrolled: ---------------------- ASU");
+                        Log.d("TEST", "onScrolled: ---------------------- TEST");
                         //kalo udah jadi, currentPage++
                         listJobPresenter.getHomeJobList(onScrollCallback, currentPage, DISPLAY_COUNT);
 
