@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.JobListResponse;
-import com.sambilan.sambilan.model.LandingPageResponse;
-import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ListJobPresenter;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
@@ -57,7 +55,7 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
 
         @Override
         public void OnSuccessResult(JobListResponse first) {
-            diterimaAdapter.updateModel(first.getData());
+            diterimaAdapter.setModel(first.getData());
             HalamanDiterimaActivity.this.refreshLayout.setRefreshing(false);
             HalamanDiterimaActivity.this.progressBar.setVisibility(View.GONE);
         }

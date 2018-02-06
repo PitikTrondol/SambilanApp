@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
+import com.sambilan.sambilan.model.HomeJobResponse;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.network.NetworkService;
 import com.sambilan.sambilan.network.LandingPageApi;
@@ -30,6 +31,20 @@ public class LandingPagePresenter {
 
             @Override
             public void onFailure(Call<LandingPageResponse> call, Throwable t) {
+                resourceCallback.OnFailureResult(t);
+            }
+        });
+    }
+
+    public void getHomeJobList(final JobResultCallback<HomeJobResponse, Throwable> resourceCallback, int page, int itemNum) {
+        this.api.getJobList(page, itemNum).enqueue(new Callback<HomeJobResponse>() {
+            @Override
+            public void onResponse(Call<HomeJobResponse> call, Response<HomeJobResponse> response) {
+                resourceCallback.OnSuccessResult(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<HomeJobResponse> call, Throwable t) {
                 resourceCallback.OnFailureResult(t);
             }
         });

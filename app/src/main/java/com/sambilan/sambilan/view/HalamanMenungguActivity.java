@@ -13,7 +13,6 @@ import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
-import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 
 public class HalamanMenungguActivity extends AppCompatActivity {
@@ -48,7 +47,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
             jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
         @Override
         public void OnSuccessResult(LandingPageResponse first) {
-            menungguAdapter.updateModel(first.getData());
+            menungguAdapter.setModel(first.getData());
             HalamanMenungguActivity.this.refreshLayout.setRefreshing(false);
             HalamanMenungguActivity.this.progressBar.setVisibility(View.GONE);
         }

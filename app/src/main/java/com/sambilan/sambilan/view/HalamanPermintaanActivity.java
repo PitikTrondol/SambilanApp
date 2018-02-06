@@ -56,7 +56,7 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
 
         @Override
         public void OnSuccessResult(LandingPageResponse first) {
-            permintaanAdapter.updateModel(first.getData());
+            permintaanAdapter.setModel(first.getData());
             HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
             HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
         }

@@ -55,7 +55,7 @@ public class HalamanSelesaiActivity extends AppCompatActivity{
 
         @Override
         public void OnSuccessResult(LandingPageResponse first) {
-            selesaiAdapter.updateModel(first.getData());
+            selesaiAdapter.setModel(first.getData());
             progressBar.setVisibility(View.GONE);
             refreshLayout.setRefreshing(false);
         }
