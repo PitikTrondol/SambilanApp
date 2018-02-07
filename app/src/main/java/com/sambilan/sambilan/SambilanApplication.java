@@ -13,14 +13,16 @@ public class SambilanApplication extends Application {
     private String role = "";
     private ConnectionReceiver connectionReceiver;
     public SambilanApplication() {
-
+        connectionReceiver = new ConnectionReceiver();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        connectionReceiver = new ConnectionReceiver(this);
+        connectionReceiver.checkConnection(this);
     }
+
+
 
     public boolean isConnected() {
         return connectionReceiver.isConnected();

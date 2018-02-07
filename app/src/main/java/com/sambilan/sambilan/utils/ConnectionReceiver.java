@@ -19,8 +19,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
     private ConnectivityManager connectivityManager;
     private NetworkInfo activeNetInfo;
 
-    public ConnectionReceiver(Context context) {
-        checkConnection(context);
+    public ConnectionReceiver() {
     }
 
     @Override

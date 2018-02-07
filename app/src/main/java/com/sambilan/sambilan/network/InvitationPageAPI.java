@@ -2,6 +2,8 @@ package com.sambilan.sambilan.network;
 
 import com.sambilan.sambilan.model.JobResponse;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -18,10 +20,10 @@ public interface InvitationPageAPI {
     @GET("api/v1/invitations/")
     Call<JobResponse> getJobInvitations(@Query("userDetailId") int user_id);
 
-//    @FormUrlEncoded
+    @FormUrlEncoded
     @POST("api/v1/invitations/")
-    Call<String> postInvitationAction(@Field("user_detail_id") int user_id,
-                                      @Field("job_id") int job_id,
-                                      @Field("message") String message);
+    Call<JSONObject> postInvitationAction(@Field("user_detail_id") int user_id,
+                                          @Field("job_id") int job_id,
+                                          @Field("message") String message);
 
 }

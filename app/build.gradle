@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 
 ext.majorVersion = 0
 ext.minorVersion = 0
-ext.patchVersion = 1
-ext.preRelease = "beta_test"
+ext.patchVersion = 2
+ext.preRelease = ""
 ext.minSdk = 19
 
 android {
