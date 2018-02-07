@@ -11,8 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.LandingPageResponse;
-import com.sambilan.sambilan.presenter.LandingPagePresenter;
+import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.presenter.InvitationPagePresenter;
+import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 
@@ -26,7 +27,7 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
 
     private RecyclerView recyclerPermintaan;
     private ListPermintaanAdapter permintaanAdapter;
-    private LandingPagePresenter jobPresenter;
+    private InvitationPagePresenter invitationPresenter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
 
@@ -49,6 +50,34 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
         refreshLayout.setOnRefreshListener(refreshListener);
     }
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    invitationPresenter.getJobInvitation(resultCallback, 1);
+                }
+            };
+
+    private ListPermintaanListener permintaanListener =
+            new ListPermintaanListener() {
+                @Override
+                public void onClickButtonTerima(int jobID) {
+                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
+                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onClickButtonTolak(int jobID) {
+                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
+                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onClickListPermintaan(int jobID) {
+
+                }
+            };
 
     // create callback buat presenter
     private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>

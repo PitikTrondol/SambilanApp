@@ -8,14 +8,15 @@ import java.util.List;
  * Created by Andhika Putranto on 1/31/2018.
  */
 
-public class JobListResponse {
+public class JobResponse {
+
     @SerializedName("status")
     public String status;
 
     @SerializedName("data")
     public List<Job> data;
 
-    public JobListResponse() {
+    public JobResponse() {
 
     }
 

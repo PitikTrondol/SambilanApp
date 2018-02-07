@@ -43,6 +43,10 @@ public class NetworkService {
     public static LandingPageApi createLandingPageApi() {
         return getRetrofit().create(LandingPageApi.class);
     }
+
+    public static InvitationPageAPI crateInvitationAPI() {
+        return getRetrofit().create(InvitationPageAPI.class);
+    }
     public static WaitingPageApi createWaitingPageApi() {
         return getRetrofit().create(WaitingPageApi.class);
     }

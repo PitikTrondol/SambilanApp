@@ -2,7 +2,6 @@ package com.sambilan.sambilan.view.adapter.viewholder;
 
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,24 +50,6 @@ public class ListDiterimaHolder extends BaseViewHolder<Job, ListDiterimaListener
         helper= new ImgurHelper(data.getCompany().getLogo_url().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).apply(new RequestOptions().fitCenter()).into(iv_company);
     }
-//    @Override
-//    public void onBind(JobList data, @Nullable ListDiterimaListener listener) {
-//        tv_title.setText(data.getTitle());
-//        tv_company.setText(data.getCompany_name());
-//        tv_salary.setText(data.getSalary());
-//        tv_date_sebelum.setText(data.getAccept_date());
-//        tv_date_sesudah.setText(data.getDate_done());
-//
-//        helper= new ImgurHelper(data.getLogo_url().trim());
-//        Glide.with(itemView.getContext()).load(helper.getDirectLink()).apply(new RequestOptions().fitCenter()).into(iv_company);
-//////
-////        rl_diterima.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                listener.onClickDiterima();
-////            }
-////        });
-//    }
 }
 
 

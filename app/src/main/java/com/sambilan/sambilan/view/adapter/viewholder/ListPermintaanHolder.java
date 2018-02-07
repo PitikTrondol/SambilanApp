@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.JobDiterima;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
 import com.sambilan.sambilan.view.helper.ImgurHelper;
 
@@ -17,7 +17,7 @@ import com.sambilan.sambilan.view.helper.ImgurHelper;
  * Created by Afriandi Haryanto on 1/29/2018.
  */
 
-public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanListener> {
+public class ListPermintaanHolder extends BaseViewHolder<JobDiterima, ListPermintaanListener> {
 
     private TextView tv_title;
     private TextView tv_company;
@@ -45,7 +45,7 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListPermintaanListener listener) {
+    public void onBind(final JobDiterima data, @Nullable final ListPermintaanListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getAddress());
@@ -56,21 +56,21 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
         btn_diterima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickButtonTerima();
+                listener.onClickButtonTerima(data.getJob_id());
             }
         });
 
         btn_ditolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickButtonTolak();
+                listener.onClickButtonTolak(data.getJob_id());
             }
         });
 
         cv_job.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickListPermintaan();
+                listener.onClickListPermintaan(data.getJob_id());
             }
         });
     }

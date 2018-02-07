@@ -5,7 +5,7 @@ package com.sambilan.sambilan.view.adapter.listener;
  */
 
 public interface ListPermintaanListener extends BaseRecyclerListener {
-    public void onClickButtonTerima();
-    public void onClickButtonTolak();
-    public void onClickListPermintaan();
+    public void onClickButtonTerima(int jobID);
+    public void onClickButtonTolak(int jobID);
+    public void onClickListPermintaan(int jobID);
 }

@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobListResponse;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.presenter.ListJobPresenter;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
@@ -51,10 +51,10 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
 //            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
 
 
-        private ListJobPresenter.JobResultCallback<JobListResponse, Throwable> jobCallBack = new ListJobPresenter.JobResultCallback<JobListResponse, Throwable>() {
+        private ListJobPresenter.JobResultCallback<JobResponse, Throwable> jobCallBack = new ListJobPresenter.JobResultCallback<JobResponse, Throwable>() {
 
         @Override
-        public void OnSuccessResult(JobListResponse first) {
+        public void OnSuccessResult(JobResponse first) {
             diterimaAdapter.setModel(first.getData());
             HalamanDiterimaActivity.this.refreshLayout.setRefreshing(false);
             HalamanDiterimaActivity.this.progressBar.setVisibility(View.GONE);

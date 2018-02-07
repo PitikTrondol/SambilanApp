@@ -1,6 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.JobListResponse;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.network.DiterimaPageAPI;
 import com.sambilan.sambilan.network.NetworkService;
 
@@ -20,15 +20,15 @@ public class ListJobPresenter {
         this.api = NetworkService.createListJobApi();
     }
 
-    public void getListJobs(final ListJobPresenter.JobResultCallback<JobListResponse, Throwable> jobCallback,int id) {
-        this.api.getListJobs(id).enqueue(new Callback<JobListResponse>() {
+    public void getListJobs(final ListJobPresenter.JobResultCallback<JobResponse, Throwable> jobCallback, int id) {
+        this.api.getListJobs(id).enqueue(new Callback<JobResponse>() {
             @Override
-            public void onResponse(Call<JobListResponse> call, Response<JobListResponse> response) {
+            public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
                 jobCallback.OnSuccessResult(response.body());
             }
 
             @Override
-            public void onFailure(Call<JobListResponse> call, Throwable t) {
+            public void onFailure(Call<JobResponse> call, Throwable t) {
                 jobCallback.OnFailureResult(t);
             }
         });
