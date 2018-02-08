@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sambilan.sambilan.view.LandingPageActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:layout_margin="1dp"
+            android:background="@color/White"
+            android:theme="@style/AppTheme"
+            app:title="Sambilan"
+            app:titleTextColor="@color/colorCommonOrange">
+
+            <!--<SearchView-->
+            <!--android:id="@+id/sv_pencarian"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--</SearchView>-->
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/carousel_pager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_carousel_height"
+            android:layout_below="@id/topBar"
+            android:overScrollMode="never" />
+
+        <LinearLayout
+            android:id="@+id/pagesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/carousel_pager"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_carousel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/carousel_pager"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/reusable_main_menu"
+            layout="@layout/layout_reusable_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btn_bottomnav"
+            android:layout_below="@id/pagesContainer"
+            android:layout_marginBottom="@dimen/cardview_margin_narrow" />
+    </RelativeLayout>
+</FrameLayout>

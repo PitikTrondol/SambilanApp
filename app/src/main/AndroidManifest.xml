@@ -20,10 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.LandingPageActivity" />
+        <activity android:name=".view.SambilanActivity"/>
         <activity android:name=".view.DetailJobActivity" />
-        <activity android:name=".view.ProfilePageActivity" />
         <activity android:name=".view.HalamanPermintaanActivity" />
         <activity android:name=".view.HalamanSelesaiActivity" />
         <activity android:name=".view.HalamanMenungguActivity"/>

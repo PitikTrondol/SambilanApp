@@ -24,6 +24,7 @@ import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
+import com.sambilan.sambilan.view.fragment.ProfilePageFragment;
 import com.sambilan.sambilan.view.fragment.SliderFragment;
 import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
 import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
@@ -213,7 +214,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Kategori", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.btn_me:
-                    Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageActivity.class);
+                    Intent profileIntent = new Intent(LandingPageActivity.this, ProfilePageFragment.class);
                     startActivity(profileIntent);
                     return true;
             }
