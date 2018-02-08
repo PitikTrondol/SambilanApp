@@ -2,27 +2,22 @@ package com.sambilan.sambilan.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Property;
+//import org.greenrobot.greendao.annotation.Entity;
+//import org.greenrobot.greendao.annotation.Generated;
+//import org.greenrobot.greendao.annotation.Id;
+//import org.greenrobot.greendao.annotation.Property;
 
 /**
  * Created by febrian on 06/02/18.
  */
 
-@Entity(nameInDb = "Job")
+//@Entity(nameInDb = "Job")
 public class Job {
 
-    @Id(autoincrement = false)
+    //    @Id(autoincrement = false)
     @SerializedName("id")
-<<<<<<< HEAD
     public int id;
-=======
-    private Long jobId;
->>>>>>> [Afriandi] implement GreenDAO
-
-    @Property(nameInDb = "title")
+    //    @Property(nameInDb = "title")
     @SerializedName("title")
     public String title;
 
@@ -32,7 +27,7 @@ public class Job {
     @SerializedName("capacity")
     public int capacity;
 
-    @Property(nameInDb = "salary")
+    //    @Property(nameInDb = "salary")
     @SerializedName("salary")
     public String salary;
 
@@ -57,7 +52,7 @@ public class Job {
     @SerializedName("status")
     public String status;
 
-    @Property(nameInDb = "created_at")
+    //    @Property(nameInDb = "created_at")
     @SerializedName("created_at")
     public String created_at;
 
@@ -79,8 +74,31 @@ public class Job {
     @SerializedName("count_invitation")
     public int count_invitation;
 
-    public Job(){
+    public Job(int id, String title, String desc, int capacity, String salary,
+               String start_due, String end_due, String expire_due, int company_id,
+               int category_id, boolean is_verified, String status, String created_at,
+               String updated_at, String location, Category category, Company company,
+               int count_apply, int count_invitation) {
 
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.capacity = capacity;
+        this.salary = salary;
+        this.start_due = start_due;
+        this.end_due = end_due;
+        this.expire_due = expire_due;
+        this.company_id = company_id;
+        this.category_id = category_id;
+        this.is_verified = is_verified;
+        this.status = status;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.location = location;
+        this.category = category;
+        this.company = company;
+        this.count_apply = count_apply;
+        this.count_invitation = count_invitation;
     }
 
     public int getId() {

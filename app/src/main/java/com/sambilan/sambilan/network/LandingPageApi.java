@@ -1,9 +1,12 @@
 package com.sambilan.sambilan.network;
 
+import com.sambilan.sambilan.model.AdResponse;
 import com.sambilan.sambilan.model.HomeJobResponse;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.model.LandingPageResponse;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -14,7 +17,9 @@ import retrofit2.http.Query;
 public interface LandingPageApi {
 
     @GET("/api/v1/jobs/")
-    Call<LandingPageResponse> getResources(@Query("page") int page,
-                                           @Query("limit") int limit);
+    Call<JobResponse> getJobLists(@Query("page") int page,
+                                  @Query("limit") int limit);
 
+    @GET("/api/v1/headlines")
+    Call<AdResponse> getCarousel();
 }

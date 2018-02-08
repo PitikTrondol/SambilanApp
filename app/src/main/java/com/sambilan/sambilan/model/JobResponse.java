@@ -11,13 +11,27 @@ import java.util.List;
 public class JobResponse {
 
     @SerializedName("status")
-    public String status;
+    private String status;
+
+    @SerializedName("message")
+    private String message;
 
     @SerializedName("data")
-    public List<Job> data;
+    private List<Job> data;
+
+    @SerializedName("current_page")
+    private int currentPage;
+
+    @SerializedName("limit_page")
+    private int limitPage;
+
+    @SerializedName("total_page")
+    private int totalPage;
+
+    @SerializedName("total_jobs")
+    private int totalJobs;
 
     public JobResponse() {
-
     }
 
     public String getStatus() {
@@ -28,11 +42,51 @@ public class JobResponse {
         this.status = status;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public List<Job> getData() {
         return data;
     }
 
     public void setData(List<Job> data) {
         this.data = data;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getLimitPage() {
+        return limitPage;
+    }
+
+    public void setLimitPage(int limitPage) {
+        this.limitPage = limitPage;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getTotalJobs() {
+        return totalJobs;
+    }
+
+    public void setTotalJobs(int totalJobs) {
+        this.totalJobs = totalJobs;
     }
 }

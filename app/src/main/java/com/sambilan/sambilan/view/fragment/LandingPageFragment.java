@@ -20,14 +20,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.SambilanApplication;
-//import com.sambilan.sambilan.model.DaoSession;
-import com.sambilan.sambilan.model.HomeJobResponse;
+import com.sambilan.sambilan.model.Ad;
+import com.sambilan.sambilan.model.AdResponse;
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.LandingPageResponse;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
+import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.DetailJobActivity;
-import com.sambilan.sambilan.view.SambilanActivity;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
@@ -49,7 +48,7 @@ public class LandingPageFragment extends Fragment {
 
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
-    private LandingPagePresenter listJobPresenter;
+    private LandingPagePresenter landingPagePresenter;
     private ListPekerjaanAdapter listJobAdapter;
 
     private LinearLayoutManager layoutManager;
@@ -62,27 +61,34 @@ public class LandingPageFragment extends Fragment {
     private ProgressBar progressBar;
 
     private SwipeRefreshLayout recyclerRefresher;
-//    private DaoSession daoSession;
+    private List<Fragment> carouselFragment;
 
-    private List<Job> jobData;
+    public LandingPageFragment() {
+        carouselFragment = new ArrayList<>();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_landing_page, container, false);
-        topToolbar = view.findViewById(R.id.topBar);
 
         // Implementasi untuk topbar, menu dan search button
+        carouselLinearLayout = view.findViewById(R.id.pagesContainer);
+        listJobRecyclerView = view.findViewById(R.id.common_recycler_view);
+        carouselViewPager = view.findViewById(R.id.carousel_pager);
+        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
+        progressBar = view.findViewById(R.id.progress_bar);
         topToolbar = view.findViewById(R.id.topBar);
+
         ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
 
-        // Implementasi carousel
-        carouselViewPager = view.findViewById(R.id.carousel_pager);
-        carouselLinearLayout = view.findViewById(R.id.pagesContainer);
+        landingPagePresenter = new LandingPagePresenter();
+        landingPagePresenter.getHomeCarousel(carouselCallback);
+        landingPagePresenter.getHomeJobList(homeJobCallback, 3, 5);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
-
         carouselViewPager.setAdapter(carouselSliderAdapter);
+
         carouselPageIndicator = new PageIndicatorHelper(getActivity(),
                 carouselLinearLayout,
                 R.drawable.indicator_circle,
@@ -91,37 +97,15 @@ public class LandingPageFragment extends Fragment {
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
-        // Implementasi untuk recyclerview
-        progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
-        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
         recyclerRefresher.setOnRefreshListener(refreshListener);
 
-        jobData = new ArrayList<>();
-//        daoSession = ((SambilanApplication) getActivity().getApplication()).getDaoSession();
-        listJobPresenter = new LandingPagePresenter();
-        listJobPresenter.getAllResources(jobCallback, 3,5);
-
-        listJobAdapter = new ListPekerjaanAdapter(getActivity());
+        listJobAdapter = new ListPekerjaanAdapter(getContext());
         listJobAdapter.setListener(onClickJobListListener);
-
-        boolean needLoadOnline = ((SambilanApplication) getActivity().getApplication()).isNeedLoadOnline();
-        if(!needLoadOnline) {
-//            jobData = daoSession.getJobDao().loadAll();
-            listJobAdapter.setModel(jobData);
-            progressBar.setVisibility(View.GONE);
-            recyclerRefresher.setRefreshing(false);
-            Log.d(TAG, "Offline --------------------- Offline");
-        } else {
-            listJobPresenter.getHomeJobList(homeJobCallback, 1, DISPLAY_COUNT);
-        }
-
-
 
         layoutManager = new LinearLayoutManager(getContext());
         currentPage = 1;
 
-        listJobRecyclerView = view.findViewById(R.id.common_recycler_view);
         listJobRecyclerView.setLayoutManager(layoutManager);
         listJobRecyclerView.setAdapter(listJobAdapter);
         listJobRecyclerView.addOnScrollListener(scrollListener);
@@ -132,11 +116,11 @@ public class LandingPageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
-    private List<Fragment> getCarouselFragment() {
-        List<Fragment> fragments = new ArrayList<>();
+
+        private List<Fragment> getCarouselFragment() {
+        final List<Fragment> fragments = new ArrayList<>();
         String baseUrl = "https://trello-attachments.s3.amazonaws.com/5a54ee3b0dd4ebd39048d99c/5a5a29f1f4bb54c9978613fe/";
 
         fragments.add(SliderFragment.newInstance(baseUrl + "9ca5c580be3b78eab3f2bb2ebf117a89/couresel.png"));
@@ -146,20 +130,32 @@ public class LandingPageFragment extends Fragment {
         return fragments;
     }
 
-    private SwipeRefreshLayout.OnRefreshListener refreshListener =
-            new SwipeRefreshLayout.OnRefreshListener() {
+    private ResponseResultCallback<AdResponse, Throwable> carouselCallback =
+            new ResponseResultCallback<AdResponse, Throwable>() {
                 @Override
-                public void onRefresh() {
-                    listJobPresenter.getAllResources(jobCallback,3,5);
+                public void OnSuccessResult(AdResponse first) {
+                    List<Fragment> fragments = new ArrayList<>();
+                    for (Ad carousel : first.getData()) {
+                        Log.d(TAG, "OnSuccessResult --------- : "+first.getData().size());
+                        fragments.add(SliderFragment.newInstance(carousel.getImgUrl().trim()));
+                    }
+
+                    carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), fragments);
+                }
+
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(getActivity(),
+                            "FAIL " + second.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 }
             };
 
-
-    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable> jobCallback =
-            new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
-
+    private ResponseResultCallback<JobResponse, Throwable> homeJobCallback =
+            new ResponseResultCallback<JobResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(LandingPageResponse first) {
+                public void OnSuccessResult(JobResponse first) {
+                    totalPage = first.getTotalPage();
                     listJobAdapter.setModel(first.getData());
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
@@ -167,7 +163,6 @@ public class LandingPageFragment extends Fragment {
 
                 @Override
                 public void OnFailureResult(Throwable second) {
-
                     Toast.makeText(getActivity(),
                             "TEXT " + second.getMessage(),
                             Toast.LENGTH_SHORT).show();
@@ -177,39 +172,11 @@ public class LandingPageFragment extends Fragment {
                 }
             };
 
-    private LandingPagePresenter.JobResultCallback<HomeJobResponse, Throwable> homeJobCallback =
-            new LandingPagePresenter.JobResultCallback<HomeJobResponse, Throwable>() {
+    private ResponseResultCallback<JobResponse, Throwable> itemScrollCallback =
+            new ResponseResultCallback<JobResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(HomeJobResponse first) {
-                    totalPage = first.getTotalPage();
-
-                    jobData.clear();
-                    jobData.addAll(first.getJoblists());
-                    listJobAdapter.setModel(first.getJoblists());
-
-                    ((SambilanApplication) getActivity().getApplication()).deleteDatabase();
-//                    daoSession.getJobDao().insertInTx(first.getJoblists());
-
-                    progressBar.setVisibility(View.GONE);
-                    recyclerRefresher.setRefreshing(false);
-                }
-
-                @Override
-                public void OnFailureResult(Throwable second) {
-                    Toast.makeText(getActivity(),
-                            "TEXT " + second.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-
-                    progressBar.setVisibility(View.GONE);
-                    recyclerRefresher.setRefreshing(false);
-                }
-            };
-
-    private LandingPagePresenter.JobResultCallback<HomeJobResponse, Throwable> onScrollCallback =
-            new LandingPagePresenter.JobResultCallback<HomeJobResponse, Throwable>() {
-                @Override
-                public void OnSuccessResult(HomeJobResponse first) {
-                    listJobAdapter.appendModel(first.getJoblists());
+                public void OnSuccessResult(JobResponse first) {
+                    listJobAdapter.appendModel(first.getData());
 
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
@@ -247,15 +214,22 @@ public class LandingPageFragment extends Fragment {
                     itemCount = layoutManager.getItemCount();
 
                     if (!isLoading &&
-//                            (itemCount - (firstVisibleItem + DISPLAY_COUNT)) <= 2
                             ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
                             && itemCount < (DISPLAY_COUNT * totalPage)) {
 
                         //kalo udah jadi, currentPage++
-                        listJobPresenter.getHomeJobList(onScrollCallback, currentPage, DISPLAY_COUNT);
+                        landingPagePresenter.getHomeJobList(itemScrollCallback, currentPage, DISPLAY_COUNT);
 
                         isLoading = true;
                     }
+                }
+            };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    landingPagePresenter.getHomeJobList(homeJobCallback, 3, 5);
                 }
             };
 }

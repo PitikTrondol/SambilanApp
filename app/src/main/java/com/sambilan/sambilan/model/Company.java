@@ -32,8 +32,15 @@ public class Company {
     @SerializedName("user_detail")
     public User user_detail;
 
-    public Company(){
-
+    public Company(int id, int user_detail_id, String name, String address, String desc, String logo_url, String is_verified, User user_detail) {
+        this.id = id;
+        this.user_detail_id = user_detail_id;
+        this.name = name;
+        this.address = address;
+        this.desc = desc;
+        this.logo_url = logo_url;
+        this.is_verified = is_verified;
+        this.user_detail = user_detail;
     }
 
     public int getId() {

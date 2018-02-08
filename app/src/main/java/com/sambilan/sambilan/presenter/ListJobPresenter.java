@@ -21,17 +21,17 @@ public class ListJobPresenter {
     }
 
     public void getListJobs(final ListJobPresenter.JobResultCallback<JobResponse, Throwable> jobCallback, int id) {
-        this.api.getListJobs(id).enqueue(new Callback<JobResponse>() {
-            @Override
-            public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
-                jobCallback.OnSuccessResult(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<JobResponse> call, Throwable t) {
-                jobCallback.OnFailureResult(t);
-            }
-        });
+//        this.api.getListJobs(id).enqueue(new Callback<JobResponse>() {
+//            @Override
+//            public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
+//                jobCallback.OnSuccessResult(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JobResponse> call, Throwable t) {
+//                jobCallback.OnFailureResult(t);
+//            }
+//        });
     }
 
 

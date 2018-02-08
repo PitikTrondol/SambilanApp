@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.model.JobResponse;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
@@ -28,47 +29,47 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menunggu);
 
-        jobPresenter = new LandingPagePresenter();
-        jobPresenter.getAllResources(jobCallback,3,5);
-
-        menungguAdapter = new ListMenungguAdapter(HalamanMenungguActivity.this);
-        menungguAdapter.setListener(menungguListener);
-
-        recyclerMenunggu = findViewById(R.id.common_recycler_view);
-        recyclerMenunggu.setLayoutManager(new LinearLayoutManager(HalamanMenungguActivity.this));
-        recyclerMenunggu.setAdapter(menungguAdapter);
-
-        progressBar = findViewById(R.id.progress_bar);
-        refreshLayout = findViewById(R.id.swipe_refresh_layout);
-        refreshLayout.setOnRefreshListener(refreshListener);
+//        jobPresenter = new LandingPagePresenter();
+//        jobPresenter.getHomeJobList(jobCallback,3,5);
+//
+//        menungguAdapter = new ListMenungguAdapter(HalamanMenungguActivity.this);
+//        menungguAdapter.setListener(menungguListener);
+//
+//        recyclerMenunggu = findViewById(R.id.common_recycler_view);
+//        recyclerMenunggu.setLayoutManager(new LinearLayoutManager(HalamanMenungguActivity.this));
+//        recyclerMenunggu.setAdapter(menungguAdapter);
+//
+//        progressBar = findViewById(R.id.progress_bar);
+//        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+//        refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
-            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
-        @Override
-        public void OnSuccessResult(LandingPageResponse first) {
-            menungguAdapter.setModel(first.getData());
-            HalamanMenungguActivity.this.refreshLayout.setRefreshing(false);
-            HalamanMenungguActivity.this.progressBar.setVisibility(View.GONE);
-        }
+//    private LandingPagePresenter.JobResultCallback<JobResponse, Throwable>
+//            jobCallback = new LandingPagePresenter.JobResultCallback<JobResponse, Throwable>() {
+//        @Override
+//        public void OnSuccessResult(JobResponse first) {
+//            menungguAdapter.setModel(first.getData());
+//            HalamanMenungguActivity.this.refreshLayout.setRefreshing(false);
+//            HalamanMenungguActivity.this.progressBar.setVisibility(View.GONE);
+//        }
+//
+//        @Override
+//        public void OnFailureResult(Throwable second) {
+//            Toast.makeText(HalamanMenungguActivity.this, "FAILURE", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
-        @Override
-        public void OnFailureResult(Throwable second) {
-            Toast.makeText(HalamanMenungguActivity.this, "FAILURE", Toast.LENGTH_SHORT).show();
-        }
-    };
+//    private ListMenungguListener menungguListener = new ListMenungguListener() {
+//        @Override
+//        public void onClickBatalkan() {
+//            Toast.makeText(HalamanMenungguActivity.this, "DIBATALKAN", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
-    private ListMenungguListener menungguListener = new ListMenungguListener() {
-        @Override
-        public void onClickBatalkan() {
-            Toast.makeText(HalamanMenungguActivity.this, "DIBATALKAN", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            jobPresenter.getAllResources(jobCallback, 3, 5);
-        }
-    };
+//    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+//        @Override
+//        public void onRefresh() {
+//            jobPresenter.getHomeJobList(jobCallback, 3, 5);
+//        }
+//    };
 }

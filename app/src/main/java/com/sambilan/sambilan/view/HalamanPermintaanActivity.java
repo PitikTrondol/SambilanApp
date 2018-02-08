@@ -36,95 +36,95 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
 
-        jobPresenter = new LandingPagePresenter();
-        jobPresenter.getAllResources(jobCallback,3, 5);
-
-        permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
-        permintaanAdapter.setListener(permintaanListener);
-
-        recyclerPermintaan = findViewById(R.id.common_recycler_view);
-        recyclerPermintaan.setLayoutManager(new LinearLayoutManager(HalamanPermintaanActivity.this));
-        recyclerPermintaan.setAdapter(permintaanAdapter);
-
-        progressBar = findViewById(R.id.progress_bar);
-        refreshLayout = findViewById(R.id.swipe_refresh_layout);
-        refreshLayout.setOnRefreshListener(refreshListener);
+//        jobPresenter = new LandingPagePresenter();
+//        jobPresenter.getAllResources(jobCallback,3, 5);
+//
+//        permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
+//        permintaanAdapter.setListener(permintaanListener);
+//
+//        recyclerPermintaan = findViewById(R.id.common_recycler_view);
+//        recyclerPermintaan.setLayoutManager(new LinearLayoutManager(HalamanPermintaanActivity.this));
+//        recyclerPermintaan.setAdapter(permintaanAdapter);
+//
+//        progressBar = findViewById(R.id.progress_bar);
+//        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+//        refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-    private SwipeRefreshLayout.OnRefreshListener refreshListener =
-            new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    invitationPresenter.getJobInvitation(resultCallback, 1);
-                }
-            };
-
-    private ListPermintaanListener permintaanListener =
-            new ListPermintaanListener() {
-                @Override
-                public void onClickButtonTerima(int jobID) {
-                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
-                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onClickButtonTolak(int jobID) {
-                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
-                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onClickListPermintaan(int jobID) {
-
-                }
-            };
-
-    // create callback buat presenter
-    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
-            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
-
-        @Override
-        public void OnSuccessResult(LandingPageResponse first) {
-            permintaanAdapter.setModel(first.getData());
-            HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
-            HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
-        }
-
-        @Override
-        public void OnFailureResult(Throwable second) {
-            if (second instanceof HttpException) {
-                Toast.makeText(HalamanPermintaanActivity.this,
-                        "" + ((HttpException) second).code(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (second instanceof NullPointerException) {
-                Toast.makeText(HalamanPermintaanActivity.this,
-                        "" + ((NullPointerException) second).getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-    private ListPermintaanListener permintaanListener = new ListPermintaanListener() {
-        @Override
-        public void onClickButtonTerima() {
-            Toast.makeText(HalamanPermintaanActivity.this, "DITERIMA", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onClickButtonTolak() {
-            Toast.makeText(HalamanPermintaanActivity.this, "DITOLAK", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onClickListPermintaan() {
-            Toast.makeText(HalamanPermintaanActivity.this, "KE DATAIL JOB", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            jobPresenter.getAllResources(jobCallback,3, 5);
-        }
-    };
+//    private SwipeRefreshLayout.OnRefreshListener refreshListener =
+//            new SwipeRefreshLayout.OnRefreshListener() {
+//                @Override
+//                public void onRefresh() {
+//                    invitationPresenter.getJobInvitation(resultCallback, 1);
+//                }
+//            };
+//
+//    private ListPermintaanListener permintaanListener =
+//            new ListPermintaanListener() {
+//                @Override
+//                public void onClickButtonTerima(int jobID) {
+//                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
+//                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onClickButtonTolak(int jobID) {
+//                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
+//                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onClickListPermintaan(int jobID) {
+//
+//                }
+//            };
+//
+//    // create callback buat presenter
+//    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
+//            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
+//
+//        @Override
+//        public void OnSuccessResult(LandingPageResponse first) {
+//            permintaanAdapter.setModel(first.getData());
+//            HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
+//            HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
+//        }
+//
+//        @Override
+//        public void OnFailureResult(Throwable second) {
+//            if (second instanceof HttpException) {
+//                Toast.makeText(HalamanPermintaanActivity.this,
+//                        "" + ((HttpException) second).code(),
+//                        Toast.LENGTH_SHORT).show();
+//            } else if (second instanceof NullPointerException) {
+//                Toast.makeText(HalamanPermintaanActivity.this,
+//                        "" + ((NullPointerException) second).getMessage(),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    };
+//
+//    private ListPermintaanListener permintaanListener = new ListPermintaanListener() {
+//        @Override
+//        public void onClickButtonTerima() {
+//            Toast.makeText(HalamanPermintaanActivity.this, "DITERIMA", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onClickButtonTolak() {
+//            Toast.makeText(HalamanPermintaanActivity.this, "DITOLAK", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onClickListPermintaan() {
+//            Toast.makeText(HalamanPermintaanActivity.this, "KE DATAIL JOB", Toast.LENGTH_SHORT).show();
+//        }
+//    };
+//
+//    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+//        @Override
+//        public void onRefresh() {
+//            jobPresenter.getAllResources(jobCallback,3, 5);
+//        }
+//    };
 }

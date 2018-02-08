@@ -44,9 +44,6 @@ public class SambilanActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        if(((SambilanApplication) getApplication()).isConnected()) {
-//            loadFragment(new LandingPageFragment());
-//        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,20 +55,15 @@ public class SambilanActivity extends AppCompatActivity {
                         loadFragment(new LandingPageFragment());
                     else
                         loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
-
-                    setOnlineLoadMethod(false);
                     return true;
                 case R.id.btn_add:
                     loadFragment(new AddPageFragment());
-                    setOnlineLoadMethod(false);
                     return true;
                 case R.id.btn_category:
                     loadFragment(new CategoryPageFragment());
-                    setOnlineLoadMethod(false);
                     return true;
                 case R.id.btn_me:
                     loadFragment(new ProfilePageFragment());
-                    setOnlineLoadMethod(false);
                     return true;
             }
             return false;
@@ -83,9 +75,5 @@ public class SambilanActivity extends AppCompatActivity {
         transaction.replace(R.id.fl_container,fragment)
                 .addToBackStack(null)
                 .commit();
-    }
-
-    public void setOnlineLoadMethod(boolean isOnline) {
-        ((SambilanApplication) getApplication()).setNeedLoadOnline(isOnline);
     }
 }
