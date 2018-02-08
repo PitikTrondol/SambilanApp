@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.network;
 
+import com.sambilan.sambilan.model.DetailJobResponse;
 import com.sambilan.sambilan.model.Job;
 
 import retrofit2.Call;

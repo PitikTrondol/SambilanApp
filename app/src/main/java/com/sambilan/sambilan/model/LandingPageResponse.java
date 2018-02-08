@@ -13,11 +13,11 @@ public class LandingPageResponse {
     @SerializedName("status")
     private String status;
 
-    @SerializedName("joblists")
-    private List<Job> data;
+    @SerializedName("message")
+    private String message;
 
-    @SerializedName("headlines")
-    private List<Ad> carousels;
+    @SerializedName("data")
+    private List<Job> data;
 
     public LandingPageResponse() {
     }
@@ -30,19 +30,19 @@ public class LandingPageResponse {
         this.status = status;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public List<Job> getData() {
         return data;
     }
 
     public void setData(List<Job> data) {
         this.data = data;
-    }
-
-    public List<Ad> getCarousels() {
-        return carousels;
-    }
-
-    public void setCarousels(List<Ad> carousels) {
-        this.carousels = carousels;
     }
 }
