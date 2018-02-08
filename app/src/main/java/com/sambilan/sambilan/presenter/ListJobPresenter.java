@@ -1,7 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.model.JobListResponse;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.network.LandingPageApi;

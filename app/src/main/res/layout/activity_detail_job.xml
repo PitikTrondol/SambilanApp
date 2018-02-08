@@ -25,10 +25,11 @@
                 android:background="@color/colorCommonOrange">
 
                 <ImageView
+                    android:id="@+id/iv_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_starbuck" />
+                    tools:src="@drawable/ic_starbuck" />
 
             </RelativeLayout>
 
@@ -45,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dimen_8dp"
-                    android:text="@string/lowongan"
+                    tools:text="@string/lowongan"
                     android:textSize="@dimen/text_size_20dp"
                     android:textStyle="bold" />
 
@@ -80,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_dilihat"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <ImageView
                     android:id="@+id/iv_dilamar"
@@ -104,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_dilamar"
-                    android:text="0" />
+                    tools:text="0" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -147,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/iv_gaji"
-                    android:text="1.5000.000"
+                    tools:text="1.5000.000"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -176,7 +177,7 @@
                     android:layout_below="@id/iv_gaji"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_tgl_posting"
-                    android:text="0"
+                    tools:text="0"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -205,7 +206,7 @@
                     android:layout_below="@id/iv_tgl_posting"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_tgl_tutup"
-                    android:text="0"
+                    tools:text="0"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -234,7 +235,7 @@
                     android:layout_below="@id/tv_deskripsi_lowongan"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="8dp"
-                    android:text="@string/blablabla"
+                    tools:text="@string/blablabla"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -262,7 +263,7 @@
                     android:layout_below="@id/tv_detail_perusahaan"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="8dp"
-                    android:text="@string/blablabla"
+                    tools:text="@string/blablabla"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -298,7 +299,7 @@
                     android:layout_below="@+id/tv_lowongannya"
                     android:layout_marginLeft="30dp"
                     android:layout_toRightOf="@id/iv_lowongan"
-                    android:text="0"
+                    tools:text="0"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -325,28 +326,19 @@
                     android:layout_below="@id/tv_rating"
                     android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@id/iv_rating"
-                    android:text="0"
+                    tools:text="0"
                     android:textSize="15sp" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_marginTop="5dp"
+            <Button
+                android:id="@+id/btn_lamar"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/rl_icon_detail_perusahaan">
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:background="@color/colorCommonOrange"
+                android:text="Lamar Pekerjaan"
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_lamar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorCommonOrange"
-        android:text="Lamar Pekerjaan"
-        android:textColor="@android:color/white" />
 </RelativeLayout>

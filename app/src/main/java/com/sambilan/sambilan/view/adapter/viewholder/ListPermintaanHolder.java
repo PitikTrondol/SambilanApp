@@ -47,10 +47,10 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
     @Override
     public void onBind(Job data, @Nullable final ListPermintaanListener listener) {
         tv_title.setText(data.getTitle());
-        tv_company.setText(data.getCompany_name());
-        tv_lokasi.setText(data.getCompany_address());
+        tv_company.setText(data.getCompany().getName());
+        tv_lokasi.setText(data.getCompany().getAddress());
         tv_fee.setText(data.getSalary());
-        helper = new ImgurHelper(data.getLogo_url().trim());
+        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
 
         btn_diterima.setOnClickListener(new View.OnClickListener() {

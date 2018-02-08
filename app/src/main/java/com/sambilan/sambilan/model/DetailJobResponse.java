@@ -2,20 +2,22 @@ package com.sambilan.sambilan.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by Andhika Putranto on 1/31/2018.
+ * Created by febrian on 07/02/18.
  */
 
-public class JobListResponse {
+public class DetailJobResponse {
+
     @SerializedName("status")
     public String status;
 
-    @SerializedName("data")
-    public List<Job> data;
+    @SerializedName("message")
+    public String message;
 
-    public JobListResponse() {
+    @SerializedName("data")
+    public Job data;
+
+    public DetailJobResponse(){
 
     }
 
@@ -27,11 +29,19 @@ public class JobListResponse {
         this.status = status;
     }
 
-    public List<Job> getData() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Job getData() {
         return data;
     }
 
-    public void setData(List<Job> data) {
+    public void setData(Job data) {
         this.data = data;
     }
 }

@@ -15,6 +15,7 @@ public interface LandingPageApi {
 //    @GET("/jobs")
 //    Call<JobResponse> getAllJobs();
 
-    @GET("api/v1/landingpage/")
-    Call<LandingPageResponse> getResources(@Query("role") String role);
+    @GET("/api/v1/jobs/")
+    Call<LandingPageResponse> getResources(@Query("page") int page,
+                                           @Query("limit") int limit);
 }
