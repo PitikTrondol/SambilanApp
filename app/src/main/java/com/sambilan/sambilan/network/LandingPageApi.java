@@ -16,4 +16,5 @@ public interface LandingPageApi {
     @GET("/api/v1/jobs/")
     Call<LandingPageResponse> getResources(@Query("page") int page,
                                            @Query("limit") int limit);
+
 }

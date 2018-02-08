@@ -12,12 +12,19 @@ public class HomeJobResponse {
 
     @SerializedName("page")
     private Integer page;
+
     @SerializedName("totalPage")
     private Integer totalPage;
+
     @SerializedName("itemNum")
     private Integer itemNum;
+
     @SerializedName("status")
     private String status;
+
+    @SerializedName("message")
+    private String message;
+
     @SerializedName("joblists")
     private List<Job> joblists = null;
 
@@ -51,6 +58,14 @@ public class HomeJobResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public List<Job> getJoblists() {

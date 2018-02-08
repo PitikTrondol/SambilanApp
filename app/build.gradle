@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 ext.majorVersion = 0
 ext.minorVersion = 0

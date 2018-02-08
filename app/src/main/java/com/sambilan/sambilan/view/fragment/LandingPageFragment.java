@@ -20,10 +20,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.model.HomeJobResponse;
+import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.DetailJobActivity;
+import com.sambilan.sambilan.view.SambilanActivity;
 import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
@@ -38,24 +42,29 @@ import java.util.List;
 
 public class LandingPageFragment extends Fragment {
 
+    private final int DISPLAY_COUNT = 8;
+    private final String TAG = "com.sambilan.sambilan";
+    private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
+    private boolean isLoading;
+
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
     private LandingPagePresenter listJobPresenter;
     private ListPekerjaanAdapter listJobAdapter;
-    private LinearLayoutManager layoutManager;
 
+    private LinearLayoutManager layoutManager;
     private ViewPager carouselViewPager;
     private LinearLayout carouselLinearLayout;
     private SliderAdapter carouselSliderAdapter;
-    private PageIndicatorHelper carouselPageIndicator;
 
+    private PageIndicatorHelper carouselPageIndicator;
     private BottomNavigationView bottomNavigationView;
     private ProgressBar progressBar;
-    private SwipeRefreshLayout recyclerRefresher;
 
-    private final int DISPLAY_COUNT = 8;
-    private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
-    private boolean isLoading, isInit = true;
+    private SwipeRefreshLayout recyclerRefresher;
+    private DaoSession daoSession;
+
+    private List<Job> jobData;
 
     @Nullable
     @Override
@@ -83,11 +92,31 @@ public class LandingPageFragment extends Fragment {
         carouselPageIndicator.show();
 
         // Implementasi untuk recyclerview
+        progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
+        recyclerRefresher.setOnRefreshListener(refreshListener);
+
+        jobData = new ArrayList<>();
+        daoSession = ((SambilanApplication) getActivity().getApplication()).getDaoSession();
         listJobPresenter = new LandingPagePresenter();
         listJobPresenter.getAllResources(jobCallback, 3,5);
 
         listJobAdapter = new ListPekerjaanAdapter(getActivity());
         listJobAdapter.setListener(onClickJobListListener);
+
+        boolean needLoadOnline = ((SambilanApplication) getActivity().getApplication()).isNeedLoadOnline();
+        if(!needLoadOnline) {
+            jobData = daoSession.getJobDao().loadAll();
+            listJobAdapter.setModel(jobData);
+            progressBar.setVisibility(View.GONE);
+            recyclerRefresher.setRefreshing(false);
+            Log.d(TAG, "Offline --------------------- Offline");
+        } else {
+            listJobPresenter.getHomeJobList(homeJobCallback, 1, DISPLAY_COUNT);
+        }
+
+
 
         layoutManager = new LinearLayoutManager(getContext());
         currentPage = 1;
@@ -96,11 +125,6 @@ public class LandingPageFragment extends Fragment {
         listJobRecyclerView.setLayoutManager(layoutManager);
         listJobRecyclerView.setAdapter(listJobAdapter);
         listJobRecyclerView.addOnScrollListener(scrollListener);
-
-        progressBar = view.findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
-        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
-        recyclerRefresher.setOnRefreshListener(refreshListener);
 
         return view;
     }
@@ -157,13 +181,14 @@ public class LandingPageFragment extends Fragment {
             new LandingPagePresenter.JobResultCallback<HomeJobResponse, Throwable>() {
                 @Override
                 public void OnSuccessResult(HomeJobResponse first) {
+                    totalPage = first.getTotalPage();
 
-                    if(isInit) {
-                        totalPage = first.getTotalPage();
-                        isInit = false;
-                    }
-
+                    jobData.clear();
+                    jobData.addAll(first.getJoblists());
                     listJobAdapter.setModel(first.getJoblists());
+
+                    ((SambilanApplication) getActivity().getApplication()).deleteDatabase();
+                    daoSession.getJobDao().insertInTx(first.getJoblists());
 
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
@@ -185,6 +210,7 @@ public class LandingPageFragment extends Fragment {
                 @Override
                 public void OnSuccessResult(HomeJobResponse first) {
                     listJobAdapter.appendModel(first.getJoblists());
+
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
                     isLoading = false;
@@ -219,13 +245,12 @@ public class LandingPageFragment extends Fragment {
                     firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
                     childCount = layoutManager.getChildCount();
                     itemCount = layoutManager.getItemCount();
-                    Log.d("TEST", "itemCount: "+itemCount);
-                    Log.d("TEST", "TOTAL: "+(totalPage*DISPLAY_COUNT));
 
-                    if(!isLoading &&
-                            (itemCount - (firstVisibleItem + DISPLAY_COUNT)) <= 2
-                            && itemCount < (DISPLAY_COUNT*totalPage)) {
-                        Log.d("TEST", "onScrolled: ---------------------- TEST");
+                    if (!isLoading &&
+//                            (itemCount - (firstVisibleItem + DISPLAY_COUNT)) <= 2
+                            ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
+                            && itemCount < (DISPLAY_COUNT * totalPage)) {
+
                         //kalo udah jadi, currentPage++
                         listJobPresenter.getHomeJobList(onScrollCallback, currentPage, DISPLAY_COUNT);
 

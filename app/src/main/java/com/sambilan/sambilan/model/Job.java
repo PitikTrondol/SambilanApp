@@ -2,15 +2,27 @@ package com.sambilan.sambilan.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+
 /**
  * Created by febrian on 06/02/18.
  */
 
+@Entity(nameInDb = "Job")
 public class Job {
 
+    @Id(autoincrement = false)
     @SerializedName("id")
+<<<<<<< HEAD
     public int id;
+=======
+    private Long jobId;
+>>>>>>> [Afriandi] implement GreenDAO
 
+    @Property(nameInDb = "title")
     @SerializedName("title")
     public String title;
 
@@ -20,6 +32,7 @@ public class Job {
     @SerializedName("capacity")
     public int capacity;
 
+    @Property(nameInDb = "salary")
     @SerializedName("salary")
     public String salary;
 
@@ -44,6 +57,7 @@ public class Job {
     @SerializedName("status")
     public String status;
 
+    @Property(nameInDb = "created_at")
     @SerializedName("created_at")
     public String created_at;
 
