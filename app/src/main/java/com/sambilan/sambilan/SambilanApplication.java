@@ -3,8 +3,8 @@ package com.sambilan.sambilan;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
-import com.sambilan.sambilan.model.DaoMaster;
-import com.sambilan.sambilan.model.DaoSession;
+//import com.sambilan.sambilan.model.DaoMaster;
+//import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;
 
 import org.greenrobot.greendao.database.Database;
@@ -20,8 +20,8 @@ public class SambilanApplication extends Application {
     private boolean needLoadOnline;
 
     private ConnectionReceiver connectionReceiver;
-    private DaoMaster daoMaster;
-    private DaoSession daoSession;
+//    private DaoMaster daoMaster;
+//    private DaoSession daoSession;
     private Database localDb;
 
     public SambilanApplication() {
@@ -34,11 +34,11 @@ public class SambilanApplication extends Application {
 
         connectionReceiver.checkConnection(this);
 
-        localDb = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
-        daoMaster = new DaoMaster(localDb);
-        daoSession = daoMaster.newSession();
+//        localDb = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
+//        daoMaster = new DaoMaster(localDb);
+//        daoSession = daoMaster.newSession();
 
-        deleteDatabase();
+//        deleteDatabase();
 
         Stetho.initializeWithDefaults(this);
     }
@@ -47,9 +47,9 @@ public class SambilanApplication extends Application {
         return connectionReceiver.isConnected();
     }
 
-    public DaoSession getDaoSession() {
-        return this.daoSession;
-    }
+//    public DaoSession getDaoSession() {
+//        return this.daoSession;
+//    }
 
     public boolean isNeedLoadOnline() {
         return needLoadOnline;
@@ -59,10 +59,10 @@ public class SambilanApplication extends Application {
         this.needLoadOnline = needLoadOnline;
     }
 
-    public void deleteDatabase() {
-        daoMaster.dropAllTables(localDb, true);
-        daoMaster.createAllTables(localDb, true);
-    }
+//    public void deleteDatabase() {
+//        daoMaster.dropAllTables(localDb, true);
+//        daoMaster.createAllTables(localDb, true);
+//    }
 
     public String getRole() {
         return role;

@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
-import com.sambilan.sambilan.model.DaoSession;
+//import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.model.HomeJobResponse;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.LandingPageResponse;
@@ -62,7 +62,7 @@ public class LandingPageFragment extends Fragment {
     private ProgressBar progressBar;
 
     private SwipeRefreshLayout recyclerRefresher;
-    private DaoSession daoSession;
+//    private DaoSession daoSession;
 
     private List<Job> jobData;
 
@@ -98,7 +98,7 @@ public class LandingPageFragment extends Fragment {
         recyclerRefresher.setOnRefreshListener(refreshListener);
 
         jobData = new ArrayList<>();
-        daoSession = ((SambilanApplication) getActivity().getApplication()).getDaoSession();
+//        daoSession = ((SambilanApplication) getActivity().getApplication()).getDaoSession();
         listJobPresenter = new LandingPagePresenter();
         listJobPresenter.getAllResources(jobCallback, 3,5);
 
@@ -107,7 +107,7 @@ public class LandingPageFragment extends Fragment {
 
         boolean needLoadOnline = ((SambilanApplication) getActivity().getApplication()).isNeedLoadOnline();
         if(!needLoadOnline) {
-            jobData = daoSession.getJobDao().loadAll();
+//            jobData = daoSession.getJobDao().loadAll();
             listJobAdapter.setModel(jobData);
             progressBar.setVisibility(View.GONE);
             recyclerRefresher.setRefreshing(false);
@@ -188,7 +188,7 @@ public class LandingPageFragment extends Fragment {
                     listJobAdapter.setModel(first.getJoblists());
 
                     ((SambilanApplication) getActivity().getApplication()).deleteDatabase();
-                    daoSession.getJobDao().insertInTx(first.getJoblists());
+//                    daoSession.getJobDao().insertInTx(first.getJoblists());
 
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
