@@ -14,5 +14,5 @@ import retrofit2.http.Path;
 public interface DetailJobsApi {
 
     @GET("/api/v1/jobs/{id}")
-    Call<Job> getDetailJobs(@Path("id") int id);
+    Call<DetailJobResponse> getDetailJobs(@Path("id") int id);
 }

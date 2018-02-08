@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
+import com.sambilan.sambilan.model.DetailJobResponse;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.network.DetailJobsApi;
 import com.sambilan.sambilan.network.NetworkService;
@@ -21,14 +22,15 @@ public class DetailJobsPresenter {
     }
 
     public void getDetailJob(final DetailJobResultCallback<Job, Throwable> resourcesCallback , int id){
-        this.api.getDetailJobs(id).enqueue(new Callback<Job>() {
+        this.api.getDetailJobs(id).enqueue(new Callback<DetailJobResponse>() {
+
             @Override
-            public void onResponse(Call<Job> call, Response<Job> response) {
-                resourcesCallback.OnSuccessResult(response.body());
+            public void onResponse(Call<DetailJobResponse> call, Response<DetailJobResponse> response) {
+                resourcesCallback.OnSuccessResult(response.body().getData());
             }
 
             @Override
-            public void onFailure(Call<Job> call, Throwable t) {
+            public void onFailure(Call<DetailJobResponse> call, Throwable t) {
                 resourcesCallback.OnFailureResult(t);
             }
         });
