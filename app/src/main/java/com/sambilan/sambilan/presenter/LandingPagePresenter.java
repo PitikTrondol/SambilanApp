@@ -20,8 +20,9 @@ public class LandingPagePresenter {
         this.api = NetworkService.createLandingPageApi();
     }
 
-    public void getAllResources(final JobResultCallback<LandingPageResponse, Throwable> resourceCallback,String role) {
-        this.api.getResources(role).enqueue(new Callback<LandingPageResponse>() {
+    public void getAllResources(final JobResultCallback<LandingPageResponse, Throwable> resourceCallback,
+                                int page, int limit) {
+        this.api.getResources(page, limit).enqueue(new Callback<LandingPageResponse>() {
             @Override
             public void onResponse(Call<LandingPageResponse> call, Response<LandingPageResponse> response) {
                 resourceCallback.OnSuccessResult(response.body());

@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.request.RequestOptions;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobList;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
 import com.sambilan.sambilan.view.adapter.viewholder.ListDiterimaHolder;
 
@@ -16,7 +15,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListDiterimaHolder;
  * Created by Andhika Putranto on 1/31/2018.
  */
 
-public class ListDiterimaAdapter extends BaseRecyclerAdapter<JobList, ListDiterimaListener , ListDiterimaHolder> {
+public class ListDiterimaAdapter extends BaseRecyclerAdapter<Job, ListDiterimaListener , ListDiterimaHolder> {
 
     public ListDiterimaAdapter(Context context) {
         super(context);

@@ -46,6 +46,11 @@ public class NetworkService {
     public static WaitingPageApi createWaitingPageApi() {
         return getRetrofit().create(WaitingPageApi.class);
     }
+
+    public static DetailJobsApi createJobsApi(){
+        return getRetrofit().create(DetailJobsApi.class);
+    }
+
     public static DiterimaPageAPI createListJobApi() {
         return getRetrofit().create(DiterimaPageAPI.class);
     }

@@ -75,7 +75,7 @@ public class LandingPageFragment extends Fragment {
 
         // Implementasi untuk recyclerview
         listJobPresenter = new LandingPagePresenter();
-        listJobPresenter.getAllResources(jobCallback, "employer");
+        listJobPresenter.getAllResources(jobCallback, 3,5);
 
         listJobAdapter = new ListPekerjaanAdapter(getActivity());
         listJobAdapter.setListener(jobListener);
@@ -111,7 +111,7 @@ public class LandingPageFragment extends Fragment {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            listJobPresenter.getAllResources(jobCallback,"employer");
+            listJobPresenter.getAllResources(jobCallback,3,5);
         }
     };
 

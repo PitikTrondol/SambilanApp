@@ -1,401 +1,344 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.sambilan.sambilan.detail_job"
-    android:background="#f1f1f1">
+    android:background="@color/colorCommonGrey"
+    tools:context="com.sambilan.sambilan.view.DetailJobActivity">
 
     <ScrollView
+        android:id="@+id/sv_job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/ll_job"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.design.widget.CoordinatorLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:id="@+id/view_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="170dp"
-                        android:background="#ffede971"
-                        android:gravity="center">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_starbuck"/>
-
-                    </RelativeLayout>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/view_b"
-                        android:layout_width="match_parent"
-                        android:layout_height="95dp"
-                        app:cardCornerRadius="0dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="16dp"
-                                android:text="@string/detail_perusahaan"
-                                android:textStyle="bold"
-                                android:paddingTop="11dp"
-                                android:paddingLeft="12dp"/>
-                            <View
-                                android:id="@+id/view_lowongan"
-                                android:layout_width="match_parent"
-                                android:layout_height="1px"
-                                android:layout_marginTop="15dp"
-                                android:background="@color/Grey">
-                            </View>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="2"
-                                android:paddingLeft="11dp">
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="50dp"
-                                    android:layout_weight="1">
-                                    <ImageView
-                                        android:id="@+id/img_dilihat"
-                                        android:layout_width="31dp"
-                                        android:layout_height="15dp"
-                                        android:layout_marginLeft="16dp"
-                                        android:layout_marginTop="13dp"
-                                        android:src="@drawable/ic_dilihat"/>
-                                    <TextView
-                                        android:id="@+id/text_dilihat"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/dilihat"
-                                        android:paddingLeft="10dp"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="13dp"
-                                        android:layout_toRightOf="@id/img_dilihat"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=" 123"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="13dp"
-                                        android:layout_toRightOf="@id/text_dilihat"/>
-
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-                                    <View
-                                        android:layout_marginRight="20dp"
-                                        android:layout_width="1dp"
-                                        android:layout_height="60dp"
-                                        android:background="@color/Grey" />
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="50dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_weight="1"
-                                    android:layout_margin="5dp">
-                                    <ImageView
-                                        android:id="@+id/img_dilamar"
-                                        android:layout_width="17dp"
-                                        android:layout_height="21dp"
-                                        android:layout_marginTop="7dp"
-                                        android:src="@drawable/ic_dilamar"/>
-                                    <TextView
-                                        android:id="@+id/text_dilamar"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/dilamar"
-                                        android:paddingLeft="10dp"
-                                        android:layout_marginTop="7dp"
-                                        android:layout_toRightOf="@id/img_dilamar"
-                                        android:textSize="12sp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=" 123"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="7dp"
-                                        android:layout_toRightOf="@id/text_dilamar"/>
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_favorite"
-                    app:backgroundTint="@color/White"
-                    android:layout_marginRight="20dp"
-                    app:layout_anchor="@id/view_a"
-                    app:layout_anchorGravity="bottom|right|end"/>
-
-            </android.support.design.widget.CoordinatorLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="0dp"
-                    android:layout_marginTop="3dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:text="@string/detail_pekerjan"
-                            android:textStyle="bold"/>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:id="@+id/img_gaji"
-                                android:layout_width="21dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_gaji"
-                                android:layout_marginTop="10dp"/>
-                            <TextView
-                                android:id="@+id/txt_gaji"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/img_gaji"
-                                android:paddingTop="12dp"
-                                android:paddingLeft="12dp"
-                                android:text="1.500.000 - 2.000.000"
-                                android:textSize="12sp"/>
-                            <ImageView
-                                android:id="@+id/img_posting"
-                                android:layout_width="21dp"
-                                android:layout_height="18dp"
-                                android:layout_below="@id/img_gaji"
-                                android:src="@drawable/ic_jadwal"
-                                android:layout_marginTop="14dp"/>
-                            <TextView
-                                android:id="@+id/txt_posting"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tanggal Posting : "
-                                android:textSize="12sp"
-                                android:layout_toRightOf="@id/img_posting"
-                                android:layout_below="@id/txt_gaji"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="12dp"/>
-                            <TextView
-                                android:id="@+id/txt_tglposting"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="21 Jan 2018"
-                                android:textSize="12sp"
-                                android:layout_below="@+id/txt_gaji"
-                                android:layout_toRightOf="@id/txt_posting"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="1dp"/>
-                            <ImageView
-                                android:id="@+id/img_tutup"
-                                android:layout_width="21dp"
-                                android:layout_height="18dp"
-                                android:layout_below="@id/img_posting"
-                                android:src="@drawable/ic_jadwal"
-                                android:layout_marginTop="14dp"/>
-                            <TextView
-                                android:id="@+id/txt_tutup"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tanggal Tutup : "
-                                android:textSize="12sp"
-                                android:layout_toRightOf="@id/img_tutup"
-                                android:layout_below="@id/txt_posting"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="12dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="21 Mar 2018"
-                                android:textSize="12sp"
-                                android:layout_below="@+id/txt_tglposting"
-                                android:layout_toRightOf="@id/txt_tutup"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="1dp"/>
-                        </RelativeLayout>
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    app:cardCornerRadius="0dp"
-                    android:layout_marginTop="3dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:text="@string/detail_perusahaan"
-                            android:textStyle="bold"
-                            android:paddingTop="11dp"
-                            android:paddingLeft="16dp"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:textSize="12sp"
-                            android:text="@string/blablabla"
-                            android:paddingLeft="16dp"/>
-                        <View
-                            android:id="@+id/view"
-                            android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/Grey">
-                        </View>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="5"
-                            android:paddingLeft="11dp">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_weight="1"
-                                android:layout_margin="5dp">
-                                <ImageView
-                                    android:id="@+id/img_lowongan"
-                                    android:layout_width="24dp"
-                                    android:layout_height="21dp"
-                                    android:layout_marginTop="10dp"
-                                    android:src="@drawable/ic_lowongan"/>
-                                <TextView
-                                    android:id="@+id/text_lowongan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/lowongan"
-                                    android:textSize="12sp"
-                                    android:paddingLeft="10dp"
-                                    android:layout_toRightOf="@id/img_lowongan"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="32"
-                                    android:textStyle="bold"
-                                    android:textSize="12sp"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="@color/Orange"
-                                    android:layout_below="@id/text_lowongan"
-                                    android:layout_toRightOf="@id/img_lowongan"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="60dp"
-                                    android:background="@color/Grey" />
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_weight="1"
-                                android:layout_margin="5dp"
-                                android:paddingLeft="15dp">
-                                <ImageView
-                                    android:id="@+id/img_rating"
-                                    android:layout_width="24dp"
-                                    android:layout_height="21dp"
-                                    android:layout_marginTop="10dp"
-                                    android:src="@drawable/ic_rating"/>
-                                <TextView
-                                    android:id="@+id/text_rating"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rating"
-                                    android:textSize="12sp"
-                                    android:paddingLeft="10dp"
-                                    android:layout_toRightOf="@id/img_rating"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="4.7"
-                                    android:textStyle="bold"
-                                    android:textSize="12sp"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="@color/Orange"
-                                    android:layout_below="@id/text_rating"
-                                    android:layout_toRightOf="@id/img_rating"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <View
-                                    android:layout_marginRight="20dp"
-                                    android:layout_width="1dp"
-                                    android:layout_height="60dp"
-                                    android:background="@color/Grey" />
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_weight="1"
-                                android:layout_margin="5dp">
-
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/rl_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom">
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:paddingTop="15dp"
-                    android:text="@string/lamar_pekerjaan"
-                    android:background="@color/Orange"
-                    android:textColor="@color/White"
-                    android:textAlignment="center"
-                    android:textStyle="bold"/>
+                android:layout_height="170dp"
+                android:background="@color/colorCommonOrange">
+
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    tools:src="@drawable/ic_starbuck" />
+
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_image"
+                android:background="@color/White"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/tv_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    tools:text="@string/lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_title"
+                android:background="@color/White"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:src="@drawable/ic_dilihat" />
+
+                <TextView
+                    android:id="@+id/tv_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_dilihat"
+                    android:text="@string/dilihat" />
+
+                <TextView
+                    android:id="@+id/tv_value_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_dilihat"
+                    tools:text="0" />
+
+                <ImageView
+                    android:id="@+id/iv_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:layout_toRightOf="@id/tv_value_dilihat"
+                    android:src="@drawable/ic_dilamar" />
+
+                <TextView
+                    android:id="@+id/tv_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_dilamar"
+                    android:text="@string/dilamar" />
+
+                <TextView
+                    android:id="@+id/tv_value_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_dilamar"
+                    tools:text="0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_keterangan_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_icon_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_keterangan_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Keterangan Lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_keterangan_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_keterangan_lowongan"
+                android:background="@color/White">
+
+                <ImageView
+                    android:id="@+id/iv_gaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_gaji" />
+
+                <TextView
+                    android:id="@+id/tv_gaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_gaji"
+                    tools:text="1.5000.000"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_jadwal" />
+
+                <TextView
+                    android:id="@+id/tv_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_tgl_posting"
+                    android:text="Tanggal Posting : "
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_tgl_posting"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_jadwal" />
+
+                <TextView
+                    android:id="@+id/tv_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_tgl_tutup"
+                    android:text="Tanggal Tutup : "
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_tgl_tutup"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_deskripsi_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_icon_keterangan_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_deskripsi_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Deskripsi Lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_deskripsi_lowongannya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_deskripsi_lowongan"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="8dp"
+                    tools:text="@string/blablabla"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_perusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_deskripsi_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_detail_perusahaan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Detail Perusahaan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_detail_perusahaannya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_detail_perusahaan"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="8dp"
+                    tools:text="@string/blablabla"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_detail_perusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_detail_perusahaan"
+                android:background="@color/White"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_lowongan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:src="@drawable/ic_lowongan" />
+
+                <TextView
+                    android:id="@+id/tv_lowongannya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_lowongan"
+                    android:text="@string/lowongan"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_lowongannya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_lowongannya"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@id/iv_lowongan"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:layout_toRightOf="@id/tv_lowongannya"
+                    android:src="@drawable/ic_rating" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_rating"
+                    android:text="@string/rating"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_rating"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_rating"
+                    tools:text="0"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_lamar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorCommonOrange"
+                android:text="Lamar Pekerjaan"
+                android:textColor="@android:color/white" />
         </LinearLayout>
+
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>
