@@ -1,9 +1,7 @@
 package com.sambilan.sambilan.network;
 
 import com.sambilan.sambilan.model.AdResponse;
-import com.sambilan.sambilan.model.HomeJobResponse;
 import com.sambilan.sambilan.model.JobResponse;
-import com.sambilan.sambilan.model.LandingPageResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;

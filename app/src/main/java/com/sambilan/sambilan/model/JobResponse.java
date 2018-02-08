@@ -31,7 +31,14 @@ public class JobResponse {
     @SerializedName("total_jobs")
     private int totalJobs;
 
-    public JobResponse() {
+    public JobResponse(String status, String message, List<Job> data, int currentPage, int limitPage, int totalPage, int totalJobs) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+        this.currentPage = currentPage;
+        this.limitPage = limitPage;
+        this.totalPage = totalPage;
+        this.totalJobs = totalJobs;
     }
 
     public String getStatus() {
