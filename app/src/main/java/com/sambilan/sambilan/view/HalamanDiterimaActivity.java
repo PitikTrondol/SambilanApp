@@ -11,10 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobListResponse;
-import com.sambilan.sambilan.model.LandingPageResponse;
-import com.sambilan.sambilan.presenter.LandingPagePresenter;
-import com.sambilan.sambilan.presenter.ListJobPresenter;
+import com.sambilan.sambilan.model.response.AcceptedResponse;
+import com.sambilan.sambilan.presenter.AcceptedPagePresenter;
+import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
 
@@ -27,67 +26,67 @@ import retrofit2.HttpException;
 public class HalamanDiterimaActivity extends AppCompatActivity {
     private RecyclerView recyclerDiterima;
     private ListDiterimaAdapter diterimaAdapter;
-    private ListJobPresenter jobPresenter;
     private SwipeRefreshLayout refreshLayout;
     private ProgressBar progressBar;
+    private AcceptedPagePresenter acceptedPagePresenter;
+
+    private int userId = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diterima);
-        jobPresenter = new ListJobPresenter();
-        jobPresenter.getListJobs(jobCallBack,1);
+        recyclerDiterima = findViewById(R.id.common_recycler_view);
+        progressBar = findViewById(R.id.progress_bar);
+        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+
+        acceptedPagePresenter = new AcceptedPagePresenter();
+        acceptedPagePresenter.getAcceptedJobs(acceptedCallBack, userId);
 
         diterimaAdapter = new ListDiterimaAdapter(HalamanDiterimaActivity.this);
         diterimaAdapter.setListener(diterimaListener);
 
-        recyclerDiterima = findViewById(R.id.common_recycler_view);
         recyclerDiterima.setLayoutManager(new LinearLayoutManager(HalamanDiterimaActivity.this));
         recyclerDiterima.setAdapter(diterimaAdapter);
 
-        progressBar = findViewById(R.id.progress_bar);
-        refreshLayout = findViewById(R.id.swipe_refresh_layout);
         refreshLayout.setOnRefreshListener(refreshListener);
     }
-//    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
-//            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
 
+    private ResponseResultCallback<AcceptedResponse, Throwable> acceptedCallBack =
+            new ResponseResultCallback<AcceptedResponse, Throwable>() {
 
-        private ListJobPresenter.JobResultCallback<JobListResponse, Throwable> jobCallBack = new ListJobPresenter.JobResultCallback<JobListResponse, Throwable>() {
+                @Override
+                public void OnSuccessResult(AcceptedResponse first) {
+                    diterimaAdapter.setModel(first.getData());
+                    clearLoading();
+                }
 
-        @Override
-        public void OnSuccessResult(JobListResponse first) {
-            diterimaAdapter.updateModel(first.getData());
-            HalamanDiterimaActivity.this.refreshLayout.setRefreshing(false);
-            HalamanDiterimaActivity.this.progressBar.setVisibility(View.GONE);
-        }
-        @Override
-        public void OnFailureResult(Throwable second) {
-            if (second instanceof HttpException) {
-                Toast.makeText(HalamanDiterimaActivity.this,
-                        "" + ((HttpException) second).code(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (second instanceof NullPointerException) {
-                Toast.makeText(HalamanDiterimaActivity.this,
-                        "" + ((NullPointerException) second).getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        }
-    };
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(HalamanDiterimaActivity.this,
+                            "" + ((NullPointerException) second).getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    clearLoading();
+                }
+            };
 
     private ListDiterimaListener diterimaListener = new ListDiterimaListener() {
         @Override
-        public void onClickDiterima() {
-            Toast.makeText(HalamanDiterimaActivity.this,"",Toast.LENGTH_SHORT).show();
+        public void onClickDiterima(int jobID) {
+            Toast.makeText(HalamanDiterimaActivity.this, "Lihat Job " + jobID,
+                    Toast.LENGTH_SHORT).show();
         }
     };
 
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            jobPresenter.getListJobs(jobCallBack,1);
+            acceptedPagePresenter.getAcceptedJobs(acceptedCallBack, userId);
         }
     };
 
+    private void clearLoading() {
+        progressBar.setVisibility(View.GONE);
+        refreshLayout.setRefreshing(false);
+    }
 }

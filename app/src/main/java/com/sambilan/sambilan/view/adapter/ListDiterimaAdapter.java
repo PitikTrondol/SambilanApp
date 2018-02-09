@@ -3,9 +3,7 @@ package com.sambilan.sambilan.view.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
-import com.bumptech.glide.request.RequestOptions;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;

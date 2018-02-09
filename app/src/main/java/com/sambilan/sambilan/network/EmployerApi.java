@@ -1,6 +1,6 @@
 package com.sambilan.sambilan.network;
 
-import com.sambilan.sambilan.model.EmployerResponse;
+import com.sambilan.sambilan.model.response.EmployerResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

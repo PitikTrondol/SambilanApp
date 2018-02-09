@@ -40,7 +40,7 @@ public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> 
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListSelesaiListener listener) {
+    public void onBind(final Job data, @Nullable final ListSelesaiListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getName());
@@ -51,7 +51,7 @@ public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> 
         btn_penilaian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickBeriPenilaian();
+                listener.onClickBeriPenilaian(data.getId());
             }
         });
     }

@@ -1,6 +1,7 @@
-package com.sambilan.sambilan.model;
+package com.sambilan.sambilan.model.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.sambilan.sambilan.model.Job;
 
 /**
  * Created by febrian on 07/02/18.
@@ -17,8 +18,10 @@ public class DetailJobResponse {
     @SerializedName("data")
     public Job data;
 
-    public DetailJobResponse(){
-
+    public DetailJobResponse(String status, String message, Job data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 
     public String getStatus() {

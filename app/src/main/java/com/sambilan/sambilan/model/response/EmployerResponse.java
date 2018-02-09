@@ -1,4 +1,6 @@
-package com.sambilan.sambilan.model;
+package com.sambilan.sambilan.model.response;
+
+import com.sambilan.sambilan.model.Employer;
 
 import java.util.List;
 
