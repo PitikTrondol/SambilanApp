@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
+import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanPermintaanActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 
@@ -61,7 +62,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             break;
 
             case R.id.ll_menunggu: {
-                Toast.makeText(getActivity(), "Menunggu", Toast.LENGTH_SHORT).show();
+                GoToNextScreen(getActivity(), HalamanMenungguActivity.class);
             }
             break;
 

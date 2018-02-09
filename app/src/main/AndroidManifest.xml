@@ -4,28 +4,68 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".SambilanApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".view.SplashScreenActivity">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD6xlAU4XcS0NRk7yRCHZ_NjEyUgq7Vfjc"/>
+
+        <receiver android:name=".utils.ConnectionReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".view.SplashScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SambilanActivity"/>
-        <activity android:name=".view.DetailJobActivity" />
-        <activity android:name=".view.HalamanPermintaanActivity" />
-        <activity android:name=".view.HalamanSelesaiActivity" />
-        <activity android:name=".view.HalamanMenungguActivity"/>
-        <activity android:name=".view.HalamanDiterimaActivity" />
+
+        <activity
+            android:name=".view.SambilanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".view.DetailJobActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.HalamanPermintaanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.HalamanSelesaiActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
+
+        <activity
+            android:name=".view.HalamanMenungguActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.HalamanDiterimaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
     </application>
 
 </manifest>

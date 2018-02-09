@@ -2,68 +2,77 @@ package com.sambilan.sambilan.model;
 
 import com.google.gson.annotations.SerializedName;
 
+//import org.greenrobot.greendao.annotation.Entity;
+//import org.greenrobot.greendao.annotation.Generated;
+//import org.greenrobot.greendao.annotation.Id;
+//import org.greenrobot.greendao.annotation.Property;
+
 /**
  * Created by febrian on 06/02/18.
  */
 
+//@Entity(nameInDb = "Job")
 public class Job {
 
+    //    @Id(autoincrement = false)
     @SerializedName("id")
-    public int id;
-
+    private int id;
+    //    @Property(nameInDb = "title")
     @SerializedName("title")
-    public String title;
+    private String title;
 
     @SerializedName("desc")
-    public String desc;
+    private String desc;
 
     @SerializedName("capacity")
-    public int capacity;
+    private int capacity;
 
+    //    @Property(nameInDb = "salary")
     @SerializedName("salary")
-    public String salary;
+    private String salary;
 
     @SerializedName("start_due")
-    public String start_due;
+    private String start_due;
 
     @SerializedName("end_due")
-    public String end_due;
+    private String end_due;
 
     @SerializedName("expire_due")
-    public String expire_due;
+    private String expire_due;
 
     @SerializedName("company_id")
-    public int company_id;
+    private int company_id;
 
     @SerializedName("category_id")
-    public int category_id;
+    private int category_id;
 
     @SerializedName("is_verified")
-    public boolean is_verified;
+    private boolean is_verified;
 
     @SerializedName("status")
-    public String status;
+    private String status;
 
+    //    @Property(nameInDb = "created_at")
     @SerializedName("created_at")
-    public String created_at;
+    private String created_at;
 
     @SerializedName("updated_at")
-    public String updated_at;
+    private String updated_at;
 
     @SerializedName("location")
-    public String location;
+    private String location;
 
     @SerializedName("category")
-    public Category category;
+    private Category category;
 
     @SerializedName("company")
-    public Company company;
+    private Company company;
 
     @SerializedName("count_apply")
-    public int count_apply;
+    private int count_apply;
 
     @SerializedName("count_invitation")
-    public int count_invitation;
+    private int count_invitation;
 
     public Job(int id, String title, String desc, int capacity, String salary,
                String start_due, String end_due, String expire_due, int company_id,

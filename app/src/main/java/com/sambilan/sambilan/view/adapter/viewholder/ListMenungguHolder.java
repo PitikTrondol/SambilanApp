@@ -45,7 +45,7 @@ public class ListMenungguHolder extends BaseViewHolder<Job, ListMenungguListener
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListMenungguListener listener) {
+    public void onBind(final Job data, @Nullable final ListMenungguListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getAddress());
@@ -56,7 +56,7 @@ public class ListMenungguHolder extends BaseViewHolder<Job, ListMenungguListener
         btn_batalkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClickBatalkan();
+                listener.onClickBatalkan(data.getId());
             }
         });
     }

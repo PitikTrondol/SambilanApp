@@ -1,9 +1,13 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
+import com.facebook.stetho.Stetho;
+//import com.sambilan.sambilan.model.DaoMaster;
+//import com.sambilan.sambilan.model.DaoSession;
+import com.sambilan.sambilan.utils.ConnectionReceiver;
+
+import org.greenrobot.greendao.database.Database;
 
 /**
  * Created by Afriandi Haryanto on 1/13/2018.
@@ -11,19 +15,60 @@ import android.net.NetworkInfo;
 
 public class SambilanApplication extends Application {
 
-    private static ConnectivityManager cm;
-    public SambilanApplication() {
+    private final String DB_NAME = "Sambilan_db";
+    private String role = "";
+    private boolean needLoadOnline;
 
+    private ConnectionReceiver connectionReceiver;
+//    private DaoMaster daoMaster;
+//    private DaoSession daoSession;
+    private Database localDb;
+
+    public SambilanApplication() {
+        connectionReceiver = new ConnectionReceiver();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        connectionReceiver.checkConnection(this);
+
+//        localDb = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
+//        daoMaster = new DaoMaster(localDb);
+//        daoSession = daoMaster.newSession();
+
+//        deleteDatabase();
+
+        Stetho.initializeWithDefaults(this);
     }
 
     public boolean isConnected() {
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnected();
+        return connectionReceiver.isConnected();
+    }
+
+//    public DaoSession getDaoSession() {
+//        return this.daoSession;
+//    }
+
+    public boolean isNeedLoadOnline() {
+        return needLoadOnline;
+    }
+
+    public void setNeedLoadOnline(boolean needLoadOnline) {
+        this.needLoadOnline = needLoadOnline;
+    }
+
+//    public void deleteDatabase() {
+//        daoMaster.dropAllTables(localDb, true);
+//        daoMaster.createAllTables(localDb, true);
+//    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

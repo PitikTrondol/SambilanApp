@@ -59,13 +59,23 @@ public abstract class BaseRecyclerAdapter<T, L extends BaseRecyclerListener, VH 
         return layoutInflater.inflate(layoutId, parent, attachRoot);
     }
 
-    public void updateModel(List<T> newData) {
+    public void setModel(List<T> newData) {
         if (null == newData) {
             throw new IllegalArgumentException("newModel is Null");
         }
 
         this.data.clear();
         this.data.addAll(newData);
+        notifyDataSetChanged();
+    }
+
+    public void appendModel(List<T> newData) {
+        if (null == newData) {
+            throw new IllegalArgumentException("newModel is Null");
+        }
+
+        int lastIdx = this.data.size();
+        this.data.addAll(lastIdx, newData);
         notifyDataSetChanged();
     }
 }

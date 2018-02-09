@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
 
 /**
  * Created by Andhika Putranto on 1/14/2018.
@@ -16,6 +17,7 @@ import com.sambilan.sambilan.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT = 4000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         },SPLASH_TIME_OUT);
+
+        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
     }
 
 }

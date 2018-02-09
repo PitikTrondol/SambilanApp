@@ -1,14 +1,15 @@
-package com.sambilan.sambilan.model;
+package com.sambilan.sambilan.model.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.sambilan.sambilan.model.Job;
 
 import java.util.List;
 
 /**
- * Created by Afriandi Haryanto on 1/30/2018.
+ * Created by Afriandi Haryanto on 2/9/2018.
  */
 
-public class LandingPageResponse {
+public class InvitationResponse {
 
     @SerializedName("status")
     private String status;
@@ -19,7 +20,7 @@ public class LandingPageResponse {
     @SerializedName("data")
     private List<Job> data;
 
-    public LandingPageResponse(String status, String message, List<Job> data) {
+    public InvitationResponse(String status, String message, List<Job> data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -47,5 +48,23 @@ public class LandingPageResponse {
 
     public void setData(List<Job> data) {
         this.data = data;
+    }
+
+    public class Post {
+
+        @SerializedName("status")
+        private String status;
+
+        public Post(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
     }
 }
