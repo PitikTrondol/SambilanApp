@@ -20,11 +20,7 @@ public class AcceptedResponse {
     @SerializedName("data")
     private List<Job> data;
 
-<<<<<<< HEAD:app/src/main/java/com/sambilan/sambilan/model/LandingPageResponse.java
-    public LandingPageResponse(String status, String message, List<Job> data) {
-=======
     public AcceptedResponse(String status, String message, List<Job> data) {
->>>>>>> develop:app/src/main/java/com/sambilan/sambilan/model/response/AcceptedResponse.java
         this.status = status;
         this.message = message;
         this.data = data;

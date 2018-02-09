@@ -1,7 +1,7 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.DetailJobResponse;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.DetailJobResponse;
 import com.sambilan.sambilan.network.DetailJobsApi;
 import com.sambilan.sambilan.network.NetworkService;
 

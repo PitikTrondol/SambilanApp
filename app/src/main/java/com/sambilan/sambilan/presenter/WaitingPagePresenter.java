@@ -22,10 +22,9 @@ public class WaitingPagePresenter {
         this.api = NetworkService.createWaitingPageApi();
     }
 
-    public void getAllWaitingList(final ResponseResultCallback<WaitingPageResponse, Throwable> waitingListCallback,
-                                  int id) {
+    public void getAllWaitingList(final ResponseResultCallback<WaitingPageResponse, Throwable> waitingListCallback) {
 
-        this.api.getWaitingList(id).enqueue(new Callback<WaitingPageResponse>() {
+        this.api.getWaitingList().enqueue(new Callback<WaitingPageResponse>() {
             @Override
             public void onResponse(Call<WaitingPageResponse> call, Response<WaitingPageResponse> response) {
                 waitingListCallback.OnSuccessResult(response.body());
