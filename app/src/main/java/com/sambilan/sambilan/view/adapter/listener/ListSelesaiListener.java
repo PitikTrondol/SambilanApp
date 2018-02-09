@@ -5,5 +5,5 @@ package com.sambilan.sambilan.view.adapter.listener;
  */
 
 public interface ListSelesaiListener extends BaseRecyclerListener {
-    public void onClickBeriPenilaian();
+    public void onClickBeriPenilaian(int jobID);
 }

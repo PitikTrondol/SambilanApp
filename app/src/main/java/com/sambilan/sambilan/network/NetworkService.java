@@ -51,12 +51,16 @@ public class NetworkService {
         return getRetrofit().create(WaitingPageApi.class);
     }
 
-    public static DetailJobsApi createJobsApi(){
-        return getRetrofit().create(DetailJobsApi.class);
-    }
-
     public static DiterimaPageAPI createAcceptedPageApi() {
         return getRetrofit().create(DiterimaPageAPI.class);
+    }
+
+    public static FinishedPageAPI createFinishedPageAPI() {
+        return getRetrofit().create(FinishedPageAPI.class);
+    }
+
+    public static DetailJobsApi createJobsApi(){
+        return getRetrofit().create(DetailJobsApi.class);
     }
 
     public static EmployerApi createEmpApi() {
