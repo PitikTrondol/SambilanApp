@@ -1,8 +1,7 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.Ad;
-import com.sambilan.sambilan.model.AdResponse;
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.response.AdResponse;
+import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.network.NetworkService;
 import com.sambilan.sambilan.network.LandingPageApi;
 

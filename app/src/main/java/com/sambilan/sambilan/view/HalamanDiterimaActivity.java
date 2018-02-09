@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.ListJobPresenter;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;

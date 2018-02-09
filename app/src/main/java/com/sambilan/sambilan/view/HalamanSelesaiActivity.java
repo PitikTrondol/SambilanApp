@@ -4,20 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobResponse;
 //import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
-import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
-
-import retrofit2.HttpException;
 
 /**
  * Created by Afriandi Haryanto on 1/26/2018.

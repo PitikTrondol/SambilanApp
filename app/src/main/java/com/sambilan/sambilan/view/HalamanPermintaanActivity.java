@@ -11,13 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.response.InvitationResponse;
+import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.InvitationPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
-
-import retrofit2.HttpException;
 
 /**
  * Created by Afriandi Haryanto on 1/25/2018.
@@ -36,95 +35,84 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
 
-//        jobPresenter = new LandingPagePresenter();
-//        jobPresenter.getAllResources(jobCallback,3, 5);
-//
-//        permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
-//        permintaanAdapter.setListener(permintaanListener);
-//
-//        recyclerPermintaan = findViewById(R.id.common_recycler_view);
-//        recyclerPermintaan.setLayoutManager(new LinearLayoutManager(HalamanPermintaanActivity.this));
-//        recyclerPermintaan.setAdapter(permintaanAdapter);
-//
-//        progressBar = findViewById(R.id.progress_bar);
-//        refreshLayout = findViewById(R.id.swipe_refresh_layout);
-//        refreshLayout.setOnRefreshListener(refreshListener);
+        invitationPresenter = new InvitationPagePresenter();
+        invitationPresenter.getJobInvitation(permintaanCallback, 1);
+
+        permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
+        permintaanAdapter.setListener(permintaanListener);
+
+        recyclerPermintaan = findViewById(R.id.common_recycler_view);
+        recyclerPermintaan.setLayoutManager(new LinearLayoutManager(HalamanPermintaanActivity.this));
+        recyclerPermintaan.setAdapter(permintaanAdapter);
+
+        progressBar = findViewById(R.id.progress_bar);
+        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+        refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-//    private SwipeRefreshLayout.OnRefreshListener refreshListener =
-//            new SwipeRefreshLayout.OnRefreshListener() {
-//                @Override
-//                public void onRefresh() {
-//                    invitationPresenter.getJobInvitation(resultCallback, 1);
-//                }
-//            };
-//
-//    private ListPermintaanListener permintaanListener =
-//            new ListPermintaanListener() {
-//                @Override
-//                public void onClickButtonTerima(int jobID) {
-//                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
-//                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onClickButtonTolak(int jobID) {
-//                    String agree = invitationPresenter.postInvitAction(1, jobID, "agree/disagree");
-//                    Toast.makeText(HalamanPermintaanActivity.this, agree, Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onClickListPermintaan(int jobID) {
-//
-//                }
-//            };
-//
-//    // create callback buat presenter
-//    private LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>
-//            jobCallback = new LandingPagePresenter.JobResultCallback<LandingPageResponse, Throwable>() {
-//
-//        @Override
-//        public void OnSuccessResult(LandingPageResponse first) {
-//            permintaanAdapter.setModel(first.getData());
-//            HalamanPermintaanActivity.this.refreshLayout.setRefreshing(false);
-//            HalamanPermintaanActivity.this.progressBar.setVisibility(View.GONE);
-//        }
-//
-//        @Override
-//        public void OnFailureResult(Throwable second) {
-//            if (second instanceof HttpException) {
-//                Toast.makeText(HalamanPermintaanActivity.this,
-//                        "" + ((HttpException) second).code(),
-//                        Toast.LENGTH_SHORT).show();
-//            } else if (second instanceof NullPointerException) {
-//                Toast.makeText(HalamanPermintaanActivity.this,
-//                        "" + ((NullPointerException) second).getMessage(),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
-//
-//    private ListPermintaanListener permintaanListener = new ListPermintaanListener() {
-//        @Override
-//        public void onClickButtonTerima() {
-//            Toast.makeText(HalamanPermintaanActivity.this, "DITERIMA", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onClickButtonTolak() {
-//            Toast.makeText(HalamanPermintaanActivity.this, "DITOLAK", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onClickListPermintaan() {
-//            Toast.makeText(HalamanPermintaanActivity.this, "KE DATAIL JOB", Toast.LENGTH_SHORT).show();
-//        }
-//    };
-//
-//    private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-//        @Override
-//        public void onRefresh() {
-//            jobPresenter.getAllResources(jobCallback,3, 5);
-//        }
-//    };
+    private ResponseResultCallback<InvitationResponse, Throwable> permintaanCallback =
+            new ResponseResultCallback<InvitationResponse, Throwable>() {
+                @Override
+                public void OnSuccessResult(InvitationResponse first) {
+                    permintaanAdapter.setModel(first.getData());
+                    clearLoading();
+                }
+
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(HalamanPermintaanActivity.this, "Halaman Permintaan Error",
+                            Toast.LENGTH_SHORT).show();
+                    clearLoading();
+                }
+            };
+
+    private ListPermintaanListener permintaanListener =
+            new ListPermintaanListener() {
+                @Override
+                public void onClickButtonTerima(int jobID) {
+                    postAndUpdate();
+                }
+
+                @Override
+                public void onClickButtonTolak(int jobID) {
+                    postAndUpdate();
+                }
+
+                @Override
+                public void onClickListPermintaan(int jobID) {
+                    Toast.makeText(HalamanPermintaanActivity.this, "KE DETAIL JOB", Toast.LENGTH_SHORT).show();
+                }
+            };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    invitationPresenter.getJobInvitation(permintaanCallback, 1);
+                }
+            };
+
+    private ResponseResultCallback<String, Throwable> actionCallback =
+            new ResponseResultCallback<String, Throwable>() {
+                @Override
+                public void OnSuccessResult(String first) {
+                    Toast.makeText(HalamanPermintaanActivity.this, ""+first, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(HalamanPermintaanActivity.this, ""+second.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            };
+
+    private void postAndUpdate () {
+        invitationPresenter.postInvitAction(actionCallback, 1 , 1, "agree");
+        invitationPresenter.getJobInvitation(permintaanCallback, 1);
+    }
+
+    private void clearLoading() {
+        progressBar.setVisibility(View.GONE);
+        refreshLayout.setRefreshing(false);
+    }
+
 }

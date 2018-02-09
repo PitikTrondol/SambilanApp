@@ -1,6 +1,6 @@
 package com.sambilan.sambilan.network;
 
-import com.sambilan.sambilan.model.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.WaitingPageResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,6 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.WaitingPageResponse;
 import com.sambilan.sambilan.network.NetworkService;
 import com.sambilan.sambilan.network.WaitingPageApi;
 

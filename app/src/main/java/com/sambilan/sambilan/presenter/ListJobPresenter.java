@@ -1,12 +1,8 @@
 package com.sambilan.sambilan.presenter;
 
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.network.DiterimaPageAPI;
 import com.sambilan.sambilan.network.NetworkService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.

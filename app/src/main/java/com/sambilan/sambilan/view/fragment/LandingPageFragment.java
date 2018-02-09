@@ -21,9 +21,8 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Ad;
-import com.sambilan.sambilan.model.AdResponse;
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobResponse;
+import com.sambilan.sambilan.model.response.AdResponse;
+import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.DetailJobActivity;

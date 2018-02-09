@@ -3,18 +3,13 @@ package com.sambilan.sambilan.view;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.JobResponse;
 //import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
-import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 
 public class HalamanMenungguActivity extends AppCompatActivity {
 

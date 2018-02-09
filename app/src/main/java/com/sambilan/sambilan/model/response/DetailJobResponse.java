@@ -1,6 +1,7 @@
-package com.sambilan.sambilan.model;
+package com.sambilan.sambilan.model.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.sambilan.sambilan.model.Job;
 
 /**
  * Created by febrian on 07/02/18.
