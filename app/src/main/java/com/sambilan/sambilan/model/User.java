@@ -35,8 +35,18 @@ public class User {
     @SerializedName("user_id")
     private int user_id;
 
-    public User(){
-
+    public User(int id, String fullname, boolean is_verified,
+                String gender, String role, String phone,
+                String avatar_url, String address, int user_id) {
+        this.id = id;
+        this.fullname = fullname;
+        this.is_verified = is_verified;
+        this.gender = gender;
+        this.role = role;
+        this.phone = phone;
+        this.avatar_url = avatar_url;
+        this.address = address;
+        this.user_id = user_id;
     }
 
     public int getId() {

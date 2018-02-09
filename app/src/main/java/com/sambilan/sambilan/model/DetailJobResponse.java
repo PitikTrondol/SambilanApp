@@ -17,8 +17,10 @@ public class DetailJobResponse {
     @SerializedName("data")
     public Job data;
 
-    public DetailJobResponse(){
-
+    public DetailJobResponse(String status, String message, Job data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 
     public String getStatus() {

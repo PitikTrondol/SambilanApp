@@ -15,8 +15,9 @@ public class JobListResponse {
     @SerializedName("data")
     public List<Job> data;
 
-    public JobListResponse() {
-
+    public JobListResponse(String status, List<Job> data) {
+        this.status = status;
+        this.data = data;
     }
 
     public String getStatus() {

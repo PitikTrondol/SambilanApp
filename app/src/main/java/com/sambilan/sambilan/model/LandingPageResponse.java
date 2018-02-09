@@ -19,7 +19,10 @@ public class LandingPageResponse {
     @SerializedName("data")
     private List<Job> data;
 
-    public LandingPageResponse() {
+    public LandingPageResponse(String status, String message, List<Job> data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 
     public String getStatus() {

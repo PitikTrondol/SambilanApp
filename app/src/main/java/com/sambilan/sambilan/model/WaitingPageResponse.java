@@ -16,8 +16,9 @@ public class WaitingPageResponse {
     @SerializedName("joblists")
     private List<Job> data;
 
-    public WaitingPageResponse(){
-
+    public WaitingPageResponse(String status, List<Job> data) {
+        this.status = status;
+        this.data = data;
     }
 
     public String getStatus() {
