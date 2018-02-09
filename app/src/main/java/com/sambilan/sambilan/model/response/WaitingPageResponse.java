@@ -14,11 +14,12 @@ public class WaitingPageResponse {
     @SerializedName("status")
     private String status;
 
-    @SerializedName("joblists")
+    @SerializedName("data")
     private List<Job> data;
 
-    public WaitingPageResponse(){
-
+    public WaitingPageResponse(String status, List<Job> data) {
+        this.status = status;
+        this.data = data;
     }
 
     public String getStatus() {
@@ -35,5 +36,22 @@ public class WaitingPageResponse {
 
     public void setData(List<Job> data) {
         this.data = data;
+    }
+
+    public class Post {
+        @SerializedName("status")
+        private String status;
+
+        public Post(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
     }
 }

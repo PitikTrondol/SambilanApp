@@ -30,13 +30,17 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
 
+    private int userId = 1;
+    private final String SET_TERIMA = "agree";
+    private final String SET_TOLAK = "disagree";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
 
         invitationPresenter = new InvitationPagePresenter();
-        invitationPresenter.getJobInvitation(permintaanCallback, 1);
+        invitationPresenter.getJobInvitation(permintaanCallback, userId);
 
         permintaanAdapter = new ListPermintaanAdapter(HalamanPermintaanActivity.this);
         permintaanAdapter.setListener(permintaanListener);
@@ -66,32 +70,6 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
                 }
             };
 
-    private ListPermintaanListener permintaanListener =
-            new ListPermintaanListener() {
-                @Override
-                public void onClickButtonTerima(int jobID) {
-                    postAndUpdate();
-                }
-
-                @Override
-                public void onClickButtonTolak(int jobID) {
-                    postAndUpdate();
-                }
-
-                @Override
-                public void onClickListPermintaan(int jobID) {
-                    Toast.makeText(HalamanPermintaanActivity.this, "KE DETAIL JOB", Toast.LENGTH_SHORT).show();
-                }
-            };
-
-    private SwipeRefreshLayout.OnRefreshListener refreshListener =
-            new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    invitationPresenter.getJobInvitation(permintaanCallback, 1);
-                }
-            };
-
     private ResponseResultCallback<String, Throwable> actionCallback =
             new ResponseResultCallback<String, Throwable>() {
                 @Override
@@ -105,14 +83,43 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
                 }
             };
 
-    private void postAndUpdate () {
-        invitationPresenter.postInvitAction(actionCallback, 1 , 1, "agree");
-        invitationPresenter.getJobInvitation(permintaanCallback, 1);
+    private ListPermintaanListener permintaanListener =
+            new ListPermintaanListener() {
+                @Override
+                public void onClickButtonTerima(int jobID) {
+                    Toast.makeText(HalamanPermintaanActivity.this, "Accept Job ID "+jobID,
+                            Toast.LENGTH_SHORT).show();
+                    postAndUpdate(jobID, SET_TERIMA);
+                }
+
+                @Override
+                public void onClickButtonTolak(int jobID) {
+                    Toast.makeText(HalamanPermintaanActivity.this, "Decline Job ID "+jobID,
+                            Toast.LENGTH_SHORT).show();
+                    postAndUpdate(jobID, SET_TOLAK);
+                }
+
+                @Override
+                public void onClickListPermintaan(int jobID) {
+                    Toast.makeText(HalamanPermintaanActivity.this, "KE DETAIL JOB", Toast.LENGTH_SHORT).show();
+                }
+            };
+
+    private SwipeRefreshLayout.OnRefreshListener refreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    invitationPresenter.getJobInvitation(permintaanCallback, userId);
+                }
+            };
+
+    private void postAndUpdate (int jobID, String terimaAtauTolak) {
+        invitationPresenter.postInvitAction(actionCallback, userId , jobID, terimaAtauTolak);
+        invitationPresenter.getJobInvitation(permintaanCallback, userId);
     }
 
     private void clearLoading() {
         progressBar.setVisibility(View.GONE);
         refreshLayout.setRefreshing(false);
     }
-
 }
