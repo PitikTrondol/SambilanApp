@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.RegisterPekerjaActivity"/>
+        <activity android:name=".view.RegisterPekerjakanActivity"/>
         <activity android:name=".view.SambilanActivity"/>
         <activity android:name=".view.LoginActivity"/>
         <activity android:name=".view.DetailJobActivity" />

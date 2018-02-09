@@ -1,8 +1,11 @@
 package com.sambilan.sambilan.network;
 
 import com.sambilan.sambilan.model.Login;
+import com.sambilan.sambilan.model.LoginRequest;
+import com.sambilan.sambilan.model.LoginResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 /**
@@ -11,6 +14,5 @@ import retrofit2.http.POST;
 
 public interface LoginPageAPI {
     @POST("/api/v1/users/sign_in")
-    Call<Login> getData();
-
+    Call<LoginResponse> postData(@Body LoginRequest request);
 }
