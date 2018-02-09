@@ -55,7 +55,7 @@ public class NetworkService {
         return getRetrofit().create(DetailJobsApi.class);
     }
 
-    public static DiterimaPageAPI createListJobApi() {
+    public static DiterimaPageAPI createAcceptedPageApi() {
         return getRetrofit().create(DiterimaPageAPI.class);
     }
 

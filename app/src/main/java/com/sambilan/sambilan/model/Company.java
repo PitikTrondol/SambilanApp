@@ -9,28 +9,28 @@ import com.google.gson.annotations.SerializedName;
 public class Company {
 
     @SerializedName("id")
-    public int id;
+    private int id;
 
     @SerializedName("user_detail_id")
-    public int user_detail_id;
+    private int user_detail_id;
 
     @SerializedName("name")
-    public String name;
+    private String name;
 
     @SerializedName("address")
-    public String address;
+    private String address;
 
     @SerializedName("desc")
-    public String desc;
+    private String desc;
 
     @SerializedName("logo_url")
-    public String logo_url;
+    private String logo_url;
 
     @SerializedName("is_verified")
-    public String is_verified;
+    private String is_verified;
 
     @SerializedName("user_detail")
-    public User user_detail;
+    private User user_detail;
 
     public Company(int id, int user_detail_id, String name, String address, String desc, String logo_url, String is_verified, User user_detail) {
         this.id = id;

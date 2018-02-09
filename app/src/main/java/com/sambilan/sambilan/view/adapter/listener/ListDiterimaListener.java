@@ -5,5 +5,5 @@ package com.sambilan.sambilan.view.adapter.listener;
  */
 
 public interface ListDiterimaListener extends  BaseRecyclerListener {
-    public void onClickDiterima();
+    public void onClickDiterima(int id);
 }

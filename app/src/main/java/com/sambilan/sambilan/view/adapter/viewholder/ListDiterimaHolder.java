@@ -1,8 +1,10 @@
 package com.sambilan.sambilan.view.adapter.viewholder;
 
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,18 +39,26 @@ public class ListDiterimaHolder extends BaseViewHolder<Job, ListDiterimaListener
         tv_date_sebelum = itemView.findViewById(R.id.tv_sebelum);
         tv_date_sesudah = itemView.findViewById(R.id.tv_sesudah);
         iv_company = itemView.findViewById(R.id.iv_jobImage);
+        rl_diterima = itemView.findViewById(R.id.rl_diterima);
     }
 
     @Override
-    public void onBind(Job data, @Nullable ListDiterimaListener listener) {
+    public void onBind(final Job data, @Nullable final ListDiterimaListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_salary.setText(data.getSalary());
-        tv_date_sebelum.setText(data.getStart_due());
-        tv_date_sesudah.setText(data.getEnd_due());
+        tv_date_sebelum.setText("Mulai : "+data.getStart_due());
+        tv_date_sesudah.setText("Selesai : "+data.getEnd_due());
 
         helper= new ImgurHelper(data.getCompany().getLogo_url().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).apply(new RequestOptions().fitCenter()).into(iv_company);
+
+        rl_diterima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClickDiterima(data.getId());
+            }
+        });
     }
 }
 
