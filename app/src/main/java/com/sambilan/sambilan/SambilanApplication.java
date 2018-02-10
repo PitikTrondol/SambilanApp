@@ -1,8 +1,14 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
+import android.provider.ContactsContract;
 
+import com.facebook.stetho.Stetho;
+import com.sambilan.sambilan.model.DaoMaster;
+import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;
+
+import org.greenrobot.greendao.database.Database;
 
 
 /**
@@ -11,22 +17,32 @@ import com.sambilan.sambilan.utils.ConnectionReceiver;
 
 public class SambilanApplication extends Application {
 
+    private final String dbName = "SambilanDB";
     private String role = "";
     private boolean needLoadOnline;
 
-    private String appToken = "2a04133d078354a0d882e6ebccb620dfc231939e11b1a742f7471361f1201ebc";
+    private String appToken = "38a6f7150409cb67f42ac60128b51237d668e57111d5239059dd4af3b5b2ad11";
     private ConnectionReceiver connectionReceiver;
-
-    public SambilanApplication() {
-        connectionReceiver = new ConnectionReceiver();
-    }
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+    private Database database;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        connectionReceiver = new ConnectionReceiver();
         connectionReceiver.checkConnection(this);
+
+        database = new DaoMaster.DevOpenHelper(this, dbName).getWritableDb();
+        daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
+
+        daoMaster.dropAllTables(database, true);
+        daoMaster.createAllTables(database, true);
+
+        Stetho.initializeWithDefaults(this);
     }
 
     public boolean isConnected() {
@@ -57,4 +73,7 @@ public class SambilanApplication extends Application {
         return appToken;
     }
 
+    public DaoSession getDaoSession() {
+        return daoSession;
+    }
 }

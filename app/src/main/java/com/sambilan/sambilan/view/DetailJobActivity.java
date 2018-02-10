@@ -75,21 +75,24 @@ public class DetailJobActivity extends AppCompatActivity
     }
 
 
-    private void setData(Job detailJob){
-       Glide.with(this).load(detailJob.getCompany().getLogo_url().trim()).into(iv_logo);
+    private void setData(Job detailJob) {
        tv_lowongan.setText("Lowongan Sebagai "+detailJob.getTitle());
        tv_dilihat.setText("10");
        tv_dilamar.setText(""+detailJob.getCount_apply());
 
-       tv_gaji.setText(detailJob.getSalary());
-       tv_value_tgl_posting.setText(detailJob.getStart_due());
-       tv_value_tgl_tutup.setText(detailJob.getEnd_due());
+        tv_gaji.setText(detailJob.getSalary());
+        tv_value_tgl_posting.setText(detailJob.getStart_due());
+        tv_value_tgl_tutup.setText(detailJob.getEnd_due());
 
-       tv_deskripsi_lowongan.setText(detailJob.getDesc()+"\nKapasitas : "+detailJob.getCapacity());
+        tv_deskripsi_lowongan.setText(detailJob.getDesc() + "\nKapasitas : " + detailJob.getCapacity());
 
        tv_detail_perusahaan.setText(detailJob.getCompany().getName()+"\nAlamat : "+detailJob.getCompany().getAddress());
        tv_value_lowongannya.setText(""+detailJob.getCount_invitation());
        tv_value_ratingnya.setText("4.9");
+
+        if(null !=detailJob.getCompany().getLogo_url())
+            Glide.with(this).load(detailJob.getCompany().getLogo_url().trim()).into(iv_logo);
+
     }
 
     private View.OnClickListener onLamarPekerjaan =

@@ -42,8 +42,10 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
         tv_lokasi.setText(data.getCompany().getAddress());
         tv_fee.setText(data.getSalary());
 
-        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
-        Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+        if(null != data.getCompany().getLogo_url()) {
+            helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
+            Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+        }
 
         if (null != listener)
             itemView.setOnClickListener(new View.OnClickListener() {

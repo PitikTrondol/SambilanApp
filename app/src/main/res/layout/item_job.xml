@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_8dp"
         app:cardBackgroundColor="#ffff"
         app:cardCornerRadius="1dp"
         app:cardPreventCornerOverlap="false">

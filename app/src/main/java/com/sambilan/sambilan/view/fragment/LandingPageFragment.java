@@ -88,7 +88,7 @@ public class LandingPageFragment extends Fragment {
 
         currentPage = 1;
         landingPagePresenter = new LandingPagePresenter();
-        landingPagePresenter.getHomeCarousel(carouselCallback);
+//        landingPagePresenter.getHomeCarousel(carouselCallback);
         landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
