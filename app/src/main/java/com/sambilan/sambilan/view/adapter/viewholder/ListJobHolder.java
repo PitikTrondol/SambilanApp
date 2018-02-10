@@ -36,7 +36,7 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListJobListener listener) {
+    public void onBind(final Job data, @Nullable final ListJobListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getAddress());
@@ -49,7 +49,7 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClickJob();
+                    listener.onClickJob(data.getId());
                 }
             });
     }

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.InvitationResponse;
-import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.InvitationPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListPermintaanAdapter;

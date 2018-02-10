@@ -2,12 +2,8 @@ package com.sambilan.sambilan;
 
 import android.app.Application;
 
-import com.facebook.stetho.Stetho;
-//import com.sambilan.sambilan.model.DaoMaster;
-//import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;
 
-import org.greenrobot.greendao.database.Database;
 
 /**
  * Created by Afriandi Haryanto on 1/13/2018.
@@ -15,41 +11,27 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private final String DB_NAME = "Sambilan_db";
     private String role = "";
     private boolean needLoadOnline;
 
+    private String appToken = "2a04133d078354a0d882e6ebccb620dfc231939e11b1a742f7471361f1201ebc";
     private ConnectionReceiver connectionReceiver;
-//    private DaoMaster daoMaster;
-//    private DaoSession daoSession;
-    private Database localDb;
 
     public SambilanApplication() {
         connectionReceiver = new ConnectionReceiver();
     }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         connectionReceiver.checkConnection(this);
-
-//        localDb = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
-//        daoMaster = new DaoMaster(localDb);
-//        daoSession = daoMaster.newSession();
-
-//        deleteDatabase();
-
-        Stetho.initializeWithDefaults(this);
     }
 
     public boolean isConnected() {
         return connectionReceiver.isConnected();
     }
-
-//    public DaoSession getDaoSession() {
-//        return this.daoSession;
-//    }
 
     public boolean isNeedLoadOnline() {
         return needLoadOnline;
@@ -59,11 +41,6 @@ public class SambilanApplication extends Application {
         this.needLoadOnline = needLoadOnline;
     }
 
-//    public void deleteDatabase() {
-//        daoMaster.dropAllTables(localDb, true);
-//        daoMaster.createAllTables(localDb, true);
-//    }
-
     public String getRole() {
         return role;
     }
@@ -71,4 +48,13 @@ public class SambilanApplication extends Application {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public void setAppToken(String TOKEN) {
+        this.appToken = TOKEN;
+    }
+
+    public String getAppToken() {
+        return appToken;
+    }
+
 }

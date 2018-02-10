@@ -15,6 +15,7 @@ public class NetworkService {
 
     private static Retrofit retrofitInstance;
     private static final String BASE_URL = "http://private-c66260-sambilan.apiary-mock.com";
+//    private static final String BASE_URL = "http://sambilan.herokuapp.com";
 
     /**
      * ===================================
@@ -26,8 +27,7 @@ public class NetworkService {
      * add client                   .client()
      * eksekusi dengan build        .build()
      */
-
-    public static Retrofit getRetrofit() {
+    private static Retrofit getRetrofit() {
 
         if (null == retrofitInstance) {
             retrofitInstance = new Retrofit.Builder()
@@ -63,10 +63,6 @@ public class NetworkService {
         return getRetrofit().create(DetailJobsApi.class);
     }
 
-    public static EmployerApi createEmpApi() {
-        return getRetrofit().create(EmployerApi.class);
-    }
-
     /**
      * ===================================
      * Create OkHttpClient instance
@@ -76,7 +72,7 @@ public class NetworkService {
      * add interceptor          .addInterceptor()
      * execute with             .build()
      */
-    public static OkHttpClient client() {
+    private static OkHttpClient client() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -17,8 +17,6 @@ import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
 
-import retrofit2.HttpException;
-
 /**
  * Created by Andhika Putranto on 1/31/2018.
  */

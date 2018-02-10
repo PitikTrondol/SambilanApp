@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
+//apply plugin: 'org.greenrobot.greendao'
 
 ext.majorVersion = 0
 ext.minorVersion = 0
 ext.patchVersion = 2
 ext.preRelease = ""
-ext.minSdk = 19
+ext.minSdk = 21
 
 android {
     compileSdkVersion 26
@@ -32,7 +32,7 @@ android {
 
     buildTypes {
         release {
-            debuggable false
+            debuggable true
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
@@ -66,8 +66,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:11.8.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
 
-    implementation 'org.greenrobot:greendao:3.2.2'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
+//    implementation 'org.greenrobot:greendao:3.2.2'
+//    implementation 'com.facebook.stetho:stetho:1.5.0'
 }
 
 private Integer generateVersionCode(){
@@ -81,5 +81,3 @@ private String generateVersionName(){
     }
     return versionName
 }
-
-//Sambilan_v0.0.1-release

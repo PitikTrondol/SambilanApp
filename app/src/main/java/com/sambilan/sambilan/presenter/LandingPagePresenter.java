@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.presenter;
 
+import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.response.AdResponse;
 import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.network.NetworkService;
@@ -36,8 +37,8 @@ public class LandingPagePresenter {
                 });
     }
 
-    public void getHomeJobList(final ResponseResultCallback<JobResponse, Throwable> joblistCallback, int page, int itemNum) {
-        this.api.getJobLists(page, itemNum)
+    public void getHomeJobList(final ResponseResultCallback<JobResponse, Throwable> joblistCallback, String token, int page, int itemNum) {
+        this.api.getJobLists(token, page, itemNum)
                 .enqueue(new Callback<JobResponse>() {
                     @Override
                     public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {

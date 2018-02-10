@@ -14,7 +14,6 @@ import com.sambilan.sambilan.R;
 //import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.model.response.FinishedResponse;
 import com.sambilan.sambilan.presenter.FinishedPagePresenter;
-import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
