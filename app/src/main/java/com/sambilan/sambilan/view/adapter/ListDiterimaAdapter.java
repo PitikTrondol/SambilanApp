@@ -21,12 +21,6 @@ public class ListDiterimaAdapter extends BaseRecyclerAdapter<AppliedJobResponse,
 
     @Override
     public ListDiterimaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view =inflate(R.layout.item_diterima,parent,false);
-//        RelativeLayout rl = view.findViewById(R.id.rl_diterima);
-//        rl.setBackgroundResource(0);
-
-
-        return new ListDiterimaHolder(view);
+        return new ListDiterimaHolder(inflate(R.layout.item_diterima,parent,false));
     }
 }

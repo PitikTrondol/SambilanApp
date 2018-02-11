@@ -1,7 +1,6 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
-import android.provider.ContactsContract;
 
 import com.facebook.stetho.Stetho;
 import com.sambilan.sambilan.model.DaoMaster;
@@ -17,7 +16,7 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private final String dbName = "SambilanDB";
+    private final String DB_NAME = "SambilanDB";
     private String role = "";
     private boolean needLoadOnline;
 
@@ -34,7 +33,7 @@ public class SambilanApplication extends Application {
         connectionReceiver = new ConnectionReceiver();
         connectionReceiver.checkConnection(this);
 
-        database = new DaoMaster.DevOpenHelper(this, dbName).getWritableDb();
+        database = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
         daoMaster = new DaoMaster(database);
         daoSession = daoMaster.newSession();
 
