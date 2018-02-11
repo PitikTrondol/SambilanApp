@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-=======
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sambilan.sambilan.view.HalamanPermintaanActivity">
->>>>>>> 54d3b8e51bd927e96864749499e3ebea122f6764
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/title_bar_diterima"
@@ -18,18 +12,6 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:theme="@style/AppTheme"
-<<<<<<< HEAD
-        android:layout_marginBottom="3dp"
-        app:title="Diterima"
-        app:titleTextColor="@color/colorCommonOrange" />
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:layout_below="@+id/title_bar_diterima">
-
-    </android.support.v7.widget.RecyclerView>
-=======
         app:title="Diterima"
         app:titleTextColor="@color/colorCommonOrange" />
 
@@ -39,6 +21,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_bar_diterima"/>
->>>>>>> 54d3b8e51bd927e96864749499e3ebea122f6764
 
 </RelativeLayout>
