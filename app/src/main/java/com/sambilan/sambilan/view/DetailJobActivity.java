@@ -13,7 +13,8 @@ import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.presenter.DetailJobsPresenter;
 
-public class DetailJobActivity extends AppCompatActivity {
+public class DetailJobActivity extends AppCompatActivity
+        implements DetailJobsPresenter.DetailJobResultCallback<Job, Throwable>{
 
     private DetailJobsPresenter detailJobsPresenter;
     private Job detailJob;
@@ -41,7 +42,7 @@ public class DetailJobActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_job);
 
         detailJobsPresenter = new DetailJobsPresenter();
-        detailJobsPresenter.getDetailJob(jobCallback, 1);
+        detailJobsPresenter.getDetailJob(this, 1);
 
         iv_logo = findViewById(R.id.iv_logo);
         tv_lowongan = findViewById(R.id.tv_lowongan);
@@ -59,26 +60,25 @@ public class DetailJobActivity extends AppCompatActivity {
         tv_value_ratingnya = findViewById(R.id.tv_value_rating);
 
         btn_lamar = findViewById(R.id.btn_lamar);
+        btn_lamar.setOnClickListener(onLamarPekerjaan);
 
     }
 
-    private DetailJobsPresenter.DetailJobResultCallback<Job, Throwable> jobCallback=
-            new DetailJobsPresenter.DetailJobResultCallback<Job, Throwable>() {
-                @Override
-                public void OnSuccessResult(Job first) {
-                    setData(first);
-                }
+    @Override
+    public void OnSuccessResult(Job first) {
+        setData(first);
+    }
 
-                @Override
-                public void OnFailureResult(Throwable second) {
+    @Override
+    public void OnFailureResult(Throwable second) {
+        Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
+    }
 
-                }
-            };
 
     private void setData(Job detailJob){
        Glide.with(this).load(detailJob.getCompany().getLogo_url().trim()).into(iv_logo);
        tv_lowongan.setText("Lowongan Sebagai "+detailJob.getTitle());
-//       tv_dilihat.setText(""+detailJob.getSeen_count());
+       tv_dilihat.setText("10");
        tv_dilamar.setText(""+detailJob.getCount_apply());
 
        tv_gaji.setText(detailJob.getSalary());
@@ -89,9 +89,7 @@ public class DetailJobActivity extends AppCompatActivity {
 
        tv_detail_perusahaan.setText(detailJob.getCompany().getName()+"\nAlamat : "+detailJob.getCompany().getAddress());
        tv_value_lowongannya.setText(""+detailJob.getCount_invitation());
-//       tv_value_ratingnya.setText(detailJob.getRating());
-
-       btn_lamar.setOnClickListener(onLamarPekerjaan);
+       tv_value_ratingnya.setText("4.9");
     }
 
     private View.OnClickListener onLamarPekerjaan =

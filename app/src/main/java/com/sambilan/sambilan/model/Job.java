@@ -79,7 +79,6 @@ public class Job {
                int category_id, boolean is_verified, String status, String created_at,
                String updated_at, String location, Category category, Company company,
                int count_apply, int count_invitation) {
-
         this.id = id;
         this.title = title;
         this.desc = desc;

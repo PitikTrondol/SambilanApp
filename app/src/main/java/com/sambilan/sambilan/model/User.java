@@ -37,7 +37,6 @@ public class User {
 
     public User(int id, String fullname, boolean is_verified, String gender, String role,
                 String phone, String avatar_url, String address, int user_id) {
-
         this.id = id;
         this.fullname = fullname;
         this.is_verified = is_verified;

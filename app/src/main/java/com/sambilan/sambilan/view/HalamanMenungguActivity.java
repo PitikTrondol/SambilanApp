@@ -37,7 +37,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
 
         waitingPagePresenter = new WaitingPagePresenter();
-        waitingPagePresenter.getAllWaitingList(waitingPageCallback, userId);
+        waitingPagePresenter.getAllWaitingList(waitingPageCallback);
 
         menungguAdapter = new ListMenungguAdapter(HalamanMenungguActivity.this);
         menungguAdapter.setListener(menungguListener);
@@ -92,7 +92,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    waitingPagePresenter.getAllWaitingList(waitingPageCallback, userId);
+                    waitingPagePresenter.getAllWaitingList(waitingPageCallback);
                 }
             };
 
@@ -103,6 +103,6 @@ public class HalamanMenungguActivity extends AppCompatActivity {
 
     private void postAndUpdate(int jobID, String cancel) {
         waitingPagePresenter.postCancelWaitingJob(cancelCallback, userId, jobID, cancel);
-        waitingPagePresenter.getAllWaitingList(waitingPageCallback, userId);
+        waitingPagePresenter.getAllWaitingList(waitingPageCallback);
     }
 }
