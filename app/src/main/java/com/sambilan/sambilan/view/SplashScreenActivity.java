@@ -27,8 +27,9 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                if (cacheManager.get("login")) {
-                    intent =new Intent(SplashScreenActivity.this,SambilanActivity.class);
+                boolean isLoggedIn = ((SambilanApplication) getApplication()).isLoggedIn();
+                if (isLoggedIn) {
+                    intent = new Intent(SplashScreenActivity.this, SambilanActivity.class);
                 } else {
                     intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 }
@@ -36,8 +37,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
-        },SPLASH_TIME_OUT);
-        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
+        }, SPLASH_TIME_OUT);
+        ((SambilanApplication) getApplication()).setNeedLoadOnline(true);
     }
 
 }

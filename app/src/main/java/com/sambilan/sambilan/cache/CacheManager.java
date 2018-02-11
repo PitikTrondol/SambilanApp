@@ -13,6 +13,7 @@ public class CacheManager {
     private SharedPreferences preferences;
     private String preferenceName;
 
+    public static final String TOKEN_KEY = "token";
     private static CacheManager instance;
 
     public static CacheManager getInstance(Context context){
@@ -57,7 +58,7 @@ public class CacheManager {
         return preferences.getInt(key, 0);
     }
 
-    public Boolean get(String key) {
+    public boolean get(String key) {
         return preferences.getBoolean(key, false);
     }
 

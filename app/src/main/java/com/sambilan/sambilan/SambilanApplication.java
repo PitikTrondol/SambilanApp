@@ -3,6 +3,7 @@ package com.sambilan.sambilan;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
+import com.sambilan.sambilan.cache.CacheManager;
 import com.sambilan.sambilan.model.DaoMaster;
 import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;
@@ -16,10 +17,11 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private String role = "";
     private boolean needLoadOnline;
+    private String role = "";
 
-    private String appToken = "912f52f6a72389082d95aa38d065f25a70c46350146abcadf4f87e3d233b0573";
+    private boolean isLoggedIn = false;
+    private String appToken = "";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
 
@@ -29,6 +31,12 @@ public class SambilanApplication extends Application {
 
         connectionReceiver = new ConnectionReceiver();
         connectionReceiver.checkConnection(this);
+
+        String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
+        if(null != token && !token.equals("")) {
+            appToken = token;
+            isLoggedIn = true;
+        }
 
         Database database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
         DaoMaster daoMaster = new DaoMaster(database);
@@ -60,8 +68,8 @@ public class SambilanApplication extends Application {
         this.role = role;
     }
 
-    public void setAppToken(String TOKEN) {
-        this.appToken = TOKEN;
+    public void setAppToken(String token) {
+        this.appToken = token;
     }
 
     public String getAppToken() {
@@ -70,5 +78,9 @@ public class SambilanApplication extends Application {
 
     public DaoSession getDaoSession() {
         return daoSession;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
     }
 }
