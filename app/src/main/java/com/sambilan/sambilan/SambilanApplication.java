@@ -16,15 +16,12 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private final String DB_NAME = "SambilanDB";
     private String role = "";
     private boolean needLoadOnline;
 
-    private String appToken = "9adc623601e82831eacbda9d222473fcc8c2831033ae7a31f923ec257ef46c01";
+    private String appToken = "912f52f6a72389082d95aa38d065f25a70c46350146abcadf4f87e3d233b0573";
     private ConnectionReceiver connectionReceiver;
-    private DaoMaster daoMaster;
     private DaoSession daoSession;
-    private Database database;
 
     @Override
     public void onCreate() {
@@ -33,12 +30,12 @@ public class SambilanApplication extends Application {
         connectionReceiver = new ConnectionReceiver();
         connectionReceiver.checkConnection(this);
 
-        database = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
-        daoMaster = new DaoMaster(database);
+        Database database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(database);
         daoSession = daoMaster.newSession();
 
-        daoMaster.dropAllTables(database, true);
-        daoMaster.createAllTables(database, true);
+        DaoMaster.dropAllTables(database, true);
+        DaoMaster.createAllTables(database, true);
 
         Stetho.initializeWithDefaults(this);
     }

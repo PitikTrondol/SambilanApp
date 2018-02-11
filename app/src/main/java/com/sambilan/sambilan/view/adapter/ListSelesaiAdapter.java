@@ -24,8 +24,8 @@ public class ListSelesaiAdapter extends BaseRecyclerAdapter<AppliedJobResponse, 
     @Override
     public ListSelesaiHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflate(R.layout.item_selesai, parent, false);
-        CardView cv = view.findViewById(R.id.cv_selesai);
+        View view = inflate(R.layout.item_employee_selesai, parent, false);
+        CardView cv = view.findViewById(R.id.cv_include);
         cv.setBackgroundResource(0);
 
         return new ListSelesaiHolder(view);

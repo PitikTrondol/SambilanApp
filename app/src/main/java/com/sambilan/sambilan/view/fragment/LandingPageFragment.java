@@ -61,36 +61,22 @@ public class LandingPageFragment extends Fragment implements TopBar {
     private ProgressBar progressBar;
 
     private SwipeRefreshLayout recyclerRefresher;
-    private List<Fragment> carouselFragment;
 
     public LandingPageFragment() {
-        carouselFragment = new ArrayList<>();
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_landing_page, container, false);
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
-
-        // Implementasi untuk topbar, menu dan search button
-        carouselLinearLayout = view.findViewById(R.id.pagesContainer);
-        listJobRecyclerView = view.findViewById(R.id.common_recycler_view);
-        carouselViewPager = view.findViewById(R.id.carousel_pager);
-        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
-        progressBar = view.findViewById(R.id.progress_bar);
-        topToolbar = view.findViewById(R.id.topBar);
-
-        ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
-
-        currentPage = 1;
-        landingPagePresenter = new LandingPagePresenter();
-        landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+        View rootview = inflater.inflate(R.layout.fragment_landing_page, container, false);
+        carouselLinearLayout = rootview.findViewById(R.id.pagesContainer);
+        listJobRecyclerView = rootview.findViewById(R.id.common_recycler_view);
+        carouselViewPager = rootview.findViewById(R.id.carousel_pager);
+        recyclerRefresher = rootview.findViewById(R.id.swipe_refresh_layout);
+        progressBar = rootview.findViewById(R.id.progress_bar);
+        topToolbar = rootview.findViewById(R.id.topBar);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
@@ -102,6 +88,21 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
+
+        return rootview;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
+
+        // Implementasi untuk topbar, menu dan search button
+        ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
+
+        currentPage = 1;
+        landingPagePresenter = new LandingPagePresenter();
+        landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
 
         progressBar.setVisibility(View.VISIBLE);
         recyclerRefresher.setOnRefreshListener(refreshListener);
@@ -197,6 +198,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
                         //kalo udah jadi, currentPage++
                         landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
+
                         isLoading = true;
                     }
                 }

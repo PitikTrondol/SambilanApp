@@ -1,7 +1,6 @@
 package com.sambilan.sambilan.view.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.sambilan.sambilan.R;
@@ -21,6 +20,6 @@ public class ListDiterimaAdapter extends BaseRecyclerAdapter<AppliedJobResponse,
 
     @Override
     public ListDiterimaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ListDiterimaHolder(inflate(R.layout.item_diterima,parent,false));
+        return new ListDiterimaHolder(inflate(R.layout.item_employee_diterima,parent,false));
     }
 }

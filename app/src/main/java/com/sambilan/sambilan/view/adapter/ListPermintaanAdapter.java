@@ -23,7 +23,7 @@ public class ListPermintaanAdapter extends BaseRecyclerAdapter<Job, ListPerminta
     @Override
     public ListPermintaanHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflate(R.layout.item_permintaan, parent, false);
+        View view = inflate(R.layout.item_employee_permintaan, parent, false);
         CardView cv = view.findViewById(R.id.cv_permintaan);
         cv.setBackgroundResource(0);
 
