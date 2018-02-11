@@ -42,16 +42,16 @@ public class WaitingPagePresenter {
                                      int jobId,
                                      String message) {
 
-        this.api.postWaitingAction(id, jobId, message).enqueue(new Callback<WaitingPageResponse.Post>() {
-            @Override
-            public void onResponse(Call<WaitingPageResponse.Post> call, Response<WaitingPageResponse.Post> response) {
-                cancelCallback.OnSuccessResult(response.body().getStatus());
-            }
-
-            @Override
-            public void onFailure(Call<WaitingPageResponse.Post> call, Throwable t) {
-                cancelCallback.OnFailureResult(t);
-            }
-        });
+//        this.api.postWaitingAction(id, jobId, message).enqueue(new Callback<WaitingPageResponse.Post>() {
+//            @Override
+//            public void onResponse(Call<WaitingPageResponse.Post> call, Response<WaitingPageResponse.Post> response) {
+//                cancelCallback.OnSuccessResult(response.body().getStatus());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<WaitingPageResponse.Post> call, Throwable t) {
+//                cancelCallback.OnFailureResult(t);
+//            }
+//        });
     }
 }

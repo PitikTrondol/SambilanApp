@@ -50,7 +50,7 @@ public class ListDiterimaHolder extends BaseViewHolder<Job, ListDiterimaListener
         tv_date_sebelum.setText("Mulai : "+data.getStart_due());
         tv_date_sesudah.setText("Selesai : "+data.getEnd_due());
 
-        helper= new ImgurHelper(data.getCompany().getLogo_url().trim());
+        helper= new ImgurHelper(data.getCompany().getLogoUrl().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).apply(new RequestOptions().fitCenter()).into(iv_company);
 
         rl_diterima.setOnClickListener(new View.OnClickListener() {

@@ -15,12 +15,12 @@ import retrofit2.http.Query;
 
 public interface WaitingPageApi {
 
-    @GET("/api/v1/applies/waiting")
+    @GET("api/v1/applies/?status=waiting")
     Call<WaitingPageResponse> getWaitingList();
 
-    @FormUrlEncoded
-    @POST("api/v1/invitations/")
-    Call<WaitingPageResponse.Post> postWaitingAction(@Field("user_detail_id") int user_id,
-                                                     @Field("job_id") int job_id,
-                                                     @Field("status") String message);
+//    @FormUrlEncoded
+//    @POST("api/v1/applies/")
+//    Call<WaitingPageResponse.Post> postWaitingAction(@Field("user_detail_id") int user_id,
+//                                                     @Field("job_id") int job_id,
+//                                                     @Field("status") String message);
 }

@@ -45,7 +45,7 @@ public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> 
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getName());
         tv_fee.setText(data.getSalary());
-        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
+        helper = new ImgurHelper(data.getCompany().getLogoUrl().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
 
         btn_penilaian.setOnClickListener(new View.OnClickListener() {

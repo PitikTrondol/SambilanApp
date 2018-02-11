@@ -90,8 +90,8 @@ public class DetailJobActivity extends AppCompatActivity
        tv_value_lowongannya.setText(""+detailJob.getCount_invitation());
        tv_value_ratingnya.setText("4.9");
 
-        if(null !=detailJob.getCompany().getLogo_url())
-            Glide.with(this).load(detailJob.getCompany().getLogo_url().trim()).into(iv_logo);
+        if(null !=detailJob.getCompany().getLogoUrl())
+            Glide.with(this).load(detailJob.getCompany().getLogoUrl().trim()).into(iv_logo);
 
     }
 

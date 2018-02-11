@@ -21,7 +21,7 @@ public class SambilanApplication extends Application {
     private String role = "";
     private boolean needLoadOnline;
 
-    private String appToken = "38a6f7150409cb67f42ac60128b51237d668e57111d5239059dd4af3b5b2ad11";
+    private String appToken = "b9fc08bd8aa08b9e74e5ca9345ff063a10088c93d1291fa56f5b7155d8c22131";
     private ConnectionReceiver connectionReceiver;
     private DaoMaster daoMaster;
     private DaoSession daoSession;

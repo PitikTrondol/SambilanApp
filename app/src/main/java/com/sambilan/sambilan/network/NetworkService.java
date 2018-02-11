@@ -63,6 +63,10 @@ public class NetworkService {
         return getRetrofit().create(DetailJobsApi.class);
     }
 
+    public static EmployeeFlowAPI createEmployeeFlowApi(){
+        return getRetrofit().create(EmployeeFlowAPI.class);
+    }
+
     /**
      * ===================================
      * Create OkHttpClient instance

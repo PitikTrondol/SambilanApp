@@ -2,22 +2,24 @@ package com.sambilan.sambilan.model.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by febrian on 01/02/18.
+ * Created by Afriandi Haryanto on 2/11/2018.
  */
 
-public class WaitingPageResponse {
+public class PostResponse<D> {
 
     @SerializedName("status")
     private String status;
 
-    @SerializedName("data")
-    private List<AppliedJobResponse> data;
+    @SerializedName("message")
+    private String message;
 
-    public WaitingPageResponse(String status, List<AppliedJobResponse> data) {
+    @SerializedName("data")
+    private D data;
+
+    public PostResponse(String status, String message, D data) {
         this.status = status;
+        this.message = message;
         this.data = data;
     }
 
@@ -29,11 +31,19 @@ public class WaitingPageResponse {
         this.status = status;
     }
 
-    public List<AppliedJobResponse> getData() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public D getData() {
         return data;
     }
 
-    public void setData(List<AppliedJobResponse> data) {
+    public void setData(D data) {
         this.data = data;
     }
 }

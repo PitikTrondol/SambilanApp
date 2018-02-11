@@ -64,11 +64,7 @@ public class Job {
     @SerializedName("count_invitation")
     private int count_invitation;
 
-    public Job(int id, String title, String desc, int capacity, String salary,
-               String start_due, String end_due, String expire_due, int company_id,
-               int category_id, boolean is_verified, String status, String created_at,
-               String updated_at, String location, Category category, Company company,
-               int count_apply, int count_invitation) {
+    public Job(int id, String title, String desc, int capacity, String salary, String start_due, String end_due, String expire_due, int company_id, int category_id, boolean is_verified, String status, String created_at, String updated_at, String location, Category category, Company company, int count_apply, int count_invitation) {
         this.id = id;
         this.title = title;
         this.desc = desc;
