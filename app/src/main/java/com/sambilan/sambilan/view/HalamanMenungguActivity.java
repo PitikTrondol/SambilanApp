@@ -30,7 +30,6 @@ public class HalamanMenungguActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
 
-    private final String SET_BATAL = "CANCEL";
     private final String SET_STATUS = "waiting";
     private String appToken;
 
@@ -79,6 +78,8 @@ public class HalamanMenungguActivity extends AppCompatActivity {
                 public void OnSuccessResult(String first) {
                     Toast.makeText(HalamanMenungguActivity.this,
                             "Cancel Pekerjaan Berhasil", Toast.LENGTH_SHORT).show();
+
+                    employeeFlowPresenter.getJobByStatus(waitingPageCallback, appToken, SET_STATUS);
                 }
 
                 @Override

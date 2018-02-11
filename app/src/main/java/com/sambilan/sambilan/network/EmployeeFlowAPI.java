@@ -17,11 +17,11 @@ import retrofit2.http.Query;
 
 public interface EmployeeFlowAPI {
 
-    @GET("api/v1/applies/")
+    @GET("/api/v1/applies/")
     Call<WaitingPageResponse> getJobByStatus(@Header("token") String token,
                                              @Query("status") String status);
 
-    @DELETE("api/v1/applies/{id}")
-    Call<PostResponse<Job>> cancelWaitingJob(@Header("token") String token,
-                                             @Path("id") int id);
+    @DELETE("/api/v1/applies/{id}")
+    Call<PostResponse<String, Job>> cancelWaitingJob(@Header("token") String token,
+                                                     @Path("id") int id);
 }

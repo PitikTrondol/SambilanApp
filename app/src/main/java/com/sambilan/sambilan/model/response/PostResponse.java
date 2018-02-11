@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName;
  * Created by Afriandi Haryanto on 2/11/2018.
  */
 
-public class PostResponse<D> {
+public class PostResponse<M, D> {
 
     @SerializedName("status")
     private String status;
 
     @SerializedName("message")
-    private String message;
+    private M message;
 
     @SerializedName("data")
     private D data;
 
-    public PostResponse(String status, String message, D data) {
+    public PostResponse(String status, M message, D data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -31,11 +31,11 @@ public class PostResponse<D> {
         this.status = status;
     }
 
-    public String getMessage() {
+    public M getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(M message) {
         this.message = message;
     }
 

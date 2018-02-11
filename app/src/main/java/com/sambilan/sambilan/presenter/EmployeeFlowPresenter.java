@@ -6,8 +6,6 @@ import com.sambilan.sambilan.model.response.WaitingPageResponse;
 import com.sambilan.sambilan.network.EmployeeFlowAPI;
 import com.sambilan.sambilan.network.NetworkService;
 
-import org.json.JSONObject;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,14 +43,14 @@ public class EmployeeFlowPresenter {
                                  String token,
                                  int jobID) {
 
-        this.api.cancelWaitingJob(token, jobID).enqueue(new Callback<PostResponse<Job>>() {
+        this.api.cancelWaitingJob(token, jobID).enqueue(new Callback<PostResponse<String, Job>>() {
             @Override
-            public void onResponse(Call<PostResponse<Job>> call, Response<PostResponse<Job>> response) {
+            public void onResponse(Call<PostResponse<String, Job>> call, Response<PostResponse<String, Job>> response) {
                 cancelCallback.OnSuccessResult(response.body().getMessage());
             }
 
             @Override
-            public void onFailure(Call<PostResponse<Job>> call, Throwable t) {
+            public void onFailure(Call<PostResponse<String, Job>> call, Throwable t) {
                 cancelCallback.OnFailureResult(t);
             }
         });
