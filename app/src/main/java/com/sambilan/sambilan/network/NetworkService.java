@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkService {
 
     private static Retrofit retrofitInstance;
-    private static final String BASE_URL = "https://sambilan.herokuapp.com";
+    private static final String BASE_URL = "http://sambilan.herokuapp.com";
 
     /**
      * ===================================
@@ -26,8 +26,7 @@ public class NetworkService {
      * add client                   .client()
      * eksekusi dengan build        .build()
      */
-
-    public static Retrofit getRetrofit() {
+    private static Retrofit getRetrofit() {
 
         if (null == retrofitInstance) {
             retrofitInstance = new Retrofit.Builder()
@@ -47,30 +46,19 @@ public class NetworkService {
     public static InvitationPageAPI crateInvitationAPI() {
         return getRetrofit().create(InvitationPageAPI.class);
     }
-    public static WaitingPageApi createWaitingPageApi() {
-        return getRetrofit().create(WaitingPageApi.class);
+    public static DetailJobsApi createJobsApi(){
+        return getRetrofit().create(DetailJobsApi.class);
     }
 
-    public static DiterimaPageAPI createAcceptedPageApi() {
-        return getRetrofit().create(DiterimaPageAPI.class);
+    public static EmployeeFlowAPI createEmployeeFlowApi(){
+        return getRetrofit().create(EmployeeFlowAPI.class);
     }
+
     public static RegisterPageAPI createRegisterAPI(){
         return getRetrofit().create(RegisterPageAPI.class);
     }
     public static LoginPageAPI createLoginAPI(){
         return getRetrofit().create(LoginPageAPI.class);
-    }
-
-    public static FinishedPageAPI createFinishedPageAPI() {
-        return getRetrofit().create(FinishedPageAPI.class);
-    }
-
-    public static DetailJobsApi createJobsApi(){
-        return getRetrofit().create(DetailJobsApi.class);
-    }
-
-    public static EmployerApi createEmpApi() {
-        return getRetrofit().create(EmployerApi.class);
     }
 
     /**
@@ -82,7 +70,7 @@ public class NetworkService {
      * add interceptor          .addInterceptor()
      * execute with             .build()
      */
-    public static OkHttpClient client() {
+    private static OkHttpClient client() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.BODY);

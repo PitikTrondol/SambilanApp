@@ -5,6 +5,7 @@ import com.sambilan.sambilan.model.response.JobResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 /**
@@ -14,7 +15,8 @@ import retrofit2.http.Query;
 public interface LandingPageApi {
 
     @GET("/api/v1/jobs/")
-    Call<JobResponse> getJobLists(@Query("page") int page,
+    Call<JobResponse> getJobLists(@Header("token") String token,
+                                  @Query("page") int page,
                                   @Query("limit") int limit);
 
     @GET("/api/v1/headlines")

@@ -3,7 +3,6 @@ package com.sambilan.sambilan.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.Ad;
 import com.sambilan.sambilan.model.response.AdResponse;
 import com.sambilan.sambilan.model.response.JobResponse;
@@ -42,23 +41,23 @@ import java.util.List;
 
 public class LandingPageFragment extends Fragment implements TopBar {
 
-    private final int DISPLAY_COUNT = 8;
+    private final int DISPLAY_COUNT = 5;
     private final String TAG = "com.sambilan.sambilan";
     private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
     private boolean isLoading;
+    private String appToken;
 
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
-    private LandingPagePresenter landingPagePresenter;
     private ListPekerjaanAdapter listJobAdapter;
+    private LandingPagePresenter landingPagePresenter;
 
-    private LinearLayoutManager layoutManager;
     private ViewPager carouselViewPager;
     private LinearLayout carouselLinearLayout;
     private SliderAdapter carouselSliderAdapter;
+    private LinearLayoutManager layoutManager;
 
     private PageIndicatorHelper carouselPageIndicator;
-    private BottomNavigationView bottomNavigationView;
     private ProgressBar progressBar;
 
     private SwipeRefreshLayout recyclerRefresher;
@@ -71,7 +70,13 @@ public class LandingPageFragment extends Fragment implements TopBar {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_landing_page, container, false);
+        return inflater.inflate(R.layout.fragment_landing_page, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
 
         // Implementasi untuk topbar, menu dan search button
         carouselLinearLayout = view.findViewById(R.id.pagesContainer);
@@ -83,9 +88,10 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
 
+        currentPage = 1;
         landingPagePresenter = new LandingPagePresenter();
-        landingPagePresenter.getHomeCarousel(carouselCallback);
-        landingPagePresenter.getHomeJobList(homeJobCallback, 3, 5);
+//        landingPagePresenter.getHomeCarousel(carouselCallback);
+        landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
@@ -105,19 +111,10 @@ public class LandingPageFragment extends Fragment implements TopBar {
         listJobAdapter.setListener(onClickJobListListener);
 
         layoutManager = new LinearLayoutManager(getContext());
-        currentPage = 1;
 
         listJobRecyclerView.setLayoutManager(layoutManager);
         listJobRecyclerView.setAdapter(listJobAdapter);
         listJobRecyclerView.addOnScrollListener(scrollListener);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
     }
 
 
@@ -138,7 +135,6 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 public void OnSuccessResult(AdResponse first) {
                     List<Fragment> fragments = new ArrayList<>();
                     for (Ad carousel : first.getData()) {
-                        Log.d(TAG, "OnSuccessResult --------- : "+first.getData().size());
                         fragments.add(SliderFragment.newInstance(carousel.getImgUrl().trim()));
                     }
 
@@ -199,7 +195,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
     private ListJobListener onClickJobListListener =
             new ListJobListener() {
                 @Override
-                public void onClickJob() {
+                public void onClickJob(int jobID) {
                     Intent profileIntent = new Intent(getActivity(), DetailJobActivity.class);
                     startActivity(profileIntent);
                 }
@@ -220,7 +216,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                             && itemCount < (DISPLAY_COUNT * totalPage)) {
 
                         //kalo udah jadi, currentPage++
-                        landingPagePresenter.getHomeJobList(itemScrollCallback, currentPage, DISPLAY_COUNT);
+                        landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
 
                         isLoading = true;
                     }
@@ -231,7 +227,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    landingPagePresenter.getHomeJobList(homeJobCallback, 3, 5);
+                    landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
                 }
             };
 }

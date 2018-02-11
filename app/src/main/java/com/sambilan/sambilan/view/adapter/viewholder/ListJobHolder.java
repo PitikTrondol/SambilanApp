@@ -36,20 +36,22 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListJobListener listener) {
+    public void onBind(final Job data, @Nullable final ListJobListener listener) {
         tv_title.setText(data.getTitle());
         tv_company.setText(data.getCompany().getName());
         tv_lokasi.setText(data.getCompany().getAddress());
         tv_fee.setText(data.getSalary());
 
-        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
-        Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+        if(null != data.getCompany().getLogoUrl()) {
+            helper = new ImgurHelper(data.getCompany().getLogoUrl().trim());
+            Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+        }
 
         if (null != listener)
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClickJob();
+                    listener.onClickJob(data.getId());
                 }
             });
     }

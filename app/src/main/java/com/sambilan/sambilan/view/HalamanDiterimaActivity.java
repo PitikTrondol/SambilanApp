@@ -11,13 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.response.AcceptedResponse;
-import com.sambilan.sambilan.presenter.AcceptedPagePresenter;
+import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
+import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListDiterimaAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
-
-import retrofit2.HttpException;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.
@@ -28,20 +27,24 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
     private ListDiterimaAdapter diterimaAdapter;
     private SwipeRefreshLayout refreshLayout;
     private ProgressBar progressBar;
-    private AcceptedPagePresenter acceptedPagePresenter;
+    private EmployeeFlowPresenter employeeFlowPresenter;
 
     private int userId = 1;
+    private String appToken;
+    private final String SET_STATUS = "accepted";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diterima);
+        appToken = ((SambilanApplication) getApplication()).getAppToken();
+
         recyclerDiterima = findViewById(R.id.common_recycler_view);
         progressBar = findViewById(R.id.progress_bar);
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
 
-        acceptedPagePresenter = new AcceptedPagePresenter();
-        acceptedPagePresenter.getAcceptedJobs(acceptedCallBack, userId);
+        employeeFlowPresenter = new EmployeeFlowPresenter();
+        employeeFlowPresenter.getJobByStatus(acceptedCallBack, appToken, SET_STATUS);
 
         diterimaAdapter = new ListDiterimaAdapter(HalamanDiterimaActivity.this);
         diterimaAdapter.setListener(diterimaListener);
@@ -52,11 +55,11 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-    private ResponseResultCallback<AcceptedResponse, Throwable> acceptedCallBack =
-            new ResponseResultCallback<AcceptedResponse, Throwable>() {
+    private ResponseResultCallback<EmployeeFlowResponse, Throwable> acceptedCallBack =
+            new ResponseResultCallback<EmployeeFlowResponse, Throwable>() {
 
                 @Override
-                public void OnSuccessResult(AcceptedResponse first) {
+                public void OnSuccessResult(EmployeeFlowResponse first) {
                     diterimaAdapter.setModel(first.getData());
                     clearLoading();
                 }
@@ -81,7 +84,7 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            acceptedPagePresenter.getAcceptedJobs(acceptedCallBack, userId);
+            employeeFlowPresenter.getJobByStatus(acceptedCallBack, appToken, SET_STATUS);
         }
     };
 
