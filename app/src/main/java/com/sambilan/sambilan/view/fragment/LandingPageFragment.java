@@ -158,6 +158,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
                     isLoading = false;
+                    currentPage++;
                 }
 
                 @Override
@@ -196,7 +197,6 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
                         //kalo udah jadi, currentPage++
                         landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
-
                         isLoading = true;
                     }
                 }
@@ -206,6 +206,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
+                    currentPage = 1;
                     landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
                 }
             };

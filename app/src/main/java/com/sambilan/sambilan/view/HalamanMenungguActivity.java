@@ -90,6 +90,12 @@ public class HalamanMenungguActivity extends AppCompatActivity {
                 public void onClickBatalkan(int jobID) {
                     postAndUpdate(jobID);
                 }
+
+                @Override
+                public void onClickJob(int id) {
+                    Toast.makeText(HalamanMenungguActivity.this, "Harusnya ke detail job "+id,
+                            Toast.LENGTH_SHORT).show();
+                }
             };
 
     private SwipeRefreshLayout.OnRefreshListener refreshListener =

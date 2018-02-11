@@ -76,7 +76,7 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
     private ListDiterimaListener diterimaListener = new ListDiterimaListener() {
         @Override
         public void onClickDiterima(int jobID) {
-            Toast.makeText(HalamanDiterimaActivity.this, "Lihat Job " + jobID,
+            Toast.makeText(HalamanDiterimaActivity.this, "Harusnya masuk detail job ID : " + jobID,
                     Toast.LENGTH_SHORT).show();
         }
     };

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv_menunggu"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
@@ -8,7 +9,7 @@
     android:background="@color/White">
 
     <include
-        android:id="@+id/cv_menunggu"
+        android:id="@+id/cv_include"
         layout="@layout/item_job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -17,7 +18,7 @@
         android:id="@+id/btn_batalkan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cv_menunggu"
+        android:layout_below="@id/cv_include"
         android:layout_marginTop="10dp"
         android:text="Batalkan" />
 

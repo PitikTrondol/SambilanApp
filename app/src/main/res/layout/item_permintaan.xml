@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv_permintaan"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/cardview_margin_mid"
@@ -8,7 +9,7 @@
     android:background="@color/White">
 
     <include
-        android:id="@+id/cv_permintaan"
+        android:id="@+id/cv_include"
         layout="@layout/item_job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:id="@+id/ll_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cv_permintaan"
+        android:layout_below="@id/cv_include"
         android:orientation="horizontal">
 
         <Button

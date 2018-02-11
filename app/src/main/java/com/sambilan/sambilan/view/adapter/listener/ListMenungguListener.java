@@ -6,5 +6,6 @@ package com.sambilan.sambilan.view.adapter.listener;
 
 public interface ListMenungguListener extends BaseRecyclerListener {
 
+    public void onClickJob(int id);
     public void onClickBatalkan(int id);
 }

@@ -93,6 +93,12 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
         public void onClickBeriPenilaian(int jobID) {
             postAndUpdateScreen(jobID, SET_STATUS);
         }
+
+        @Override
+        public void onClickJob(int jobID) {
+            Toast.makeText(HalamanSelesaiActivity.this, "Harusnya ke detail job id "+jobID,
+                    Toast.LENGTH_SHORT).show();
+        }
     };
 
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
