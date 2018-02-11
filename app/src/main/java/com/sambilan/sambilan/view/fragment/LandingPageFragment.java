@@ -174,7 +174,6 @@ public class LandingPageFragment extends Fragment {
                 public void OnSuccessResult(JobResponse first) {
                     listJobAdapter.appendModel(first.getData());
 
-                    
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
                     isLoading = false;
