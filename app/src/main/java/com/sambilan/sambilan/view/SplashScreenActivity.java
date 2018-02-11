@@ -30,9 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 finish();
             }
-        },SPLASH_TIME_OUT);
-
-        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
+        }, SPLASH_TIME_OUT);
     }
 
 }

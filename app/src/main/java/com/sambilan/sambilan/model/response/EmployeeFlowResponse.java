@@ -1,15 +1,14 @@
 package com.sambilan.sambilan.model.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.sambilan.sambilan.model.Job;
 
 import java.util.List;
 
 /**
- * Created by Afriandi Haryanto on 2/9/2018.
+ * Created by febrian on 01/02/18.
  */
 
-public class AcceptedResponse {
+public class EmployeeFlowResponse {
 
     @SerializedName("status")
     private String status;
@@ -18,9 +17,9 @@ public class AcceptedResponse {
     private String message;
 
     @SerializedName("data")
-    private List<Job> data;
+    private List<AppliedJobResponse> data;
 
-    public AcceptedResponse(String status, String message, List<Job> data) {
+    public EmployeeFlowResponse(String status, String message, List<AppliedJobResponse> data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -42,11 +41,11 @@ public class AcceptedResponse {
         this.message = message;
     }
 
-    public List<Job> getData() {
+    public List<AppliedJobResponse> getData() {
         return data;
     }
 
-    public void setData(List<Job> data) {
+    public void setData(List<AppliedJobResponse> data) {
         this.data = data;
     }
 }

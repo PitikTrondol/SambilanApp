@@ -2,22 +2,14 @@ package com.sambilan.sambilan.model;
 
 import com.google.gson.annotations.SerializedName;
 
-//import org.greenrobot.greendao.annotation.Entity;
-//import org.greenrobot.greendao.annotation.Generated;
-//import org.greenrobot.greendao.annotation.Id;
-//import org.greenrobot.greendao.annotation.Property;
-
 /**
  * Created by febrian on 06/02/18.
  */
 
-//@Entity(nameInDb = "Job")
 public class Job {
 
-    //    @Id(autoincrement = false)
     @SerializedName("id")
     private int id;
-    //    @Property(nameInDb = "title")
     @SerializedName("title")
     private String title;
 
@@ -27,7 +19,6 @@ public class Job {
     @SerializedName("capacity")
     private int capacity;
 
-    //    @Property(nameInDb = "salary")
     @SerializedName("salary")
     private String salary;
 
@@ -52,7 +43,6 @@ public class Job {
     @SerializedName("status")
     private String status;
 
-    //    @Property(nameInDb = "created_at")
     @SerializedName("created_at")
     private String created_at;
 
@@ -74,11 +64,7 @@ public class Job {
     @SerializedName("count_invitation")
     private int count_invitation;
 
-    public Job(int id, String title, String desc, int capacity, String salary,
-               String start_due, String end_due, String expire_due, int company_id,
-               int category_id, boolean is_verified, String status, String created_at,
-               String updated_at, String location, Category category, Company company,
-               int count_apply, int count_invitation) {
+    public Job(int id, String title, String desc, int capacity, String salary, String start_due, String end_due, String expire_due, int company_id, int category_id, boolean is_verified, String status, String created_at, String updated_at, String location, Category category, Company company, int count_apply, int count_invitation) {
         this.id = id;
         this.title = title;
         this.desc = desc;

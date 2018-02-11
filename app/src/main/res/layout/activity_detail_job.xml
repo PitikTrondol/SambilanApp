@@ -334,8 +334,9 @@
                 android:id="@+id/btn_lamar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:background="@color/colorCommonOrange"
-                android:text="Lamar Pekerjaan"
+                tools:text="Lamar Pekerjaan"
                 android:textColor="@android:color/white" />
         </LinearLayout>
 

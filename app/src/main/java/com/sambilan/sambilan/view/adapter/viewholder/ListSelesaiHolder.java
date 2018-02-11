@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 import com.sambilan.sambilan.view.helper.ImgurHelper;
 
@@ -16,7 +16,7 @@ import com.sambilan.sambilan.view.helper.ImgurHelper;
  * Created by Afriandi Haryanto on 1/29/2018.
  */
 
-public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> {
+public class ListSelesaiHolder extends BaseViewHolder<AppliedJobResponse, ListSelesaiListener> {
 
     private TextView tv_title;
     private TextView tv_lokasi;
@@ -25,7 +25,6 @@ public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> 
 
     private ImageView iv_image;
     private Button btn_penilaian;
-    private ImgurHelper helper;
 
     public ListSelesaiHolder(View itemView) {
         super(itemView);
@@ -40,18 +39,20 @@ public class ListSelesaiHolder extends BaseViewHolder<Job, ListSelesaiListener> 
     }
 
     @Override
-    public void onBind(final Job data, @Nullable final ListSelesaiListener listener) {
-        tv_title.setText(data.getTitle());
-        tv_company.setText(data.getCompany().getName());
-        tv_lokasi.setText(data.getCompany().getName());
-        tv_fee.setText(data.getSalary());
-        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
-        Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+    public void onBind(final AppliedJobResponse data, @Nullable final ListSelesaiListener listener) {
+        tv_title.setText(data.getJob().getTitle());
+        tv_company.setText(data.getJob().getCompany().getName());
+        tv_lokasi.setText(data.getJob().getCompany().getName());
+        tv_fee.setText(data.getJob().getSalary());
+
+        if(null != data.getJob().getCompany().getLogoUrl()) {
+            Glide.with(itemView.getContext()).load(data.getJob().getCompany().getLogoUrl().trim()).into(iv_image);
+        }
 
         btn_penilaian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickBeriPenilaian(data.getId());
+                listener.onClickBeriPenilaian(data.getJob().getId());
             }
         });
     }

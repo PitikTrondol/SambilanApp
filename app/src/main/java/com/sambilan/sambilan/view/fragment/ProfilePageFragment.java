@@ -28,6 +28,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     ImageView iv_permintaan;
 
     public ProfilePageFragment() {
+
     }
 
 
@@ -46,6 +47,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             ll_profileFungsi.getChildAt(i).setOnClickListener((this));
         }
     }
+
 
 
     private void GoToNextScreen(FragmentActivity fragmentContext, Class<?> cls) {

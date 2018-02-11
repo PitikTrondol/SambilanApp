@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 import com.sambilan.sambilan.view.adapter.viewholder.ListMenungguHolder;
 
@@ -14,7 +15,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListMenungguHolder;
  * Created by febrian on 31/01/18.
  */
 
-public class ListMenungguAdapter extends BaseRecyclerAdapter<Job, ListMenungguListener, ListMenungguHolder> {
+public class ListMenungguAdapter extends BaseRecyclerAdapter<AppliedJobResponse, ListMenungguListener, ListMenungguHolder> {
 
     public ListMenungguAdapter(Context context) {
         super(context);

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.BaseRecyclerListener;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 import com.sambilan.sambilan.view.adapter.listener.ListPermintaanListener;
@@ -19,7 +20,7 @@ import com.sambilan.sambilan.view.helper.ImgurHelper;
  * Created by febrian on 31/01/18.
  */
 
-public class ListMenungguHolder extends BaseViewHolder<Job, ListMenungguListener> {
+public class ListMenungguHolder extends BaseViewHolder<AppliedJobResponse, ListMenungguListener> {
 
     private TextView tv_title;
     private TextView tv_company;
@@ -45,13 +46,14 @@ public class ListMenungguHolder extends BaseViewHolder<Job, ListMenungguListener
     }
 
     @Override
-    public void onBind(final Job data, @Nullable final ListMenungguListener listener) {
-        tv_title.setText(data.getTitle());
-        tv_company.setText(data.getCompany().getName());
-        tv_lokasi.setText(data.getCompany().getAddress());
-        tv_fee.setText(data.getSalary());
-        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
-        Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+    public void onBind(final AppliedJobResponse data, @Nullable final ListMenungguListener listener) {
+        tv_title.setText(data.getJob().getTitle());
+        tv_company.setText(data.getJob().getCompany().getName());
+        tv_lokasi.setText(data.getJob().getCompany().getAddress());
+        tv_fee.setText(data.getJob().getSalary());
+
+        if(null != data.getJob().getCompany().getLogoUrl())
+            Glide.with(itemView.getContext()).load(data.getJob().getCompany().getLogoUrl().trim()).into(iv_image);
 
         btn_batalkan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,12 +62,4 @@ public class ListMenungguHolder extends BaseViewHolder<Job, ListMenungguListener
             }
         });
     }
-
-//    @Override
-//    public void onBind(Object data, @Nullable BaseRecyclerListener listener) {
-//        tv_title.setText(data.getTitle());
-//        tv_company.setText(data.getCompany_name());
-//        tv_lokasi.setText(data.getCompany_address());
-//        tv_fee.setText(data.getSalary());
-//    }
 }
