@@ -14,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkService {
 
     private static Retrofit retrofitInstance;
-//    private static final String BASE_URL = "http://private-c66260-sambilan.apiary-mock.com";
     private static final String BASE_URL = "http://sambilan.herokuapp.com";
 
     /**
@@ -46,14 +45,6 @@ public class NetworkService {
 
     public static InvitationPageAPI crateInvitationAPI() {
         return getRetrofit().create(InvitationPageAPI.class);
-    }
-
-    public static DiterimaPageAPI createAcceptedPageApi() {
-        return getRetrofit().create(DiterimaPageAPI.class);
-    }
-
-    public static FinishedPageAPI createFinishedPageAPI() {
-        return getRetrofit().create(FinishedPageAPI.class);
     }
 
     public static DetailJobsApi createJobsApi(){

@@ -11,12 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-//import com.sambilan.sambilan.model.LandingPageResponse;
 import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
-import com.sambilan.sambilan.model.response.FinishedResponse;
 import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
-import com.sambilan.sambilan.presenter.FinishedPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;

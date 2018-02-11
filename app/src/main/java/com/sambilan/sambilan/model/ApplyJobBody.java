@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Afriandi Haryanto on 2/11/2018.
  * benere ini bangsat, bikin class cuman isi nya satu variable aja.
+ * cen og Sasmito ki
  */
 
 public class ApplyJobBody {
