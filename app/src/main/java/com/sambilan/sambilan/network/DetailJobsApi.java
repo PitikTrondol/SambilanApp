@@ -4,7 +4,7 @@ import com.sambilan.sambilan.model.ApplyJobBody;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.response.DetailJobResponse;
 import com.sambilan.sambilan.model.response.PostResponse;
-import com.sambilan.sambilan.model.response.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,6 +28,6 @@ public interface DetailJobsApi {
                                              @Body ApplyJobBody body);
 
     @GET("/api/v1/applies/")
-    Call<WaitingPageResponse> getWaitingList(@Header("token") String token,
-                                             @Query("status") String status);
+    Call<EmployeeFlowResponse> getWaitingList(@Header("token") String token,
+                                              @Query("status") String status);
 }

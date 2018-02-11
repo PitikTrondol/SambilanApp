@@ -2,7 +2,7 @@ package com.sambilan.sambilan.presenter;
 
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.response.PostResponse;
-import com.sambilan.sambilan.model.response.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.network.EmployeeFlowAPI;
 import com.sambilan.sambilan.network.NetworkService;
 
@@ -22,18 +22,18 @@ public class EmployeeFlowPresenter {
         this.api = NetworkService.createEmployeeFlowApi();
     }
 
-    public void getJobByStatus(final ResponseResultCallback<WaitingPageResponse, Throwable> waitingListCallback,
+    public void getJobByStatus(final ResponseResultCallback<EmployeeFlowResponse, Throwable> waitingListCallback,
                                String token,
                                String status) {
 
-        this.api.getJobByStatus(token, status).enqueue(new Callback<WaitingPageResponse>() {
+        this.api.getJobByStatus(token, status).enqueue(new Callback<EmployeeFlowResponse>() {
             @Override
-            public void onResponse(Call<WaitingPageResponse> call, Response<WaitingPageResponse> response) {
+            public void onResponse(Call<EmployeeFlowResponse> call, Response<EmployeeFlowResponse> response) {
                 waitingListCallback.OnSuccessResult(response.body());
             }
 
             @Override
-            public void onFailure(Call<WaitingPageResponse> call, Throwable t) {
+            public void onFailure(Call<EmployeeFlowResponse> call, Throwable t) {
                 waitingListCallback.OnFailureResult(t);
             }
         });

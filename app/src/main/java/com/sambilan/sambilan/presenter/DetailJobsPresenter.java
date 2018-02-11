@@ -5,7 +5,7 @@ import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.model.response.DetailJobResponse;
 import com.sambilan.sambilan.model.response.PostResponse;
-import com.sambilan.sambilan.model.response.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.network.DetailJobsApi;
 import com.sambilan.sambilan.network.NetworkService;
 
@@ -61,14 +61,14 @@ public class DetailJobsPresenter {
 
     public void getJobOnWait(final ResponseResultCallback<List<AppliedJobResponse>, Throwable> waitCallback,
                              String token, String status) {
-        this.api.getWaitingList(token, status).enqueue(new Callback<WaitingPageResponse>() {
+        this.api.getWaitingList(token, status).enqueue(new Callback<EmployeeFlowResponse>() {
             @Override
-            public void onResponse(Call<WaitingPageResponse> call, Response<WaitingPageResponse> response) {
+            public void onResponse(Call<EmployeeFlowResponse> call, Response<EmployeeFlowResponse> response) {
                 waitCallback.OnSuccessResult(response.body().getData());
             }
 
             @Override
-            public void onFailure(Call<WaitingPageResponse> call, Throwable t) {
+            public void onFailure(Call<EmployeeFlowResponse> call, Throwable t) {
                 waitCallback.OnFailureResult(t);
             }
         });

@@ -11,16 +11,11 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.response.AppliedJobResponse;
-import com.sambilan.sambilan.model.response.WaitingPageResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HalamanMenungguActivity extends AppCompatActivity {
 
@@ -57,10 +52,10 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-    private ResponseResultCallback<WaitingPageResponse, Throwable> waitingPageCallback =
-            new ResponseResultCallback<WaitingPageResponse, Throwable>() {
+    private ResponseResultCallback<EmployeeFlowResponse, Throwable> waitingPageCallback =
+            new ResponseResultCallback<EmployeeFlowResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(WaitingPageResponse first) {
+                public void OnSuccessResult(EmployeeFlowResponse first) {
                     menungguAdapter.setModel(first.getData());
                     clearLoading();
                 }
