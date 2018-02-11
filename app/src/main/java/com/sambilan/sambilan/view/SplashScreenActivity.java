@@ -3,12 +3,10 @@ package com.sambilan.sambilan.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
-import android.view.Window;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.cache.CacheManager;
 import com.sambilan.sambilan.SambilanApplication;
 
 /**
@@ -17,20 +15,29 @@ import com.sambilan.sambilan.SambilanApplication;
 
 public class SplashScreenActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT = 4000;
+    CacheManager cacheManager;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        cacheManager = CacheManager.getInstance(SplashScreenActivity.this);
         new Handler().postDelayed(new Runnable() {
+
             @Override
             public void run() {
-                Intent Intent = new Intent(SplashScreenActivity.this , SambilanActivity.class);
-                startActivity(Intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                if (cacheManager.get("login")) {
+                    intent =new Intent(SplashScreenActivity.this,SambilanActivity.class);
+                } else {
+                    intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                }
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
-        }, SPLASH_TIME_OUT);
+        },SPLASH_TIME_OUT);
+        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
     }
 
 }

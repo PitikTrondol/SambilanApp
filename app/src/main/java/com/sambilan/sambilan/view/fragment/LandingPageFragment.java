@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -37,7 +39,7 @@ import java.util.List;
  * Created by Andhika Putranto on 2/3/2018.
  */
 
-public class LandingPageFragment extends Fragment {
+public class LandingPageFragment extends Fragment implements TopBar {
 
     private final int DISPLAY_COUNT = 5;
     private final String TAG = "com.sambilan.sambilan";

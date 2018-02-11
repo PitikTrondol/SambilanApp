@@ -11,9 +11,12 @@
     <color name="colorLightOrange">#EBB242</color>
     <color name="colorLightGrey">#E6E5E5</color>
     <color name="orangeCircle">#b5b1b1</color>
+    <color name="dark_gray">#636363</color>
+    <color name="black">#000000</color>
     <color name="calmPink">#D0006E</color>
     <color name="calmBlue">#0776A0</color>
     <color name="calmGreen">#98ED00</color>
     <color name="calmOrange">#FF8500</color>
     <color name="offlineBackground">#FFD073</color>
+    <color name="dark_red">#CF3636</color>
 </resources>
