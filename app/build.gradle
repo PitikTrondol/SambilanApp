@@ -5,7 +5,7 @@ ext.majorVersion = 0
 ext.minorVersion = 0
 ext.patchVersion = 2
 ext.preRelease = ""
-ext.minSdk = 19
+ext.minSdk = 21
 
 android {
     compileSdkVersion 26
@@ -81,5 +81,3 @@ private String generateVersionName(){
     }
     return versionName
 }
-
-//Sambilan_v0.0.1-release

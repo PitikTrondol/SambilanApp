@@ -1,9 +1,15 @@
 package com.sambilan.sambilan.presenter;
 
+import com.sambilan.sambilan.model.ApplyJobBody;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.model.response.DetailJobResponse;
+import com.sambilan.sambilan.model.response.PostResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.network.DetailJobsApi;
 import com.sambilan.sambilan.network.NetworkService;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +38,38 @@ public class DetailJobsPresenter {
             @Override
             public void onFailure(Call<DetailJobResponse> call, Throwable t) {
                 resourcesCallback.OnFailureResult(t);
+            }
+        });
+    }
+
+    public void applyJob(final ResponseResultCallback<PostResponse<String, Job>, Throwable> applyCallback,
+                         final String token,
+                         ApplyJobBody body) {
+
+        this.api.applyJob(token, body).enqueue(new Callback<PostResponse<String, Job>>() {
+            @Override
+            public void onResponse(Call<PostResponse<String, Job>> call, Response<PostResponse<String, Job>> response) {
+                applyCallback.OnSuccessResult(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<PostResponse<String, Job>> call, Throwable t) {
+                applyCallback.OnFailureResult(t);
+            }
+        });
+    }
+
+    public void getJobOnWait(final ResponseResultCallback<List<AppliedJobResponse>, Throwable> waitCallback,
+                             String token, String status) {
+        this.api.getWaitingList(token, status).enqueue(new Callback<EmployeeFlowResponse>() {
+            @Override
+            public void onResponse(Call<EmployeeFlowResponse> call, Response<EmployeeFlowResponse> response) {
+                waitCallback.OnSuccessResult(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<EmployeeFlowResponse> call, Throwable t) {
+                waitCallback.OnFailureResult(t);
             }
         });
     }

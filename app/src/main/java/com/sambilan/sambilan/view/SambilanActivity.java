@@ -3,6 +3,7 @@ package com.sambilan.sambilan.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ public class SambilanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sambilan);
-
+        
         if(((SambilanApplication) getApplication()).isConnected())
             loadFragment(new LandingPageFragment());
         else
@@ -70,7 +71,7 @@ public class SambilanActivity extends AppCompatActivity {
         }
     };
 
-    private void loadFragment(android.support.v4.app.Fragment fragment){
+    private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_container,fragment)
                 .addToBackStack(null)

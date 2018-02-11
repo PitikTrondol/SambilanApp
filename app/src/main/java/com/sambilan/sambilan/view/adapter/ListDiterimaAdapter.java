@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
 import com.sambilan.sambilan.view.adapter.viewholder.ListDiterimaHolder;
 
@@ -13,7 +13,7 @@ import com.sambilan.sambilan.view.adapter.viewholder.ListDiterimaHolder;
  * Created by Andhika Putranto on 1/31/2018.
  */
 
-public class ListDiterimaAdapter extends BaseRecyclerAdapter<Job, ListDiterimaListener , ListDiterimaHolder> {
+public class ListDiterimaAdapter extends BaseRecyclerAdapter<AppliedJobResponse, ListDiterimaListener , ListDiterimaHolder> {
 
     public ListDiterimaAdapter(Context context) {
         super(context);
@@ -21,12 +21,6 @@ public class ListDiterimaAdapter extends BaseRecyclerAdapter<Job, ListDiterimaLi
 
     @Override
     public ListDiterimaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view =inflate(R.layout.item_diterima,parent,false);
-//        RelativeLayout rl = view.findViewById(R.id.rl_diterima);
-//        rl.setBackgroundResource(0);
-
-
-        return new ListDiterimaHolder(view);
+        return new ListDiterimaHolder(inflate(R.layout.item_diterima,parent,false));
     }
 }

@@ -11,10 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-//import com.sambilan.sambilan.model.LandingPageResponse;
-import com.sambilan.sambilan.model.response.FinishedResponse;
-import com.sambilan.sambilan.presenter.FinishedPagePresenter;
-import com.sambilan.sambilan.presenter.LandingPagePresenter;
+import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
+import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
@@ -29,21 +28,24 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
     private RecyclerView recyclerSelesai;
     private SwipeRefreshLayout refreshLayout;
     private ListSelesaiAdapter selesaiAdapter;
-    private FinishedPagePresenter finishedPresenter;
+    private EmployeeFlowPresenter employeeFlowPresenter;
 
     private int userId = 1;
-    private final String SET_NILAI = "RATING";
+    private String appToken;
+    private final String SET_STATUS = "done";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permintaan);
+        appToken = ((SambilanApplication) getApplication()).getAppToken();
+
         progressBar = findViewById(R.id.progress_bar);
         recyclerSelesai = findViewById(R.id.common_recycler_view);
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
 
-        finishedPresenter = new FinishedPagePresenter();
-        finishedPresenter.getAllFinishedJobs(finishedCallback, userId);
+        employeeFlowPresenter = new EmployeeFlowPresenter();
+        employeeFlowPresenter.getJobByStatus(finishedCallback, appToken, SET_STATUS);
 
         selesaiAdapter = new ListSelesaiAdapter(HalamanSelesaiActivity.this);
         selesaiAdapter.setListener(listener);
@@ -54,10 +56,10 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
     }
 
     // create callback buat presenter
-    private ResponseResultCallback<FinishedResponse, Throwable> finishedCallback =
-            new ResponseResultCallback<FinishedResponse, Throwable>() {
+    private ResponseResultCallback<EmployeeFlowResponse, Throwable> finishedCallback =
+            new ResponseResultCallback<EmployeeFlowResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(FinishedResponse first) {
+                public void OnSuccessResult(EmployeeFlowResponse first) {
                     selesaiAdapter.setModel(first.getData());
                     progressBar.setVisibility(View.GONE);
                     refreshLayout.setRefreshing(false);
@@ -89,19 +91,20 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
     private ListSelesaiListener listener = new ListSelesaiListener() {
         @Override
         public void onClickBeriPenilaian(int jobID) {
-            postAndUpdateScreen(jobID, SET_NILAI);
+            postAndUpdateScreen(jobID, SET_STATUS);
         }
     };
 
     private SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            finishedPresenter.getAllFinishedJobs(finishedCallback, userId);
+            employeeFlowPresenter.getJobByStatus(finishedCallback, appToken, SET_STATUS);
         }
     };
 
     private void postAndUpdateScreen(int jobID, String rating) {
-        finishedPresenter.postBeriPenilaian(penilaianCallback, userId, jobID, rating);
-        finishedPresenter.getAllFinishedJobs(finishedCallback, userId);
+//        employeeFlowPresenter.postBeriPenilaian(penilaianCallback, userId, jobID, rating);
+        Toast.makeText(this, "Halaman Rating Belum Jadi", Toast.LENGTH_SHORT).show();
+        employeeFlowPresenter.getJobByStatus(finishedCallback, appToken, SET_STATUS);
     }
 }

@@ -12,7 +12,7 @@ public class Company {
     private int id;
 
     @SerializedName("user_detail_id")
-    private int user_detail_id;
+    private int userDetailId;
 
     @SerializedName("name")
     private String name;
@@ -24,23 +24,35 @@ public class Company {
     private String desc;
 
     @SerializedName("logo_url")
-    private String logo_url;
+    private String logoUrl;
+
+    @SerializedName("created_at")
+    private String createdAt;
+
+    @SerializedName("updated_at")
+    private String updatedAt;
 
     @SerializedName("is_verified")
-    private String is_verified;
+    private boolean isVerified;
 
-    @SerializedName("user_detail")
-    private User user_detail;
+    @SerializedName("latitude")
+    private float latitude;
 
-    public Company(int id, int user_detail_id, String name, String address, String desc, String logo_url, String is_verified, User user_detail) {
+    @SerializedName("longitude")
+    private float longitude;
+
+    public Company(int id, int userDetailId, String name, String address, String desc, String logoUrl, String createdAt, String updatedAt, boolean isVerified, float latitude, float longitude) {
         this.id = id;
-        this.user_detail_id = user_detail_id;
+        this.userDetailId = userDetailId;
         this.name = name;
         this.address = address;
         this.desc = desc;
-        this.logo_url = logo_url;
-        this.is_verified = is_verified;
-        this.user_detail = user_detail;
+        this.logoUrl = logoUrl;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.isVerified = isVerified;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -51,12 +63,12 @@ public class Company {
         this.id = id;
     }
 
-    public int getUser_detail_id() {
-        return user_detail_id;
+    public int getUserDetailId() {
+        return userDetailId;
     }
 
-    public void setUser_detail_id(int user_detail_id) {
-        this.user_detail_id = user_detail_id;
+    public void setUserDetailId(int userDetailId) {
+        this.userDetailId = userDetailId;
     }
 
     public String getName() {
@@ -83,27 +95,51 @@ public class Company {
         this.desc = desc;
     }
 
-    public String getLogo_url() {
-        return logo_url;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    public void setLogo_url(String logo_url) {
-        this.logo_url = logo_url;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
-    public String getIs_verified() {
-        return is_verified;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setIs_verified(String is_verified) {
-        this.is_verified = is_verified;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public User getUser_detail() {
-        return user_detail;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUser_detail(User user_detail) {
-        this.user_detail = user_detail;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 }

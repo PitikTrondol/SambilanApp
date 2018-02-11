@@ -10,9 +10,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.response.WaitingPageResponse;
+import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
+import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
-import com.sambilan.sambilan.presenter.WaitingPagePresenter;
 import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 
@@ -20,24 +21,27 @@ public class HalamanMenungguActivity extends AppCompatActivity {
 
     private RecyclerView recyclerMenunggu;
     private ListMenungguAdapter menungguAdapter;
-    private WaitingPagePresenter waitingPagePresenter;
+    private EmployeeFlowPresenter employeeFlowPresenter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
 
+    private final String SET_STATUS = "waiting";
+    private String appToken;
+
     private int userId = 1;
-    private final String SET_BATAL = "CANCEL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menunggu);
+        appToken = ((SambilanApplication) getApplication()).getAppToken();
 
         recyclerMenunggu = findViewById(R.id.common_recycler_view);
         progressBar = findViewById(R.id.progress_bar);
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
 
-        waitingPagePresenter = new WaitingPagePresenter();
-        waitingPagePresenter.getAllWaitingList(waitingPageCallback);
+        employeeFlowPresenter = new EmployeeFlowPresenter();
+        employeeFlowPresenter.getJobByStatus(waitingPageCallback, appToken, SET_STATUS);
 
         menungguAdapter = new ListMenungguAdapter(HalamanMenungguActivity.this);
         menungguAdapter.setListener(menungguListener);
@@ -48,10 +52,10 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(refreshListener);
     }
 
-    private ResponseResultCallback<WaitingPageResponse, Throwable> waitingPageCallback =
-            new ResponseResultCallback<WaitingPageResponse, Throwable>() {
+    private ResponseResultCallback<EmployeeFlowResponse, Throwable> waitingPageCallback =
+            new ResponseResultCallback<EmployeeFlowResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(WaitingPageResponse first) {
+                public void OnSuccessResult(EmployeeFlowResponse first) {
                     menungguAdapter.setModel(first.getData());
                     clearLoading();
                 }
@@ -68,7 +72,9 @@ public class HalamanMenungguActivity extends AppCompatActivity {
                 @Override
                 public void OnSuccessResult(String first) {
                     Toast.makeText(HalamanMenungguActivity.this,
-                            ""+first, Toast.LENGTH_SHORT).show();
+                            "Cancel Pekerjaan Berhasil", Toast.LENGTH_SHORT).show();
+
+                    employeeFlowPresenter.getJobByStatus(waitingPageCallback, appToken, SET_STATUS);
                 }
 
                 @Override
@@ -82,9 +88,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
             new ListMenungguListener() {
                 @Override
                 public void onClickBatalkan(int jobID) {
-                    Toast.makeText(HalamanMenungguActivity.this, "BATALKAN JOB "+jobID,
-                            Toast.LENGTH_SHORT).show();
-                    postAndUpdate(jobID, SET_BATAL);
+                    postAndUpdate(jobID);
                 }
             };
 
@@ -92,7 +96,7 @@ public class HalamanMenungguActivity extends AppCompatActivity {
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    waitingPagePresenter.getAllWaitingList(waitingPageCallback);
+                    employeeFlowPresenter.getJobByStatus(waitingPageCallback, appToken, SET_STATUS);
                 }
             };
 
@@ -101,8 +105,8 @@ public class HalamanMenungguActivity extends AppCompatActivity {
         refreshLayout.setRefreshing(false);
     }
 
-    private void postAndUpdate(int jobID, String cancel) {
-        waitingPagePresenter.postCancelWaitingJob(cancelCallback, userId, jobID, cancel);
-        waitingPagePresenter.getAllWaitingList(waitingPageCallback);
+    private void postAndUpdate(int jobID) {
+        employeeFlowPresenter.cancelWaitingJob(cancelCallback, appToken, jobID);
+        employeeFlowPresenter.getJobByStatus(waitingPageCallback, appToken, SET_STATUS);
     }
 }
