@@ -17,14 +17,9 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/tb_pekerja"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/Orange">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Daftar Pekerja"
-                android:textColor="@color/Orange"
-                android:textSize="20sp" />
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TextInputLayout

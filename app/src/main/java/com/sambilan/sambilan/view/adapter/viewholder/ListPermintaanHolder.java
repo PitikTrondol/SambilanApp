@@ -45,32 +45,32 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
     }
 
     @Override
-    public void onBind(Job data, @Nullable final ListPermintaanListener listener) {
+    public void onBind(final Job data, @Nullable final ListPermintaanListener listener) {
         tv_title.setText(data.getTitle());
-        tv_company.setText(data.getCompany_name());
-        tv_lokasi.setText(data.getCompany_address());
+        tv_company.setText(data.getCompany().getName());
+        tv_lokasi.setText(data.getCompany().getAddress());
         tv_fee.setText(data.getSalary());
-        helper = new ImgurHelper(data.getLogo_url().trim());
+        helper = new ImgurHelper(data.getCompany().getLogo_url().trim());
         Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
 
         btn_diterima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickButtonTerima();
+                listener.onClickButtonTerima(data.getId());
             }
         });
 
         btn_ditolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickButtonTolak();
+                listener.onClickButtonTolak(data.getId());
             }
         });
 
         cv_job.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickListPermintaan();
+                listener.onClickListPermintaan(data.getId());
             }
         });
     }

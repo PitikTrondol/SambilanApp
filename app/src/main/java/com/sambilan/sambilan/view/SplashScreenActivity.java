@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.cache.CacheManager;
+import com.sambilan.sambilan.SambilanApplication;
 
 /**
  * Created by Andhika Putranto on 1/14/2018.
@@ -21,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        cacheManager = new CacheManager(SplashScreenActivity.this);
+        cacheManager = CacheManager.getInstance(SplashScreenActivity.this);
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -35,7 +36,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
-        }, SPLASH_TIME_OUT);
+        },SPLASH_TIME_OUT);
+        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
     }
 
 }

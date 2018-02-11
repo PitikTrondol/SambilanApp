@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,9 +32,10 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
     private EditText et_ulang_kata_pekerjakan;
     private EditText et_no_telp_pekerjakan;
     private EditText et_alamat_pekerjakan;
+    private TextView role_pekerjakan;
+
     private RegisterRequest registerRequest;
     private RegisterPresenter register;
-    private TextView role;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +47,29 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         et_ulang_kata_pekerjakan = findViewById(R.id.et_ulang_sandi_pekerjakan);
         et_no_telp_pekerjakan = findViewById(R.id.et_no_telp_pekerjakan);
         et_alamat_pekerjakan = findViewById(R.id.et_alamat_pekerjakan);
-        role.setText("employer");
+        role_pekerjakan = findViewById(R.id.tv_role_pekerjakan);
+        role_pekerjakan.setText("employer");
         ArrayList<String> list = new ArrayList<>();
+
+        Toolbar toolbar = findViewById(R.id.tb_pekerjakan);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Daftar Pekerjakan");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
+
         register = new RegisterPresenter();
 
         findViewById(R.id.btn_masuk_pekerjakan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(),et_kata_sandi_pekerjakan.getText().toString(),
-                        role.getText().toString(),null,et_nama_pekerjakan.getText().toString(),null,et_no_telp_pekerjakan.getText().toString()
+                        role_pekerjakan.getText().toString(),null,et_nama_pekerjakan.getText().toString(),null,et_no_telp_pekerjakan.getText().toString()
                         ,et_nama_perusahaan.getText().toString(),et_alamat_pekerjakan.getText().toString());
                 register.postRegister(registerPresenter,registerRequest);
             }

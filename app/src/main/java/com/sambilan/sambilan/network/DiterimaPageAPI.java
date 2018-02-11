@@ -1,8 +1,6 @@
 package com.sambilan.sambilan.network;
 
-import com.sambilan.sambilan.model.Job;
-import com.sambilan.sambilan.model.JobList;
-import com.sambilan.sambilan.model.JobListResponse;
+import com.sambilan.sambilan.model.response.AcceptedResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,7 +13,5 @@ import retrofit2.http.Query;
 public interface DiterimaPageAPI {
 
     @GET("/api/v1/acceptedjob/")
-    Call<JobListResponse> getListJobs(@Query("user_detail_id") int id);
-
-
+    Call<AcceptedResponse> getAcceptedJobs(@Query("user_detail_id") int id);
 }

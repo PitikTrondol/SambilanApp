@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        cacheManager=new CacheManager(LoginActivity.this);
+        cacheManager=CacheManager.getInstance(LoginActivity.this);
         et_email=findViewById(R.id.et_email);
         cl_login = findViewById(R.id.cl_login);
         et_password=findViewById(R.id.et_password);
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 Intent intent = new Intent(LoginActivity.this,SambilanActivity.class);
                 startActivity(intent);
-                cacheManager.saveBoolean("login",true);
+                cacheManager.saveString("login",first.getToken());
             }else
             {
                 Toast.makeText(LoginActivity.this,"Error bos",Toast.LENGTH_SHORT).show();

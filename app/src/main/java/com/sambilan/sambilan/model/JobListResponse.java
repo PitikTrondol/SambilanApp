@@ -10,13 +10,14 @@ import java.util.List;
 
 public class JobListResponse {
     @SerializedName("status")
-    private String status;
+    public String status;
 
     @SerializedName("data")
-    private List<JobList> data;
+    public List<Job> data;
 
-    public JobListResponse() {
-
+    public JobListResponse(String status, List<Job> data) {
+        this.status = status;
+        this.data = data;
     }
 
     public String getStatus() {
@@ -27,11 +28,11 @@ public class JobListResponse {
         this.status = status;
     }
 
-    public List<JobList> getData() {
+    public List<Job> getData() {
         return data;
     }
 
-    public void setData(List<JobList> data) {
+    public void setData(List<Job> data) {
         this.data = data;
     }
 }

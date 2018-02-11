@@ -43,10 +43,15 @@ public class NetworkService {
     public static LandingPageApi createLandingPageApi() {
         return getRetrofit().create(LandingPageApi.class);
     }
+
+    public static InvitationPageAPI crateInvitationAPI() {
+        return getRetrofit().create(InvitationPageAPI.class);
+    }
     public static WaitingPageApi createWaitingPageApi() {
         return getRetrofit().create(WaitingPageApi.class);
     }
-    public static DiterimaPageAPI createListJobApi() {
+
+    public static DiterimaPageAPI createAcceptedPageApi() {
         return getRetrofit().create(DiterimaPageAPI.class);
     }
     public static RegisterPageAPI createRegisterAPI(){
@@ -54,6 +59,14 @@ public class NetworkService {
     }
     public static LoginPageAPI createLoginAPI(){
         return getRetrofit().create(LoginPageAPI.class);
+    }
+
+    public static FinishedPageAPI createFinishedPageAPI() {
+        return getRetrofit().create(FinishedPageAPI.class);
+    }
+
+    public static DetailJobsApi createJobsApi(){
+        return getRetrofit().create(DetailJobsApi.class);
     }
 
     public static EmployerApi createEmpApi() {

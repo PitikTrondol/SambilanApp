@@ -13,7 +13,14 @@ public class CacheManager {
     private SharedPreferences preferences;
     private String preferenceName;
 
-    public CacheManager(Context context) {
+    private static CacheManager instance;
+
+    public static CacheManager getInstance(Context context){
+        if(instance==null){
+            instance=new CacheManager(context);
+        }
+        return instance;}
+    private CacheManager(Context context) {
         this.context = context;
         this.preferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
         this.preferenceName = "Preference";
