@@ -86,6 +86,10 @@ public class Job {
         this.count_invitation = count_invitation;
     }
 
+    public Job(){
+
+    }
+
     public int getId() {
         return id;
     }
