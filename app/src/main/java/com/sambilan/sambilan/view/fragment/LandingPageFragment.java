@@ -90,7 +90,6 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
         currentPage = 1;
         landingPagePresenter = new LandingPagePresenter();
-//        landingPagePresenter.getHomeCarousel(carouselCallback);
         landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
@@ -128,26 +127,6 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
         return fragments;
     }
-
-    private ResponseResultCallback<AdResponse, Throwable> carouselCallback =
-            new ResponseResultCallback<AdResponse, Throwable>() {
-                @Override
-                public void OnSuccessResult(AdResponse first) {
-                    List<Fragment> fragments = new ArrayList<>();
-                    for (Ad carousel : first.getData()) {
-                        fragments.add(SliderFragment.newInstance(carousel.getImgUrl().trim()));
-                    }
-
-                    carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), fragments);
-                }
-
-                @Override
-                public void OnFailureResult(Throwable second) {
-                    Toast.makeText(getActivity(),
-                            "FAIL " + second.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            };
 
     private ResponseResultCallback<JobResponse, Throwable> homeJobCallback =
             new ResponseResultCallback<JobResponse, Throwable>() {
@@ -211,9 +190,9 @@ public class LandingPageFragment extends Fragment implements TopBar {
                     childCount = layoutManager.getChildCount();
                     itemCount = layoutManager.getItemCount();
 
-                    if (!isLoading &&
-                            ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
-                            && itemCount < (DISPLAY_COUNT * totalPage)) {
+                    if (!isLoading
+                            && ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
+                            && currentPage < totalPage) {
 
                         //kalo udah jadi, currentPage++
                         landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
