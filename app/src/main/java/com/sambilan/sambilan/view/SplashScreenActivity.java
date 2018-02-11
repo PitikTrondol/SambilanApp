@@ -5,28 +5,34 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.Window;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
 
 /**
  * Created by Andhika Putranto on 1/14/2018.
  */
 
 public class SplashScreenActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_splash_screen);
+    private static final int SPLASH_TIME_OUT = 4000;
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), LandingPageActivity.class));
+                Intent Intent = new Intent(SplashScreenActivity.this , SambilanActivity.class);
+                startActivity(Intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 finish();
             }
-        }, 3000);
+        },SPLASH_TIME_OUT);
+
+        ((SambilanApplication)getApplication()).setNeedLoadOnline(true);
     }
+
 }

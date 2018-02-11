@@ -15,25 +15,32 @@ import android.widget.Toast;
  */
 
 public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
-    private Context context;
+    private Context sContext;
     private LinearLayout container;
     private int drawable;
     private int spacing;
     private int size;
-    private ViewPager viewPager;
+    private ViewPager sViewPager;
     private int pageCount;
     private int initialPage = 0;
 
     private int defaultSizeInDp = 12;
     private int defaultSpacingInDp = 12;
+//
+//    public PageIndicatorHelper(@NonNull Context context, @NonNull LinearLayout containerView, @NonNull ViewPager viewPager, @DrawableRes int drawableRes) {
+//
+//        this.sContext = context;
+//        this.container = containerView;
+//        this.drawable = drawableRes;
+//        this.sViewPager = viewPager;
+//
+//    }
 
-    public PageIndicatorHelper(@NonNull Context context, @NonNull LinearLayout containerView, @NonNull ViewPager viewPager, @DrawableRes int drawableRes) {
-
-        this.context = context;
-        this.container = containerView;
-        this.drawable = drawableRes;
-        this.viewPager = viewPager;
-
+    public PageIndicatorHelper(@NonNull Context sContext,@NonNull LinearLayout container,@DrawableRes int drawable,@NonNull ViewPager sViewPager) {
+        this.sContext = sContext;
+        this.container = container;
+        this.drawable = drawable;
+        this.sViewPager = sViewPager;
     }
 
     public void setPageCount(int pageCount) {
@@ -66,15 +73,16 @@ public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
             return;
         }
 
-        viewPager.addOnPageChangeListener(this);
-        Resources res = context.getResources();
+        sViewPager.addOnPageChangeListener(this);
+        Resources res = sContext.getResources();
         container.removeAllViews();
         for (int i = 0; i < pageCount; i++) {
-            View view = new View(context);
+            View view = new View(sContext);
             int dimen = size != 0 ? res.getDimensionPixelSize(size) : ((int) res.getDisplayMetrics().density * defaultSizeInDp);
             int margin = spacing != 0 ? res.getDimensionPixelSize(spacing) : ((int) res.getDisplayMetrics().density * defaultSpacingInDp);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dimen, dimen);
             lp.setMargins(i == 0 ? 0 : margin, 0, 0, 0);
+
             view.setLayoutParams(lp);
             view.setBackgroundResource(drawable);
             view.setSelected(i == 0);
@@ -94,7 +102,7 @@ public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        Toast.makeText(context, "pos " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(sContext, "pos " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -109,6 +117,6 @@ public class PageIndicatorHelper implements ViewPager.OnPageChangeListener {
     }
 
     public void cleanup() {
-        viewPager.clearOnPageChangeListeners();
+        sViewPager.clearOnPageChangeListeners();
     }
 }

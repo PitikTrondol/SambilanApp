@@ -5,10 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
+    android:layout_marginLeft="@dimen/cardview_margin_narrow"
+    android:layout_marginRight="@dimen/cardview_margin_narrow"
+    android:layout_marginBottom="@dimen/cardview_margin_mid"
     app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="1dp"
+    app:cardCornerRadius="@dimen/cardview_custom_radius"
     app:cardPreventCornerOverlap="false">
 
     <LinearLayout
@@ -29,7 +30,7 @@
                 android:id="@+id/tv_jobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="@dimen/text_size_20dp"
                 android:textStyle="bold"
                 tools:text="Job Title" />
 
@@ -42,19 +43,28 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="1dp"
-                    android:src="@drawable/ic_loc" />
+                    android:src="@drawable/ic_address" />
 
                 <TextView
-                    android:id="@+id/tv_alamat"
+                    android:id="@+id/tv_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_margin="1dp"
                     android:scrollbars="horizontal"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_size"
                     android:textStyle="bold"
-                    tools:text="Alamat" />
+                    tools:text="Company" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                tools:text="Alamat"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +75,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="1dp"
-                    android:src="@drawable/ic_fee" />
+                    android:src="@drawable/ic_salary" />
 
                 <TextView
                     android:id="@+id/tv_bayaran"
@@ -73,19 +83,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_margin="1dp"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_size"
                     android:textStyle="bold"
                     tools:text="Rp 10.000.000" />
             </LinearLayout>
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iv_jobImage"
+            android:id="@+id/iv_item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
             android:layout_margin="1dp"
-            android:layout_weight="7"
-            android:src="@drawable/ic_starbuck" />
+            android:layout_weight="6"
+            tools:src="@drawable/ic_starbuck" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

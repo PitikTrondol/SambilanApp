@@ -13,6 +13,15 @@ public class Employer {
     private String phoneNumber;
     private String desc;
 
+    public Employer(int id, String name, String img_url, String address, String phoneNumber, String desc) {
+        this.id = id;
+        this.name = name;
+        this.img_url = img_url;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.desc = desc;
+    }
+
     public int getId() {
         return id;
     }
