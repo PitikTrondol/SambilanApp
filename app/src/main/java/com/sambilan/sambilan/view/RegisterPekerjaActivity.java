@@ -34,6 +34,7 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
     public EditText et_noTelp;
     public EditText et_alamat;
     public TextView role;
+
     public RegisterPresenter presenter;
 
     @Override
@@ -48,11 +49,12 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
         et_noTelp = findViewById(R.id.et_no_telp_pekerja);
         et_alamat = findViewById(R.id.et_alamat_pekerja);
         role = findViewById(R.id.tv_role_pekerja);
-        role.setText("employer");
+        role.setText("employee");
 
-        String[] item = new String[]{"Pria","Wanita"};
+        String[] item = new String[]{"pria", "wanita"};
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(RegisterPekerjaActivity.this,R.layout.support_simple_spinner_dropdown_item,item);
+                new ArrayAdapter<String>(RegisterPekerjaActivity.this, R.layout.support_simple_spinner_dropdown_item, item);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         sp_gender.setAdapter(adapter);
         final String string = sp_gender.getSelectedItem().toString();
 
@@ -61,9 +63,9 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
         findViewById(R.id.btn_masuk_pekerja).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterRequest registerPekerja = new RegisterRequest(et_email.getText().toString(), et_katasandi.getText().toString(),
-                        role.getText().toString(), string, et_nama.getText().toString(), et_alamat.getText().toString()
-                        , et_noTelp.getText().toString(), null);
+                RegisterRequest registerPekerja = new RegisterRequest(et_email.getText().toString(),et_katasandi.getText().toString(),
+                        role.getText().toString(),string,et_nama.getText().toString(),et_alamat.getText().toString(),et_noTelp.getText().toString()
+                        ,null,null);
                 presenter.postRegister(registerPresenter, registerPekerja);
             }
         });

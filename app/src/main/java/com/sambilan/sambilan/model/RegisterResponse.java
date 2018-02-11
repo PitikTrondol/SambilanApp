@@ -10,14 +10,15 @@ public class RegisterResponse {
     @SerializedName("status")
     public String status;
     @SerializedName("message")
-    public Email message;
+    public String message;
 
     public RegisterResponse(){}
-    public Email getMessage() {
+
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Email message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

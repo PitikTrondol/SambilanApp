@@ -1,6 +1,9 @@
 package com.sambilan.sambilan.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Andhika Putranto on 2/7/2018.
@@ -23,8 +26,10 @@ public class RegisterRequest {
     public String phone;
     @SerializedName("company_name")
     public String company_name;
+    @SerializedName("company_address")
+    public String company_address;
 
-    public RegisterRequest(String email, String password, String role, String gender, String fullname, String address, String phone, String company_name) {
+    public RegisterRequest(String email, String password, String role, String gender, String fullname, String address, String phone, String company_name, String company_address) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -33,6 +38,7 @@ public class RegisterRequest {
         this.address = address;
         this.phone = phone;
         this.company_name = company_name;
+        this.company_address = company_address;
     }
 
     public String getEmail() {
@@ -98,4 +104,13 @@ public class RegisterRequest {
     public void setCompany_name(String company_name) {
         this.company_name = company_name;
     }
+
+    public String getCompany_address() {
+        return company_address;
+    }
+
+    public void setCompany_address(String company_address) {
+        this.company_address = company_address;
+    }
 }
+
