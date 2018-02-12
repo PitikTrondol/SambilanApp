@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.cache.CacheManager;
+import com.sambilan.sambilan.model.DaoMaster;
 import com.sambilan.sambilan.view.fragment.AddPageFragment;
 import com.sambilan.sambilan.view.fragment.CategoryPageFragment;
 import com.sambilan.sambilan.view.fragment.LandingPageFragment;
@@ -98,5 +100,14 @@ public class MainMenuActivity extends AppCompatActivity {
     public void goToNextScreen(Context context, Class<?> cls) {
         Intent intent = new Intent(context, cls);
         startActivity(intent);
+    }
+
+    public void setLogout(Context context) {
+        CacheManager.getInstance(context).remove(CacheManager.ROLE_KEY);
+
+        ((SambilanApplication) getApplication()).setLoggedIn(false);
+        ((SambilanApplication) getApplication()).deleteDB();
+
+        loadFragment(new LandingPageFragment());
     }
 }

@@ -52,9 +52,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CacheManager.getInstance(view.getContext()).clear();
-                ((SambilanApplication)getActivity().getApplication()).setLoggedIn(false);
-                ((MainMenuActivity)getActivity()).loadFragment(new LandingPageFragment());
+                ((MainMenuActivity) getActivity()).setLogout(getActivity());
             }
         });
     }

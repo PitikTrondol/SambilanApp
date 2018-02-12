@@ -22,9 +22,10 @@ public class SambilanApplication extends Application {
     private String appRole = "employee";
 
     private boolean isLoggedIn = false;
-    private String appToken = "e290fc3d29e74e59a7678945b95dbff385813990dcb52eae4441d2910a2a10e7";
+    private String appToken = "8c01cddca605b6a1be43a23fa2e2dfd14f65dca6164e3079e1373f6e8cb2950a";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
+    private Database database;
 
     @Override
     public void onCreate() {
@@ -40,15 +41,14 @@ public class SambilanApplication extends Application {
             this.appToken = token;
             this.isLoggedIn = true;
 
+            Log.d("APP", "onCreate: ------------------------------ "+appToken);
+
             if(null != role && !role.equals("")) this.appRole = role;
         }
 
-        Database database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
+        database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
         DaoMaster daoMaster = new DaoMaster(database);
         daoSession = daoMaster.newSession();
-
-        DaoMaster.dropAllTables(database, true);
-        DaoMaster.createAllTables(database, true);
 
         Stetho.initializeWithDefaults(this);
     }
@@ -91,5 +91,10 @@ public class SambilanApplication extends Application {
 
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
+    }
+
+    public void deleteDB() {
+        DaoMaster.dropAllTables(database, true);
+        DaoMaster.createAllTables(database, true);
     }
 }
