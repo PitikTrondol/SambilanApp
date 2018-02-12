@@ -102,6 +102,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void setLogout(Context context) {
         CacheManager.getInstance(context).remove(CacheManager.ROLE_KEY);
+        CacheManager.getInstance(context).remove(CacheManager.TOKEN_KEY);
 
         ((SambilanApplication) getApplication()).setLoggedIn(false);
         ((SambilanApplication) getApplication()).deleteDB();

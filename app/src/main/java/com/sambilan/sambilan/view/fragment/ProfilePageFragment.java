@@ -24,9 +24,6 @@ import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Andhika Putranto on 1/31/2018.
  */
