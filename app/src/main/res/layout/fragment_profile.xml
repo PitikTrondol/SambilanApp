@@ -55,13 +55,14 @@
         android:id="@+id/scrollDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:layout_below="@+id/image_profile">
+        android:layout_below="@+id/image_profile"
+        android:overScrollMode="never">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorLightGrey">
+            android:background="@color/colorLightGrey"
+            android:paddingTop="@dimen/cardview_margin_mid">
 
             <LinearLayout
                 android:id="@+id/detil_profile"
@@ -69,69 +70,165 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/cardview_margin_mid"
                 android:background="@color/White"
+                android:baselineAligned="false"
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
-                android:paddingTop="20dp"
-                android:baselineAligned="false">
+                android:paddingTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"
                     android:paddingStart="20dp"
+                    android:paddingEnd="2dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_size"
-                    tools:text="Data Diri" />
+                    android:textStyle="bold"
+                    android:text="Data Diri" />
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/nama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myriad"
-                    android:paddingStart="20dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size"
-                    tools:text="Nama" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="10"
+                        android:textSize="@dimen/text_size"
+                        android:text="Nama" />
+
+                    <TextView
+                        android:id="@+id/val_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/text_size"
+                        tools:text=": Wira" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/alamat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myriad"
-                    android:paddingStart="20dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size"
-                    tools:text="Alamat" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="2dp"
+                        android:layout_weight="10"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size"
+                        android:text="Alamat" />
 
-                <TextView
+                    <TextView
+                        android:id="@+id/val_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/text_size"
+                        tools:text=": Jl. Parangtritis" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/telepon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myriad"
-                    android:paddingStart="20dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size"
-                    tools:text="Telp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="2dp"
+                        android:layout_weight="10
+"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size"
+                        android:text="Telepon" />
 
-                <TextView
+                    <TextView
+                        android:id="@+id/val_telepon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/text_size"
+                        tools:text=": +628704959384" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myriad"
-                    android:paddingStart="20dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size"
-                    tools:text="Email" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="2dp"
+                        android:layout_weight="10
+"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size"
+                        android:text="Email" />
 
-                <TextView
+                    <TextView
+                        android:id="@+id/val_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/text_size"
+                        tools:text=": sing0.3dan@yahoo.co.id" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/skill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myriad"
-                    android:paddingLeft="20dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size"
-                    tools:text="Keahlian" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="2dp"
+                        android:layout_weight="10
+"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size"
+                        android:text="Skill" />
+
+                    <TextView
+                        android:id="@+id/val_skill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myriad"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/text_size"
+                        tools:text=": Kaya raya, profesional stalker" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -150,8 +247,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/iv_permintaan"
@@ -176,8 +273,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/iv_menunggu"
@@ -202,8 +299,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/iv_diterima"
@@ -228,8 +325,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/iv_selesai"
@@ -275,7 +372,6 @@
                     android:text="Ubah Data Diri"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_size_18sp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -302,7 +398,6 @@
                     android:text="Ubah Kata Sandi"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_size_18sp" />
-
             </LinearLayout>
 
             <LinearLayout
