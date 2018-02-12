@@ -76,6 +76,12 @@ public class LoginActivity extends AppCompatActivity {
         daoSession = ((SambilanApplication)getApplication()).getDaoSession();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     private LoginPagePresenter.LoginResultCallback<LoginResponse, Throwable> loginPagePresenter =
             new LoginPagePresenter.LoginResultCallback<LoginResponse, Throwable>() {
                 @Override

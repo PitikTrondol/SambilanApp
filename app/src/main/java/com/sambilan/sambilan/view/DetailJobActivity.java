@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.view;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
@@ -113,7 +114,9 @@ public class DetailJobActivity extends AppCompatActivity
         if (null != detailJob.getCompany().getLogoUrl())
             Glide.with(this).load(detailJob.getCompany().getLogoUrl().trim()).into(iv_logo);
 
-        if(isInWaitingList(detailJob.getId())) {
+        if(!((SambilanApplication)getApplication()).isLoggedIn()) {
+            btn_lamar.setText("Login");
+        } else if(isInWaitingList(detailJob.getId())) {
             setDisableButton();
         } else {
             btn_lamar.setText("Apply Pekerjaan Ini");
@@ -124,6 +127,10 @@ public class DetailJobActivity extends AppCompatActivity
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    if(!((SambilanApplication)getApplication()).isLoggedIn()) {
+                        startActivity(new Intent(DetailJobActivity.this, LoginActivity.class));
+                    }
                     ApplyJobBody body = new ApplyJobBody(job.getId());
                     detailJobsPresenter.applyJob(applyCallback, appToken, body);
                 }

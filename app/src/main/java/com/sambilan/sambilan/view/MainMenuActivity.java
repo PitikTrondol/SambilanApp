@@ -46,7 +46,7 @@ public class MainMenuActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.btn_bottomnav);
         BottomNavigationHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        bottomNavigationView.setSelectedItemId(R.id.btn_home);
     }
 
     @Override
@@ -54,43 +54,42 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.btn_home:
+                            if (((SambilanApplication) getApplication()).isConnected())
+                                loadFragment(new LandingPageFragment());
+                            else
+                                loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
+                            return true;
+                        case R.id.btn_add:
+                            if (((SambilanApplication) getApplication()).isLoggedIn()
+                                    && ((SambilanApplication) getApplication()).getAppRole().equals("employer")) {
 
+                                loadFragment(new AddPageFragment());
+                            } else {
 
-            switch (item.getItemId()) {
-                case R.id.btn_home:
-                    if (((SambilanApplication) getApplication()).isConnected())
-                        loadFragment(new LandingPageFragment());
-                    else
-                        loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
-                    return true;
-                case R.id.btn_add:
-                    if (((SambilanApplication) getApplication()).isLoggedIn()
-                            && ((SambilanApplication) getApplication()).getAppRole().equals("employer")) {
+                                Toast.makeText(MainMenuActivity.this, "Silakan Login Sebagai Employer",
+                                        Toast.LENGTH_SHORT).show();
+                            }
 
-                        loadFragment(new AddPageFragment());
-                    } else {
-
-                        Toast.makeText(MainMenuActivity.this, "Silakan Login Sebagai Employer",
-                                Toast.LENGTH_SHORT).show();
+                            return true;
+                        case R.id.btn_category:
+                            loadFragment(new CategoryPageFragment());
+                            return true;
+                        case R.id.btn_me:
+                            if (((SambilanApplication) getApplication()).isLoggedIn())
+                                loadFragment(new ProfilePageFragment());
+                            else
+                                goToNextScreen(MainMenuActivity.this, LoginActivity.class);
+                            return true;
                     }
-
-                    return true;
-                case R.id.btn_category:
-                    loadFragment(new CategoryPageFragment());
-                    return true;
-                case R.id.btn_me:
-                    if (((SambilanApplication) getApplication()).isLoggedIn())
-                        loadFragment(new ProfilePageFragment());
-                    else
-                        goToNextScreen(MainMenuActivity.this, LoginActivity.class);
-                    return true;
-            }
-            return false;
-        }
-    };
+                    return false;
+                }
+            };
 
     public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -109,7 +108,7 @@ public class MainMenuActivity extends AppCompatActivity {
         ((SambilanApplication) getApplication()).setLoggedIn(false);
         ((SambilanApplication) getApplication()).deleteDB();
 
-        bottomNavigationView.setSelectedItemId(0);
-//        loadFragment(new LandingPageFragment());
+        bottomNavigationView.setSelectedItemId(R.id.btn_home);
+        loadFragment(new LandingPageFragment());
     }
 }
