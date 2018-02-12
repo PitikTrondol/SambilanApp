@@ -11,8 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -21,14 +19,15 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
-import com.sambilan.sambilan.model.Ad;
-import com.sambilan.sambilan.model.response.AdResponse;
+import com.sambilan.sambilan.model.Employee;
 import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.view.DetailJobActivity;
-import com.sambilan.sambilan.view.adapter.ListPekerjaanAdapter;
+import com.sambilan.sambilan.view.adapter.employee.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
+import com.sambilan.sambilan.view.adapter.employer.ListEmployeeAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.helper.PageIndicatorHelper;
 
@@ -41,6 +40,7 @@ import java.util.List;
 
 public class LandingPageFragment extends Fragment implements TopBar {
 
+
     private final int DISPLAY_COUNT = 5;
     private final String TAG = "com.sambilan.sambilan";
     private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
@@ -51,6 +51,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
     private RecyclerView listJobRecyclerView;
     private ListPekerjaanAdapter listJobAdapter;
     private LandingPagePresenter landingPagePresenter;
+    private ListEmployeeAdapter employeeAdapter;
 
     private ViewPager carouselViewPager;
     private LinearLayout carouselLinearLayout;
@@ -61,37 +62,22 @@ public class LandingPageFragment extends Fragment implements TopBar {
     private ProgressBar progressBar;
 
     private SwipeRefreshLayout recyclerRefresher;
-    private List<Fragment> carouselFragment;
 
     public LandingPageFragment() {
-        carouselFragment = new ArrayList<>();
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_landing_page, container, false);
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
-
-        // Implementasi untuk topbar, menu dan search button
-        carouselLinearLayout = view.findViewById(R.id.pagesContainer);
-        listJobRecyclerView = view.findViewById(R.id.common_recycler_view);
-        carouselViewPager = view.findViewById(R.id.carousel_pager);
-        recyclerRefresher = view.findViewById(R.id.swipe_refresh_layout);
-        progressBar = view.findViewById(R.id.progress_bar);
-        topToolbar = view.findViewById(R.id.topBar);
-
-        ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
-
-        currentPage = 1;
-        landingPagePresenter = new LandingPagePresenter();
-//        landingPagePresenter.getHomeCarousel(carouselCallback);
-        landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+        View rootview = inflater.inflate(R.layout.fragment_landing_page, container, false);
+        carouselLinearLayout = rootview.findViewById(R.id.pagesContainer);
+        listJobRecyclerView = rootview.findViewById(R.id.common_recycler_view);
+        carouselViewPager = rootview.findViewById(R.id.carousel_pager);
+        recyclerRefresher = rootview.findViewById(R.id.swipe_refresh_layout);
+        progressBar = rootview.findViewById(R.id.progress_bar);
+        topToolbar = rootview.findViewById(R.id.topBar);
 
         carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), getCarouselFragment());
         carouselViewPager.setAdapter(carouselSliderAdapter);
@@ -104,16 +90,42 @@ public class LandingPageFragment extends Fragment implements TopBar {
         carouselPageIndicator.setPageCount(getCarouselFragment().size());
         carouselPageIndicator.show();
 
+        return rootview;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
+
+        // Implementasi untuk topbar, menu dan search button
+        ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
+
+        currentPage = 1;
+        landingPagePresenter = new LandingPagePresenter();
+
         progressBar.setVisibility(View.VISIBLE);
         recyclerRefresher.setOnRefreshListener(refreshListener);
-
-        listJobAdapter = new ListPekerjaanAdapter(getContext());
-        listJobAdapter.setListener(onClickJobListListener);
-
         layoutManager = new LinearLayoutManager(getContext());
-
         listJobRecyclerView.setLayoutManager(layoutManager);
-        listJobRecyclerView.setAdapter(listJobAdapter);
+
+        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+            landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
+            listJobAdapter = new ListPekerjaanAdapter(getContext());
+            listJobAdapter.setListener(onClickJobListListener);
+            listJobRecyclerView.setAdapter(listJobAdapter);
+        } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+            landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
+            employeeAdapter = new ListEmployeeAdapter(getContext());
+            employeeAdapter.setListener(onClickJobListListener);
+            listJobRecyclerView.setAdapter(employeeAdapter);
+        } else {
+            landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+            listJobAdapter = new ListPekerjaanAdapter(getContext());
+            listJobAdapter.setListener(onClickJobListListener);
+            listJobRecyclerView.setAdapter(listJobAdapter);
+        }
+
         listJobRecyclerView.addOnScrollListener(scrollListener);
     }
 
@@ -128,26 +140,6 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
         return fragments;
     }
-
-    private ResponseResultCallback<AdResponse, Throwable> carouselCallback =
-            new ResponseResultCallback<AdResponse, Throwable>() {
-                @Override
-                public void OnSuccessResult(AdResponse first) {
-                    List<Fragment> fragments = new ArrayList<>();
-                    for (Ad carousel : first.getData()) {
-                        fragments.add(SliderFragment.newInstance(carousel.getImgUrl().trim()));
-                    }
-
-                    carouselSliderAdapter = new SliderAdapter(getActivity().getSupportFragmentManager(), fragments);
-                }
-
-                @Override
-                public void OnFailureResult(Throwable second) {
-                    Toast.makeText(getActivity(),
-                            "FAIL " + second.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            };
 
     private ResponseResultCallback<JobResponse, Throwable> homeJobCallback =
             new ResponseResultCallback<JobResponse, Throwable>() {
@@ -170,15 +162,13 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 }
             };
 
-    private ResponseResultCallback<JobResponse, Throwable> itemScrollCallback =
-            new ResponseResultCallback<JobResponse, Throwable>() {
+    private ResponseResultCallback<List<Employee>, Throwable> employeeCallback =
+            new ResponseResultCallback<List<Employee>, Throwable>() {
                 @Override
-                public void OnSuccessResult(JobResponse first) {
-                    listJobAdapter.appendModel(first.getData());
-
+                public void OnSuccessResult(List<Employee> first) {
+                    employeeAdapter.setModel(first);
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
-                    isLoading = false;
                 }
 
                 @Override
@@ -192,12 +182,63 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 }
             };
 
+    private ResponseResultCallback<List<Employee>, Throwable> employeeScrollCallback =
+            new ResponseResultCallback<List<Employee>, Throwable>() {
+                @Override
+                public void OnSuccessResult(List<Employee> first) {
+                    employeeAdapter.appendModel(first);
+                    progressBar.setVisibility(View.GONE);
+                    recyclerRefresher.setRefreshing(false);
+                    isLoading = false;
+                    currentPage++;
+                }
+
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(getActivity(),
+                            "TEXT " + second.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.GONE);
+                    recyclerRefresher.setRefreshing(false);
+                }
+            };
+
+    private ResponseResultCallback<JobResponse, Throwable> itemScrollCallback =
+            new ResponseResultCallback<JobResponse, Throwable>() {
+                @Override
+                public void OnSuccessResult(JobResponse first) {
+                    listJobAdapter.appendModel(first.getData());
+
+                    progressBar.setVisibility(View.GONE);
+                    recyclerRefresher.setRefreshing(false);
+                    isLoading = false;
+                    currentPage++;
+                }
+
+                @Override
+                public void OnFailureResult(Throwable second) {
+                    Toast.makeText(getActivity(),
+                            "TEXT " + second.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.GONE);
+                    recyclerRefresher.setRefreshing(false);
+                }
+            };
+
+    // click job ke detail job
     private ListJobListener onClickJobListListener =
             new ListJobListener() {
                 @Override
                 public void onClickJob(int jobID) {
-                    Intent profileIntent = new Intent(getActivity(), DetailJobActivity.class);
-                    startActivity(profileIntent);
+                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                        Toast.makeText(getContext(), "NOT READY YET..!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent profileIntent = new Intent(getActivity(), DetailJobActivity.class);
+                        profileIntent.putExtra(DetailJobActivity.JOB_ID, jobID);
+                        startActivity(profileIntent);
+                    }
                 }
             };
 
@@ -211,12 +252,19 @@ public class LandingPageFragment extends Fragment implements TopBar {
                     childCount = layoutManager.getChildCount();
                     itemCount = layoutManager.getItemCount();
 
-                    if (!isLoading &&
-                            ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
-                            && itemCount < (DISPLAY_COUNT * totalPage)) {
+                    if (!isLoading
+                            && ((firstVisibleItem + DISPLAY_COUNT)) >= itemCount
+                            && currentPage < totalPage) {
 
                         //kalo udah jadi, currentPage++
-                        landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
+                        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                            landingPagePresenter.getGuestJoblist(itemScrollCallback, currentPage, DISPLAY_COUNT);
+                        } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                            landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
+                        } else {
+                            landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
+                        }
+
 
                         isLoading = true;
                     }
@@ -227,7 +275,14 @@ public class LandingPageFragment extends Fragment implements TopBar {
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+                    currentPage = 1;
+                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                        landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
+                    } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                        landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
+                    } else {
+                        landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+                    }
                 }
             };
 }

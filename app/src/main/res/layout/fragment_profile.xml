@@ -82,6 +82,7 @@
                     tools:text="Data Diri" />
 
                 <TextView
+                    android:id="@+id/nama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"
@@ -91,6 +92,7 @@
                     tools:text="Nama" />
 
                 <TextView
+                    android:id="@+id/alamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"
@@ -100,6 +102,7 @@
                     tools:text="Alamat" />
 
                 <TextView
+                    android:id="@+id/telepon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"
@@ -109,6 +112,7 @@
                     tools:text="Telp" />
 
                 <TextView
+                    android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"
@@ -118,6 +122,7 @@
                     tools:text="Email" />
 
                 <TextView
+                    android:id="@+id/skill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myriad"

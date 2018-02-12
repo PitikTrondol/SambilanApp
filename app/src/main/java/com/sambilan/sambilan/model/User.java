@@ -1,5 +1,7 @@
 package com.sambilan.sambilan.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -16,7 +18,7 @@ public class User {
 
     @Id(autoincrement = false)
     @SerializedName("id")
-    private  int id;
+    private  Long id;
 
     @Property(nameInDb = "fullname")
     @SerializedName("fullname")
@@ -50,9 +52,9 @@ public class User {
     @SerializedName("user_id")
     private int user_id;
 
-    @Generated(hash = 1994766559)
-    public User(int id, String fullname, boolean is_verified, String gender, String role,
-                String phone, String avatar_url, String address, int user_id) {
+    @Generated(hash = 755420543)
+    public User(Long id, String fullname, boolean is_verified, String gender, String role,
+            String phone, String avatar_url, String address, int user_id) {
         this.id = id;
         this.fullname = fullname;
         this.is_verified = is_verified;
@@ -68,11 +70,11 @@ public class User {
     public User() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

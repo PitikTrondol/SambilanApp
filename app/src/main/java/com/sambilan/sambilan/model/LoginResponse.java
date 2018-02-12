@@ -9,16 +9,21 @@ import java.util.List;
  */
 
 public class LoginResponse {
+
     @SerializedName("status")
-    public String status;
-    @SerializedName("id")
-    public String id;
-    @SerializedName("email")
-    public String email;
-    @SerializedName("token")
-    public String token;
-    @SerializedName("user_detail")
-    public UserDetail userDetails;
+    private String status;
+
+    @SerializedName("message")
+    private String email;
+
+    @SerializedName("data")
+    private LoginObject loginObject;
+
+    public LoginResponse(String status, String email, LoginObject loginObject) {
+        this.status = status;
+        this.email = email;
+        this.loginObject = loginObject;
+    }
 
     public String getStatus() {
         return status;
@@ -26,14 +31,6 @@ public class LoginResponse {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -44,19 +41,11 @@ public class LoginResponse {
         this.email = email;
     }
 
-    public String getToken() {
-        return token;
+    public LoginObject getLoginObject() {
+        return loginObject;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public void setUserDetails(UserDetail userDetails) {
-        this.userDetails = userDetails;
-    }
-
-    public UserDetail getUserDetails() {
-        return userDetails;
+    public void setLoginObject(LoginObject loginObject) {
+        this.loginObject = loginObject;
     }
 }

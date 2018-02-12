@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.cache;
+package com.sambilan.sambilan.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,24 +13,33 @@ public class CacheManager {
     private SharedPreferences preferences;
     private String preferenceName;
 
+    public static final String LAST_TOKEN_KEY = "token";
+    public static final String TOKEN_KEY = "token";
+    public static final String ROLE_KEY = "role";
+
+    public static final String NAME_KEY = "Sambilan.preference";
     private static CacheManager instance;
 
-    public static CacheManager getInstance(Context context){
-        if(instance==null){
-            instance=new CacheManager(context);
+    public static CacheManager getInstance(Context context) {
+        if (null == instance) {
+            instance = new CacheManager(context);
         }
-        return instance;}
+
+        return instance;
+    }
+
     private CacheManager(Context context) {
         this.context = context;
+        this.preferenceName = NAME_KEY;
         this.preferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
-        this.preferenceName = "Preference";
     }
 
     public void saveString(String key, String value) {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key,value);
+        editor.putString(key, value);
         editor.apply();
     }
+
     public void saveInt(String key, Integer value) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(key, value);
@@ -57,12 +66,17 @@ public class CacheManager {
         return preferences.getInt(key, 0);
     }
 
-    public Boolean get(String key) {
+    public boolean get(String key) {
         return preferences.getBoolean(key, false);
     }
 
     public Float getFloat(String key) {
         return preferences.getFloat(key, 0);
+    }
+
+    public void remove(final String key) {
+        SharedPreferences.Editor editor = preferences.edit().remove(key);
+        editor.apply();
     }
 
     public void clear() {

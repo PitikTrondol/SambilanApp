@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.adapter.viewholder;
+package com.sambilan.sambilan.view.adapter.employee.viewholder;
 
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
+import com.sambilan.sambilan.utils.Base64ImageManager;
 import com.sambilan.sambilan.view.adapter.listener.ListJobListener;
 import com.sambilan.sambilan.view.helper.ImgurHelper;
 
@@ -45,6 +46,8 @@ public class ListJobHolder extends BaseViewHolder<Job, ListJobListener> {
         if(null != data.getCompany().getLogoUrl()) {
             helper = new ImgurHelper(data.getCompany().getLogoUrl().trim());
             Glide.with(itemView.getContext()).load(helper.getDirectLink()).into(iv_image);
+        } else {
+            iv_image.setImageBitmap(Base64ImageManager.getManager().setDefaultImage());
         }
 
         if (null != listener)

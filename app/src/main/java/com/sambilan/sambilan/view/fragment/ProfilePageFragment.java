@@ -1,22 +1,31 @@
 package com.sambilan.sambilan.view.fragment;
 
-import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.DaoSession;
+import com.sambilan.sambilan.model.User;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanMenungguActivity;
-import com.sambilan.sambilan.view.HalamanPermintaanActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
+import com.sambilan.sambilan.view.MainMenuActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.
@@ -25,56 +34,123 @@ import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 public class ProfilePageFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout ll_profileFungsi;
-    ImageView iv_permintaan;
+    private LinearLayout buttonLogout;
+    private AlertDialog.Builder dialogBuilder;
+    private User user;
+    private DaoSession daoSession;
+
+    private TextView nama;
+    private TextView alamat;
+    private TextView telepon;
+    private TextView email;
+    private TextView skill;
 
     public ProfilePageFragment() {
 
     }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ll_profileFungsi = view.findViewById(R.id.ll_profile_fungsi);
+        buttonLogout = view.findViewById(R.id.logout);
+
+        nama = view.findViewById(R.id.nama);
+        alamat = view.findViewById(R.id.alamat);
+        telepon = view.findViewById(R.id.telepon);
+        email = view.findViewById(R.id.email);
+        skill = view.findViewById(R.id.skill);
+
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialogBuilder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            dialogBuilder = new AlertDialog.Builder(getContext());
+        }
+
+        setData();
+
+        dialogBuilder.setTitle("Logout")
+                .setMessage("Apakah anda yakin..?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((MainMenuActivity) getActivity()).setLogout(getActivity());
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert);
+
         for (int i = 0; i < ll_profileFungsi.getChildCount(); i++) {
             ll_profileFungsi.getChildAt(i).setOnClickListener((this));
         }
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogBuilder.show();
+            }
+        });
     }
 
+    private void setData() {
+        Resources res = getResources();
+        String text = String.format(res.getString(R.string.nama), "Ahmad Zumar Wira");
+        nama.setText(text);
 
+        text = String.format(res.getString(R.string.alamat), "Jl. Belalang Tempur no 76, Pasar Kembang, Sidney");
+        alamat.setText(text);
 
-    private void GoToNextScreen(FragmentActivity fragmentContext, Class<?> cls) {
-        Intent intent = new Intent(fragmentContext, cls);
-        startActivity(intent);
+        text = String.format(res.getString(R.string.telepon), "+628127873787");
+        telepon.setText(text);
+
+        text = String.format(res.getString(R.string.email), "tetep.sihomo@gmail.com");
+        email.setText(text);
+
+        text = String.format(res.getString(R.string.skill), "Kaya Raya", "Profesional Stalker");
+        skill.setText(text);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_permintaan: {
-                GoToNextScreen(getActivity(), HalamanPermintaanActivity.class);
+                Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+//                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanPermintaanActivity.class);
             }
             break;
 
             case R.id.ll_menunggu: {
-                GoToNextScreen(getActivity(), HalamanMenungguActivity.class);
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
+                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanMenungguActivity.class);
             }
             break;
 
             case R.id.ll_diterima: {
-                GoToNextScreen(getActivity(), HalamanDiterimaActivity.class);
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
+                    ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanDiterimaActivity.class);
             }
             break;
 
             case R.id.ll_selesai: {
-                GoToNextScreen(getActivity(), HalamanSelesaiActivity.class);
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
+                    ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanSelesaiActivity.class);
             }
             break;
         }

@@ -15,7 +15,7 @@ import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
-import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
+import com.sambilan.sambilan.view.adapter.employee.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 
 /**
@@ -92,6 +92,12 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
         @Override
         public void onClickBeriPenilaian(int jobID) {
             postAndUpdateScreen(jobID, SET_STATUS);
+        }
+
+        @Override
+        public void onClickJob(int jobID) {
+            Toast.makeText(HalamanSelesaiActivity.this, "Harusnya ke detail job id "+jobID,
+                    Toast.LENGTH_SHORT).show();
         }
     };
 

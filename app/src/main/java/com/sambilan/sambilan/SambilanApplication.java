@@ -1,8 +1,10 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.facebook.stetho.Stetho;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.model.DaoMaster;
 import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;
@@ -16,13 +18,12 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private final String DB_NAME = "SambilanDB";
-    private String role = "";
     private boolean needLoadOnline;
+    private String appRole = "";
 
-    private String appToken = "9adc623601e82831eacbda9d222473fcc8c2831033ae7a31f923ec257ef46c01";
+    private boolean isLoggedIn = false;
+    private String appToken = "";
     private ConnectionReceiver connectionReceiver;
-    private DaoMaster daoMaster;
     private DaoSession daoSession;
     private Database database;
 
@@ -33,12 +34,25 @@ public class SambilanApplication extends Application {
         connectionReceiver = new ConnectionReceiver();
         connectionReceiver.checkConnection(this);
 
-        database = new DaoMaster.DevOpenHelper(this, DB_NAME).getWritableDb();
-        daoMaster = new DaoMaster(database);
-        daoSession = daoMaster.newSession();
+        String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
+        String role = CacheManager.getInstance(this).getString(CacheManager.ROLE_KEY);
 
-        daoMaster.dropAllTables(database, true);
-        daoMaster.createAllTables(database, true);
+        Log.d("APP", "onCreate: ----------- " + token
+                + " | role " + role
+                + " | current Token " + appToken);
+
+        if (null != token && !token.equals("")) {
+            this.appToken = token;
+            if (null != role && !role.equals("")) {
+                if(!appRole.equals(role)) appToken = CacheManager.getInstance(this).getString(CacheManager.LAST_TOKEN_KEY);
+                this.isLoggedIn = true;
+                this.appRole = role;
+            }
+        }
+
+        database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
 
         Stetho.initializeWithDefaults(this);
     }
@@ -55,16 +69,16 @@ public class SambilanApplication extends Application {
         this.needLoadOnline = needLoadOnline;
     }
 
-    public String getRole() {
-        return role;
+    public String getAppRole() {
+        return appRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setAppRole(String appRole) {
+        this.appRole = appRole;
     }
 
-    public void setAppToken(String TOKEN) {
-        this.appToken = TOKEN;
+    public void setAppToken(String token) {
+        this.appToken = token;
     }
 
     public String getAppToken() {
@@ -73,5 +87,18 @@ public class SambilanApplication extends Application {
 
     public DaoSession getDaoSession() {
         return daoSession;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
+    public void deleteDB() {
+        DaoMaster.dropAllTables(database, true);
+        DaoMaster.createAllTables(database, true);
     }
 }

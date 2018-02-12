@@ -1,16 +1,16 @@
-package com.sambilan.sambilan.view.adapter.viewholder;
+package com.sambilan.sambilan.view.adapter.employee.viewholder;
 
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
-import com.sambilan.sambilan.view.helper.ImgurHelper;
 
 /**
  * Created by Afriandi Haryanto on 1/29/2018.
@@ -25,6 +25,7 @@ public class ListSelesaiHolder extends BaseViewHolder<AppliedJobResponse, ListSe
 
     private ImageView iv_image;
     private Button btn_penilaian;
+    private LinearLayout cardSelesai;
 
     public ListSelesaiHolder(View itemView) {
         super(itemView);
@@ -36,6 +37,7 @@ public class ListSelesaiHolder extends BaseViewHolder<AppliedJobResponse, ListSe
 
         btn_penilaian = itemView.findViewById(R.id.btn_selesai_rating);
         iv_image = itemView.findViewById(R.id.iv_item_image);
+        cardSelesai = itemView.findViewById(R.id.cv_selesai);
     }
 
     @Override
@@ -53,6 +55,13 @@ public class ListSelesaiHolder extends BaseViewHolder<AppliedJobResponse, ListSe
             @Override
             public void onClick(View v) {
                 listener.onClickBeriPenilaian(data.getJob().getId());
+            }
+        });
+
+        cardSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClickJob(data.getJob().getId());
             }
         });
     }

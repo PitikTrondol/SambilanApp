@@ -1,6 +1,5 @@
-package com.sambilan.sambilan.view.adapter.viewholder;
+package com.sambilan.sambilan.view.adapter.employee.viewholder;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

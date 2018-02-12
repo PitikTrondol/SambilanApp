@@ -14,7 +14,7 @@ import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
-import com.sambilan.sambilan.view.adapter.ListMenungguAdapter;
+import com.sambilan.sambilan.view.adapter.employee.ListMenungguAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 
 public class HalamanMenungguActivity extends AppCompatActivity {
@@ -89,6 +89,12 @@ public class HalamanMenungguActivity extends AppCompatActivity {
                 @Override
                 public void onClickBatalkan(int jobID) {
                     postAndUpdate(jobID);
+                }
+
+                @Override
+                public void onClickJob(int id) {
+                    Toast.makeText(HalamanMenungguActivity.this, "Harusnya ke detail job "+id,
+                            Toast.LENGTH_SHORT).show();
                 }
             };
 
