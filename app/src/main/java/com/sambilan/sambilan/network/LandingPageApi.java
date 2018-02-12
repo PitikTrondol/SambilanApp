@@ -23,6 +23,9 @@ public interface LandingPageApi {
                                   @Query("page") int page,
                                   @Query("limit") int limit);
 
+    @GET("/api/v1/jobs/")
+    Call<JobResponse> getGuestJoblist(@Query("page") int page, @Query("limit") int limit);
+
     @GET("/api/v1/headlines")
     Call<AdResponse> getCarousel();
 

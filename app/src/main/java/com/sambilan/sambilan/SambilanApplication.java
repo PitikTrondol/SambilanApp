@@ -22,7 +22,7 @@ public class SambilanApplication extends Application {
     private String appRole = "employee";
 
     private boolean isLoggedIn = false;
-    private String appToken = "8c01cddca605b6a1be43a23fa2e2dfd14f65dca6164e3079e1373f6e8cb2950a";
+    private String appToken = "cca30dae9eeb398fa3e0e2f16024b26baaf010280cd9fb15e9ff10a3a42081bf";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
     private Database database;

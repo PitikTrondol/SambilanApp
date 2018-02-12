@@ -1,5 +1,7 @@
 package com.sambilan.sambilan.presenter;
 
+import android.util.Log;
+
 import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.Employee;
 import com.sambilan.sambilan.model.response.AdResponse;
@@ -42,8 +44,27 @@ public class LandingPagePresenter {
     }
 
     public void getHomeJobList(final ResponseResultCallback<JobResponse, Throwable> joblistCallback,
-                               String token, int page, int itemNum) {
+                               String token, final int page, final int itemNum) {
         this.api.getJobLists(token, page, itemNum)
+                .enqueue(new Callback<JobResponse>() {
+                    @Override
+                    public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
+                        joblistCallback.OnSuccessResult(response.body());
+                        Log.d("JEMBUT", "onResponse: ------------------------------------- SINGO");
+                    }
+
+                    @Override
+                    public void onFailure(Call<JobResponse> call, Throwable t) {
+                        Log.d("JEMBUT", "onResponse: ------------------------------------- ASUUU");
+                        getGuestJoblist(joblistCallback, page, itemNum);
+                    }
+                });
+    }
+
+    public final void getGuestJoblist (final ResponseResultCallback<JobResponse, Throwable> joblistCallback,
+                                       int page, int itemNum) {
+
+        this.api.getGuestJoblist(page, itemNum)
                 .enqueue(new Callback<JobResponse>() {
                     @Override
                     public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {

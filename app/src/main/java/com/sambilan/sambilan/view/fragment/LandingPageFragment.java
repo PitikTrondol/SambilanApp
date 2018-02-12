@@ -39,6 +39,7 @@ import java.util.List;
 
 public class LandingPageFragment extends Fragment implements TopBar {
 
+
     private final int DISPLAY_COUNT = 5;
     private final String TAG = "com.sambilan.sambilan";
     private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
@@ -220,6 +221,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 }
             };
 
+    // click job ke detail job
     private ListJobListener onClickJobListListener =
             new ListJobListener() {
                 @Override
@@ -228,6 +230,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                         Toast.makeText(getContext(), "NOT READY YET..!", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent profileIntent = new Intent(getActivity(), DetailJobActivity.class);
+                        profileIntent.putExtra(DetailJobActivity.JOB_ID, jobID);
                         startActivity(profileIntent);
                     }
                 }

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
+import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
@@ -87,17 +88,26 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             break;
 
             case R.id.ll_menunggu: {
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
                 ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanMenungguActivity.class);
             }
             break;
 
             case R.id.ll_diterima: {
-                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanDiterimaActivity.class);
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
+                    ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanDiterimaActivity.class);
             }
             break;
 
             case R.id.ll_selesai: {
-                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanSelesaiActivity.class);
+                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                    Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+                else
+                    ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanSelesaiActivity.class);
             }
             break;
         }

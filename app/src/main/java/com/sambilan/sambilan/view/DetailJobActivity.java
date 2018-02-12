@@ -28,6 +28,7 @@ import java.util.List;
 public class DetailJobActivity extends AppCompatActivity
         implements DetailJobsPresenter.DetailJobResultCallback<Job, Throwable> {
 
+    public static final String JOB_ID = "JOB_ID";
     private DetailJobsPresenter detailJobsPresenter;
     private String appToken;
     private Job job;
@@ -55,10 +56,12 @@ public class DetailJobActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_job);
 
+        Intent detail = getIntent();
+        int id = detail.getIntExtra(JOB_ID, 1);
         waitingList = new ArrayList<>();
         appToken = ((SambilanApplication) getApplication()).getAppToken();
         detailJobsPresenter = new DetailJobsPresenter();
-        detailJobsPresenter.getDetailJob(this, 1);
+        detailJobsPresenter.getDetailJob(this, id);
         detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
 
         iv_logo = findViewById(R.id.iv_logo);
