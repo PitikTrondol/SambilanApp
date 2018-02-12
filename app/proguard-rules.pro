@@ -53,7 +53,8 @@
 -keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
-
+-keep class com.sambilan.sambilan.model.**{*;}
+-keep class org.greenrobot.greendao.**
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
 -dontwarn rx.**
 -dontwarn org.greenrobot.greendao.database.**
