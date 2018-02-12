@@ -23,9 +23,11 @@ import com.sambilan.sambilan.presenter.ResponseResultCallback;
 
 public class AddPageFragment extends Fragment {
 
-    private String appToken = "6472ebdeefc99d1b5ebc6c95da56ef82f144b19c4db3c2ea4da17a6bb103372a";
+    private String appToken = "8e0bb59034fb13f8b640f5ba857930a1bd7ba487dabfaee7a8d685034d166194";
 
     private EditText etJudul;
+    private EditText etKategori;
+    private EditText etPabrik;
     private EditText etDeskripsi;
     private EditText etKapasitas;
     private EditText etGaji;
@@ -51,6 +53,8 @@ public class AddPageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         etJudul = view.findViewById(R.id.et_judul);
+        etKategori = view.findViewById(R.id.et_kategori);
+        etPabrik = view.findViewById(R.id.et_pabrik);
         etDeskripsi = view.findViewById(R.id.et_deskripsi);
         etKapasitas = view.findViewById(R.id.et_kapasistas);
         etGaji = view.findViewById(R.id.et_gaji);
@@ -69,6 +73,7 @@ public class AddPageFragment extends Fragment {
                 @Override
                 public void OnSuccessResult(AddJobResponse first) {
                     addJobPresenter.postingJob(postJobCallback, appToken, postingJob);
+                    Toast.makeText(getActivity(), "Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -83,11 +88,14 @@ public class AddPageFragment extends Fragment {
                 public void onClick(View view) {
                     postingJob = new Job();
                     postingJob.setTitle(etJudul.getText().toString().trim());
+                    postingJob.setCategory_id(Integer.parseInt(etKategori.getText().toString().trim()));
+                    postingJob.setCompany_id(Integer.parseInt(etPabrik.getText().toString().trim()));
                     postingJob.setDesc(etDeskripsi.getText().toString().trim());
                     postingJob.setCapacity(Integer.parseInt(etKapasitas.getText().toString().trim()));
                     postingJob.setSalary(etGaji.getText().toString().trim());
                     postingJob.setStart_due(etTglMulai.getText().toString().trim());
                     postingJob.setEnd_due(etTglSelesai.getText().toString().trim());
+                    postingJob.setExpire_due(etTglTutup.getText().toString().trim());
                     postingJob.setLocation(etLokasi.getText().toString().trim());
 
                     addJobPresenter = new AddJobPresenter();
