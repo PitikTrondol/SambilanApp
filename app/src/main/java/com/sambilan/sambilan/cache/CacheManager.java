@@ -14,6 +14,7 @@ public class CacheManager {
     private String preferenceName;
 
     public static final String TOKEN_KEY = "token";
+    public static final String ROLE_KEY = "role";
     private static CacheManager instance;
 
     public static CacheManager getInstance(Context context){

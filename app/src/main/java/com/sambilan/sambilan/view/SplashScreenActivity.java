@@ -24,15 +24,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         cacheManager = CacheManager.getInstance(SplashScreenActivity.this);
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
-                boolean isLoggedIn = ((SambilanApplication) getApplication()).isLoggedIn();
-                if (isLoggedIn) {
-                    intent = new Intent(SplashScreenActivity.this, SambilanActivity.class);
-                } else {
-                    intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                }
+                intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();

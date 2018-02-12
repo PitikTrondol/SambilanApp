@@ -1,6 +1,7 @@
 package com.sambilan.sambilan;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 import com.sambilan.sambilan.cache.CacheManager;
@@ -18,10 +19,10 @@ import org.greenrobot.greendao.database.Database;
 public class SambilanApplication extends Application {
 
     private boolean needLoadOnline;
-    private String role = "";
+    private String appRole = "employee";
 
     private boolean isLoggedIn = false;
-    private String appToken = "";
+    private String appToken = "e290fc3d29e74e59a7678945b95dbff385813990dcb52eae4441d2910a2a10e7";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
 
@@ -33,9 +34,13 @@ public class SambilanApplication extends Application {
         connectionReceiver.checkConnection(this);
 
         String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
+        String role = CacheManager.getInstance(this).getString(CacheManager.ROLE_KEY);
+        Log.d("APP", "onCreate: ------------------------- "+token+" | "+role+" appToken"+appToken);
         if(null != token && !token.equals("")) {
-            appToken = token;
-            isLoggedIn = true;
+            this.appToken = token;
+            this.isLoggedIn = true;
+
+            if(null != role && !role.equals("")) this.appRole = role;
         }
 
         Database database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();
@@ -60,12 +65,12 @@ public class SambilanApplication extends Application {
         this.needLoadOnline = needLoadOnline;
     }
 
-    public String getRole() {
-        return role;
+    public String getAppRole() {
+        return appRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setAppRole(String appRole) {
+        this.appRole = appRole;
     }
 
     public void setAppToken(String token) {
@@ -82,5 +87,9 @@ public class SambilanApplication extends Application {
 
     public boolean isLoggedIn() {
         return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 }

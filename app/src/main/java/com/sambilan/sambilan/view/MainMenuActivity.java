@@ -1,5 +1,7 @@
 package com.sambilan.sambilan.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
@@ -21,7 +24,7 @@ import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
  * Created by Andhika Putranto on 2/3/2018.
  */
 
-public class SambilanActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
@@ -29,8 +32,8 @@ public class SambilanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sambilan);
-        
-        if(((SambilanApplication) getApplication()).isConnected())
+
+        if (((SambilanApplication) getApplication()).isConnected())
             loadFragment(new LandingPageFragment());
         else
             loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
@@ -50,31 +53,50 @@ public class SambilanActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()){
+
+
+            switch (item.getItemId()) {
                 case R.id.btn_home:
-                    if(((SambilanApplication) getApplication()).isConnected())
+                    if (((SambilanApplication) getApplication()).isConnected())
                         loadFragment(new LandingPageFragment());
                     else
                         loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
                     return true;
                 case R.id.btn_add:
-                    loadFragment(new AddPageFragment());
+                    if (((SambilanApplication) getApplication()).isLoggedIn()
+                            && ((SambilanApplication) getApplication()).getAppRole().equals("employer")) {
+
+                        loadFragment(new AddPageFragment());
+                    } else {
+
+                        Toast.makeText(MainMenuActivity.this, "Silakan Login Sebagai Employer",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
                     return true;
                 case R.id.btn_category:
                     loadFragment(new CategoryPageFragment());
                     return true;
                 case R.id.btn_me:
-                    loadFragment(new ProfilePageFragment());
+                    if (((SambilanApplication) getApplication()).isLoggedIn())
+                        loadFragment(new ProfilePageFragment());
+                    else
+                        goToNextScreen(MainMenuActivity.this, LoginActivity.class);
                     return true;
             }
             return false;
         }
     };
 
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_container,fragment)
+        transaction.replace(R.id.fl_container, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void goToNextScreen(Context context, Class<?> cls) {
+        Intent intent = new Intent(context, cls);
+        startActivity(intent);
     }
 }

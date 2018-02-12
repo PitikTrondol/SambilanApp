@@ -1,7 +1,6 @@
 package com.sambilan.sambilan.view;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,37 +8,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.cache.CacheManager;
-import com.sambilan.sambilan.model.DaoMaster;
 import com.sambilan.sambilan.model.DaoSession;
-import com.sambilan.sambilan.model.Login;
 import com.sambilan.sambilan.model.LoginRequest;
 import com.sambilan.sambilan.model.LoginResponse;
 import com.sambilan.sambilan.model.User;
 import com.sambilan.sambilan.presenter.LoginPagePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.HttpException;
 
 /**
  * Created by Andhika Putranto on 2/4/2018.
@@ -84,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 request = new LoginRequest(et_email.getText().toString().trim(),
                         et_password.getText().toString().trim());
+
+                Log.d("LOGIN", "Before : ---------"+((SambilanApplication) getApplication()).getAppToken());
                 presenter.postAll(loginPagePresenter, request);
             }
         });
@@ -96,15 +81,22 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void OnSuccessResult(LoginResponse first) {
                     if (first.getStatus().equals("ok")) {
-                        Intent intent = new Intent(LoginActivity.this, SambilanActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                         startActivity(intent);
+
                         cacheManager.saveString(CacheManager.TOKEN_KEY, first.getLoginObject().getToken());
+                        cacheManager.saveString(CacheManager.ROLE_KEY,
+                                first.getLoginObject().getUser().getRole());
+
                         ((SambilanApplication) getApplication()).setAppToken(first.getLoginObject().getToken());
+                        ((SambilanApplication) getApplication()).setLoggedIn(true);
 
                         daoSession.getUserDao().delete(first.getLoginObject().getUser());
                         daoSession.getUserDao().insert(first.getLoginObject().getUser());
+                        Log.d("LOGIN", "After : ---------"+((SambilanApplication) getApplication()).getAppToken());
 
                     } else {
+
                         Toast.makeText(LoginActivity.this, "Error bos", Toast.LENGTH_SHORT).show();
                     }
                 }
