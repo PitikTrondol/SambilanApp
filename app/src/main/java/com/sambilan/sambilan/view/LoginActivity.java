@@ -90,12 +90,15 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                         startActivity(intent);
 
+                        cacheManager.saveString(CacheManager.LAST_TOKEN_KEY,
+                                ((SambilanApplication) getApplication()).getAppToken());
                         cacheManager.saveString(CacheManager.TOKEN_KEY, first.getLoginObject().getToken());
-                        cacheManager.saveString(CacheManager.ROLE_KEY,
-                                first.getLoginObject().getUser().getRole());
+                        cacheManager.saveString(CacheManager.ROLE_KEY, first.getLoginObject().getUser().getRole());
+
 
                         ((SambilanApplication) getApplication()).setAppToken(first.getLoginObject().getToken());
                         ((SambilanApplication) getApplication()).setLoggedIn(true);
+                        ((SambilanApplication) getApplication()).setAppRole(first.getLoginObject().getUser().getRole());
 
                         daoSession.getUserDao().delete(first.getLoginObject().getUser());
                         daoSession.getUserDao().insert(first.getLoginObject().getUser());

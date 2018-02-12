@@ -22,7 +22,7 @@ public class SambilanApplication extends Application {
     private String appRole = "employee";
 
     private boolean isLoggedIn = false;
-    private String appToken = "cca30dae9eeb398fa3e0e2f16024b26baaf010280cd9fb15e9ff10a3a42081bf";
+    private String appToken = "c719fa5c27c95a597f22a13d9c0732dae7dd9b60629652bfdbc9858ec92e3e8c";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
     private Database database;
@@ -37,13 +37,14 @@ public class SambilanApplication extends Application {
         String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
         String role = CacheManager.getInstance(this).getString(CacheManager.ROLE_KEY);
 
-        Log.d("APP", "onCreate: ------------------------- " + token
+        Log.d("APP", "onCreate: ----------- " + token
                 + " | role " + role
                 + " | current Token " + appToken);
 
         if (null != token && !token.equals("")) {
             this.appToken = token;
             if (null != role && !role.equals("")) {
+                if(!appRole.equals(role)) appToken = CacheManager.getInstance(this).getString(CacheManager.LAST_TOKEN_KEY);
                 this.isLoggedIn = true;
                 this.appRole = role;
             }

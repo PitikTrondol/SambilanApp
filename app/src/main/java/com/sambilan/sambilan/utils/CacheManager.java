@@ -13,8 +13,10 @@ public class CacheManager {
     private SharedPreferences preferences;
     private String preferenceName;
 
+    public static final String LAST_TOKEN_KEY = "token";
     public static final String TOKEN_KEY = "token";
     public static final String ROLE_KEY = "role";
+
     public static final String NAME_KEY = "Sambilan.preference";
     private static CacheManager instance;
 

@@ -57,6 +57,11 @@ public class NetworkService {
     public static RegisterPageAPI createRegisterAPI(){
         return getRetrofit().create(RegisterPageAPI.class);
     }
+
+    public static AddJobApi createAddJobApi(){
+        return getRetrofit().create(AddJobApi.class);
+    }
+
     public static LoginPageAPI createLoginAPI(){
         return getRetrofit().create(LoginPageAPI.class);
     }

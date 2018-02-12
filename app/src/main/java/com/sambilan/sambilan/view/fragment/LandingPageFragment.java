@@ -23,6 +23,7 @@ import com.sambilan.sambilan.model.Employee;
 import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.view.DetailJobActivity;
 import com.sambilan.sambilan.view.adapter.employee.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
@@ -114,10 +115,18 @@ public class LandingPageFragment extends Fragment implements TopBar {
             employeeAdapter.setListener(onClickJobListListener);
             listJobRecyclerView.setAdapter(employeeAdapter);
         } else {
-            landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
-            listJobAdapter = new ListPekerjaanAdapter(getContext());
-            listJobAdapter.setListener(onClickJobListListener);
-            listJobRecyclerView.setAdapter(listJobAdapter);
+
+            if(CacheManager.getInstance(getContext()).getString(CacheManager.ROLE_KEY).equals("")) {
+                landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
+                listJobAdapter = new ListPekerjaanAdapter(getContext());
+                listJobAdapter.setListener(onClickJobListListener);
+                listJobRecyclerView.setAdapter(listJobAdapter);
+            } else {
+                landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+                listJobAdapter = new ListPekerjaanAdapter(getContext());
+                listJobAdapter.setListener(onClickJobListListener);
+                listJobRecyclerView.setAdapter(listJobAdapter);
+            }
         }
 
         listJobRecyclerView.addOnScrollListener(scrollListener);

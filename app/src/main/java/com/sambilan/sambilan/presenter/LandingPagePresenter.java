@@ -50,13 +50,11 @@ public class LandingPagePresenter {
                     @Override
                     public void onResponse(Call<JobResponse> call, Response<JobResponse> response) {
                         joblistCallback.OnSuccessResult(response.body());
-                        Log.d("JEMBUT", "onResponse: ------------------------------------- SINGO");
                     }
 
                     @Override
                     public void onFailure(Call<JobResponse> call, Throwable t) {
-                        Log.d("JEMBUT", "onResponse: ------------------------------------- ASUUU");
-                        getGuestJoblist(joblistCallback, page, itemNum);
+                        joblistCallback.OnFailureResult(t);
                     }
                 });
     }
