@@ -5,6 +5,7 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,7 +28,7 @@ public class ListPermintaanHolder extends BaseViewHolder<Job, ListPermintaanList
     private Button btn_diterima;
     private Button btn_ditolak;
 
-    private CardView cv_job;
+    private RelativeLayout cv_job;
     private ImageView iv_image;
     private ImgurHelper helper;
 

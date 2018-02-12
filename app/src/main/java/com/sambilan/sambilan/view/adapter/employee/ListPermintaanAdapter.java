@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.Job;
@@ -24,7 +25,7 @@ public class ListPermintaanAdapter extends BaseRecyclerAdapter<Job, ListPerminta
     public ListPermintaanHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflate(R.layout.item_employee_permintaan, parent, false);
-        CardView cv = view.findViewById(R.id.cv_permintaan);
+        RelativeLayout cv = view.findViewById(R.id.cv_permintaan);
         cv.setBackgroundResource(0);
 
         return new ListPermintaanHolder(view);
