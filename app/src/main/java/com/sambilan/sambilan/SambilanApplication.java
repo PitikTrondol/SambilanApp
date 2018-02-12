@@ -4,7 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.stetho.Stetho;
-import com.sambilan.sambilan.cache.CacheManager;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.model.DaoMaster;
 import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.utils.ConnectionReceiver;

@@ -15,7 +15,7 @@ import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.presenter.EmployeeFlowPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
-import com.sambilan.sambilan.view.adapter.ListSelesaiAdapter;
+import com.sambilan.sambilan.view.adapter.employee.ListSelesaiAdapter;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 
 /**

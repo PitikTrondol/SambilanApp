@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.cache.CacheManager;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.SambilanApplication;
 
 /**

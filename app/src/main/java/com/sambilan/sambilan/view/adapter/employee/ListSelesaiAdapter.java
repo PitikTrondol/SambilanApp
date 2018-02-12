@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.adapter;
+package com.sambilan.sambilan.view.adapter.employee;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
-import com.sambilan.sambilan.view.adapter.viewholder.ListSelesaiHolder;
+import com.sambilan.sambilan.view.adapter.employee.viewholder.ListSelesaiHolder;
 
 /**
  * Created by Afriandi Haryanto on 1/29/2018.

@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.cache;
+package com.sambilan.sambilan.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
-import com.sambilan.sambilan.cache.CacheManager;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.model.LoginRequest;
 import com.sambilan.sambilan.model.LoginResponse;

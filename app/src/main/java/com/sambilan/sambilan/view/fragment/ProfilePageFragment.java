@@ -1,20 +1,20 @@
 package com.sambilan.sambilan.view.fragment;
 
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.SambilanApplication;
-import com.sambilan.sambilan.cache.CacheManager;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanMenungguActivity;
-import com.sambilan.sambilan.view.HalamanPermintaanActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
 
@@ -26,11 +26,11 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
 
     private LinearLayout ll_profileFungsi;
     private LinearLayout buttonLogout;
+    private AlertDialog.Builder dialogBuilder;
 
     public ProfilePageFragment() {
 
     }
-
 
     @Nullable
     @Override
@@ -44,6 +44,27 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialogBuilder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            dialogBuilder = new AlertDialog.Builder(getContext());
+        }
+
+        dialogBuilder.setTitle("Logout")
+                .setMessage("Apakah anda yakin..?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((MainMenuActivity) getActivity()).setLogout(getActivity());
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert);
+
         for (int i = 0; i < ll_profileFungsi.getChildCount(); i++) {
             ll_profileFungsi.getChildAt(i).setOnClickListener((this));
         }
@@ -51,7 +72,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity) getActivity()).setLogout(getActivity());
+                dialogBuilder.show();
             }
         });
     }
@@ -60,7 +81,8 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_permintaan: {
-                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanPermintaanActivity.class);
+                Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
+//                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanPermintaanActivity.class);
             }
             break;
 

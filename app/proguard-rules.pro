@@ -57,6 +57,7 @@
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
 -dontwarn rx.**
 -dontwarn org.greenrobot.greendao.database.**
+-dontwarn org.greenrobot.greendao.database.DatabaseOpenHelper.**
 
 # Only required if you use AsyncExecutor
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {

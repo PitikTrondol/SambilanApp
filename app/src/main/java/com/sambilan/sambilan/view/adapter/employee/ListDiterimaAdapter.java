@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.adapter;
+package com.sambilan.sambilan.view.adapter.employee;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
-import com.sambilan.sambilan.view.adapter.viewholder.ListDiterimaHolder;
+import com.sambilan.sambilan.view.adapter.employee.viewholder.ListDiterimaHolder;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.

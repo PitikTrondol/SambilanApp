@@ -1,10 +1,14 @@
 package com.sambilan.sambilan.presenter;
 
 import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.Employee;
 import com.sambilan.sambilan.model.response.AdResponse;
 import com.sambilan.sambilan.model.response.JobResponse;
+import com.sambilan.sambilan.model.response.PostResponse;
 import com.sambilan.sambilan.network.NetworkService;
 import com.sambilan.sambilan.network.LandingPageApi;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +41,8 @@ public class LandingPagePresenter {
                 });
     }
 
-    public void getHomeJobList(final ResponseResultCallback<JobResponse, Throwable> joblistCallback, String token, int page, int itemNum) {
+    public void getHomeJobList(final ResponseResultCallback<JobResponse, Throwable> joblistCallback,
+                               String token, int page, int itemNum) {
         this.api.getJobLists(token, page, itemNum)
                 .enqueue(new Callback<JobResponse>() {
                     @Override
@@ -52,9 +57,19 @@ public class LandingPagePresenter {
                 });
     }
 
-    public interface JobResultCallback<A, B> {
-        void OnSuccessResult(A first);
+    public void getEmployees(final ResponseResultCallback<List<Employee>, Throwable> employeeCallback,
+                             String token, int page, int itemNum) {
+        this.api.getEmployee(token, page, itemNum)
+                .enqueue(new Callback<PostResponse<String, List<Employee>>>() {
+                    @Override
+                    public void onResponse(Call<PostResponse<String, List<Employee>>> call, Response<PostResponse<String, List<Employee>>> response) {
+                        employeeCallback.OnSuccessResult(response.body().getData());
+                    }
 
-        void OnFailureResult(B second);
+                    @Override
+                    public void onFailure(Call<PostResponse<String, List<Employee>>> call, Throwable t) {
+                        employeeCallback.OnFailureResult(t);
+                    }
+                });
     }
 }

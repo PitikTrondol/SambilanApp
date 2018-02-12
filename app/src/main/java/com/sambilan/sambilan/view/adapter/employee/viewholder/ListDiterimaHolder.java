@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.adapter.viewholder;
+package com.sambilan.sambilan.view.adapter.employee.viewholder;
 
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.sambilan.sambilan.R;
-import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
 import com.sambilan.sambilan.view.adapter.listener.ListDiterimaListener;
 import com.sambilan.sambilan.view.helper.ImgurHelper;

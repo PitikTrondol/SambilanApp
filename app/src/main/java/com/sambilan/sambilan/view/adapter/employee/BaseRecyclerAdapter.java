@@ -1,4 +1,4 @@
-package com.sambilan.sambilan.view.adapter;
+package com.sambilan.sambilan.view.adapter.employee;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sambilan.sambilan.view.adapter.listener.BaseRecyclerListener;
-import com.sambilan.sambilan.view.adapter.viewholder.BaseViewHolder;
+import com.sambilan.sambilan.view.adapter.employee.viewholder.BaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
