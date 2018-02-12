@@ -26,7 +26,6 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
 
     private LinearLayout ll_profileFungsi;
     private LinearLayout buttonLogout;
-    ImageView iv_permintaan;
 
     public ProfilePageFragment() {
 

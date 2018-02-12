@@ -36,14 +36,17 @@ public class SambilanApplication extends Application {
 
         String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
         String role = CacheManager.getInstance(this).getString(CacheManager.ROLE_KEY);
-        Log.d("APP", "onCreate: ------------------------- "+token+" | "+role+" appToken"+appToken);
-        if(null != token && !token.equals("")) {
+
+        Log.d("APP", "onCreate: ------------------------- " + token
+                + " | role " + role
+                + " | current Token " + appToken);
+
+        if (null != token && !token.equals("")) {
             this.appToken = token;
-            this.isLoggedIn = true;
-
-            Log.d("APP", "onCreate: ------------------------------ "+appToken);
-
-            if(null != role && !role.equals("")) this.appRole = role;
+            if (null != role && !role.equals("")) {
+                this.isLoggedIn = true;
+                this.appRole = role;
+            }
         }
 
         database = new DaoMaster.DevOpenHelper(this, "SambilanDB").getWritableDb();

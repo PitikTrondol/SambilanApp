@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
 public class MainMenuActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private static final String FRAGMENT_ROOT_TAG = "root_stack";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +95,6 @@ public class MainMenuActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
@@ -108,6 +109,7 @@ public class MainMenuActivity extends AppCompatActivity {
         ((SambilanApplication) getApplication()).setLoggedIn(false);
         ((SambilanApplication) getApplication()).deleteDB();
 
-        loadFragment(new LandingPageFragment());
+        bottomNavigationView.setSelectedItemId(0);
+//        loadFragment(new LandingPageFragment());
     }
 }
