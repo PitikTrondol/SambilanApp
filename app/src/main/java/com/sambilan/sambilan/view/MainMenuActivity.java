@@ -105,7 +105,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
         ((SambilanApplication) getApplication()).setLoggedIn(false);
         ((SambilanApplication) getApplication()).deleteDB();
-        ((SambilanApplication) getApplication()).setAppRole("employee");
+        ((SambilanApplication) getApplication()).setAppRole("");
+        ((SambilanApplication) getApplication()).setAppToken("");
 
         bottomNavigationView.setSelectedItemId(R.id.btn_home);
         loadFragment(new LandingPageFragment());

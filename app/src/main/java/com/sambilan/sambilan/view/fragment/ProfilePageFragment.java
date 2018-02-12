@@ -1,23 +1,31 @@
 package com.sambilan.sambilan.view.fragment;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
+import com.sambilan.sambilan.model.DaoSession;
+import com.sambilan.sambilan.model.User;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.
@@ -28,6 +36,14 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     private LinearLayout ll_profileFungsi;
     private LinearLayout buttonLogout;
     private AlertDialog.Builder dialogBuilder;
+    private User user;
+    private DaoSession daoSession;
+
+    private TextView nama;
+    private TextView alamat;
+    private TextView telepon;
+    private TextView email;
+    private TextView skill;
 
     public ProfilePageFragment() {
 
@@ -39,6 +55,13 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ll_profileFungsi = view.findViewById(R.id.ll_profile_fungsi);
         buttonLogout = view.findViewById(R.id.logout);
+
+        nama = view.findViewById(R.id.nama);
+        alamat = view.findViewById(R.id.alamat);
+        telepon = view.findViewById(R.id.telepon);
+        email = view.findViewById(R.id.email);
+        skill = view.findViewById(R.id.skill);
+
         return view;
     }
 
@@ -51,6 +74,8 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         } else {
             dialogBuilder = new AlertDialog.Builder(getContext());
         }
+
+        setData();
 
         dialogBuilder.setTitle("Logout")
                 .setMessage("Apakah anda yakin..?")
@@ -76,6 +101,24 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
                 dialogBuilder.show();
             }
         });
+    }
+
+    private void setData() {
+        Resources res = getResources();
+        String text = String.format(res.getString(R.string.nama), "Ahmad Zumar Wira");
+        nama.setText(text);
+
+        text = String.format(res.getString(R.string.alamat), "Jl. Belalang Tempur no 76, Pasar Kembang, Sidney");
+        alamat.setText(text);
+
+        text = String.format(res.getString(R.string.telepon), "+628127873787");
+        telepon.setText(text);
+
+        text = String.format(res.getString(R.string.email), "tetep.sihomo@gmail.com");
+        email.setText(text);
+
+        text = String.format(res.getString(R.string.skill), "Kaya Raya", "Profesional Stalker");
+        skill.setText(text);
     }
 
     @Override

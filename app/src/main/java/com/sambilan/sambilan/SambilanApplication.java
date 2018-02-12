@@ -19,10 +19,10 @@ import org.greenrobot.greendao.database.Database;
 public class SambilanApplication extends Application {
 
     private boolean needLoadOnline;
-    private String appRole = "employee";
+    private String appRole = "";
 
     private boolean isLoggedIn = false;
-    private String appToken = "c719fa5c27c95a597f22a13d9c0732dae7dd9b60629652bfdbc9858ec92e3e8c";
+    private String appToken = "";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
     private Database database;

@@ -109,24 +109,21 @@ public class LandingPageFragment extends Fragment implements TopBar {
         layoutManager = new LinearLayoutManager(getContext());
         listJobRecyclerView.setLayoutManager(layoutManager);
 
-        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+            landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
+            listJobAdapter = new ListPekerjaanAdapter(getContext());
+            listJobAdapter.setListener(onClickJobListListener);
+            listJobRecyclerView.setAdapter(listJobAdapter);
+        } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
             landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
             employeeAdapter = new ListEmployeeAdapter(getContext());
             employeeAdapter.setListener(onClickJobListListener);
             listJobRecyclerView.setAdapter(employeeAdapter);
         } else {
-
-            if(CacheManager.getInstance(getContext()).getString(CacheManager.ROLE_KEY).equals("")) {
-                landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
-                listJobAdapter = new ListPekerjaanAdapter(getContext());
-                listJobAdapter.setListener(onClickJobListListener);
-                listJobRecyclerView.setAdapter(listJobAdapter);
-            } else {
-                landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
-                listJobAdapter = new ListPekerjaanAdapter(getContext());
-                listJobAdapter.setListener(onClickJobListListener);
-                listJobRecyclerView.setAdapter(listJobAdapter);
-            }
+            landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);
+            listJobAdapter = new ListPekerjaanAdapter(getContext());
+            listJobAdapter.setListener(onClickJobListListener);
+            listJobRecyclerView.setAdapter(listJobAdapter);
         }
 
         listJobRecyclerView.addOnScrollListener(scrollListener);
@@ -260,11 +257,14 @@ public class LandingPageFragment extends Fragment implements TopBar {
                             && currentPage < totalPage) {
 
                         //kalo udah jadi, currentPage++
-                        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
-                            landingPagePresenter.getEmployees(employeeScrollCallback, appToken, currentPage, DISPLAY_COUNT);
+                        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                            landingPagePresenter.getGuestJoblist(itemScrollCallback, currentPage, DISPLAY_COUNT);
+                        } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                            landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
                         } else {
                             landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
                         }
+
 
                         isLoading = true;
                     }
@@ -276,7 +276,9 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 @Override
                 public void onRefresh() {
                     currentPage = 1;
-                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                        landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
+                    } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
                         landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
                     } else {
                         landingPagePresenter.getHomeJobList(homeJobCallback, appToken, currentPage, DISPLAY_COUNT);

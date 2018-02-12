@@ -62,7 +62,8 @@ public class DetailJobActivity extends AppCompatActivity
         appToken = ((SambilanApplication) getApplication()).getAppToken();
         detailJobsPresenter = new DetailJobsPresenter();
         detailJobsPresenter.getDetailJob(this, id);
-        detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+        if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
+            detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
 
         iv_logo = findViewById(R.id.iv_logo);
         tv_lowongan = findViewById(R.id.tv_lowongan);
@@ -170,7 +171,9 @@ public class DetailJobActivity extends AppCompatActivity
     private void postAndUpdate(PostResponse<String, Job> first) {
         if (first.getStatus().equals("ok")) {
             setDisableButton();
-            detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+
+            if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
+                detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
         }
         else
             Toast.makeText(DetailJobActivity.this, "" + first.getMessage(), Toast.LENGTH_SHORT).show();
