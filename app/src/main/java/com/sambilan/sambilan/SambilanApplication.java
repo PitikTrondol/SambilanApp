@@ -58,11 +58,8 @@ public class SambilanApplication extends Application {
     }
 
     public boolean isConnected() {
+        connectionReceiver.checkConnection(this);
         return connectionReceiver.isConnected();
-    }
-
-    public boolean isNeedLoadOnline() {
-        return needLoadOnline;
     }
 
     public void setNeedLoadOnline(boolean needLoadOnline) {
