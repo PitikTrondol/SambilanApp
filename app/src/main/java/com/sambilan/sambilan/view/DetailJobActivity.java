@@ -95,6 +95,7 @@ public class DetailJobActivity extends AppCompatActivity
     @Override
     public void OnSuccessResult(Job first) {
         this.job = first;
+        Log.d("ASU", "OnSuccessResult: ------------------------- "+job.getStatus());
         setData(first);
     }
 
@@ -120,8 +121,6 @@ public class DetailJobActivity extends AppCompatActivity
 
         if(!((SambilanApplication)getApplication()).isLoggedIn()) {
             btn_lamar.setText("Login");
-        } else if(job.getStatus().equals("waiting")) {
-            setDisableButton();
         } else {
             btn_lamar.setText("Apply Pekerjaan Ini");
         }
