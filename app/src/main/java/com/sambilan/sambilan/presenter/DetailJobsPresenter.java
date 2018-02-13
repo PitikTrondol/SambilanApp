@@ -59,12 +59,12 @@ public class DetailJobsPresenter {
         });
     }
 
-    public void getJobOnWait(final ResponseResultCallback<List<AppliedJobResponse>, Throwable> waitCallback,
-                             String token, String status) {
-        this.api.getWaitingList(token, status).enqueue(new Callback<EmployeeFlowResponse>() {
+    public void getJobOnWait(final ResponseResultCallback<EmployeeFlowResponse, Throwable> waitCallback,
+                             String token) {
+        this.api.getWaitingList(token).enqueue(new Callback<EmployeeFlowResponse>() {
             @Override
             public void onResponse(Call<EmployeeFlowResponse> call, Response<EmployeeFlowResponse> response) {
-                waitCallback.OnSuccessResult(response.body().getData());
+                waitCallback.OnSuccessResult(response.body());
             }
 
             @Override

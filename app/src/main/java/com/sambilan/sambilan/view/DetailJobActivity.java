@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.ApplyJobBody;
 import com.sambilan.sambilan.model.Job;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
+import com.sambilan.sambilan.model.response.EmployeeFlowResponse;
 import com.sambilan.sambilan.model.response.PostResponse;
 import com.sambilan.sambilan.presenter.DetailJobsPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
@@ -42,7 +44,6 @@ public class DetailJobActivity extends AppCompatActivity
     private TextView tv_gaji;
     private TextView tv_value_tgl_posting;
     private TextView tv_value_tgl_tutup;
-
     private TextView tv_deskripsi_lowongan;
 
     private TextView tv_detail_perusahaan;
@@ -50,6 +51,7 @@ public class DetailJobActivity extends AppCompatActivity
     private TextView tv_value_ratingnya;
 
     private Button btn_lamar;
+    private int jobID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +59,14 @@ public class DetailJobActivity extends AppCompatActivity
         setContentView(R.layout.activity_detail_job);
 
         Intent detail = getIntent();
-        int id = detail.getIntExtra(JOB_ID, 1);
-        waitingList = new ArrayList<>();
-        appToken = ((SambilanApplication) getApplication()).getAppToken();
+        this.jobID = detail.getIntExtra(JOB_ID, 1);
+        this.appToken = ((SambilanApplication) getApplication()).getAppToken();
+        this.waitingList = new ArrayList<>();
+
         detailJobsPresenter = new DetailJobsPresenter();
-        detailJobsPresenter.getDetailJob(this, id);
+        detailJobsPresenter.getDetailJob(this, jobID);
         if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
-            detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+            detailJobsPresenter.getJobOnWait(getListWaiting, appToken);
 
         iv_logo = findViewById(R.id.iv_logo);
         tv_lowongan = findViewById(R.id.tv_lowongan);
@@ -82,8 +85,6 @@ public class DetailJobActivity extends AppCompatActivity
 
         btn_lamar = findViewById(R.id.btn_lamar);
         btn_lamar.setOnClickListener(onLamarPekerjaan);
-
-
     }
 
     @Override
@@ -94,6 +95,7 @@ public class DetailJobActivity extends AppCompatActivity
     @Override
     public void OnSuccessResult(Job first) {
         this.job = first;
+        Log.d("ASU", "OnSuccessResult: ------------------------- "+job.getStatus());
         setData(first);
     }
 
@@ -119,8 +121,6 @@ public class DetailJobActivity extends AppCompatActivity
 
         if(!((SambilanApplication)getApplication()).isLoggedIn()) {
             btn_lamar.setText("Login");
-        } else if(job.getStatus().equals("waiting")) {
-            setDisableButton();
         } else {
             btn_lamar.setText("Apply Pekerjaan Ini");
         }
@@ -153,11 +153,17 @@ public class DetailJobActivity extends AppCompatActivity
                 }
             };
 
-    private ResponseResultCallback<List<AppliedJobResponse>, Throwable> getListWaiting =
-            new ResponseResultCallback<List<AppliedJobResponse>, Throwable>() {
+    private ResponseResultCallback<EmployeeFlowResponse, Throwable> getListWaiting =
+            new ResponseResultCallback<EmployeeFlowResponse, Throwable>() {
                 @Override
-                public void OnSuccessResult(List<AppliedJobResponse> first) {
-                    waitingList.addAll(getWaitingList(first));
+                public void OnSuccessResult(EmployeeFlowResponse first) {
+
+                    for(AppliedJobResponse ajr : first.getData()) {
+                        if(DetailJobActivity.this.jobID ==ajr.getJob().getId()) {
+                            setDisableButton();
+                            break;
+                        }
+                    }
                 }
 
                 @Override
@@ -172,10 +178,10 @@ public class DetailJobActivity extends AppCompatActivity
             setDisableButton();
 
             if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
-                detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+                detailJobsPresenter.getJobOnWait(getListWaiting, appToken);
         }
         else
-            Toast.makeText(DetailJobActivity.this, "" + first.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailJobActivity.this, "Ada kesalahan dalam proses", Toast.LENGTH_SHORT).show();
     }
 
     private List<Integer> getWaitingList (List<AppliedJobResponse> responses) {
@@ -188,17 +194,12 @@ public class DetailJobActivity extends AppCompatActivity
         return  listID;
     }
 
-    private boolean isInWaitingList(int jobID) {
-        for(Integer a : waitingList) {
-            if(a ==jobID) return true;
-        }
-        return false;
-    }
-
     private void setDisableButton() {
         btn_lamar.setEnabled(false);
+
         int color = ResourcesCompat.getColor(getResources(), R.color.colorCommonGrey, null);
         btn_lamar.setBackgroundColor(color);
+
         color = ResourcesCompat.getColor(getResources(), R.color.colorCommonOrange, null);
         btn_lamar.setTextColor(color);
         btn_lamar.setText("Menunggu Diterima");

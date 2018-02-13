@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         cacheManager.saveString(CacheManager.LAST_TOKEN_KEY, ((SambilanApplication) getApplication()).getAppToken());
                         cacheManager.saveString(CacheManager.TOKEN_KEY, first.getLoginObject().getToken());
                         cacheManager.saveString(CacheManager.ROLE_KEY, first.getLoginObject().getUser().getRole());
-                        
+
                         ((SambilanApplication) getApplication()).setAppToken(first.getLoginObject().getToken());
                         ((SambilanApplication) getApplication()).setLoggedIn(true);
                         ((SambilanApplication) getApplication()).setAppRole(first.getLoginObject().getUser().getRole());
