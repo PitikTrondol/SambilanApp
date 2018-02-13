@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
+import com.sambilan.sambilan.utils.Base64ImageManager;
 import com.sambilan.sambilan.view.adapter.listener.ListMenungguListener;
 import com.sambilan.sambilan.view.helper.ImgurHelper;
 
@@ -51,6 +52,8 @@ public class ListMenungguHolder extends BaseViewHolder<AppliedJobResponse, ListM
 
         if(null != data.getJob().getCompany().getLogoUrl())
             Glide.with(itemView.getContext()).load(data.getJob().getCompany().getLogoUrl().trim()).into(iv_image);
+        else
+            iv_image.setImageBitmap(Base64ImageManager.getManager().setDefaultImage());
 
         btn_batalkan.setOnClickListener(new View.OnClickListener() {
             @Override

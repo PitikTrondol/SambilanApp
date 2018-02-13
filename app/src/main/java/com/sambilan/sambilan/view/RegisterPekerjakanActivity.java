@@ -82,6 +82,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                     if(first.getStatus().equalsIgnoreCase("ok")){
                         Intent intent = new Intent(RegisterPekerjakanActivity.this,MainMenuActivity.class);
                         startActivity(intent);
+                        finish();
                     }else {
                         Toast.makeText(RegisterPekerjakanActivity.this,"eror",Toast.LENGTH_SHORT).show();
                     }

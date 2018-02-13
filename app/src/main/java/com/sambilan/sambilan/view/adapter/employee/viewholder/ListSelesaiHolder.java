@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.response.AppliedJobResponse;
+import com.sambilan.sambilan.utils.Base64ImageManager;
 import com.sambilan.sambilan.view.adapter.listener.ListSelesaiListener;
 
 /**
@@ -49,6 +50,8 @@ public class ListSelesaiHolder extends BaseViewHolder<AppliedJobResponse, ListSe
 
         if(null != data.getJob().getCompany().getLogoUrl()) {
             Glide.with(itemView.getContext()).load(data.getJob().getCompany().getLogoUrl().trim()).into(iv_image);
+        } else {
+            iv_image.setImageBitmap(Base64ImageManager.getManager().setDefaultImage());
         }
 
         btn_penilaian.setOnClickListener(new View.OnClickListener() {
