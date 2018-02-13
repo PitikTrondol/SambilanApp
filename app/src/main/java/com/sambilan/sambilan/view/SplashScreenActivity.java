@@ -32,7 +32,5 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
-        ((SambilanApplication) getApplication()).setNeedLoadOnline(true);
     }
-
 }

@@ -18,10 +18,8 @@ import org.greenrobot.greendao.database.Database;
 
 public class SambilanApplication extends Application {
 
-    private boolean needLoadOnline;
-    private String appRole = "";
-
     private boolean isLoggedIn = false;
+    private String appRole = "";
     private String appToken = "";
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
@@ -37,14 +35,15 @@ public class SambilanApplication extends Application {
         String token = CacheManager.getInstance(this).getString(CacheManager.TOKEN_KEY);
         String role = CacheManager.getInstance(this).getString(CacheManager.ROLE_KEY);
 
-        Log.d("APP", "onCreate: ----------- " + token
-                + " | role " + role
-                + " | current Token " + appToken);
+        Log.d("APP", "onCreate: ----------- \n token " + token
+                + "\n | role " + role
+                + "\n | current Token " + appToken);
 
         if (null != token && !token.equals("")) {
             this.appToken = token;
             if (null != role && !role.equals("")) {
-                if(!appRole.equals(role)) appToken = CacheManager.getInstance(this).getString(CacheManager.LAST_TOKEN_KEY);
+                if (!appRole.equals(role))
+                    appToken = CacheManager.getInstance(this).getString(CacheManager.LAST_TOKEN_KEY);
                 this.isLoggedIn = true;
                 this.appRole = role;
             }
@@ -58,15 +57,8 @@ public class SambilanApplication extends Application {
     }
 
     public boolean isConnected() {
+        connectionReceiver.checkConnection(this);
         return connectionReceiver.isConnected();
-    }
-
-    public boolean isNeedLoadOnline() {
-        return needLoadOnline;
-    }
-
-    public void setNeedLoadOnline(boolean needLoadOnline) {
-        this.needLoadOnline = needLoadOnline;
     }
 
     public String getAppRole() {
@@ -85,16 +77,16 @@ public class SambilanApplication extends Application {
         return appToken;
     }
 
-    public DaoSession getDaoSession() {
-        return daoSession;
-    }
-
     public boolean isLoggedIn() {
         return isLoggedIn;
     }
 
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
+    }
+
+    public DaoSession getDaoSession() {
+        return daoSession;
     }
 
     public void deleteDB() {
