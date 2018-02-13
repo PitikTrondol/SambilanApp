@@ -16,9 +16,15 @@
     <string name="lowongan">Lowongan</string>
     <string name="rating">Rating</string>
     <string name="lamar_pekerjaan">Lamar Pekerjaan</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="daftar_sekarang">Daftar Sekarang</string>
+    <string name="valueIdentitas">: %1$s</string>
+    <string name="valueSkill">: %1$s, %2$s</string>
 
-    <string name="nama">Nama%-20s : %1$s</string>
-    <string name="alamat">Alamat%-20s : %1$s</string>
-    <string name="telepon">Telepon%-20s : %1$s</string>
-    <string name="email">Email%-20s : %1$s</string>
+    <string-array name="misc_fragment">
+        <item>Anda sedang offline</item>
+        <item>Reload</item>
+        <item>Belum ada pekerjaan</item>
+        <item>Lamar Pekerjaan</item>
+    </string-array>
 </resources>

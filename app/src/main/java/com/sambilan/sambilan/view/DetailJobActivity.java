@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.view;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
@@ -27,6 +28,7 @@ import java.util.List;
 public class DetailJobActivity extends AppCompatActivity
         implements DetailJobsPresenter.DetailJobResultCallback<Job, Throwable> {
 
+    public static final String JOB_ID = "JOB_ID";
     private DetailJobsPresenter detailJobsPresenter;
     private String appToken;
     private Job job;
@@ -54,11 +56,14 @@ public class DetailJobActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_job);
 
+        Intent detail = getIntent();
+        int id = detail.getIntExtra(JOB_ID, 1);
         waitingList = new ArrayList<>();
         appToken = ((SambilanApplication) getApplication()).getAppToken();
         detailJobsPresenter = new DetailJobsPresenter();
-        detailJobsPresenter.getDetailJob(this, 1);
-        detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+        detailJobsPresenter.getDetailJob(this, id);
+        if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
+            detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
 
         iv_logo = findViewById(R.id.iv_logo);
         tv_lowongan = findViewById(R.id.tv_lowongan);
@@ -113,7 +118,9 @@ public class DetailJobActivity extends AppCompatActivity
         if (null != detailJob.getCompany().getLogoUrl())
             Glide.with(this).load(detailJob.getCompany().getLogoUrl().trim()).into(iv_logo);
 
-        if(isInWaitingList(detailJob.getId())) {
+        if(!((SambilanApplication)getApplication()).isLoggedIn()) {
+            btn_lamar.setText("Login");
+        } else if(isInWaitingList(detailJob.getId())) {
             setDisableButton();
         } else {
             btn_lamar.setText("Apply Pekerjaan Ini");
@@ -124,6 +131,10 @@ public class DetailJobActivity extends AppCompatActivity
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    if(!((SambilanApplication)getApplication()).isLoggedIn()) {
+                        startActivity(new Intent(DetailJobActivity.this, LoginActivity.class));
+                    }
                     ApplyJobBody body = new ApplyJobBody(job.getId());
                     detailJobsPresenter.applyJob(applyCallback, appToken, body);
                 }
@@ -160,7 +171,9 @@ public class DetailJobActivity extends AppCompatActivity
     private void postAndUpdate(PostResponse<String, Job> first) {
         if (first.getStatus().equals("ok")) {
             setDisableButton();
-            detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
+
+            if(!((SambilanApplication) getApplication()).getAppRole().equals(""))
+                detailJobsPresenter.getJobOnWait(getListWaiting, appToken, "waiting");
         }
         else
             Toast.makeText(DetailJobActivity.this, "" + first.getMessage(), Toast.LENGTH_SHORT).show();

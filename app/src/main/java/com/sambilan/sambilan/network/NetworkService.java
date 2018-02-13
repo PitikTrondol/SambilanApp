@@ -46,7 +46,6 @@ public class NetworkService {
     public static InvitationPageAPI crateInvitationAPI() {
         return getRetrofit().create(InvitationPageAPI.class);
     }
-
     public static DetailJobsApi createJobsApi(){
         return getRetrofit().create(DetailJobsApi.class);
     }
@@ -54,11 +53,16 @@ public class NetworkService {
     public static EmployeeFlowAPI createEmployeeFlowApi(){
         return getRetrofit().create(EmployeeFlowAPI.class);
     }
-
+    public static RegisterPageAPI createRegisterAPI(){
+        return getRetrofit().create(RegisterPageAPI.class);
+    }
     public static AddJobApi createAddJobApi(){
         return getRetrofit().create(AddJobApi.class);
     }
 
+    public static LoginPageAPI createLoginAPI(){
+        return getRetrofit().create(LoginPageAPI.class);
+    }
     /**
      * ===================================
      * Create OkHttpClient instance
