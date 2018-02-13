@@ -34,7 +34,7 @@
                 android:paddingBottom="10dp"
                 android:paddingEnd="@dimen/dimen_8dp"
                 android:paddingStart="@dimen/dimen_8dp"
-                android:text="Ahmad Zumar Wira"
+                tools:text="Ahmad Zumar Wira"
                 android:textColor="@color/White"
                 android:textSize="@dimen/text_size_18sp" />
 
@@ -45,7 +45,7 @@
                 android:paddingBottom="10dp"
                 android:paddingEnd="@dimen/dimen_8dp"
                 android:paddingStart="@dimen/dimen_8dp"
-                android:text="Pekerja"
+                tools:text="Pekerja"
                 android:textColor="@color/White"
                 android:textSize="@dimen/text_size_18sp" />
         </LinearLayout>

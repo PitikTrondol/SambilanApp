@@ -40,6 +40,9 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     private User user;
     private DaoSession daoSession;
 
+    private TextView namaHeader;
+    private TextView posisi;
+
     private TextView nama;
     private TextView alamat;
     private TextView telepon;
@@ -56,6 +59,9 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ll_profileFungsi = view.findViewById(R.id.ll_profile_fungsi);
         buttonLogout = view.findViewById(R.id.logout);
+
+        namaHeader = view.findViewById(R.id.profile_name);
+        posisi = view.findViewById(R.id.posisi);
 
         nama = view.findViewById(R.id.val_name);
         alamat = view.findViewById(R.id.val_alamat);
@@ -117,6 +123,10 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
     }
 
     private void setData() {
+
+        namaHeader.setText(user.getFullname());
+        posisi.setText(user.getRole().equals("employee") ? "Pekerja" : "Pemberi Kerja");
+
         Resources res = getResources();
         String text = String.format(res.getString(R.string.valueIdentitas), user.getFullname());
         nama.setText(text);
