@@ -20,4 +20,11 @@
     <string name="daftar_sekarang">Daftar Sekarang</string>
     <string name="valueIdentitas">: %1$s</string>
     <string name="valueSkill">: %1$s, %2$s</string>
+
+    <string-array name="misc_fragment">
+        <item>Anda sedang offline</item>
+        <item>Reload</item>
+        <item>Belum ada pekerjaan</item>
+        <item>Lamar Pekerjaan</item>
+    </string-array>
 </resources>

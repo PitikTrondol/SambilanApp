@@ -28,7 +28,6 @@ import com.sambilan.sambilan.view.helper.BottomNavigationHelper;
 public class MainMenuActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private static final String FRAGMENT_ROOT_TAG = "root_stack";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
         if (((SambilanApplication) getApplication()).isConnected())
             loadFragment(new LandingPageFragment());
         else
-            loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
+            loadFragment(MiscelaneousFragment.newInstance(MiscelaneousFragment.OFFLINE_MODE));
 
 
         bottomNavigationView = findViewById(R.id.btn_bottomnav);
@@ -61,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
                             if (((SambilanApplication) getApplication()).isConnected())
                                 loadFragment(new LandingPageFragment());
                             else
-                                loadFragment(MiscelaneousFragment.newInstance("Anda Sedang Offline"));
+                                loadFragment(MiscelaneousFragment.newInstance(MiscelaneousFragment.OFFLINE_MODE));
                             return true;
                         case R.id.btn_add:
                             if (((SambilanApplication) getApplication()).isLoggedIn()
