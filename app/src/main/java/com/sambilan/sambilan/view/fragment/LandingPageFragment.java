@@ -146,10 +146,16 @@ public class LandingPageFragment extends Fragment implements TopBar {
             new ResponseResultCallback<JobResponse, Throwable>() {
                 @Override
                 public void OnSuccessResult(JobResponse first) {
-                    totalPage = first.getTotalPage();
-                    listJobAdapter.setModel(first.getData());
-                    progressBar.setVisibility(View.GONE);
-                    recyclerRefresher.setRefreshing(false);
+
+                    if(first.getStatus().equals("error")) {
+                        Toast.makeText(getContext(), "Ada yang login akun ini ditempat lain", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        totalPage = first.getTotalPage();
+                        listJobAdapter.setModel(first.getData());
+                        progressBar.setVisibility(View.GONE);
+                        recyclerRefresher.setRefreshing(false);
+                    }
                 }
 
                 @Override

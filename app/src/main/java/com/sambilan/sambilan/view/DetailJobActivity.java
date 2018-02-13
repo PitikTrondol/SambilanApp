@@ -102,7 +102,6 @@ public class DetailJobActivity extends AppCompatActivity
         Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
     }
 
-
     private void setData(Job detailJob) {
         tv_lowongan.setText("Lowongan Sebagai " + detailJob.getTitle());
         tv_dilihat.setText("10");
@@ -120,7 +119,7 @@ public class DetailJobActivity extends AppCompatActivity
 
         if(!((SambilanApplication)getApplication()).isLoggedIn()) {
             btn_lamar.setText("Login");
-        } else if(isInWaitingList(detailJob.getId())) {
+        } else if(job.getStatus().equals("waiting")) {
             setDisableButton();
         } else {
             btn_lamar.setText("Apply Pekerjaan Ini");
