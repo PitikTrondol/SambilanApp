@@ -15,9 +15,18 @@
         app:title="Tambah Lowongan"
         app:titleTextColor="@color/colorCommonOrange"/>
 
+    <View
+        android:id="@+id/separator"
+        android:layout_below="@id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/calmOrange"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:layout_marginBottom="@dimen/cardview_margin_mid">
 
         <LinearLayout
             android:orientation="vertical"

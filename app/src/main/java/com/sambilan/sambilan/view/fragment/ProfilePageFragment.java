@@ -24,9 +24,6 @@ import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Andhika Putranto on 1/31/2018.
  */
@@ -56,11 +53,11 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
         ll_profileFungsi = view.findViewById(R.id.ll_profile_fungsi);
         buttonLogout = view.findViewById(R.id.logout);
 
-        nama = view.findViewById(R.id.nama);
-        alamat = view.findViewById(R.id.alamat);
-        telepon = view.findViewById(R.id.telepon);
-        email = view.findViewById(R.id.email);
-        skill = view.findViewById(R.id.skill);
+        nama = view.findViewById(R.id.val_name);
+        alamat = view.findViewById(R.id.val_alamat);
+        telepon = view.findViewById(R.id.val_telepon);
+        email = view.findViewById(R.id.val_email);
+        skill = view.findViewById(R.id.val_skill);
 
         return view;
     }
@@ -105,19 +102,19 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
 
     private void setData() {
         Resources res = getResources();
-        String text = String.format(res.getString(R.string.nama), "Ahmad Zumar Wira");
+        String text = String.format(res.getString(R.string.valueIdentitas),"Ahmad Zumar Wira");
         nama.setText(text);
 
-        text = String.format(res.getString(R.string.alamat), "Jl. Belalang Tempur no 76, Pasar Kembang, Sidney");
+        text = String.format(res.getString(R.string.valueIdentitas),"Jl. Belalang Tempur no 76, Pasar Kembang, Sidney");
         alamat.setText(text);
 
-        text = String.format(res.getString(R.string.telepon), "+628127873787");
+        text = String.format(res.getString(R.string.valueIdentitas), "+628127873787");
         telepon.setText(text);
 
-        text = String.format(res.getString(R.string.email), "tetep.sihomo@gmail.com");
+        text = String.format(res.getString(R.string.valueIdentitas), "tetep.sihomo@gmail.com");
         email.setText(text);
 
-        text = String.format(res.getString(R.string.skill), "Kaya Raya", "Profesional Stalker");
+        text = String.format(res.getString(R.string.valueSkill), "Kaya Raya", "Profesional Stalker");
         skill.setText(text);
     }
 

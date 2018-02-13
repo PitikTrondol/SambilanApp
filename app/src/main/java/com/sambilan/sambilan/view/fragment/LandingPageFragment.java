@@ -25,6 +25,7 @@ import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.view.DetailJobActivity;
+import com.sambilan.sambilan.view.MainMenuActivity;
 import com.sambilan.sambilan.view.adapter.employee.ListPekerjaanAdapter;
 import com.sambilan.sambilan.view.adapter.SliderAdapter;
 import com.sambilan.sambilan.view.adapter.employer.ListEmployeeAdapter;
@@ -173,12 +174,11 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
                 @Override
                 public void OnFailureResult(Throwable second) {
-                    Toast.makeText(getActivity(),
-                            "TEXT " + second.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-
                     progressBar.setVisibility(View.GONE);
                     recyclerRefresher.setRefreshing(false);
+                    Toast.makeText(getActivity(),
+                            "TIDAK ADA JARINGAN ",
+                            Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -196,7 +196,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 @Override
                 public void OnFailureResult(Throwable second) {
                     Toast.makeText(getActivity(),
-                            "TEXT " + second.getMessage(),
+                            "TIDAK ADA JARINGAN ",
                             Toast.LENGTH_SHORT).show();
 
                     progressBar.setVisibility(View.GONE);
@@ -219,7 +219,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 @Override
                 public void OnFailureResult(Throwable second) {
                     Toast.makeText(getActivity(),
-                            "TEXT " + second.getMessage(),
+                            "TIDAK ADA JARINGAN ",
                             Toast.LENGTH_SHORT).show();
 
                     progressBar.setVisibility(View.GONE);
@@ -260,7 +260,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                         if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
                             landingPagePresenter.getGuestJoblist(itemScrollCallback, currentPage, DISPLAY_COUNT);
                         } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
-                            landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
+                            landingPagePresenter.getEmployees(employeeScrollCallback, appToken, currentPage, DISPLAY_COUNT);
                         } else {
                             landingPagePresenter.getHomeJobList(itemScrollCallback, appToken, currentPage, DISPLAY_COUNT);
                         }

@@ -52,6 +52,7 @@ public class AddPageFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
         etJudul = view.findViewById(R.id.et_judul);
         etKategori = view.findViewById(R.id.et_kategori);
         etPabrik = view.findViewById(R.id.et_pabrik);
