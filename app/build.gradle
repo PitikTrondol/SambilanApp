@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
-ext.majorVersion = 0
+ext.majorVersion = 1
 ext.minorVersion = 0
-ext.patchVersion = 2
+ext.patchVersion = 0
 ext.preRelease = ""
 ext.minSdk = 21
 
