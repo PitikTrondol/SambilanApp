@@ -149,6 +149,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
 
                     if(first.getStatus().equals("error")) {
                         Toast.makeText(getContext(), "Ada yang login akun ini ditempat lain", Toast.LENGTH_SHORT).show();
+                        landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
                     }
                     else {
                         totalPage = first.getTotalPage();
