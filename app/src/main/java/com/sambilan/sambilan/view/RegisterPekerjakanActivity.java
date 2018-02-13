@@ -67,10 +67,17 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         findViewById(R.id.btn_masuk_pekerjakan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(),et_kata_sandi_pekerjakan.getText().toString(),
-                        role_pekerjakan.getText().toString(),null,et_nama_pekerjakan.getText().toString(),null,et_no_telp_pekerjakan.getText().toString()
-                        ,et_nama_perusahaan.getText().toString(),et_alamat_pekerjakan.getText().toString());
-                register.postRegister(registerPresenter,registerRequest);
+                if (!et_kata_sandi_pekerjakan.getText().toString().equals(et_ulang_kata_pekerjakan.getText().toString()))
+                {
+                    Toast.makeText(RegisterPekerjakanActivity.this,"Kata sandi harus sama",Toast.LENGTH_SHORT).show();
+                }else if(et_kata_sandi_pekerjakan.getText().toString().length()<8){
+                    Toast.makeText(RegisterPekerjakanActivity.this,"Kata Sandi harus terdiri minimal 8 karakter", Toast.LENGTH_SHORT).show();
+                }else {
+                    registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(), et_kata_sandi_pekerjakan.getText().toString(),
+                            role_pekerjakan.getText().toString(), null, et_nama_pekerjakan.getText().toString(), null, et_no_telp_pekerjakan.getText().toString()
+                            , et_nama_perusahaan.getText().toString(), et_alamat_pekerjakan.getText().toString());
+                    register.postRegister(registerPresenter, registerRequest);
+                }
             }
         });
     }
@@ -82,6 +89,8 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                     if(first.getStatus().equalsIgnoreCase("ok")){
                         Intent intent = new Intent(RegisterPekerjakanActivity.this,MainMenuActivity.class);
                         startActivity(intent);
+                        Toast.makeText(RegisterPekerjakanActivity.this,"Sukses Registrasi",Toast.LENGTH_SHORT).show();
+
                         finish();
                     }else {
                         Toast.makeText(RegisterPekerjakanActivity.this,"eror",Toast.LENGTH_SHORT).show();
