@@ -104,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                         daoSession.getUserDao().insert(first.getLoginObject().getUser());
                         Log.d("LOGIN", "After : ---------"+((SambilanApplication) getApplication()).getAppToken());
 
+                        finish();
+
                     } else {
 
                         Toast.makeText(LoginActivity.this, "Error bos", Toast.LENGTH_SHORT).show();

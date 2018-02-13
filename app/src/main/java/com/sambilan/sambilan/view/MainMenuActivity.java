@@ -44,6 +44,10 @@ public class MainMenuActivity extends AppCompatActivity {
         BottomNavigationHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setSelectedItemId(R.id.btn_home);
+
+        if(!((SambilanApplication) getApplication()).getAppRole().equals("employer")) {
+            bottomNavigationView.getMenu().removeItem(R.id.btn_add);
+        }
     }
 
     @Override
