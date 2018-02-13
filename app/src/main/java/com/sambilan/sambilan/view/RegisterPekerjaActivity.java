@@ -92,6 +92,7 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
                     if (first.getStatus().equalsIgnoreCase("ok")) {
                         Intent intent = new Intent(RegisterPekerjaActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(RegisterPekerjaActivity.this, "error bos", Toast.LENGTH_SHORT).show();
                     }
