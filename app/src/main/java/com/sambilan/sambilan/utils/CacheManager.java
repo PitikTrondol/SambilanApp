@@ -9,15 +9,14 @@ import android.content.SharedPreferences;
 
 public class CacheManager {
 
-    private Context context;
     private SharedPreferences preferences;
-    private String preferenceName;
 
     public static final String LAST_TOKEN_KEY = "token";
-    public static final String TOKEN_KEY = "token";
+    public static final String TOKEN_KEY = "lastToken";
     public static final String ROLE_KEY = "role";
-
+    public static final String USER_ID_KEY = "userID";
     public static final String NAME_KEY = "Sambilan.preference";
+
     private static CacheManager instance;
 
     public static CacheManager getInstance(Context context) {
@@ -29,9 +28,7 @@ public class CacheManager {
     }
 
     private CacheManager(Context context) {
-        this.context = context;
-        this.preferenceName = NAME_KEY;
-        this.preferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
+        this.preferences = context.getSharedPreferences(NAME_KEY, Context.MODE_PRIVATE);
     }
 
     public void saveString(String key, String value) {
@@ -62,7 +59,7 @@ public class CacheManager {
         return preferences.getString(key, "");
     }
 
-    public Integer getInt(String key) {
+    public int getInt(String key) {
         return preferences.getInt(key, 0);
     }
 

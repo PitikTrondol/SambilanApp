@@ -19,10 +19,14 @@ import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.SambilanApplication;
 import com.sambilan.sambilan.model.DaoSession;
 import com.sambilan.sambilan.model.User;
+import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.view.HalamanDiterimaActivity;
 import com.sambilan.sambilan.view.HalamanMenungguActivity;
 import com.sambilan.sambilan.view.HalamanSelesaiActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andhika Putranto on 1/31/2018.
@@ -72,8 +76,6 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             dialogBuilder = new AlertDialog.Builder(getContext());
         }
 
-        setData();
-
         dialogBuilder.setTitle("Logout")
                 .setMessage("Apakah anda yakin..?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -92,6 +94,20 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             ll_profileFungsi.getChildAt(i).setOnClickListener((this));
         }
 
+        daoSession = ((SambilanApplication) getActivity().getApplication()).getDaoSession();
+
+        int id = CacheManager.getInstance(getContext()).getInt(CacheManager.USER_ID_KEY);
+        List<User> userList = new ArrayList<>();
+        userList.addAll(daoSession.getUserDao().loadAll());
+
+        for(User test : userList) {
+            if(null != test) {
+                this.user = test;
+                break;
+            }
+        }
+        setData();
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,13 +118,13 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
 
     private void setData() {
         Resources res = getResources();
-        String text = String.format(res.getString(R.string.valueIdentitas),"Ahmad Zumar Wira");
+        String text = String.format(res.getString(R.string.valueIdentitas), user.getFullname());
         nama.setText(text);
 
-        text = String.format(res.getString(R.string.valueIdentitas),"Jl. Belalang Tempur no 76, Pasar Kembang, Sidney");
+        text = String.format(res.getString(R.string.valueIdentitas), user.getAddress());
         alamat.setText(text);
 
-        text = String.format(res.getString(R.string.valueIdentitas), "+628127873787");
+        text = String.format(res.getString(R.string.valueIdentitas), user.getPhone());
         telepon.setText(text);
 
         text = String.format(res.getString(R.string.valueIdentitas), "tetep.sihomo@gmail.com");
@@ -128,15 +144,15 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             break;
 
             case R.id.ll_menunggu: {
-                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
                     Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
                 else
-                ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanMenungguActivity.class);
+                    ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanMenungguActivity.class);
             }
             break;
 
             case R.id.ll_diterima: {
-                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
                     Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
                 else
                     ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanDiterimaActivity.class);
@@ -144,7 +160,7 @@ public class ProfilePageFragment extends Fragment implements View.OnClickListene
             break;
 
             case R.id.ll_selesai: {
-                if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
+                if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer"))
                     Toast.makeText(getContext(), "Not Ready Yet", Toast.LENGTH_SHORT).show();
                 else
                     ((MainMenuActivity) getActivity()).goToNextScreen(view.getContext(), HalamanSelesaiActivity.class);

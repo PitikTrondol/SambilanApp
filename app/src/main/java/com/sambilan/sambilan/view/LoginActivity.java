@@ -68,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                 request = new LoginRequest(et_email.getText().toString().trim(),
                         et_password.getText().toString().trim());
 
-                Log.d("LOGIN", "Before : ---------"+((SambilanApplication) getApplication()).getAppToken());
                 presenter.postAll(loginPagePresenter, request);
             }
         });
@@ -88,10 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                 public void OnSuccessResult(LoginResponse first) {
                     if (first.getStatus().equals("ok")) {
                         Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                        startActivity(intent);
 
-                        cacheManager.saveString(CacheManager.LAST_TOKEN_KEY,
-                                ((SambilanApplication) getApplication()).getAppToken());
+                        cacheManager.saveString(CacheManager.LAST_TOKEN_KEY, ((SambilanApplication) getApplication()).getAppToken());
                         cacheManager.saveString(CacheManager.TOKEN_KEY, first.getLoginObject().getToken());
                         cacheManager.saveString(CacheManager.ROLE_KEY, first.getLoginObject().getUser().getRole());
 
@@ -102,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         daoSession.getUserDao().delete(first.getLoginObject().getUser());
                         daoSession.getUserDao().insert(first.getLoginObject().getUser());
-                        Log.d("LOGIN", "After : ---------"+((SambilanApplication) getApplication()).getAppToken());
 
+                        startActivity(intent);
                         finish();
 
                     } else {
