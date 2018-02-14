@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
     private InvitationPagePresenter invitationPresenter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
+    private Toolbar toolbar;
 
     private int userId = 1;
     private final String SET_TERIMA = "agree";
@@ -36,7 +38,9 @@ public class HalamanPermintaanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_permintaan);
+        setContentView(R.layout.activity_flow);
+        toolbar = findViewById(R.id.tittle_bar_common);
+        toolbar.setTitle("Permintaan");
 
         invitationPresenter = new InvitationPagePresenter();
         invitationPresenter.getJobInvitation(permintaanCallback, userId);

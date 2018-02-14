@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
     private SwipeRefreshLayout refreshLayout;
     private ProgressBar progressBar;
     private EmployeeFlowPresenter employeeFlowPresenter;
+    private Toolbar toolbar;
 
     private int userId = 1;
     private String appToken;
@@ -36,7 +38,10 @@ public class HalamanDiterimaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diterima);
+        setContentView(R.layout.activity_flow);
+        toolbar = findViewById(R.id.tittle_bar_common);
+        toolbar.setTitle("Diterima");
+
         appToken = ((SambilanApplication) getApplication()).getAppToken();
 
         recyclerDiterima = findViewById(R.id.common_recycler_view);

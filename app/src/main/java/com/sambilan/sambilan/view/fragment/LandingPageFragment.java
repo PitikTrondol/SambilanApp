@@ -1,11 +1,13 @@
 package com.sambilan.sambilan.view.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +25,6 @@ import com.sambilan.sambilan.model.Employee;
 import com.sambilan.sambilan.model.response.JobResponse;
 import com.sambilan.sambilan.presenter.LandingPagePresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
-import com.sambilan.sambilan.utils.CacheManager;
 import com.sambilan.sambilan.view.DetailJobActivity;
 import com.sambilan.sambilan.view.MainMenuActivity;
 import com.sambilan.sambilan.view.adapter.employee.ListPekerjaanAdapter;
@@ -47,6 +48,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
     private int childCount, itemCount, firstVisibleItem, currentPage, totalPage;
     private boolean isLoading;
     private String appToken;
+    private AlertDialog.Builder dialogBuilder;
 
     private Toolbar topToolbar;
     private RecyclerView listJobRecyclerView;
@@ -97,7 +99,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        appToken = ((SambilanApplication)getActivity().getApplication()).getAppToken();
+        appToken = ((SambilanApplication) getActivity().getApplication()).getAppToken();
 
         // Implementasi untuk topbar, menu dan search button
         ((AppCompatActivity) getActivity()).setSupportActionBar(topToolbar);
@@ -110,7 +112,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
         layoutManager = new LinearLayoutManager(getContext());
         listJobRecyclerView.setLayoutManager(layoutManager);
 
-        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+        if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
             landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
             listJobAdapter = new ListPekerjaanAdapter(getContext());
             listJobAdapter.setListener(onClickJobListListener);
@@ -147,11 +149,16 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 @Override
                 public void OnSuccessResult(JobResponse first) {
 
-                    if(first.getStatus().equals("error")) {
-                        Toast.makeText(getContext(), "Ada yang login akun ini ditempat lain", Toast.LENGTH_SHORT).show();
-                        landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
-                    }
-                    else {
+                    if (first.getStatus().equals("error")) {
+                        dialogBuilder.setTitle("Ada yang login akun ini ditempat lain")
+                                .setPositiveButton(android.R.string.yes,
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                landingPagePresenter.getGuestJoblist(homeJobCallback,
+                                                        currentPage, DISPLAY_COUNT);
+                                            }
+                                        });
+                    } else {
                         totalPage = first.getTotalPage();
                         listJobAdapter.setModel(first.getData());
                         progressBar.setVisibility(View.GONE);
@@ -239,7 +246,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
             new ListJobListener() {
                 @Override
                 public void onClickJob(int jobID) {
-                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
+                    if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
                         Toast.makeText(getContext(), "NOT READY YET..!", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent profileIntent = new Intent(getActivity(), DetailJobActivity.class);
@@ -264,7 +271,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                             && currentPage < totalPage) {
 
                         //kalo udah jadi, currentPage++
-                        if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                        if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
                             landingPagePresenter.getGuestJoblist(itemScrollCallback, currentPage, DISPLAY_COUNT);
                         } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
                             landingPagePresenter.getEmployees(employeeScrollCallback, appToken, currentPage, DISPLAY_COUNT);
@@ -283,7 +290,7 @@ public class LandingPageFragment extends Fragment implements TopBar {
                 @Override
                 public void onRefresh() {
                     currentPage = 1;
-                    if(((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
+                    if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("")) {
                         landingPagePresenter.getGuestJoblist(homeJobCallback, currentPage, DISPLAY_COUNT);
                     } else if (((SambilanApplication) getActivity().getApplication()).getAppRole().equals("employer")) {
                         landingPagePresenter.getEmployees(employeeCallback, appToken, currentPage, DISPLAY_COUNT);
