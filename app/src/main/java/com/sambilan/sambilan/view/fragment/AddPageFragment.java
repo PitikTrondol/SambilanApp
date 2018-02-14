@@ -1,5 +1,6 @@
 package com.sambilan.sambilan.view.fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +19,10 @@ import com.sambilan.sambilan.model.response.AddJobResponse;
 import com.sambilan.sambilan.presenter.AddJobPresenter;
 import com.sambilan.sambilan.presenter.ResponseResultCallback;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Calendar;
+
 /**
  * Created by Andhika Putranto on 2/3/2018.
  */
@@ -24,6 +30,7 @@ import com.sambilan.sambilan.presenter.ResponseResultCallback;
 public class AddPageFragment extends Fragment {
 
     private String appToken = "8e0bb59034fb13f8b640f5ba857930a1bd7ba487dabfaee7a8d685034d166194";
+    private String tglMulai,tglTutup,tglSelesai;
 
     private EditText etJudul;
     private EditText etKategori;
@@ -39,6 +46,8 @@ public class AddPageFragment extends Fragment {
 
     private Job postingJob;
     private AddJobPresenter addJobPresenter;
+
+    DatePickerDialog datePickerDialog;
 
     @Nullable
     @Override
@@ -66,6 +75,72 @@ public class AddPageFragment extends Fragment {
 
         btnTambah = view.findViewById(R.id.btn_tambah);
         btnTambah.setOnClickListener(onTambahPekerjaan);
+
+        tglMulai = "";
+        tglSelesai = "";
+        tglTutup = "";
+
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        etTglMulai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int dayOfMonth, int month, int year) {
+                        NumberFormat numberFormat = new DecimalFormat("00");
+
+                        tglMulai = numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year);
+
+                        etTglMulai.setText(numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year));
+                    }
+                }, day, month, year);
+                datePickerDialog.show();
+            }
+        });
+
+        etTglSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int dayOfMonth, int month, int year) {
+                        NumberFormat numberFormat = new DecimalFormat("00");
+
+                        tglSelesai = numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year);
+
+                        etTglSelesai.setText(numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year));
+                    }
+                }, day, month, year);
+                datePickerDialog.show();
+            }
+        });
+
+        etTglTutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int dayOfMonth, int month, int year) {
+                        NumberFormat numberFormat = new DecimalFormat("00");
+
+                        tglTutup = numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year);
+
+                        etTglTutup.setText(numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" +
+                                numberFormat.format(year));
+                    }
+                }, day, month, year);
+                datePickerDialog.show();
+            }
+        });
 
     }
 

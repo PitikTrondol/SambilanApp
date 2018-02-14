@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 ext.majorVersion = 1
 ext.minorVersion = 0
-ext.patchVersion = 0
+ext.patchVersion = 1
 ext.preRelease = ""
 ext.minSdk = 21
 
