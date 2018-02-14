@@ -1,10 +1,12 @@
 package com.sambilan.sambilan.view;
 
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,16 +26,18 @@ public class HalamanMenungguActivity extends AppCompatActivity {
     private EmployeeFlowPresenter employeeFlowPresenter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout refreshLayout;
+    private Toolbar toolbar;
 
     private final String SET_STATUS = "waiting";
     private String appToken;
 
-    private int userId = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menunggu);
+        setContentView(R.layout.activity_flow);
+        toolbar = findViewById(R.id.tittle_bar_common);
+        toolbar.setTitle("Menunggu");
+
         appToken = ((SambilanApplication) getApplication()).getAppToken();
 
         recyclerMenunggu = findViewById(R.id.common_recycler_view);

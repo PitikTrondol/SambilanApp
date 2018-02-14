@@ -16,6 +16,8 @@ import com.sambilan.sambilan.model.RegisterResponse;
 import com.sambilan.sambilan.presenter.RegisterPresenter;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.HttpException;
 
@@ -32,6 +34,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
     private EditText et_no_telp_pekerjakan;
     private EditText et_alamat_pekerjakan;
     private TextView role_pekerjakan;
+    private TextView gender;
 
     private RegisterRequest registerRequest;
     private RegisterPresenter register;
@@ -48,6 +51,8 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         et_alamat_pekerjakan = findViewById(R.id.et_alamat_pekerjakan);
         role_pekerjakan = findViewById(R.id.tv_role_pekerjakan);
         role_pekerjakan.setText("employer");
+        gender = findViewById(R.id.tv_gender_pekerjakan);
+        gender.setText("pria");
         ArrayList<String> list = new ArrayList<>();
 
         Toolbar toolbar = findViewById(R.id.tb_pekerjakan);
@@ -55,6 +60,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Daftar Pekerjakan");
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,10 +73,19 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         findViewById(R.id.btn_masuk_pekerjakan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(),et_kata_sandi_pekerjakan.getText().toString(),
-                        role_pekerjakan.getText().toString(),null,et_nama_pekerjakan.getText().toString(),null,et_no_telp_pekerjakan.getText().toString()
-                        ,et_nama_perusahaan.getText().toString(),et_alamat_pekerjakan.getText().toString());
-                register.postRegister(registerPresenter,registerRequest);
+                if (!et_kata_sandi_pekerjakan.getText().toString().equals(et_ulang_kata_pekerjakan.getText().toString()))
+                {
+                    Toast.makeText(RegisterPekerjakanActivity.this,"Kata sandi harus sama",Toast.LENGTH_SHORT).show();
+                }else if(et_kata_sandi_pekerjakan.getText().toString().length()<8){
+                    Toast.makeText(RegisterPekerjakanActivity.this,"Kata Sandi harus terdiri minimal 8 karakter", Toast.LENGTH_SHORT).show();
+                }else if(isValidPassword(et_kata_sandi_pekerjakan.getText().toString().trim())){
+                    registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(), et_kata_sandi_pekerjakan.getText().toString(),
+                            role_pekerjakan.getText().toString(), gender.getText().toString(), et_nama_pekerjakan.getText().toString(), et_alamat_pekerjakan.getText().toString(), et_no_telp_pekerjakan.getText().toString()
+                            , et_nama_perusahaan.getText().toString(), et_alamat_pekerjakan.getText().toString());
+                    register.postRegister(registerPresenter, registerRequest);
+                }else{
+                    Toast.makeText(RegisterPekerjakanActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -80,8 +95,10 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                 @Override
                 public void OnSuccessResult(RegisterResponse first) {
                     if(first.getStatus().equalsIgnoreCase("ok")){
-                        Intent intent = new Intent(RegisterPekerjakanActivity.this,MainMenuActivity.class);
+                        Intent intent = new Intent(RegisterPekerjakanActivity.this,LoginActivity.class);
                         startActivity(intent);
+                        Toast.makeText(RegisterPekerjakanActivity.this,"Sukses Registrasi",Toast.LENGTH_SHORT).show();
+
                         finish();
                     }else {
                         Toast.makeText(RegisterPekerjakanActivity.this,"eror",Toast.LENGTH_SHORT).show();
@@ -107,4 +124,13 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                     }
                 }
             };
+    public boolean isValidPassword(final String password){
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*?[0-9])(?=.*?[A-Z]).{8,20})";
+        pattern =Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+    }
 }

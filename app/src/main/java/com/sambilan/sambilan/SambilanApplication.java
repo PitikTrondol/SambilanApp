@@ -42,9 +42,8 @@ public class SambilanApplication extends Application {
 
         if (null != token && !token.equals("")) {
             this.appToken = token;
+
             if (null != role && !role.equals("")) {
-                if (!appRole.equals(role))
-                    appToken = CacheManager.getInstance(this).getString(CacheManager.LAST_TOKEN_KEY);
                 this.isLoggedIn = true;
                 this.appRole = role;
             }

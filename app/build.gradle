@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 ext.majorVersion = 1
 ext.minorVersion = 0
-ext.patchVersion = 0
+ext.patchVersion = 1
 ext.preRelease = ""
 ext.minSdk = 21
 
@@ -11,7 +11,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.sambilan.sambilan"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode generateVersionCode()
         versionName generateVersionName()

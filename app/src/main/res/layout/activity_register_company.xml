@@ -7,11 +7,19 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:id="@+id/tv_role_pekerjakan"/>
+
+        <TextView
+            android:id="@+id/tv_role_pekerjakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_gender_pekerjakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/tb_pekerjakan"
             android:layout_width="match_parent"
@@ -69,6 +77,7 @@
                 android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_email_pekerjakan"
             android:layout_width="0dp"
@@ -143,6 +152,7 @@
                 android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_no_telp_pekerjakan"
             android:layout_width="0dp"
@@ -161,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="No.Telp/Hp"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -208,6 +219,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_alamat_pekerjakan" />
+
         <Button
             android:id="@+id/btn_masuk_pekerjakan"
             android:layout_width="0dp"
@@ -216,10 +228,10 @@
             android:layout_marginLeft="21dp"
             android:layout_marginRight="21dp"
             android:layout_marginTop="34dp"
-            android:fontFamily="@font/roboto_regular"
             android:background="@drawable/rounded_button"
-            android:textColor="@color/dark_red"
+            android:fontFamily="@font/roboto_regular"
             android:text="Daftar"
+            android:textColor="@color/dark_red"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

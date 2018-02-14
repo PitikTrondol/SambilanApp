@@ -7,10 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +16,9 @@ import com.sambilan.sambilan.R;
 import com.sambilan.sambilan.model.RegisterRequest;
 import com.sambilan.sambilan.model.RegisterResponse;
 import com.sambilan.sambilan.presenter.RegisterPresenter;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.HttpException;
 
@@ -76,10 +77,22 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
         findViewById(R.id.btn_masuk_pekerja).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterRequest registerPekerja = new RegisterRequest(et_email.getText().toString(),et_katasandi.getText().toString(),
-                        role.getText().toString(),string,et_nama.getText().toString(),et_alamat.getText().toString(),et_noTelp.getText().toString()
-                        ,null,null);
-                presenter.postRegister(registerPresenter, registerPekerja);
+                if (!et_katasandi.getText().toString().equals(et_ulang_sandi.getText().toString()))
+                {
+                    Toast.makeText(RegisterPekerjaActivity.this,"Kata sandi harus sama",Toast.LENGTH_SHORT).show();
+                }else if(et_katasandi.getText().toString().length()<8){
+
+                    Toast.makeText(RegisterPekerjaActivity.this,"Kata Sandi harus terdiri minimal 8 karakter", Toast.LENGTH_SHORT).show();
+                }else if(isValidPassword(et_katasandi.getText().toString().trim())){
+
+                    RegisterRequest registerPekerja = new RegisterRequest(et_email.getText().toString(),et_katasandi.getText().toString(),
+                            role.getText().toString(),string,et_nama.getText().toString(),et_alamat.getText().toString(),et_noTelp.getText().toString()
+                            ,null,null);
+                    presenter.postRegister(registerPresenter, registerPekerja);
+                }else{
+                    Toast.makeText(RegisterPekerjaActivity.this, "Gunakan kombinasi huruf kecil,huruf besar dan angka", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -92,6 +105,7 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
                     if (first.getStatus().equalsIgnoreCase("ok")) {
                         Intent intent = new Intent(RegisterPekerjaActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        Toast.makeText(RegisterPekerjaActivity.this,"Sukses Registrasi",Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
                         Toast.makeText(RegisterPekerjaActivity.this, "error bos", Toast.LENGTH_SHORT).show();
@@ -119,4 +133,13 @@ public class RegisterPekerjaActivity extends AppCompatActivity {
 
                 }
             };
+    public boolean isValidPassword(final String password){
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*?[0-9])(?=.*?[A-Z]).{8,20})";
+        pattern =Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+    }
 }
