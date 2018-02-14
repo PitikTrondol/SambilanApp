@@ -112,6 +112,10 @@ public class MainMenuActivity extends AppCompatActivity {
         ((SambilanApplication) getApplication()).setAppRole("");
         ((SambilanApplication) getApplication()).setAppToken("");
 
+        //set token ""
+        CacheManager.getInstance(this).saveString(CacheManager.TOKEN_KEY, ((SambilanApplication) getApplication()).getAppToken());
+        CacheManager.getInstance(this).saveString(CacheManager.ROLE_KEY, ((SambilanApplication) getApplication()).getAppRole());
+
         bottomNavigationView.setSelectedItemId(R.id.btn_home);
         loadFragment(new LandingPageFragment());
     }

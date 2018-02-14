@@ -87,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
                 public void OnSuccessResult(LoginResponse first) {
                     if (first.getStatus().equals("ok")) {
                         Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         cacheManager.saveString(CacheManager.LAST_TOKEN_KEY, ((SambilanApplication) getApplication()).getAppToken());
                         cacheManager.saveString(CacheManager.TOKEN_KEY, first.getLoginObject().getToken());
                         cacheManager.saveString(CacheManager.ROLE_KEY, first.getLoginObject().getUser().getRole());
-
 
                         ((SambilanApplication) getApplication()).setAppToken(first.getLoginObject().getToken());
                         ((SambilanApplication) getApplication()).setLoggedIn(true);

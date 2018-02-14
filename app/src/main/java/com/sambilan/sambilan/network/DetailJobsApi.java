@@ -28,6 +28,5 @@ public interface DetailJobsApi {
                                              @Body ApplyJobBody body);
 
     @GET("/api/v1/applies/")
-    Call<EmployeeFlowResponse> getWaitingList(@Header("token") String token,
-                                              @Query("status") String status);
+    Call<EmployeeFlowResponse> getWaitingList(@Header("token") String token);
 }

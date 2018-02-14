@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
     private SwipeRefreshLayout refreshLayout;
     private ListSelesaiAdapter selesaiAdapter;
     private EmployeeFlowPresenter employeeFlowPresenter;
+    private Toolbar toolbar;
 
     private int userId = 1;
     private String appToken;
@@ -37,7 +39,10 @@ public class HalamanSelesaiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_permintaan);
+        setContentView(R.layout.activity_flow);
+        toolbar = findViewById(R.id.tittle_bar_common);
+        toolbar.setTitle("Selesai");
+
         appToken = ((SambilanApplication) getApplication()).getAppToken();
 
         progressBar = findViewById(R.id.progress_bar);
