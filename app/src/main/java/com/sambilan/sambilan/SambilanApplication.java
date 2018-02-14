@@ -21,6 +21,7 @@ public class SambilanApplication extends Application {
     private boolean isLoggedIn = false;
     private String appRole = "";
     private String appToken = "";
+
     private ConnectionReceiver connectionReceiver;
     private DaoSession daoSession;
     private Database database;
