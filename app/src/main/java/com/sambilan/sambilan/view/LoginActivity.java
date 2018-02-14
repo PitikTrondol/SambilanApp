@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void OnFailureResult(Throwable second) {
                     Toast.makeText(LoginActivity.this,
-                            "TELEK " + second.getMessage(),
+                            "Error " + second.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 }
             };

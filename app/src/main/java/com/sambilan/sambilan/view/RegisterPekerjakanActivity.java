@@ -34,6 +34,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
     private EditText et_no_telp_pekerjakan;
     private EditText et_alamat_pekerjakan;
     private TextView role_pekerjakan;
+    private TextView gender;
 
     private RegisterRequest registerRequest;
     private RegisterPresenter register;
@@ -50,6 +51,8 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         et_alamat_pekerjakan = findViewById(R.id.et_alamat_pekerjakan);
         role_pekerjakan = findViewById(R.id.tv_role_pekerjakan);
         role_pekerjakan.setText("employer");
+        gender = findViewById(R.id.tv_gender_pekerjakan);
+        gender.setText("pria");
         ArrayList<String> list = new ArrayList<>();
 
         Toolbar toolbar = findViewById(R.id.tb_pekerjakan);
@@ -57,6 +60,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Daftar Pekerjakan");
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +80,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                     Toast.makeText(RegisterPekerjakanActivity.this,"Kata Sandi harus terdiri minimal 8 karakter", Toast.LENGTH_SHORT).show();
                 }else if(isValidPassword(et_kata_sandi_pekerjakan.getText().toString().trim())){
                     registerRequest = new RegisterRequest(et_email_pekerjakan.getText().toString(), et_kata_sandi_pekerjakan.getText().toString(),
-                            role_pekerjakan.getText().toString(), null, et_nama_pekerjakan.getText().toString(), null, et_no_telp_pekerjakan.getText().toString()
+                            role_pekerjakan.getText().toString(), gender.getText().toString(), et_nama_pekerjakan.getText().toString(), et_alamat_pekerjakan.getText().toString(), et_no_telp_pekerjakan.getText().toString()
                             , et_nama_perusahaan.getText().toString(), et_alamat_pekerjakan.getText().toString());
                     register.postRegister(registerPresenter, registerRequest);
                 }else{
@@ -91,7 +95,7 @@ public class RegisterPekerjakanActivity extends AppCompatActivity{
                 @Override
                 public void OnSuccessResult(RegisterResponse first) {
                     if(first.getStatus().equalsIgnoreCase("ok")){
-                        Intent intent = new Intent(RegisterPekerjakanActivity.this,MainMenuActivity.class);
+                        Intent intent = new Intent(RegisterPekerjakanActivity.this,LoginActivity.class);
                         startActivity(intent);
                         Toast.makeText(RegisterPekerjakanActivity.this,"Sukses Registrasi",Toast.LENGTH_SHORT).show();
 
