@@ -17,6 +17,4 @@ public interface AddJobApi {
     @POST("/api/v1/jobs/")
     Call<AddJobResponse> postJob(@Header("token") String token,
                                  @Body Job body);
-
 }
-
