@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.LandingPageActivity">
+
+    <item
+        android:id="@+id/menu_filter"
+        android:icon="@mipmap/ic_filter_list"
+        android:orderInCategory="300"
+        android:title="Filter"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_notif"
+        android:icon="@mipmap/ic_notifications"
+        android:orderInCategory="200"
+        android:title="Notif"
+        app:showAsAction="ifRoom" />
+</menu>

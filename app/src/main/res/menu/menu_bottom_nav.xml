@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btn_home"
+        android:icon="@drawable/ic_beranda"
+        android:title="@string/Home" />
+    <item
+        android:id="@+id/btn_add"
+        android:icon="@drawable/ic_tambah"
+        android:title="@string/Add" />
+    <item
+        android:id="@+id/btn_category"
+        android:icon="@drawable/ic_kategori"
+        android:title="@string/Category" />
+    <item
+        android:id="@+id/btn_me"
+        android:icon="@drawable/ic_saya"
+        android:title="@string/Me" />
+
+</menu>

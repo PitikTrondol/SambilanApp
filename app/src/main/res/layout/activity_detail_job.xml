@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorCommonGrey"
+    tools:context="com.sambilan.sambilan.view.DetailJobActivity">
+
+    <ScrollView
+        android:id="@+id/sv_job"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_job"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_image"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@color/colorCommonOrange">
+
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    tools:src="@drawable/ic_starbuck" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_image"
+                android:background="@color/White"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/tv_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    tools:text="@string/lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_title"
+                android:background="@color/White"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:src="@drawable/ic_dilihat" />
+
+                <TextView
+                    android:id="@+id/tv_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_dilihat"
+                    android:text="@string/dilihat" />
+
+                <TextView
+                    android:id="@+id/tv_value_dilihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_dilihat"
+                    tools:text="0" />
+
+                <ImageView
+                    android:id="@+id/iv_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:layout_toRightOf="@id/tv_value_dilihat"
+                    android:src="@drawable/ic_dilamar" />
+
+                <TextView
+                    android:id="@+id/tv_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_dilamar"
+                    android:text="@string/dilamar" />
+
+                <TextView
+                    android:id="@+id/tv_value_dilamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_dilamar"
+                    tools:text="0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_keterangan_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_icon_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_keterangan_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Keterangan Lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_keterangan_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_keterangan_lowongan"
+                android:background="@color/White">
+
+                <ImageView
+                    android:id="@+id/iv_gaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_gaji" />
+
+                <TextView
+                    android:id="@+id/tv_gaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_gaji"
+                    tools:text="1.5000.000"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_jadwal" />
+
+                <TextView
+                    android:id="@+id/tv_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_tgl_posting"
+                    android:text="Tanggal Posting : "
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_tgl_posting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_gaji"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_tgl_posting"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_jadwal" />
+
+                <TextView
+                    android:id="@+id/tv_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_tgl_tutup"
+                    android:text="Tanggal Tutup : "
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_tgl_tutup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_tgl_posting"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_tgl_tutup"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_deskripsi_lowongan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_icon_keterangan_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_deskripsi_lowongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Deskripsi Lowongan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_deskripsi_lowongannya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_deskripsi_lowongan"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="8dp"
+                    tools:text="@string/blablabla"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_perusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_deskripsi_lowongan"
+                android:layout_marginTop="5dp"
+                android:background="@color/White">
+
+                <TextView
+                    android:id="@+id/tv_detail_perusahaan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8dp"
+                    android:text="Detail Perusahaan"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_detail_perusahaannya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_detail_perusahaan"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="8dp"
+                    tools:text="@string/blablabla"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_icon_detail_perusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_detail_perusahaan"
+                android:background="@color/White"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_lowongan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:src="@drawable/ic_lowongan" />
+
+                <TextView
+                    android:id="@+id/tv_lowongannya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_lowongan"
+                    android:text="@string/lowongan"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_lowongannya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_lowongannya"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@id/iv_lowongan"
+                    tools:text="0"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/iv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:layout_toRightOf="@id/tv_lowongannya"
+                    android:src="@drawable/ic_rating" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_rating"
+                    android:text="@string/rating"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_value_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_rating"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_rating"
+                    tools:text="0"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_lamar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/colorCommonOrange"
+                tools:text="Lamar Pekerjaan"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
